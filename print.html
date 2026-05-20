@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ФармКонсилиум · Print</title>
+<meta name="robots" content="noindex, nofollow"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css"/>
+
+<style>
+  html, body { background: #fff; }
+  .robot-img { display: none !important; }
+  .twk-panel { display: none !important; }
+  .header { position: relative !important; }
+  .mega-overlay { display: none !important; }
+  .detail-art { position: static !important; }
+  .page-route { animation: none !important; }
+  .marquee { animation: none !important; }
+  .print-page {
+    break-before: page;
+    page-break-before: always;
+    padding-top: 24px;
+  }
+  .print-page:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
+  }
+  @page { size: A4; margin: 14mm 10mm; }
+  @media print {
+    html, body { background: #fff !important; }
+    .header { box-shadow: none !important; border-bottom: 1px solid #ddd !important; }
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    .tile, .card, .step, .feature-row, .forecast-card, .detail-cta,
+    .footer, .mega-feature, .rel-card, .tm, .feat-list li {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .section-head, .page-hero, .detail-hero {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    img, svg, canvas { break-inside: avoid; page-break-inside: avoid; }
+  }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.9/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="js/components/tweaks-panel.jsx"></script>
+<script type="text/babel" src="js/components/illustrations.jsx"></script>
+<script type="text/babel" src="js/components/forecast-chart.jsx"></script>
+<script type="text/babel" src="js/components/header-footer.jsx"></script>
+<script type="text/babel" src="js/pages/pages.jsx"></script>
+<script type="text/babel" src="js/data/subpages-data.jsx"></script>
+<script type="text/babel" src="js/components/detail-page.jsx"></script>
+<script type="text/babel" src="js/core/app-print.jsx"></script>
+
+</body>
+</html>

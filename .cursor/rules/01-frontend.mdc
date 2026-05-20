@@ -1,0 +1,24 @@
+---
+description: UI, CSS, React-паттерны
+globs: "**/*.{jsx,css,html}"
+alwaysApply: false
+---
+
+# Фронтенд и дизайн
+
+## Дизайн-система (`css/styles.css`)
+Токены: `--bg`, `--surface`, `--ink`, `--muted`, `--accent`, `--font-display`, `--font-body`, `--radius*`, `--shadow*`. Тема: `data-theme` на `<html>`. Акцент/шрифты — в `useEffect` в `app.jsx` из `TWEAK_DEFAULTS`.
+
+## Вёрстка
+- Контейнер: `.container` (1320px).
+- Новый блок: класс в CSS → JSX. Breakpoint: `720px`.
+- Пути к ассетам: `assets/logo.svg`, `assets/uploads/…`
+
+## React
+Функциональные компоненты, `React.useState` / `useEffect`. Проп `navigate` для ссылок. Крошки — как в `detail-page.jsx`.
+
+## Контент vs разметка
+Тексты и фичи — `js/data/subpages-data.jsx`, `portfolio-data.jsx`. `pages.jsx` — структура секций. Новая подстраница: ключ в `SUBPAGES` + ссылка в `MEGA` (`header-footer.jsx`); `art` = `window.Art*`.
+
+## Итерации дизайна
+Править токены и классы, не inline-пиксели. Смена IA (меню) — согласовать роуты.

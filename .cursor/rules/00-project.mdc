@@ -1,0 +1,42 @@
+---
+description: Контекст и структура проекта ФармКонсилиум
+alwaysApply: true
+---
+
+# ФармКонсилиум — корпоративный сайт
+
+Сайт IT-команды **ФармКонсилиум** (фарм-маркетинг, HCP, продажи, контент, справочник ЛС, портфолио). Аудитория: фарм-бренды в **РБ**. Язык UI и контента — **русский**.
+
+## Стадия
+Прототип с дизайном; макет и тексты **дорабатываются**. Сохранять архитектуру и токены, не ломать ради «идеального» черновика.
+
+## Структура репозитория
+```
+index.html          — точка входа (продакшен)
+print.html          — печать/PDF (noindex)
+css/styles.css      — дизайн-токены и компоненты
+assets/             — logo.svg, uploads/
+js/core/            — app.jsx, app-print.jsx
+js/components/      — header, detail, robot, charts, tweaks
+js/pages/           — pages.jsx, portfolio-pages.jsx
+js/data/            — subpages-data, portfolio-data, seo-meta.jsx
+robots.txt, sitemap.xml
+```
+
+## Стек
+React 18 (UMD) + Babel Standalone в браузере. **Без сборщика** — пока не запрошена миграция на Vite.
+
+## Порядок скриптов в index.html
+`tweaks-panel` → `illustrations` → `forecast-chart` → `header-footer` → `pages` → `subpages-data` → `seo-meta` → `detail-page` → `portfolio-data` → `portfolio-pages` → `robot` → `app`.
+
+## Роутинг
+Hash: `marketing`, `hcp`, `marketing/crm`, `portfolio/slug`. Навигация: `navigate(id)`. Контент подстраниц — `window.SUBPAGES`; портфолио — `window.PORTFOLIO`.
+
+## Глобалы
+Не использовать `import/export` без сборки. Иллюстрации: `window.Art*`. SEO: `window.updatePageSeo(route)` в `js/data/seo-meta.jsx`.
+
+## Копирайт
+**ФармКонсилиум** в UI. Тон B2B, конкретика (CRM, CLM, HCP, SoV). CTA: «Получить консультацию» → `team`. Не выдумывать цифры и юридические обещания.
+
+## Запрещено без запроса
+Массовый рефакторинг на TS/Vite; дублирование `MEGA`/`SUBPAGES` в JSX; удаление `TweaksPanel` и `/*EDITMODE-BEGIN*/`; хардкод цветов вместо CSS-переменных.

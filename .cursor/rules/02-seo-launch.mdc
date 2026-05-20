@@ -1,0 +1,42 @@
+---
+description: SEO перед запуском (по чек-листу Seologic + специфика SPA)
+alwaysApply: true
+---
+
+# SEO и запуск
+
+Ориентир: [чек-лист Seologic перед запуском сайта](https://www.seologic.by/blog/chek-list-po-seo-chto-nuzhno-proverit-pered-zapuskom-novogo-sajta).
+
+## Критично для этого проекта
+1. **Чистые URL** — сейчас hash (`#marketing/crm`). Перед продакшеном: History API + серверные rewrite (`/marketing/crm`), обновить `sitemap.xml`, canonical в `seo-meta.jsx`.
+2. **Домен** — заменить `https://pharmconsilium.by` в `index.html`, `robots.txt`, `sitemap.xml`, `js/data/seo-meta.jsx` (`SITE.baseUrl`).
+3. **Мета на каждую страницу** — `SEO_STATIC` + авто из `SUBPAGES`/`PORTFOLIO` через `updatePageSeo`. Новый роут = запись в SEO.
+4. **Один H1** на экран; подзаголовки H2/H3 по иерархии; ключи в title/description естественно, без переспама.
+
+## Техника (чек-лист)
+| Задача | Где |
+|--------|-----|
+| robots.txt | корень; `print.html` — Disallow |
+| sitemap.xml | дополнить все URL после миграции с hash |
+| HTTPS | на хостинге; редирект HTTP→HTTPS |
+| Скорость | production React; сузить Google Fonts; WebP для растров; lazy для robot |
+| Mobile | адаптив уже в CSS — проверить 375px |
+| SSL + безопасность | хостинг; CAPTCHA на формах (когда появятся) |
+
+## Контент и медиа
+- Уникальные `title` и `meta description` (до ~160 символов) на страницу.
+- `alt` у смысловых `<img>` (не пустой).
+- Внутренняя перелинковка: `related` в SUBPAGES, карточки, mega-menu.
+
+## Аналитика (перед релизом)
+Подключить и верифицировать: **Яндекс Метрика**, **Яндекс Вебмастер**, **Google Analytics 4**, **Search Console**. Цели: клик «Получить консультацию», отправка формы.
+
+## Локальное SEO (РБ)
+NAP в футере; профили **Яндекс Бизнес** / Google Business; локальные ключи («Беларусь», «РБ», «Минск») в контенте где уместно.
+
+## Перед каждым релизом
+- [ ] Домен и canonical актуальны
+- [ ] sitemap отправлен в Вебмастер и Search Console
+- [ ] Нет `noindex` на публичных страницах
+- [ ] PageSpeed / мобильный тест пройден
+- [ ] Все SUBPAGES из меню открываются (не «в разработке» без причины)

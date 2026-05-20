@@ -1,0 +1,7 @@
+# ФармКонсилиум — обновить Sitemap URL перед продакшеном
+User-agent: *
+Allow: /
+Disallow: /print.html
+Disallow: /ФармКонсилиум-print.html
+
+Sitemap: https://pharmconsilium.by/sitemap.xml
