@@ -1,24 +1,25 @@
 ---
-description: UI, CSS, React-паттерны
+description: UI, CSS, React patterns
 globs: "**/*.{jsx,css,html}"
 alwaysApply: false
 ---
 
-# Фронтенд и дизайн
+# Frontend and design
 
-## Дизайн-система (`css/styles.css`)
-Токены: `--bg`, `--surface`, `--ink`, `--muted`, `--accent`, `--font-display`, `--font-body`, `--radius*`, `--shadow*`. Тема: `data-theme` на `<html>`. Акцент/шрифты — в `useEffect` в `app.jsx` из `TWEAK_DEFAULTS`.
+## Design system (`css/styles.css`)
+Tokens: `--bg`, `--surface`, `--ink`, `--muted`, `--accent`, `--font-display`, `--font-body`, `--radius*`, `--shadow*`. Theme: `data-theme` on `<html>`. Accent/fonts — in `useEffect` in `app.jsx` from `TWEAK_DEFAULTS`.
 
-## Вёрстка
-- Контейнер: `.container` (1320px).
-- Новый блок: класс в CSS → JSX. Breakpoint: `720px`.
-- Пути к ассетам: `assets/logo.svg`, `assets/uploads/…`
+## Layout
+- Container: `.container` (1320px).
+- New block: class in CSS → JSX. Breakpoint: `720px`.
+- Asset paths: `assets/logo.svg`, `assets/uploads/…`
+- **Mobile:** new or changed blocks must behave down to **~375px** (no layout-only desktop assumptions); reuse responsive utilities already in `css/styles.css`.
 
 ## React
-Функциональные компоненты, `React.useState` / `useEffect`. Проп `navigate` для ссылок. Крошки — как в `detail-page.jsx`.
+Functional components, `React.useState` / `useEffect`. Pass `navigate` for links. Breadcrumbs — follow `detail-page.jsx`.
 
-## Контент vs разметка
-Тексты и фичи — `js/data/subpages-data.jsx`, `portfolio-data.jsx`. `pages.jsx` — структура секций. Новая подстраница: ключ в `SUBPAGES` + ссылка в `MEGA` (`header-footer.jsx`); `art` = `window.Art*`.
+## Content vs markup
+Copy and features — `js/data/subpages-data.jsx`, `portfolio-data.jsx`. `pages.jsx` — section structure. New subpage: key in `SUBPAGES` + link in `MEGA` (`header-footer.jsx`); `art` = `window.Art*`.
 
-## Итерации дизайна
-Править токены и классы, не inline-пиксели. Смена IA (меню) — согласовать роуты.
+## Design iterations
+Edit tokens and classes, not inline pixels. IA/menu changes — align routes first.

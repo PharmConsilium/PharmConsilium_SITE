@@ -16,6 +16,20 @@ powershell -ExecutionPolicy Bypass -File scripts/serve.ps1
 
 Не открывайте `index.html` напрямую (`file://`) — Babel не загрузит `.jsx` по CORS.
 
+### Просмотр внутри Cursor (как в браузере)
+
+Нужен тот же **HTTP**-адрес, что и снаружи, не превью файла.
+
+1. Запустите сервер (команда выше или **Terminal → Run Task…** → **Serve PharmConsilium (local)**).
+2. **Ctrl+Shift+P** → команда **Simple Browser: Show** (в палитре можно набрать `Simple Browser`).
+3. В поле URL вставьте: **http://127.0.0.1:3000/** и Enter.
+
+Откроется встроенная вкладка с полноценным JavaScript — меню и разделы должны совпадать с Chrome. После правок в коде обновите страницу (**F5** или кнопка обновления в Simple Browser).
+
+Если ширина панели **уже ~960px**, горизонтальное меню в шапке скрывается (как на телефоне): нажмите **иконку «три полоски»** слева от языка — откроется список разделов. Расширьте панель или откройте внешний браузер на полный экран, если нужен вид «как на десктопе» без бургера.
+
+Если Simple Browser недоступен, используйте расширение **Live Preview** (Microsoft) и снова укажите `http://127.0.0.1:3000/` — не открывайте только `index.html` как статический файл без сервера.
+
 ## Структура
 
 | Путь | Назначение |
@@ -30,7 +44,7 @@ powershell -ExecutionPolicy Bypass -File scripts/serve.ps1
 | `js/data/` | Контент, SEO |
 | `.cursor/rules/` | Правила для AI в Cursor |
 
-Старые имена `ФармКонсилиум.html` и `ФармКонсилиум-print.html` перенаправляют на новые файлы.
+Legacy aliases `pharmconsilium.html` and `pharmconsilium-print.html` redirect to `index.html` and `print.html`.
 
 ## SEO перед продакшеном
 

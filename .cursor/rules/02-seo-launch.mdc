@@ -1,42 +1,42 @@
 ---
-description: SEO перед запуском (по чек-листу Seologic + специфика SPA)
+description: Pre-launch SEO (Seologic checklist + SPA specifics)
 alwaysApply: true
 ---
 
-# SEO и запуск
+# SEO and launch
 
-Ориентир: [чек-лист Seologic перед запуском сайта](https://www.seologic.by/blog/chek-list-po-seo-chto-nuzhno-proverit-pered-zapuskom-novogo-sajta).
+Reference: [Seologic pre-launch SEO checklist](https://www.seologic.by/blog/chek-list-po-seo-chto-nuzhno-proverit-pered-zapuskom-novogo-sajta).
 
-## Критично для этого проекта
-1. **Чистые URL** — сейчас hash (`#marketing/crm`). Перед продакшеном: History API + серверные rewrite (`/marketing/crm`), обновить `sitemap.xml`, canonical в `seo-meta.jsx`.
-2. **Домен** — заменить `https://pharmconsilium.by` в `index.html`, `robots.txt`, `sitemap.xml`, `js/data/seo-meta.jsx` (`SITE.baseUrl`).
-3. **Мета на каждую страницу** — `SEO_STATIC` + авто из `SUBPAGES`/`PORTFOLIO` через `updatePageSeo`. Новый роут = запись в SEO.
-4. **Один H1** на экран; подзаголовки H2/H3 по иерархии; ключи в title/description естественно, без переспама.
+## Critical for this project
+1. **Clean URLs** — currently hash (`#marketing/crm`). Before production: History API + server rewrites (`/marketing/crm`), update `sitemap.xml`, canonical in `seo-meta.jsx`.
+2. **Domain** — replace `https://pharmconsilium.by` in `index.html`, `robots.txt`, `sitemap.xml`, `js/data/seo-meta.jsx` (`SITE.baseUrl`).
+3. **Meta per page** — `SEO_STATIC` + auto from `SUBPAGES`/`PORTFOLIO` via `updatePageSeo`. New route = SEO entry.
+4. **One H1** per screen; H2/H3 hierarchy; keywords in title/description naturally, no stuffing.
 
-## Техника (чек-лист)
-| Задача | Где |
-|--------|-----|
-| robots.txt | корень; `print.html` — Disallow |
-| sitemap.xml | дополнить все URL после миграции с hash |
-| HTTPS | на хостинге; редирект HTTP→HTTPS |
-| Скорость | production React; сузить Google Fonts; WebP для растров; lazy для robot |
-| Mobile | адаптив уже в CSS — проверить 375px |
-| SSL + безопасность | хостинг; CAPTCHA на формах (когда появятся) |
+## Technical checklist
+| Task | Where |
+|------|--------|
+| robots.txt | root; `print.html` — Disallow |
+| sitemap.xml | add all URLs after hash migration |
+| HTTPS | hosting; HTTP→HTTPS redirect |
+| Performance | production React; trim Google Fonts; WebP for rasters; lazy-load robot |
+| Mobile | responsive CSS — verify at 375px |
+| SSL + security | hosting; CAPTCHA on forms (when added) |
 
-## Контент и медиа
-- Уникальные `title` и `meta description` (до ~160 символов) на страницу.
-- `alt` у смысловых `<img>` (не пустой).
-- Внутренняя перелинковка: `related` в SUBPAGES, карточки, mega-menu.
+## Content and media
+- Unique `title` and `meta description` (~160 chars) per page.
+- Meaningful `alt` on `<img>` (not empty).
+- Internal links: `related` in SUBPAGES, cards, mega-menu.
 
-## Аналитика (перед релизом)
-Подключить и верифицировать: **Яндекс Метрика**, **Яндекс Вебмастер**, **Google Analytics 4**, **Search Console**. Цели: клик «Получить консультацию», отправка формы.
+## Analytics (before release)
+Enable and verify: **Yandex Metrica**, **Yandex Webmaster**, **Google Analytics 4**, **Search Console**. Goals: «Получить консультацию» click, form submit.
 
-## Локальное SEO (РБ)
-NAP в футере; профили **Яндекс Бизнес** / Google Business; локальные ключи («Беларусь», «РБ», «Минск») в контенте где уместно.
+## Local SEO (Belarus)
+NAP in footer; **Yandex Business** / Google Business profiles; local keywords («Беларусь», «РБ», «Минск») in copy where appropriate.
 
-## Перед каждым релизом
-- [ ] Домен и canonical актуальны
-- [ ] sitemap отправлен в Вебмастер и Search Console
-- [ ] Нет `noindex` на публичных страницах
-- [ ] PageSpeed / мобильный тест пройден
-- [ ] Все SUBPAGES из меню открываются (не «в разработке» без причины)
+## Before each release
+- [ ] Domain and canonical are current
+- [ ] Sitemap submitted to Webmaster and Search Console
+- [ ] No `noindex` on public pages
+- [ ] PageSpeed / mobile test passed
+- [ ] All SUBPAGES from menu open (not “in development” without reason)

@@ -2,6 +2,6 @@
 User-agent: *
 Allow: /
 Disallow: /print.html
-Disallow: /ФармКонсилиум-print.html
+Disallow: /pharmconsilium-print.html
 
 Sitemap: https://pharmconsilium.by/sitemap.xml

@@ -1,9 +1,9 @@
 // Header with Apple-style mega-menu drawer, brand, lang toggle, theme switch.
 
 const NAV_ITEMS = [
-{ id: 'marketing', label: 'Маркетинг' },
-{ id: 'hcp', label: 'Специалистам' },
-{ id: 'sales', label: 'Продажи' },
+{ id: 'marketing', label: 'Фармацевтический маркетинг' },
+{ id: 'hcp', label: 'Здравоохранения' },
+{ id: 'sales', label: 'Аутсорсинг' },
 { id: 'content', label: 'Контент' },
 { id: 'directory', label: 'Справочник ЛС' },
 { id: 'team', label: 'Команда' }];
@@ -131,6 +131,7 @@ const MEGA = {
 
 function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   const [openMenu, setOpenMenu] = React.useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
   const closeTimer = React.useRef(null);
 
   const open = (id) => {
@@ -142,10 +143,18 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   };
 
   React.useEffect(() => {
-    const esc = (e) => {if (e.key === 'Escape') setOpenMenu(null);};
+    const esc = (e) => {
+      if (e.key !== 'Escape') return;
+      setOpenMenu(null);
+      setMobileNavOpen(false);
+    };
     window.addEventListener('keydown', esc);
     return () => window.removeEventListener('keydown', esc);
   }, []);
+
+  React.useEffect(() => {
+    setMobileNavOpen(false);
+  }, [route]);
 
   const ArtTag = openMenu ? window[MEGA[openMenu].featured.art] : null;
 
@@ -173,6 +182,19 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
 
         {/* RIGHT: actions */}
         <div className="header-right">
+          <button
+            type="button"
+            className="nav-menu-btn btn-icon"
+            aria-expanded={mobileNavOpen}
+            aria-controls="mobile-nav"
+            aria-label={mobileNavOpen ? 'Закрыть меню разделов' : 'Открыть меню разделов'}
+            onClick={() => { setMobileNavOpen((o) => !o); setOpenMenu(null); }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <line x1="4" x2="20" y1="6" y2="6" />
+              <line x1="4" x2="20" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
+          </button>
           <div className="lang-toggle">
             <button className={lang === 'ru' ? 'on' : ''} onClick={() => setLang('ru')}>RU</button>
             <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')}>EN</button>
@@ -222,6 +244,26 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
           </div>
         }
       </div>
+
+      <div
+        className={`mobile-nav-backdrop ${mobileNavOpen ? 'open' : ''}`}
+        aria-hidden="true"
+        onClick={() => setMobileNavOpen(false)}
+      />
+      <nav id="mobile-nav"
+        className={`mobile-nav-sheet ${mobileNavOpen ? 'open' : ''}`}
+        role="navigation"
+        aria-label="Разделы сайта">
+        {NAV_ITEMS.map((item) =>
+          <button
+            key={item.id}
+            type="button"
+            className={`mobile-nav-link ${route === item.id ? 'active' : ''}`}
+            onClick={() => { navigate(item.id); setMobileNavOpen(false); setOpenMenu(null); }}>
+            {item.label}
+          </button>
+          )}
+      </nav>
     </header>);
 
 }

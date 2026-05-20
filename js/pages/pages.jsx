@@ -5,9 +5,9 @@ function HomePage({ navigate, scenario, setScenario }) {
   const heroTiles = [
   { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг',
     desc: 'CRM, CLM/2CLM, AI-тренер, омниканальная архитектура с HCP.', art: 'ArtNodes' },
-  { id: 'hcp', num: '02', title: 'Медицинским специалистам',
+  { id: 'hcp', num: '02', title: 'Здравоохранения',
     desc: 'Рекомендательные системы, образовательные платформы, ИИ-помощник врача.', art: 'ArtPulse' },
-  { id: 'sales', num: '03', title: 'Продвижение и продажи',
+  { id: 'sales', num: '03', title: 'Аутсорсинг',
     desc: 'Цифровой медпред, аутсорсинг продаж, лонч-кампании под ключ.', art: 'ArtLaunch' },
   { id: 'content', num: '04', title: 'Контент и игры',
     desc: 'Медицинская презентация, видео, eDetailing, геймификация и квизы.', art: 'ArtVideo', wide: true },
@@ -21,7 +21,7 @@ function HomePage({ navigate, scenario, setScenario }) {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <div className="eyebrow">Команда внедрения цифровых технологий в сфере фармацевтики и здравоохранения</div>
+            <div className="eyebrow">Команда внедрения цифровых технологий в сфере фармацевтики и здравоохранения. Работаем с 2015 года.</div>
             <h1>
               IT-решения<br />
               <span className="accent">для лечения доверия</span>
@@ -300,7 +300,7 @@ function MarketingPage({ navigate }) {
 function HcpPage({ navigate }) {
   return <PageShell navigate={navigate}
   section="hcp"
-  crumb="Медицинским специалистам"
+  crumb="Здравоохранения"
   title="Разработка цифровых решений для здравоохранения"
   lede="Платформы, рекомендательные системы, ИИ-ассистенты и программы поддержки пациентов — в регуляторных рамках, с заботой о практической пользе."
   cards={[
@@ -328,7 +328,7 @@ function HcpPage({ navigate }) {
 function SalesPage({ navigate }) {
   return <PageShell navigate={navigate}
   section="sales"
-  crumb="Продвижение и продажи"
+  crumb="Аутсорсинг"
   title="Комплексное продвижение и аутсорсинг продаж"
   lede="Если у вас нет своего отдела продаж в РБ — соберём его за вас. Если есть — добавим цифровой слой и омниканальный охват."
   cards={[

@@ -1,27 +1,27 @@
 ---
-description: Как агенту вносить изменения
+description: How the agent should make changes
 alwaysApply: true
 ---
 
 # Workflow
 
-## Перед правкой
-Тип задачи: контент / UI / SEO / новая страница / инфраструктура. Открыть соответствующий файл в `js/data/` или образец в `js/pages/`.
+## Before editing
+Task type: content / UI / SEO / new page / infrastructure. Open the matching file in `js/data/` or a sample in `js/pages/`.
 
-## Минимальный diff
-Один concern: один CSS-токен, одна подстраница, один пункт меню. Комментарии секций сохранять (`/* ========== MARKETING ========== */`).
+## Minimal diff
+One concern at a time: one CSS token, one subpage, one menu item. Keep section comments (`/* ========== MARKETING ========== */`).
 
-## Новая страница
-1. `SUBPAGES['section/slug']` или раздел в `pages.jsx`
-2. Ссылка в `MEGA` / карточках
-3. Запись SEO (статик или авто из `lede`)
-4. При path-роутинге — URL в `sitemap.xml`
+## New page
+1. `SUBPAGES['section/slug']` or section in `pages.jsx`
+2. Link in `MEGA` / cards
+3. SEO entry (static or auto from `lede`)
+4. With path routing — URL in `sitemap.xml`
 
-## Проверка локально
-`index.html` через live server. Роуты: `#home`, `#marketing/crm`, `#portfolio`, тёмная тема, 375px. Консоль без ошибок.
+## Local check
+`index.html` via live server. Routes: `#home`, `#marketing/crm`, `#portfolio`, dark theme, 375px. No console errors.
 
-## Коммиты
-Только по запросу пользователя. Секреты и ключи аналитики — не в репозиторий.
+## Commits
+Only when the user asks. No secrets or analytics keys in the repo.
 
-## Спросить пользователя
-Новый раздел в меню; смена домена; CMS/бэкенд форм; удаление robot/tweaks; миграция на Vite.
+## Ask the user first
+New top-level menu section; domain change; CMS/form backend; removing robot/tweaks; Vite migration.

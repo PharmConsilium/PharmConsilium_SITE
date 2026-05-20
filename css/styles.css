@@ -107,7 +107,7 @@ button { font-family: inherit; }
   gap: 24px;
   height: 72px;
 }
-.header-left  { display: flex; align-items: center; justify-self: start; }
+.header-left  { display: flex; align-items: center; justify-self: start; gap: 0; }
 .header-right { display: flex; align-items: center; gap: 8px; justify-self: end; }
 
 .brand {
@@ -178,6 +178,83 @@ button { font-family: inherit; }
 @media (max-width: 960px) {
   .nav { display: none; }
   .header-inner { grid-template-columns: 1fr auto; }
+}
+
+/* Narrow viewports (mobile, IDE Simple Browser): nav → hamburger sheet */
+.nav-menu-btn { display: none; }
+.mobile-nav-backdrop,
+.mobile-nav-sheet { display: none; }
+@media (max-width: 960px) {
+  .nav-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-nav-backdrop {
+    display: block;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: color-mix(in srgb, var(--ink) 40%, transparent);
+    z-index: 44;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+  }
+  .mobile-nav-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .mobile-nav-sheet {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    padding: 12px 20px 20px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 24px 48px -12px rgba(11, 15, 25, 0.16);
+    z-index: 45;
+    transition: max-height 260ms ease, opacity 200ms ease, padding-bottom 260ms ease;
+  }
+  .mobile-nav-sheet.open {
+    max-height: min(75vh, 420px);
+    overflow-y: auto;
+    opacity: 1;
+    pointer-events: auto;
+    padding-bottom: 24px;
+  }
+  .mobile-nav-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease;
+  }
+  .mobile-nav-link:hover {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+  .mobile-nav-link.active {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
 }
 .brand-mark {
   width: 28px; height: 28px; border-radius: 8px;
