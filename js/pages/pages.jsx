@@ -592,7 +592,7 @@ function DirectoryPage({ navigate }) {
 }
 
 const TEAM = [
-{ n: 'Алина Веренич', r: 'CEO, основатель' },
+{ n: 'Робби', r: 'Цифровой ассистент', photo: 'assets/uploads/team-robbie.png', photoHover: 'assets/uploads/team-robbie-hover.png' },
 { n: 'Дмитрий Качан', r: 'Head of AI' },
 { n: 'Елена Грицук', r: 'Head of HCP-marketing' },
 { n: 'Сергей Лазько', r: 'Head of Sales' },
@@ -614,6 +614,17 @@ function PortraitPlaceholder({ seed }) {
       <circle cx="60" cy="60" r="34" fill="none" stroke="rgba(255,255,255,.4)" strokeWidth="2" />
     </svg>);
 
+}
+
+function TeamMemberPortrait({ member, seed, layer }) {
+  const isHover = layer === 'hover';
+  if (member.photo) {
+    const src = isHover && member.photoHover ? member.photoHover : member.photo;
+    return (
+      <img src={src} alt={member.n} decoding="async" loading="lazy" />);
+
+  }
+  return <PortraitPlaceholder seed={seed} />;
 }
 
 function TeamPage({ navigate }) {
@@ -674,10 +685,10 @@ function TeamPage({ navigate }) {
           <div key={i} className="tm">
               <div className="tm-portrait">
                 <div className="tm-portrait-img tm-portrait-default">
-                  <PortraitPlaceholder seed={i + 1} />
+                  <TeamMemberPortrait member={m} seed={i + 1} layer="default" />
                 </div>
                 <div className="tm-portrait-img tm-portrait-hover">
-                  <PortraitPlaceholder seed={i + 1 + 97} />
+                  <TeamMemberPortrait member={m} seed={i + 1 + 97} layer="hover" />
                 </div>
               </div>
               <div className="tm-name">{m.n}</div>

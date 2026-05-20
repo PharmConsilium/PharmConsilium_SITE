@@ -813,6 +813,11 @@ button { font-family: inherit; }
 .tm-portrait-hover   { opacity: 0; transform: scale(1.06); }
 .tm:hover .tm-portrait-default { opacity: 0; transform: scale(.96); }
 .tm:hover .tm-portrait-hover   { opacity: 1; transform: scale(1); }
+.tm-portrait-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
 .tm-name { font-family: var(--font-display); font-weight: 500; font-size: 16px; letter-spacing: -0.015em; }
 .tm-role { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 
