@@ -83,19 +83,13 @@ const MARQUEE_TICKERS = [
 
 function HomePage({ navigate, scenario, setScenario }) {
   const [heroQuery, setHeroQuery] = React.useState('');
-  const [forecastPulse, setForecastPulse] = React.useState(false);
   const MidContactStrip = window.MidContactStrip;
 
   const heroQueryReady = heroQuery.trim().length > 0;
 
   function runHeroForecast() {
     if (!heroQuery.trim()) return;
-    const card = document.querySelector('.forecast-card');
-    if (card) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      setForecastPulse(true);
-      window.setTimeout(() => setForecastPulse(false), 1200);
-    }
+    window.openPharmContact?.();
   }
   const heroTiles = [
   { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг.',
@@ -159,7 +153,7 @@ function HomePage({ navigate, scenario, setScenario }) {
           </div>
 
           {/* Forecast card */}
-          <div className={`forecast-card${forecastPulse ? ' forecast-card--pulse' : ''}`}>
+          <div className="forecast-card">
             <div className="fc-head">
               <div>
                 <div className="fc-title">ИИ Робби рассчитает прогноз Вашего бренда на фармацевтическом рынке СНГ</div>
@@ -260,7 +254,7 @@ function HomePage({ navigate, scenario, setScenario }) {
                 <button
                   type="button"
                   className="btn btn-primary btn-sm"
-                  onClick={() => window.open('https://pharmconsilium-crm.com/', '_blank', 'noopener,noreferrer')}>
+                  onClick={() => navigate('marketing/crm')}>
                   CRM <span className="arrow">→</span>
                 </button>
               </div>
