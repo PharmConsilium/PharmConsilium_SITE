@@ -555,8 +555,26 @@ button { font-family: inherit; }
   padding: 48px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
   align-items: center;
+  overflow: visible;
 }
-@media (max-width: 800px) { .feature-row { grid-template-columns: 1fr; padding: 28px; } }
+.feature-row-art {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.feature-row-art svg {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+}
+@media (max-width: 800px) {
+  .feature-row { grid-template-columns: 1fr; padding: 28px; }
+  .feature-row-art { min-height: 280px; max-width: 360px; margin: 0 auto; }
+}
 .feature-row h3 {
   font-family: var(--font-display); font-weight: 500;
   font-size: clamp(28px, 3.4vw, 42px);
@@ -722,6 +740,44 @@ button { font-family: inherit; }
   max-width: 22ch;
   line-height: 1.15;
 }
+.footer-tag .accent {
+  color: var(--accent);
+}
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  background: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 180ms cubic-bezier(.2,.7,.3,1), opacity 180ms ease;
+  box-shadow: none;
+}
+.footer-social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: none;
+  opacity: 0.88;
+}
+.footer-social-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.footer-social-link svg,
+.footer-social-link img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
 .footer-meta {
   display: flex; justify-content: space-between; align-items: center;
   padding-top: 24px;
@@ -794,7 +850,7 @@ button { font-family: inherit; }
   white-space: nowrap;
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-.marquee-track { display: flex; align-items: center; gap: 56px; animation: scroll 38s linear infinite; }
+.marquee-track { display: flex; align-items: center; gap: 56px; animation: scroll 300s linear infinite; }
 @keyframes scroll { to { transform: translateX(-50%); } }
 .marquee .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
 

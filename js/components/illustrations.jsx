@@ -413,7 +413,7 @@ function ArtDirectory({ className }) {
 /* big abstract for hero/feature */
 function ArtConstellation({ className }) {
   return (
-    <ArtFrame viewBox="0 0 400 280" className={className}>
+    <ArtFrame viewBox="0 0 400 320" className={className}>
       <defs>
         <radialGradient id="cglow" cx="50%" cy="50%">
           <stop offset="0%" stopColor={ART_PALETTE.accent} stopOpacity=".25"/>

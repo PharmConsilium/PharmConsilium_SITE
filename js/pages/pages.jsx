@@ -1,6 +1,86 @@
 // Pages: Home, Marketing, HCP, Sales, Content, Directory, Team
 // Each page is a self-contained section. Home is most detailed.
 
+const MARQUEE_TICKERS = [
+  'AI-Powered Chatbot',
+  'Approved Email',
+  'Automated Medication Reminders',
+  'Brand Scientific Platform',
+  'Bot',
+  'Call Planning',
+  'Chatbot',
+  'CLM Presentation',
+  'Closed-Loop Marketing',
+  'Closed-Loop Marketing Presentation',
+  'Compliant Messaging Platform',
+  'Conversational Agent',
+  'Conversational AI',
+  'Conversational Discovery',
+  'Detailing',
+  'Detailing Aid',
+  'Digital Detailing',
+  'Digital Marketing',
+  'Digital Therapeutics',
+  'Direct-to-Patient Marketing',
+  'eDetail',
+  'eDetailing',
+  'eVisual Aid',
+  'F2F',
+  'Field Force',
+  'Field Force CRM',
+  'Field Force Training',
+  'Follow-up Mailing',
+  'Generative AI Chatbot',
+  'Generative AI in Pharma Marketing',
+  'HCP Mobile App',
+  'HCP Porta',
+  'HCP Segmentation & Targeting',
+  'HCP-Dedicated Website',
+  'HCP-Facing App',
+  'Health Equity & Localization Strategy',
+  'Healthcare Marketing',
+  'Healthcare Professional',
+  'Hyper-Personalization',
+  'Interactive Visual Aid',
+  'Key Account Manager',
+  'Leave-Behind Literature',
+  'Marketing Mix Modeling',
+  'Medical Legal Regulatory Review',
+  'Medical Marketing',
+  'Medical Representative',
+  'Medical Science Liaison',
+  'MedRep',
+  'mHealth App',
+  'mHealth Patient App',
+  'MLR-Compliant Conversational AI',
+  'Next Best Action',
+  'Omnichannel HCP Engagement',
+  'Opt-In Messaging',
+  'Optichannel Strategy',
+  'Patient Journey Mapping',
+  'Patient Support App',
+  'Patient Support Program',
+  'Pharma CRM',
+  'Pharma Professional Portal',
+  'Post-Call Digital Content Push',
+  'Post-Call Follow-Up Materials Delivery',
+  'Post-Visit Promotional Content Distribution',
+  'Predictive Analytics for HCP Engagement',
+  'Real-World Evidence',
+  'Remote Detailing',
+  'Rep CRM',
+  'Rep-Triggered Email',
+  'Rich Messaging',
+  'Rule-Based Chatbot',
+  'Sales Force Training',
+  'Scientific Narrative',
+  'Telegram Bot for Pharma',
+  'Territory Management',
+  'Virtual Assistant',
+  'Visual Aid',
+  'WhatsApp for Pharma',
+];
+
 function HomePage({ navigate, scenario, setScenario }) {
   const MidContactStrip = window.MidContactStrip;
   const heroTiles = [
@@ -42,7 +122,7 @@ function HomePage({ navigate, scenario, setScenario }) {
               </button>
             </div>
             <div className="hero-trust">
-              <div><div className="stat-num">80+</div><div className="stat-lbl">запусков на рынке РБ</div></div>
+              <div><div className="stat-num">2015</div><div className="stat-lbl">год основания</div></div>
               <div><div className="stat-num">1 000</div><div className="stat-lbl">врачей в справочнике</div></div>
               <div><div className="stat-num">15</div><div className="stat-lbl">лет в фарм-маркетинге</div></div>
             </div>
@@ -109,8 +189,7 @@ function HomePage({ navigate, scenario, setScenario }) {
       <div className="marquee">
         <div className="marquee-track">
           {[...Array(2)].flatMap((_, k) =>
-          ['Veeva', 'IQVIA', 'Agnitio', 'Pitcher', 'AI-тренер', 'eDetailing', 'Omnichannel',
-          'CLM 2.0', 'Patient Support', 'Конференции под ключ', 'Геймификация'].
+          MARQUEE_TICKERS.
           map((t, i) =>
           <React.Fragment key={`${k}-${i}`}>
                 <span>{t}</span><span className="dot"></span>
@@ -171,7 +250,7 @@ function HomePage({ navigate, scenario, setScenario }) {
                 <button className="btn btn-ghost">Скачать white-paper · PDF</button>
               </div>
             </div>
-            <div style={{ height: 300, position: 'relative' }}>
+            <div className="feature-row-art">
               <ArtConstellation />
             </div>
           </div>

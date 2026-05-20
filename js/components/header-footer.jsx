@@ -268,6 +268,43 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
 
 }
 
+function FooterSocialLinks() {
+  const c = 'footer-social-link';
+  return (
+    <div className="footer-social" role="navigation" aria-label="Социальные сети ФармКонсилиума">
+      <a href="https://t.me/PharmConsilium"
+        className={c}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="ФармКонсилиум в Telegram">
+        <img src="assets/icon-telegram.svg" width="28" height="28" decoding="async" alt="" aria-hidden="true" />
+      </a>
+      <a href="https://www.pinterest.com/pharmconsilium/"
+        className={c}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="ФармКонсилиум на Pinterest">
+        <img src="assets/icon-pinterest.png" width="28" height="28" decoding="async" alt="" aria-hidden="true" />
+      </a>
+      <a href="https://www.instagram.com/pharmconsilium/"
+        className={c}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="ФармКонсилиум в Instagram">
+        <img src="assets/icon-instagram.svg" width="28" height="28" decoding="async" alt="" aria-hidden="true" />
+      </a>
+      <a href="https://www.youtube.com/channel/UCLjkMonolXAtMYPOAi1dlGQ"
+        className={c}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="ФармКонсилиум на YouTube">
+        <img src="assets/icon-youtube.svg" width="28" height="28" decoding="async" alt="" aria-hidden="true" />
+      </a>
+    </div>
+  );
+
+}
+
 function Footer({ navigate }) {
   return (
     <footer className="footer">
@@ -277,8 +314,12 @@ function Footer({ navigate }) {
             <div className="brand" style={{ cursor: 'default' }}>
               <img src="assets/logo.svg" alt="ФармКонсилиум — IT-решения для фарм-маркетинга" className="brand-logo" />
             </div>
-            <div className="footer-tag">IT-решение для лечения доверия в здравоохранении</div>
+            <div className="footer-tag">
+              IT-решения<br />
+              <span className="accent">для лечения доверия</span>
+            </div>
             <div style={{ color: 'var(--muted)', fontSize: 13 }}>© 2026 ФармКонсилиум · РБ</div>
+            <FooterSocialLinks />
           </div>
           <div className="footer-col">
             <h4>Разделы</h4>
@@ -301,15 +342,25 @@ function Footer({ navigate }) {
           <div className="footer-col">
             <h4>Контакты</h4>
             <ul>
-              <li style={{ color: 'var(--ink)' }}>+375 (29) 000 — 00 — 00</li>
-              <li>hello@pharmconsilium.by</li>
-              <li>Минск, пр-т Независимости, 00</li>
-              <li>пн — пт, 10:00 — 19:00</li>
+              <li style={{ color: 'var(--ink)' }}>
+                <a href="tel:+375293220018" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (29) 322-00-18</a>
+              </li>
+              <li style={{ color: 'var(--ink)' }}>
+                <a href="tel:+375152685050" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (15) 268-50-50</a>
+              </li>
+              <li>
+                <a href="mailto:pharmconsilium@gmail.com" style={{ color: 'inherit' }}>pharmconsilium@gmail.com</a>
+              </li>
+              <li>
+                <a href="mailto:pharmconsilium.office@gmail.com" style={{ color: 'inherit' }}>pharmconsilium.office@gmail.com</a>
+              </li>
+              <li style={{ lineHeight: 1.45, cursor: 'default' }}>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</li>
+              <li style={{ cursor: 'default' }}>пн — пт, 10:00 — 19:00</li>
             </ul>
           </div>
         </div>
         <div className="footer-meta">
-          <div>УНП 000000000 · Лицензия Минздрава РБ № 00-00</div>
+          <div>УНП 591019395</div>
           <div style={{ display: 'flex', gap: 18 }}>
             <span>Политика конфиденциальности</span>
             <span>Соглашение</span>
