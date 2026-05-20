@@ -20,6 +20,16 @@ function App() {
   const [route, setRoute] = React.useState('home');
   const [lang, setLang] = React.useState('ru');
   const [scenario, setScenario] = React.useState('comms');
+  const [contactOpen, setContactOpen] = React.useState(false);
+  const ContactFormModal = window.ContactFormModal;
+  const EndContactStrip = window.EndContactStrip;
+
+  React.useLayoutEffect(() => {
+    window.openPharmContact = () => setContactOpen(true);
+    return () => {
+      delete window.openPharmContact;
+    };
+  }, []);
 
   // Apply theme + tweaks to :root
   React.useEffect(() => {
@@ -79,7 +89,11 @@ function App() {
         setTheme={(v) => setTweak('dark', v === 'dark')}
       />
 
+      {ContactFormModal && <ContactFormModal open={contactOpen} onClose={() => setContactOpen(false)} />}
+
       {page}
+
+      {EndContactStrip ? <EndContactStrip /> : null}
 
       {t.robot !== false && <RobotCompanion/>}
 

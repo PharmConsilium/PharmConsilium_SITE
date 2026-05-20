@@ -208,8 +208,8 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
             }
           </button>
-          <button className="btn btn-primary btn-sm" onClick={() => navigate('team')}>
-            Консультация <span className="arrow">→</span>
+            <button className="btn btn-primary btn-sm" onClick={() => { window.openPharmContact?.(); setOpenMenu(null); }}>
+            Контакты <span className="arrow">→</span>
           </button>
         </div>
       </div>
@@ -314,6 +314,14 @@ function Footer({ navigate }) {
             <span>Политика конфиденциальности</span>
             <span>Соглашение</span>
           </div>
+        </div>
+        <div id="privacy-policy" className="privacy-policy-block">
+          <h4>Политика конфиденциальности</h4>
+          <p>
+            Здесь будет полный текст политики обработки персональных данных ЧП «ФармКонсилиум».
+            По вопросам обработки данных напишите на{' '}
+            <a href="mailto:pharmconsilium@gmail.com" style={{ color: 'var(--accent)' }}>pharmconsilium@gmail.com</a>.
+          </p>
         </div>
       </div>
     </footer>);
