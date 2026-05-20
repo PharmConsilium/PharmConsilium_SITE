@@ -410,6 +410,23 @@ function ArtDirectory({ className }) {
   );
 }
 
+/* CRM feature block — растровая иллюстрация */
+function ArtCrmFeature({ className }) {
+  return (
+    <div className={className ? `feature-crm-art-wrap ${className}` : 'feature-crm-art-wrap'}>
+      <img
+        src="assets/uploads/crm-feature.png"
+        alt="CRM PharmConsilium — цифровая экосистема для медпредов и омниканальной работы с HCP"
+        className="feature-crm-art"
+        width={800}
+        height={600}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  );
+}
+
 /* big abstract for hero/feature */
 function ArtConstellation({ className }) {
   return (
@@ -438,5 +455,5 @@ function ArtConstellation({ className }) {
 Object.assign(window, {
   ArtNodes, ArtLayers, ArtChat, ArtBrowser, ArtPhone, ArtRadar, ArtAI, ArtBooks,
   ArtDashboard, ArtPulse, ArtVideo, ArtSlides, ArtGame, ArtLaunch, ArtDoc,
-  ArtTablet, ArtMolecule, ArtDirectory, ArtConstellation,
+  ArtTablet, ArtMolecule, ArtDirectory, ArtConstellation, ArtCrmFeature,
 });

@@ -82,7 +82,21 @@ const MARQUEE_TICKERS = [
 ];
 
 function HomePage({ navigate, scenario, setScenario }) {
+  const [heroQuery, setHeroQuery] = React.useState('');
+  const [forecastPulse, setForecastPulse] = React.useState(false);
   const MidContactStrip = window.MidContactStrip;
+
+  const heroQueryReady = heroQuery.trim().length > 0;
+
+  function runHeroForecast() {
+    if (!heroQuery.trim()) return;
+    const card = document.querySelector('.forecast-card');
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setForecastPulse(true);
+      window.setTimeout(() => setForecastPulse(false), 1200);
+    }
+  }
   const heroTiles = [
   { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг.',
     desc: 'Цифровые инструменты для работы медицинских представителей.', art: 'ArtNodes' },
@@ -113,22 +127,39 @@ function HomePage({ navigate, scenario, setScenario }) {
               вашего бренда и страны, через несколько секунд узнаете прогноз.
             </p>
             <div className="hero-cta">
-              <button className="btn btn-ghost" onClick={() => navigate('marketing')}>
-                Название бренда
+              <button
+                type="button"
+                className="btn btn-primary btn-sm hero-cta-submit"
+                disabled={!heroQueryReady}
+                onClick={runHeroForecast}>
+                Прогноз
               </button>
-              <button className="btn btn-ghost" onClick={() => navigate('directory')}>
-                Страна СНГ
-              </button>
+              <label className="hero-cta-field hero-cta-field--combined">
+                <input
+                  type="text"
+                  name="heroQuery"
+                  value={heroQuery}
+                  onChange={(e) => setHeroQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && heroQuery.trim()) {
+                      e.preventDefault();
+                      runHeroForecast();
+                    }
+                  }}
+                  placeholder="Укажите название бренда и страну СНГ"
+                  autoComplete="off"
+                />
+              </label>
             </div>
             <div className="hero-trust">
               <div><div className="stat-num">2015</div><div className="stat-lbl">год основания</div></div>
               <div><div className="stat-num">22 000</div><div className="stat-lbl">в активной базе HCP</div></div>
-              <div><div className="stat-num">7</div><div className="stat-lbl">стран с нашими клиентами</div></div>
+              <div><div className="stat-num">7</div><div className="stat-lbl">стран с нашими Клиентами</div></div>
             </div>
           </div>
 
           {/* Forecast card */}
-          <div className="forecast-card">
+          <div className={`forecast-card${forecastPulse ? ' forecast-card--pulse' : ''}`}>
             <div className="fc-head">
               <div>
                 <div className="fc-title">ИИ Робби рассчитает прогноз Вашего бренда на фармацевтическом рынке СНГ</div>
@@ -183,8 +214,7 @@ function HomePage({ navigate, scenario, setScenario }) {
               <h2>5 цифровых<br />направлений</h2>
             </div>
             <div className="right">
-              От стратегической архитектуры омниканальной коммуникации с HCP
-              до пациентского сериала на YouTube — в одном консилиуме.
+              От стратегической архитектуры омниканальной коммуникации с HCP до пациентского сериала на YouTube.
             </div>
           </div>
 
@@ -222,10 +252,9 @@ function HomePage({ navigate, scenario, setScenario }) {
           <div className="feature-row">
             <div>
               <span className="chip">Хит продаж 2026</span>
-              <h3>CRM-PharmConsilium —</h3>
+              <h3>CRM-PharmConsilium для работы медицинских представителей.</h3>
               <p>
-                Для работы медицинских представителей. Специализированная CRM для фармацевтических компаний
-                и омниканальной работы с HCP.
+                Специализированная CRM для фармацевтических компаний и омниканальной работы с HCP.
               </p>
               <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
                 <button
@@ -237,7 +266,7 @@ function HomePage({ navigate, scenario, setScenario }) {
               </div>
             </div>
             <div className="feature-row-art">
-              <ArtConstellation />
+              <ArtCrmFeature />
             </div>
           </div>
         </div>
@@ -246,16 +275,10 @@ function HomePage({ navigate, scenario, setScenario }) {
       {/* Process steps */}
       <section className="section section--know-now" style={{ paddingTop: 32 }}>
         <div className="container">
-          <div className="section-head section-head--title-sync">
-            <div>
-              <div className="eyebrow">Как мы работаем</div>
-              <h2>Вам лучше это<br />узнать сейчас.</h2>
-            </div>
+          <div className="section-head section-head--title-sync section-head--insights">
+            <div className="eyebrow">Инсайты ФармКонсилиум</div>
+            <h2>Вам лучше это<br />узнать сейчас.</h2>
             <div className="right">
-              Среднее время от первого брифа до релиза омниканальной кампании — 6 недель.
-              Прогноз ИИ — за 48 часов.
-              <br />
-              <br />
               3 в 1: маркетинговая экспертиза, разработка цифровых решений, студия контент дейлинга.
             </div>
           </div>
@@ -265,7 +288,7 @@ function HomePage({ navigate, scenario, setScenario }) {
             { n: '01', t: 'Портфолио и проекты.', d: 'Проекты, портфолио, события.', to: 'portfolio' },
             { n: '02', t: 'Цифровой медицинский представитель.', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
             { n: '03', t: 'Справочник ЛС ФармКонсилиум.', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
-            { n: '04', t: 'Запуск и метрики', d: 'Дашборд в реальном времени, тестирование гипотез, пересборка сценария.', to: 'hcp/mobile' }].
+            { n: '04', t: 'Разработка мобильных приложений.', d: 'Для операционных систем iOS и Android под ключ.', to: 'hcp/mobile' }].
             map((s) => {
               const clickable = Boolean(s.to || s.href);
               return (

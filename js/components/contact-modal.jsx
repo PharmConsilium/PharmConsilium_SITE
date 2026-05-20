@@ -137,7 +137,7 @@ function ContactFormModal({ open, onClose }) {
                 autoComplete="name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                placeholder="Иван Иванов"
+                placeholder="Elon Musk"
                 required
               />
             </label>
@@ -148,7 +148,7 @@ function ContactFormModal({ open, onClose }) {
                 name="company"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                placeholder="ООО «…», бренд …"
+                placeholder="Viagra, Pfizer"
                 required
               />
             </label>
