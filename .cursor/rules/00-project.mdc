@@ -38,7 +38,7 @@ Hash: `marketing`, `hcp`, `marketing/crm`, `portfolio/slug`. Navigation: `naviga
 Do not use `import/export` without a bundler. Illustrations: `window.Art*`. SEO: `window.updatePageSeo(route)` in `js/data/seo-meta.jsx`.
 
 ## Copy
-Brand name **ФармКонсилиум** in UI. B2B tone, specifics (CRM, CLM, HCP, SoV). CTA: «Получить консультацию» → `team`. Do not invent metrics or legal claims.
+Brand name **ФармКонсилиум** in UI. B2B tone, specifics (CRM, CLM, HCP, SoV). CTA: «Контакты» → `team`. Do not invent metrics or legal claims.
 
 ## Mobile
 The site must stay **responsive and usable on phones** (from **~375px** width upward). After layout or component changes, check narrow viewports: no persistent horizontal overflow, readable type, header/navigation and primary CTAs reachable. Follow existing breakpoints and patterns in `css/styles.css` (see `01-frontend.mdc`).
