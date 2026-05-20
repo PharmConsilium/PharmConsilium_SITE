@@ -5,6 +5,7 @@ function PortfolioPage({ navigate }) {
   const [filter, setFilter] = React.useState('all');
   const cats = ['all', ...Array.from(new Set(window.PORTFOLIO.map((p) => p.category)))];
   const visible = window.PORTFOLIO.filter((p) => filter === 'all' || p.category === filter);
+  const MidContactStrip = window.MidContactStrip;
 
   return (
     <main className="page-route">
@@ -22,13 +23,10 @@ function PortfolioPage({ navigate }) {
             от лонча кардиопрепарата за 90 дней до собственного справочника ЛС с тысячей DAU.
             Полное портфолио — по запросу.
           </p>
-          <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>
-              Получить консультацию <span>→</span>
-            </button>
-          </div>
         </div>
       </section>
+
+      {MidContactStrip ? <MidContactStrip /> : null}
 
       <section className="container" style={{ padding: '40px 0 80px' }}>
         {/* Filter chips */}
@@ -58,9 +56,9 @@ function PortfolioPage({ navigate }) {
                 <h3>{p.name}</h3>
                 <p>{p.short}</p>
                 <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  <span className="chip" style={{ background: 'transparent', border: '1px solid var(--border-2)', color: 'var(--muted)' }}>{p.category}</span>
-                  <span className="chip" style={{ background: 'transparent', border: '1px solid var(--border-2)', color: 'var(--muted)' }}>{p.sector}</span>
-                  <span className="chip" style={{ background: 'transparent', border: '1px solid var(--border-2)', color: 'var(--muted)' }}>{p.year}</span>
+                  <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.category}</span>
+                  <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.sector}</span>
+                  <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.year}</span>
                 </div>
                 <a className="read">Открыть кейс <span className="arrow">→</span></a>
               </div>);
@@ -75,7 +73,7 @@ function PortfolioPage({ navigate }) {
             <p>У нас 80+ запусков и сотни проектов под NDA. Напишите, что нужно — пришлём подходящие материалы.</p>
           </div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>Получить консультацию</button>
+            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>Контакты <span className="arrow">→</span></button>
             <button className="btn btn-ghost">Скачать полное портфолио · PDF</button>
           </div>
         </div>
@@ -85,6 +83,7 @@ function PortfolioPage({ navigate }) {
 }
 
 function ProjectPage({ slug, navigate }) {
+  const MidContactStrip = window.MidContactStrip;
   const p = window.PORTFOLIO.find((x) => x.slug === slug);
 
   if (!p) {
@@ -103,6 +102,7 @@ function ProjectPage({ slug, navigate }) {
             <button className="btn btn-primary" onClick={() => navigate('portfolio')}>← В портфолио</button>
           </div>
         </section>
+        {MidContactStrip ? <MidContactStrip /> : null}
       </main>);
 
   }
@@ -136,15 +136,14 @@ function ProjectPage({ slug, navigate }) {
           <h1>{p.name}</h1>
           <p className="lede">{p.hero}</p>
           <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>
-              Получить консультацию <span>→</span>
-            </button>
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>
               ← Все проекты
             </button>
           </div>
         </div>
       </section>
+
+      {MidContactStrip ? <MidContactStrip /> : null}
 
       <section className="container">
         {/* Metrics strip */}
@@ -224,7 +223,7 @@ function ProjectPage({ slug, navigate }) {
             <p>Покажем кейсы по вашему сектору, разложим бюджет и сроки, дадим пилот за 2 недели.</p>
           </div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>Получить консультацию</button>
+            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>Контакты <span className="arrow">→</span></button>
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>← Все кейсы</button>
           </div>
         </div>

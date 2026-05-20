@@ -2,6 +2,7 @@
 // Each page is a self-contained section. Home is most detailed.
 
 function HomePage({ navigate, scenario, setScenario }) {
+  const MidContactStrip = window.MidContactStrip;
   const heroTiles = [
   { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг',
     desc: 'CRM, CLM/2CLM, AI-тренер, омниканальная архитектура с HCP.', art: 'ArtNodes' },
@@ -32,9 +33,7 @@ function HomePage({ navigate, scenario, setScenario }) {
               в одной команде.
             </p>
             <div className="hero-cta">
-              <button className="btn btn-primary" onClick={() => navigate('team')}>
-                Получить консультацию <span>→</span>
-              </button>
+              {MidContactStrip ? <MidContactStrip inline /> : null}
               <button className="btn btn-ghost" onClick={() => navigate('marketing')}>
                 Построить прогноз
               </button>
@@ -216,6 +215,7 @@ function HomePage({ navigate, scenario, setScenario }) {
 /* ────────────────────────────── INNER PAGES ────────────────────────────── */
 
 function PageShell({ crumb, title, lede, cards, navigate, section }) {
+  const MidContactStrip = window.MidContactStrip;
   return (
     <main className="page-route">
       <section className="page-hero">
@@ -227,13 +227,10 @@ function PageShell({ crumb, title, lede, cards, navigate, section }) {
           </div>
           <h1>{title}</h1>
           {lede && <p className="lede">{lede}</p>}
-          <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>
-              Получить консультацию <span>→</span>
-            </button>
-          </div>
         </div>
       </section>
+
+      {MidContactStrip ? <MidContactStrip /> : null}
 
       <section className="container">
         <div className="cards-grid">
@@ -250,7 +247,7 @@ function PageShell({ crumb, title, lede, cards, navigate, section }) {
                 <p>{c.desc}</p>
                 {c.tag && <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                   {c.tag.split(',').map((t, j) => <span key={j} className="chip" style={{
-                    background: 'transparent', border: '1px solid var(--border-2)', color: 'var(--muted)'
+                    background: 'transparent', border: 'none', color: 'var(--muted)'
                   }}>{t.trim()}</span>)}
                 </div>}
                 {target && <a className="read">Подробнее <span className="arrow">→</span></a>}
@@ -384,6 +381,7 @@ function ContentPage({ navigate }) {
 function DirectoryPage({ navigate }) {
   const cats = ['Кардиология', 'Эндокринология', 'Онкология', 'Неврология', 'Пульмонология', 'Педиатрия', 'Терапия', 'Психиатрия'];
   const [activeCat, setActiveCat] = React.useState(cats[0]);
+  const MidContactStrip = window.MidContactStrip;
   return (
     <main className="page-route">
       <section className="page-hero">
@@ -399,8 +397,8 @@ function DirectoryPage({ navigate }) {
             более 1 000 специалистов ежедневно для поиска экспертного справочного контента.
             Доверительная атмосфера ординаторской — без рекламного шума.
           </p>
-          <div style={{ display: 'flex', gap: 10, marginTop: 32, flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>Получить консультацию <span>→</span></button>
+          <div style={{ display: 'flex', gap: 10, marginTop: 32, flexWrap: 'wrap', alignItems: 'center' }}>
+            {MidContactStrip ? <MidContactStrip inline /> : null}
             <button className="btn btn-ghost">Открыть справочник →</button>
             <button className="btn btn-ghost">Получить демо-доступ</button>
           </div>
@@ -443,7 +441,6 @@ function DirectoryPage({ navigate }) {
         <div style={{
           marginTop: 56,
           background: 'var(--surface)',
-          border: '1px solid var(--border)',
           borderRadius: 'var(--radius-xl)',
           padding: 32,
           boxShadow: 'var(--shadow-md)'
@@ -458,10 +455,10 @@ function DirectoryPage({ navigate }) {
                   style={{
                     cursor: 'pointer',
                     background: on ? 'var(--accent)' : 'transparent',
-                    border: on ? '0' : '1px solid var(--border-2)',
+                    border: 'none',
                     color: on ? 'white' : 'var(--ink-2)',
                     fontFamily: 'inherit', fontSize: 13,
-                    transition: 'background 180ms, color 180ms, border-color 180ms'
+                    transition: 'background 180ms, color 180ms'
                   }}>{c}</button>
               );
             })}
@@ -477,7 +474,7 @@ function DirectoryPage({ navigate }) {
             { name: 'Препарат-зета', mnn: 'levothyroxinum', atc: 'H03AA01', cls: 'Тиреоидный гормон' }].
             map((p, i) =>
             <div key={i} style={{
-              border: '1px solid var(--border)', borderRadius: 'var(--radius)',
+              border: 'none', borderRadius: 'var(--radius)',
               padding: 18,
               background: 'var(--surface-2)'
             }}>
@@ -541,6 +538,7 @@ function PortraitPlaceholder({ seed }) {
 }
 
 function TeamPage({ navigate }) {
+  const MidContactStrip = window.MidContactStrip;
   return (
     <main className="page-route">
       <section className="page-hero">
@@ -586,19 +584,10 @@ function TeamPage({ navigate }) {
               Доверьтесь нам — и мы вместе откроем новые возможности для вашего бренда в сфере здравоохранения.
             </p>
           </div>
-          <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => {
-              const el = document.querySelector('[data-contacts]');
-              if (el) {
-                const top = el.getBoundingClientRect().top + window.scrollY - 80;
-                window.scrollTo({ top, behavior: 'smooth' });
-              }
-            }}>
-              Получить консультацию <span>→</span>
-            </button>
-          </div>
         </div>
       </section>
+
+      {MidContactStrip ? <MidContactStrip /> : null}
 
       <section className="container">
         <div className="team-grid">
@@ -653,7 +642,6 @@ function TeamPage({ navigate }) {
         <div data-contacts style={{
           margin: '64px 0',
           background: 'var(--surface)',
-          border: '1px solid var(--border)',
           borderRadius: 'var(--radius-xl)',
           padding: 48,
           display: 'grid',

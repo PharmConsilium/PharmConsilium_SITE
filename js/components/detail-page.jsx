@@ -2,6 +2,7 @@
 
 function DetailPage({ routeId, navigate }) {
   const data = window.SUBPAGES[routeId];
+  const MidContactStrip = window.MidContactStrip;
 
   if (!data) {
     return (
@@ -18,6 +19,7 @@ function DetailPage({ routeId, navigate }) {
             <button className="btn btn-primary" onClick={() => navigate('home')}>На главную →</button>
           </div>
         </section>
+        {MidContactStrip ? <MidContactStrip /> : null}
       </main>);
 
   }
@@ -42,19 +44,18 @@ function DetailPage({ routeId, navigate }) {
             {(data.tags || []).map((t, i) =>
             <span key={i} className="chip" style={{
               background: 'var(--surface)',
-              border: '1px solid var(--border-2)',
+              border: 'none',
               color: 'var(--ink-2)'
             }}>{t}</span>
             )}
           </div>
           <div style={{ display: 'flex', gap: 10, marginTop: 32 }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>
-              Получить консультацию <span>→</span>
-            </button>
             <button className="btn btn-ghost">Скачать описание · PDF</button>
           </div>
         </div>
       </section>
+
+      {MidContactStrip ? <MidContactStrip /> : null}
 
       <section className="container">
         <div className="detail-grid">
@@ -109,7 +110,7 @@ function DetailPage({ routeId, navigate }) {
             <p>Покажем кейсы, разложим бюджет и сроки, дадим пилот за 2 недели.</p>
           </div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => navigate('team')}>Получить консультацию</button>
+            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>Контакты <span className="arrow">→</span></button>
             <button className="btn btn-ghost">Кейсы · PDF</button>
           </div>
         </div>
