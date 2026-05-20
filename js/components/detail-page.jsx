@@ -109,9 +109,9 @@ function DetailPage({ routeId, navigate }) {
             <h3>Готовы обсудить?</h3>
             <p>Покажем кейсы, разложим бюджет и сроки, дадим пилот за 2 недели.</p>
           </div>
-          <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>Контакты <span className="arrow">→</span></button>
-            <button className="btn btn-ghost">Кейсы · PDF</button>
+          <div className="detail-cta-actions">
+            <button type="button" className="btn btn-primary" onClick={() => window.openPharmContact?.()}>Контакты <span className="arrow">→</span></button>
+            <button type="button" className="btn btn-ghost">Кейсы · PDF</button>
           </div>
         </div>
 

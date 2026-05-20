@@ -84,16 +84,16 @@ const MARQUEE_TICKERS = [
 function HomePage({ navigate, scenario, setScenario }) {
   const MidContactStrip = window.MidContactStrip;
   const heroTiles = [
-  { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг',
-    desc: 'CRM, CLM/2CLM, AI-тренер, омниканальная архитектура с HCP.', art: 'ArtNodes' },
-  { id: 'hcp', num: '02', title: 'Здравоохранение',
-    desc: 'Рекомендательные системы, образовательные платформы, ИИ-помощник врача.', art: 'ArtPulse' },
-  { id: 'sales', num: '03', title: 'Аутсорсинг',
-    desc: 'Цифровой медпред, аутсорсинг продаж, лонч-кампании под ключ.', art: 'ArtLaunch' },
-  { id: 'content', num: '04', title: 'Контент и игры',
-    desc: 'Медицинская презентация, видео, eDetailing, геймификация и квизы.', art: 'ArtVideo', wide: true },
-  { id: 'directory', num: '05', title: 'Справочник ЛС',
-    desc: 'Доверительная ординаторская. 1000+ врачей и провизоров каждый день.', art: 'ArtDirectory', wide: true }];
+  { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг.',
+    desc: 'Цифровые инструменты для работы медицинских представителей.', art: 'ArtNodes' },
+  { id: 'hcp', num: '02', title: 'Цифровые решения для здравоохранения.',
+    desc: 'Мобильные приложения, образовательные платформы, сайты, боты, ИИ-ассистенты.', art: 'ArtPulse' },
+  { id: 'sales', num: '03', title: 'Аутсорсинг.',
+    desc: 'Комплексные цифровые программы продвижения. Цифровой медицинский представитель.', art: 'ArtLaunch' },
+  { id: 'content', num: '04', title: 'Контент.',
+    desc: 'Медицинскую науку переводим в CLM-презентации, дейтейлеры, видео, игры, квизы. Нравится врачам и провизорам.', art: 'ArtVideo', wide: true },
+  { id: 'directory', num: '05', title: 'Справочник ЛС ФармКонсилиум.',
+    desc: 'Инструкции по применению, примеры выписки рецептов, калькуляторы.', art: 'ArtDirectory', wide: true }];
 
 
   return (
@@ -108,23 +108,22 @@ function HomePage({ navigate, scenario, setScenario }) {
               <span className="accent">для лечения доверия</span>
             </h1>
             <p className="hero-lede">
-              Искусственный интеллект построит прогноз вашего фармацевтического
-              продукта на рынке РБ и предложит сценарии роста. От CRM до видео-аватара —
-              в одной команде.
+              Узнайте прогноз Вашего бренда на фармацевтическом рынке СНГ, наш искусственный интеллект
+              «Робби» представит вам основные показатели рынка и возможности для роста. Просто введите название
+              вашего бренда и страны, через несколько секунд узнаете прогноз.
             </p>
             <div className="hero-cta">
-              {MidContactStrip ? <MidContactStrip inline /> : null}
               <button className="btn btn-ghost" onClick={() => navigate('marketing')}>
-                Построить прогноз
+                Название бренда
               </button>
               <button className="btn btn-ghost" onClick={() => navigate('directory')}>
-                Открыть справочник
+                Страна СНГ
               </button>
             </div>
             <div className="hero-trust">
               <div><div className="stat-num">2015</div><div className="stat-lbl">год основания</div></div>
-              <div><div className="stat-num">1 000</div><div className="stat-lbl">врачей в справочнике</div></div>
-              <div><div className="stat-num">15</div><div className="stat-lbl">лет в фарм-маркетинге</div></div>
+              <div><div className="stat-num">22 000</div><div className="stat-lbl">в активной базе HCP</div></div>
+              <div><div className="stat-num">7</div><div className="stat-lbl">стран использующих наши цифровые решения</div></div>
             </div>
           </div>
 
@@ -200,12 +199,12 @@ function HomePage({ navigate, scenario, setScenario }) {
       </div>
 
       {/* HOME TILES ─────────────────────────── */}
-      <section className="section">
+      <section className="section section--tiles">
         <div className="container">
           <div className="section-head">
             <div>
               <div className="eyebrow">Что мы делаем</div>
-              <h2>Пять направлений<br />одной команды.</h2>
+              <h2>5 цифровых<br />направлений</h2>
             </div>
             <div className="right">
               От стратегической архитектуры омниканальной коммуникации с HCP
@@ -233,8 +232,16 @@ function HomePage({ navigate, scenario, setScenario }) {
         </div>
       </section>
 
+      {MidContactStrip ?
+      <div className="home-tiles-cta" role="region" aria-label="Обсудить проект">
+        <div className="container">
+          <MidContactStrip inline />
+        </div>
+      </div> :
+      null}
+
       {/* Feature row: AI-trener — */}
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section section--feature-after-cta">
         <div className="container">
           <div className="feature-row">
             <div>
@@ -258,32 +265,52 @@ function HomePage({ navigate, scenario, setScenario }) {
       </section>
 
       {/* Process steps */}
-      <section className="section" style={{ paddingTop: 32 }}>
+      <section className="section section--know-now" style={{ paddingTop: 32 }}>
         <div className="container">
-          <div className="section-head">
+          <div className="section-head section-head--title-sync">
             <div>
               <div className="eyebrow">Как мы работаем</div>
-              <h2>Четыре шага<br />до запуска.</h2>
+              <h2>Вам лучше это<br />узнать сейчас.</h2>
             </div>
             <div className="right">
               Среднее время от первого брифа до релиза омниканальной кампании — 6 недель.
               Прогноз ИИ — за 48 часов.
+              <br />
+              <br />
+              3 в 1: маркетинговая экспертиза, разработка цифровых решений, студия контент дейлинга.
             </div>
           </div>
 
-          <div className="cards-grid">
+          <div className="cards-grid cards-grid--2x2">
             {[
-            { n: '01', t: 'Бриф и данные', d: 'Структурируем продукт, ЦА, регуляторный коридор. Подгружаем рыночные панели.' },
-            { n: '02', t: 'Прогноз ИИ', d: '48 часов — три сценария роста: органика, коммуникации, полный лонч.' },
-            { n: '03', t: 'Сборка', d: 'CRM, CLM, контент, видео, чат-боты, программа поддержки — параллельно.' },
-            { n: '04', t: 'Запуск и метрики', d: 'Дашборд в реальном времени, тестирование гипотез, пересборка сценария.' }].
-            map((s) =>
-            <div key={s.n} className="card" style={{ gridColumn: 'span 6', minHeight: 'auto', paddingBottom: 18 }}>
+            { n: '01', t: 'Портфолио и проекты.', d: 'Проекты, портфолио, события.', to: 'portfolio' },
+            { n: '02', t: 'Цифровой медицинский представитель.', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
+            { n: '03', t: 'Справочник ЛС ФармКонсилиум.', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
+            { n: '04', t: 'Запуск и метрики', d: 'Дашборд в реальном времени, тестирование гипотез, пересборка сценария.', to: 'hcp/mobile' }].
+            map((s) => {
+              const clickable = Boolean(s.to || s.href);
+              return (
+            <div
+              key={s.n}
+              className="card"
+              role={clickable ? 'link' : undefined}
+              tabIndex={clickable ? 0 : undefined}
+              onClick={clickable ? () => {
+                if (s.href) window.open(s.href, '_blank', 'noopener,noreferrer');
+                else if (s.to) navigate(s.to);
+              } : undefined}
+              onKeyDown={clickable ? (e) => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                e.preventDefault();
+                if (s.href) window.open(s.href, '_blank', 'noopener,noreferrer');
+                else if (s.to) navigate(s.to);
+              } : undefined}>
                 <div className="card-num">— {s.n}</div>
                 <h3>{s.t}</h3>
                 <p>{s.d}</p>
               </div>
-            )}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -389,6 +416,9 @@ function HcpPage({ navigate }) {
   { title: 'Чат-бот и ТелеАпп', sub: 'chatbot', art: 'ArtChat',
     desc: 'Каналы коммуникации без рекламного шума. Доступ к материалам, обновления, навигация.',
     tag: 'без рекламы' },
+  { title: 'Мобильные приложения', sub: 'mobile', art: 'ArtPhone',
+    desc: 'iOS и Android для HCP и программ поддержки пациентов. Push, оффлайн, аналитика, сторы.',
+    tag: 'iOS · Android' },
   { title: 'ИИ-решения для здравоохранения', sub: 'ai-healthcare', art: 'ArtDashboard',
     desc: 'Панели для сбора данных в клинических исследованиях, ИИ-помощник врача, ИИ-консультант пациента.',
     tag: 'клинические данные' },
@@ -616,19 +646,33 @@ function PortraitPlaceholder({ seed }) {
 
 }
 
+function teamRobbyPhotoSrc(path) {
+  if (!path || !path.includes('team-robbie')) return path;
+  return `${path}?v=2`;
+}
+
 function TeamMemberPortrait({ member, seed, layer }) {
   const isHover = layer === 'hover';
+
   if (member.photo) {
-    const src = isHover && member.photoHover ? member.photoHover : member.photo;
+    const raw = isHover && member.photoHover ? member.photoHover : member.photo;
+    const src = teamRobbyPhotoSrc(raw);
     return (
       <img src={src} alt={member.n} decoding="async" loading="lazy" />);
-
   }
   return <PortraitPlaceholder seed={seed} />;
 }
 
 function TeamPage({ navigate }) {
   const MidContactStrip = window.MidContactStrip;
+
+  React.useEffect(() => {
+    ['assets/uploads/team-robbie.png', 'assets/uploads/team-robbie-hover.png'].forEach((src) => {
+      const img = new Image();
+      img.src = `${src}?v=2`;
+    });
+  }, []);
+
   return (
     <main className="page-route">
       <section className="page-hero">
@@ -683,7 +727,7 @@ function TeamPage({ navigate }) {
         <div className="team-grid">
           {TEAM.map((m, i) =>
           <div key={i} className="tm">
-              <div className="tm-portrait">
+              <div className={`tm-portrait${m.n === 'Робби' ? ' tm-portrait--robbie' : ''}`}>
                 <div className="tm-portrait-img tm-portrait-default">
                   <TeamMemberPortrait member={m} seed={i + 1} layer="default" />
                 </div>

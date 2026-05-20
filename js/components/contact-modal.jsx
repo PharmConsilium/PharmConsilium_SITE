@@ -3,12 +3,20 @@
 
 const CONTACT_MAIL = 'pharmconsilium@gmail.com';
 
+const EXTRA_CHANNELS = [
+  { id: 'phone', label: 'Телефон', placeholder: '+375 (__) ___-__-__', inputType: 'tel', autoComplete: 'tel' },
+  { id: 'telegram', label: 'Telegram', placeholder: '@username или +375 …', inputType: 'text', autoComplete: 'off' },
+  { id: 'whatsapp', label: 'WhatsApp', placeholder: '+375 (__) ___-__-__', inputType: 'tel', autoComplete: 'tel' },
+  { id: 'viber', label: 'Viber', placeholder: '+375 (__) ___-__-__', inputType: 'tel', autoComplete: 'tel' },
+  { id: 'signal', label: 'Signal', placeholder: '+375 (__) ___-__-__', inputType: 'tel', autoComplete: 'tel' },
+];
+
 function ContactFormModal({ open, onClose }) {
   const [fullName, setFullName] = React.useState('');
   const [company, setCompany] = React.useState('');
-  const [commPref, setCommPref] = React.useState('email');
   const [emailVal, setEmailVal] = React.useState('');
-  const [messengerVal, setMessengerVal] = React.useState('');
+  const [extraPref, setExtraPref] = React.useState('phone');
+  const [extraDetail, setExtraDetail] = React.useState('');
   const [message, setMessage] = React.useState('');
   const [consent, setConsent] = React.useState(false);
   const [error, setError] = React.useState('');
@@ -35,9 +43,9 @@ function ContactFormModal({ open, onClose }) {
     if (!open) {
       setFullName('');
       setCompany('');
-      setCommPref('email');
       setEmailVal('');
-      setMessengerVal('');
+      setExtraPref('phone');
+      setExtraDetail('');
       setMessage('');
       setConsent(false);
       setError('');
@@ -64,12 +72,13 @@ function ContactFormModal({ open, onClose }) {
       setError('Нужно согласие на обработку персональных данных.');
       return;
     }
-    if (commPref === 'email' && !emailVal.trim()) {
-      setError('Укажите e-mail — выбран способ связи по e-mail.');
+    if (!emailVal.trim()) {
+      setError('Укажите e-mail — поле обязательно.');
       return;
     }
-    if (commPref === 'messenger' && !messengerVal.trim()) {
-      setError('Укажите телефон или ник в мессенджере — выбран этот способ связи.');
+    const extra = EXTRA_CHANNELS.find((c) => c.id === extraPref);
+    if (extraPref && extra && !extraDetail.trim()) {
+      setError(`Укажите ${extra.label} — выбран этот способ связи.`);
       return;
     }
 
@@ -77,9 +86,10 @@ function ContactFormModal({ open, onClose }) {
     const body = [
       `Имя: ${fullName.trim()}`,
       `Компания / бренд: ${company.trim()}`,
-      `Предпочтительная связь: ${commPref === 'email' ? 'E-mail' : 'Телефон / мессенджер'}`,
-      `E-mail: ${emailVal.trim() || '—'}`,
-      `Телефон / мессенджер (Telegram, WhatsApp, Signal, Viber): ${messengerVal.trim() || '—'}`,
+      `E-mail: ${emailVal.trim()}`,
+      extra ?
+        `Доп. связь (${extra.label}): ${extraDetail.trim()}` :
+        'Доп. связь: —',
       '',
       'Тема, вопрос или задание:',
       message.trim(),
@@ -90,6 +100,14 @@ function ContactFormModal({ open, onClose }) {
   }
 
   if (!open) return null;
+
+  const activeExtra = EXTRA_CHANNELS.find((c) => c.id === extraPref);
+
+  function selectExtra(id) {
+    setExtraPref(id);
+    setExtraDetail('');
+    setError('');
+  }
 
   return (
     <div className="contact-modal-backdrop" role="presentation" onClick={onClose}>
@@ -104,7 +122,7 @@ function ContactFormModal({ open, onClose }) {
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
-        <h2 id="contact-modal-title" className="contact-modal-title">Обсудить проект</h2>
+        <h2 id="contact-modal-title" className="contact-modal-title">Давайте обсудим, что вам интересно</h2>
         <p className="contact-modal-note">
           Письмо откроется в вашей почтовой программе на адрес <strong>{CONTACT_MAIL}</strong> — проверьте поля и нажмите «Отправить» в клиенте.
         </p>
@@ -137,41 +155,46 @@ function ContactFormModal({ open, onClose }) {
           </div>
 
           <fieldset className="contact-fieldset">
-            <legend className="contact-label">Укажите предпочтительный способ коммуникации *</legend>
-            <div className="contact-radio-row">
-              <label className="contact-radio">
-                <input type="radio" name="commPref" checked={commPref === 'email'} onChange={() => setCommPref('email')} />
-                <span>E-mail</span>
-              </label>
-              <label className="contact-radio">
-                <input type="radio" name="commPref" checked={commPref === 'messenger'} onChange={() => setCommPref('messenger')} />
-                <span>Телефон / мессенджер</span>
-              </label>
+            <legend className="contact-label">Как с вами связаться *</legend>
+            <label className="contact-field">
+              <span className="contact-label contact-label-muted">E-mail *</span>
+              <input
+                type="email"
+                name="replyEmail"
+                autoComplete="email"
+                value={emailVal}
+                onChange={(e) => setEmailVal(e.target.value)}
+                placeholder="example@email.com"
+                required
+              />
+            </label>
+            <p className="contact-field-sub">Дополнительно — выберите один способ и укажите контакт:</p>
+            <div className="contact-radio-row contact-radio-row--channels">
+              {EXTRA_CHANNELS.map((ch) =>
+              <label key={ch.id} className="contact-radio">
+                  <input
+                    type="radio"
+                    name="extraPref"
+                    checked={extraPref === ch.id}
+                    onChange={() => selectExtra(ch.id)}
+                  />
+                  <span>{ch.label}</span>
+                </label>
+              )}
             </div>
-            <div className="contact-modal-grid contact-modal-grid-tight">
-              <label className="contact-field">
-                <span className="contact-label contact-label-muted">E-mail</span>
-                <input
-                  type="email"
-                  name="replyEmail"
-                  autoComplete="email"
-                  value={emailVal}
-                  onChange={(e) => setEmailVal(e.target.value)}
-                  placeholder="example@email.com"
-                />
-              </label>
-              <label className="contact-field">
-                <span className="contact-label contact-label-muted">Телефон / мессенджер</span>
-                <input
-                  type="text"
-                  name="messenger"
-                  value={messengerVal}
-                  onChange={(e) => setMessengerVal(e.target.value)}
-                  placeholder="+375 (__) ___-__-__"
-                />
-                <span className="contact-hint">Telegram · WhatsApp · Signal · Viber</span>
-              </label>
-            </div>
+            {activeExtra ?
+            <label className="contact-field contact-channel-field">
+              <span className="contact-label contact-label-muted">{activeExtra.label}</span>
+              <input
+                type={activeExtra.inputType}
+                name={`contact-${activeExtra.id}`}
+                autoComplete={activeExtra.autoComplete}
+                value={extraDetail}
+                onChange={(e) => setExtraDetail(e.target.value)}
+                placeholder={activeExtra.placeholder}
+              />
+            </label> :
+            null}
           </fieldset>
 
           <label className="contact-field contact-field-block">

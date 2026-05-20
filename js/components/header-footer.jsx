@@ -36,6 +36,7 @@ const MEGA = {
     { label: 'ИИ-ассистенты и рекомендательные системы', to: 'hcp/ai-recom' },
     { label: 'Образовательные платформы',                  to: 'hcp/education' },
     { label: 'Чат-бот и ТелеАпп',                       to: 'hcp/chatbot' },
+    { label: 'Мобильные приложения',                    to: 'hcp/mobile' },
     { label: 'ИИ-решения для здравоохранения',          to: 'hcp/ai-healthcare' },
     { label: 'Программы поддержки пациентов',             to: 'hcp/psp' }],
 

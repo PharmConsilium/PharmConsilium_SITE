@@ -4,6 +4,7 @@
 
 function RobotCompanion() {
   const wrapRef = React.useRef(null);
+  const bodyRef = React.useRef(null);
   const posRef = React.useRef(null);   // current actual position { x, y, ry, s }
   const targetRef = React.useRef(null); // target derived from scroll
   const hasInit = React.useRef(false);
@@ -68,10 +69,7 @@ function RobotCompanion() {
     const animate = (now) => {
       const dt = Math.min(0.05, (now - t0) / 1000);
       t0 = now;
-      const time = now * 0.001;
-
       // Very slow exponential approach — half-life ~1.2s for buttery drift.
-      // alpha = 1 - exp(-k*dt), with k ~= 0.6 → 45% of distance per second.
       const k = 0.55;
       const alpha = 1 - Math.exp(-k * dt);
 
@@ -82,20 +80,16 @@ function RobotCompanion() {
       p.ry += (t.ry - p.ry) * alpha;
       p.s  += (t.s  - p.s)  * alpha;
 
-      // Subtle idle motion (slow + small)
-      const bobY  = Math.sin(time * 0.50) * 9;
-      const bobX  = Math.sin(time * 0.34) * 5;
-      const tilt  = Math.sin(time * 0.45) * 1.6;
-      const glow  = 0.85 + Math.sin(time * 0.8) * 0.15;
-
       const el = wrapRef.current;
+      const body = bodyRef.current;
       if (el) {
         el.style.transform =
-          `translate(calc(-50% + ${p.x + bobX}px),` +
-          ` calc(-50% + ${p.y + bobY}px))` +
-          ` rotate(${p.ry + tilt}deg) scale(${p.s})`;
-        el.style.opacity = String(glow);
+          `translate(calc(-50% + ${p.x}px),` +
+          ` calc(-50% + ${p.y}px))` +
+          ` rotate(${p.ry}deg)`;
+        el.style.opacity = '1';
       }
+      if (body) body.style.transform = `scale(${p.s})`;
       raf = requestAnimationFrame(animate);
     };
     raf = requestAnimationFrame(animate);
@@ -107,9 +101,40 @@ function RobotCompanion() {
     };
   }, [computeTarget]);
 
+  // Цикл лиц Robby_1…10 — только у плавающего робота; карточка «Команда» — отдельные team-robbie*.png
+  const RobbieFaceCycle = window.RobbieFaceCycle;
+
+  const baseSrc = window.ROBBY_FRAME_SRC
+    ? window.ROBBY_FRAME_SRC(window.ROBBY_BLANK_FRAME || 1)
+    : 'assets/uploads/Robby_1.png';
+  const outlineSrc = window.ROBBY_OUTLINE_SRC || 'assets/uploads/Robby_11.png?v=4';
+
   return (
     <div ref={wrapRef} className="robot-img" aria-hidden="true">
-      <img src="assets/uploads/Bot_1.png" alt="Виртуальный помощник ФармКонсилиум" draggable="false"/>
+      <div ref={bodyRef} className="robot-img-body">
+        <img
+          className="robot-img-base"
+          src={baseSrc}
+          alt=""
+          aria-hidden="true"
+          draggable="false"
+          decoding="async"
+        />
+        {RobbieFaceCycle ?
+          <RobbieFaceCycle
+            alt=""
+            className="robot-face-cycle robot-face-cycle--lighten"
+          /> :
+          null}
+        <img
+          className="robot-img-glow"
+          src={outlineSrc}
+          alt=""
+          aria-hidden="true"
+          draggable="false"
+          decoding="async"
+        />
+      </div>
     </div>
   );
 }
