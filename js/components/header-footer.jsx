@@ -2,7 +2,7 @@
 
 const NAV_ITEMS = [
 { id: 'marketing', label: 'Фармацевтический маркетинг' },
-{ id: 'hcp', label: 'Здравоохранения' },
+{ id: 'hcp', label: 'Здравоохранение' },
 { id: 'sales', label: 'Аутсорсинг' },
 { id: 'content', label: 'Контент' },
 { id: 'directory', label: 'Справочник ЛС' },

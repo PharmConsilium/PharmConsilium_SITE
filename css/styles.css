@@ -588,6 +588,19 @@ button { font-family: inherit; }
   font-size: 18px; color: var(--muted);
   max-width: 60ch;
 }
+.page-hero .team-lede-stack {
+  width: 100%;
+  max-width: none;
+}
+.page-hero .team-lede-stack p {
+  margin: 16px 0 0;
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.page-hero .team-lede-stack p:first-child {
+  margin-top: 24px;
+}
 
 .cards-grid {
   display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px;
