@@ -155,20 +155,7 @@ function ContactFormModal({ open, onClose }) {
           </div>
 
           <fieldset className="contact-fieldset">
-            <legend className="contact-label">Как с вами связаться *</legend>
-            <label className="contact-field">
-              <span className="contact-label contact-label-muted">E-mail *</span>
-              <input
-                type="email"
-                name="replyEmail"
-                autoComplete="email"
-                value={emailVal}
-                onChange={(e) => setEmailVal(e.target.value)}
-                placeholder="example@email.com"
-                required
-              />
-            </label>
-            <p className="contact-field-sub">Дополнительно — выберите один способ и укажите контакт:</p>
+            <legend className="contact-label">Укажите предпочтительный способ коммуникации *</legend>
             <div className="contact-radio-row contact-radio-row--channels">
               {EXTRA_CHANNELS.map((ch) =>
               <label key={ch.id} className="contact-radio">
@@ -182,6 +169,18 @@ function ContactFormModal({ open, onClose }) {
                 </label>
               )}
             </div>
+            <label className="contact-field contact-channel-field">
+              <span className="contact-label contact-label-muted">E-mail *</span>
+              <input
+                type="email"
+                name="replyEmail"
+                autoComplete="email"
+                value={emailVal}
+                onChange={(e) => setEmailVal(e.target.value)}
+                placeholder="example@email.com"
+                required
+              />
+            </label>
             {activeExtra ?
             <label className="contact-field contact-channel-field">
               <span className="contact-label contact-label-muted">{activeExtra.label}</span>

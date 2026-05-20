@@ -123,7 +123,7 @@ function HomePage({ navigate, scenario, setScenario }) {
             <div className="hero-trust">
               <div><div className="stat-num">2015</div><div className="stat-lbl">год основания</div></div>
               <div><div className="stat-num">22 000</div><div className="stat-lbl">в активной базе HCP</div></div>
-              <div><div className="stat-num">7</div><div className="stat-lbl">стран использующих наши цифровые решения</div></div>
+              <div><div className="stat-num">7</div><div className="stat-lbl">стран с нашими клиентами</div></div>
             </div>
           </div>
 
@@ -131,41 +131,17 @@ function HomePage({ navigate, scenario, setScenario }) {
           <div className="forecast-card">
             <div className="fc-head">
               <div>
-                <div className="fc-title">Прогноз вашего продукта</div>
-                <div className="fc-sub">Прогноз доли голоса · MAT 2026 · Беларусь</div>
+                <div className="fc-title">ИИ Робби рассчитает прогноз Вашего бренда на фармацевтическом рынке СНГ</div>
               </div>
               <div className="fc-pill"><span className="dot"></span>LIVE</div>
-            </div>
-
-            <div className="fc-meta">
-              <div className="m">
-                <div className="m-lbl">Сценарий</div>
-                <div className="m-val">{
-                  scenario === 'organic' ? 'Органика' :
-                  scenario === 'comms' ? '+ Коммуникации' :
-                  'Полный лонч'
-                  }</div>
-              </div>
-              <div className="m">
-                <div className="m-lbl">Прогноз Q4 ’26</div>
-                <div className="m-val up">{
-                  scenario === 'organic' ? '+12%' :
-                  scenario === 'comms' ? '+58%' :
-                  '+340%'
-                  }</div>
-              </div>
-              <div className="m">
-                <div className="m-lbl">Достоверность</div>
-                <div className="m-val">0.87</div>
-              </div>
             </div>
 
             <div style={{ position: 'relative' }}>
               <div className="fc-scenarios">
                 {[
-                ['organic', 'Органика'],
-                ['comms', '+ Коммуникации'],
-                ['launch', 'Полный лонч']].
+                ['organic', 'Инерционный'],
+                ['comms', 'Базовый'],
+                ['launch', 'Максимальный']].
                 map(([k, l]) =>
                 <button key={k}
                 className={scenario === k ? 'on' : ''}
@@ -245,16 +221,19 @@ function HomePage({ navigate, scenario, setScenario }) {
         <div className="container">
           <div className="feature-row">
             <div>
-              <span className="chip">AI · продукт сезона</span>
-              <h3>Прогноз — не оракул. Это рабочая модель, которую можно перепланировать.</h3>
+              <span className="chip">Хит продаж 2026</span>
+              <h3>CRM-PharmConsilium —</h3>
               <p>
-                Загрузите параметры запуска, выберите сценарий — модель учитывает специфику РБ:
-                регуляторные ограничения, доступ к HCP, аптечную панель, конкурентный профиль.
-                Результат — план мероприятий с ожидаемым приростом доли голоса.
+                Для работы медицинских представителей. Специализированная CRM для фармацевтических компаний
+                и омниканальной работы с HCP.
               </p>
               <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
-                <button className="btn btn-primary">Запустить прогноз</button>
-                <button className="btn btn-ghost">Скачать white-paper · PDF</button>
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm"
+                  onClick={() => window.open('https://pharmconsilium-crm.com/', '_blank', 'noopener,noreferrer')}>
+                  CRM <span className="arrow">→</span>
+                </button>
               </div>
             </div>
             <div className="feature-row-art">
