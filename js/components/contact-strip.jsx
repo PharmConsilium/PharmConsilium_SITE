@@ -1,9 +1,12 @@
-// Статичные CTA «Обсудить проект» / «Больше информации» — mid и end полосы поменяны местами по смыслу.
+// Статичные CTA «Обсудить проект» / «Больше информации» — mid и end полосы.
 
-function MidContactStrip({ compact, alignStart, inline }) {
+function MidContactStrip({ compact, alignStart, inline, lang }) {
+  const l = lang || (window.getSiteLang ? window.getSiteLang() : 'ru');
+  const label = window.tUI ? window.tUI('discussProject', l) : 'Обсудить проект';
+  const aria = window.tUI ? window.tUI('midStripAria', l) : 'Обсудить проект';
   const btn = (
     <button type="button" className="btn btn-primary btn-sm" onClick={() => window.openPharmContact?.()}>
-      Обсудить проект <span className="arrow">→</span>
+      {label} <span className="arrow">→</span>
     </button>
   );
   if (inline) {
@@ -13,7 +16,7 @@ function MidContactStrip({ compact, alignStart, inline }) {
     <div
       className={`contact-strip-mid${compact ? ' contact-strip-mid--compact' : ''}`}
       role="region"
-      aria-label="Обсудить проект">
+      aria-label={aria}>
       <div
         className={compact ? '' : 'container'}
         style={
@@ -31,12 +34,15 @@ function MidContactStrip({ compact, alignStart, inline }) {
   );
 }
 
-function EndContactStrip() {
+function EndContactStrip({ lang }) {
+  const l = lang || (window.getSiteLang ? window.getSiteLang() : 'ru');
+  const label = window.tUI ? window.tUI('moreInfo', l) : 'Больше информации';
+  const aria = window.tUI ? window.tUI('endStripAria', l) : 'Дополнительная информация';
   return (
-    <section className="contact-strip-end" aria-label="Дополнительная информация">
+    <section className="contact-strip-end" aria-label={aria}>
       <div className="container">
         <button type="button" className="btn btn-primary btn-sm" onClick={() => window.openPharmContact?.()}>
-          Больше информации <span className="arrow">→</span>
+          {label} <span className="arrow">→</span>
         </button>
       </div>
     </section>

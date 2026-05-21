@@ -451,7 +451,20 @@ button { font-family: inherit; }
   margin: 18px 0 22px;
   color: var(--ink);
 }
-.hero h1 .accent { color: var(--accent); }
+.page-hero h1,
+.detail-hero h1 {
+  color: var(--ink);
+}
+.hero h1 .accent,
+.page-hero h1 .accent,
+.detail-hero h1 .accent {
+  color: var(--accent);
+}
+.hero h1 .h1-primary,
+.page-hero h1 .h1-primary,
+.detail-hero h1 .h1-primary {
+  color: var(--ink);
+}
 .hero h1 .muted { color: var(--muted-2); }
 .hero-lede {
   font-size: 18px; color: var(--muted);
@@ -728,6 +741,26 @@ button { font-family: inherit; }
   flex: none;
 }
 .tile .tile-art svg { width: 92%; height: 92%; }
+.tile .tile-art .home-tile-art {
+  width: 92%;
+  height: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.tile .tile-art .home-tile-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: darken;
+  filter: saturate(1.1) contrast(1.03);
+}
+[data-theme="dark"] .tile .tile-art .home-tile-art img {
+  mix-blend-mode: lighten;
+  filter: saturate(1.15) brightness(1.06) contrast(0.98);
+}
 .tile.big .tile-art,
 .tile.wide .tile-art { width: 64px; height: 64px; }
 .tile-cap { display: flex; flex-direction: column; gap: 4px; min-width: 0; }

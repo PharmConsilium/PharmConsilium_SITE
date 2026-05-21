@@ -5,7 +5,7 @@ alwaysApply: true
 
 # PharmConsilium — corporate website
 
-Website for the **ФармКонсилиум** IT team (pharma marketing, HCP, sales, content, drug reference, portfolio). Audience: pharma brands in **Belarus**. UI and content language — **Russian**.
+Website for the **ФармКонсилиум** IT team (pharma marketing, HCP, sales, content, drug reference, portfolio). Audience: pharma brands in **Belarus**. Default UI language — **Russian**; **English** via RU/EN toggle (`applySiteLang`, `i18n-en-ui.js`, `i18n-en-subpages.js`, `i18n-en-portfolio.js`).
 
 ## Stage
 Design prototype; layout and copy are **still being refined**. Preserve architecture and tokens; do not break things for a “perfect” draft.

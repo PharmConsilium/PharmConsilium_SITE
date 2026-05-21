@@ -96,7 +96,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'marketing/chatbot': {
     section: 'Pharmaceutical marketing',
-    title: 'Chatbots and TeleApp',
+    title: 'Chatbot and TeleApp — digital ecosystem for HCP engagement',
     lede: 'Scenario bots for physicians, pharmacists, and patients: news, surveys, NPS, patient-support navigation, and post-visit follow-up.',
     tags: ['Telegram', 'WhatsApp', 'Viber', 'NPS', 'surveys'],
     about: [
@@ -127,7 +127,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'marketing/web': {
     section: 'Pharmaceutical marketing',
-    title: 'Web and digital products',
+    title: 'Web development: sites, landing pages, longreads, congress and webinar platforms',
     lede: 'Sites, landing pages, longreads, portals, online congresses, webinars, and interactive games—from UX research through launch and support.',
     tags: ['web', 'portal', 'longread', 'congress'],
     about: [
@@ -220,7 +220,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'marketing/ai': {
     section: 'Pharmaceutical marketing',
-    title: 'AI solutions for marketing',
+    title: 'Training for medical representatives',
     lede: 'AI trainer for medical reps, brand assistants, survey and business-analytics platforms, and AI consulting for brand teams.',
     tags: ['AI', 'LLM', 'trainer', 'analytics'],
     about: [
@@ -251,7 +251,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'hcp/ai-recom': {
     section: 'Healthcare',
-    title: 'AI assistants and recommender systems',
+    title: 'Digital platforms for learning and video training',
     lede: 'Chatbots, voice bots, content navigation, and relevant material selection for physicians or patients—a personalized path that adapts to behavior.',
     tags: ['recsys', 'NLP', 'personalization'],
     about: [
@@ -282,7 +282,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'hcp/education': {
     section: 'Healthcare',
-    title: 'Educational platforms',
+    title: 'Patient support programs',
     lede: 'Webinars, online courses, training, certification, and CME-ready LMS for HCP audiences—with points, progress, and certificates.',
     tags: ['LMS', 'learning', 'certification', 'CME'],
     about: [
@@ -313,7 +313,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'hcp/chatbot': {
     section: 'Healthcare',
-    title: 'Chatbot and TeleApp for HCP',
+    title: 'Medical chatbots and AI assistants',
     lede: 'Communication without promotional noise. Materials, updates, and program navigation—in Telegram, WhatsApp, and Viber.',
     tags: ['Telegram', 'no ads', 'HCP'],
     about: [
@@ -375,7 +375,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'hcp/ai-healthcare': {
     section: 'Healthcare',
-    title: 'AI solutions for healthcare',
+    title: 'Digital platforms for scientific research',
     lede: 'Clinical trial data capture panels, physician AI assistant, patient AI consultant—within regulatory boundaries.',
     tags: ['clinical data', 'AI assistant', 'security'],
     about: [
@@ -406,7 +406,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'hcp/psp': {
     section: 'Healthcare',
-    title: 'Patient support programs',
+    title: 'RWE data analysis and processing systems',
     lede: 'Digital materials: reminders, motivation, therapy navigation, personalized recommendations—within regulatory limits.',
     tags: ['PSP', 'adherence', 'patients'],
     about: [
@@ -468,7 +468,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'sales/omnichannel': {
     section: 'Outsourcing',
-    title: 'Omnichannel campaigns',
+    title: 'Omnichannel promotion campaigns',
     lede: 'Personal architecture and content for long-term engagement with physicians, pharmacists, and target groups. Email + push + bot + visit in one plan.',
     tags: ['omnichannel', 'architecture', 'long-term'],
     about: [
@@ -499,7 +499,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'sales/launch': {
     section: 'Outsourcing',
-    title: 'Turnkey launch outsourcing',
+    title: 'Launch outsourcing',
     lede: 'Use our tools and HCP database for a fast new-brand start in Belarus—from 90 days to first communication.',
     tags: ['launch', '90 days', 'Belarus'],
     about: [
@@ -561,7 +561,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'content/medical': {
     section: 'Content',
-    title: 'Medical presentations and scientific articles',
+    title: 'CLM presentations, e-detailers, and slide boxes for medical representatives',
     lede: 'Expert materials, infographics, presentation scenarios, evidence base, KOL content. Literature reviews and publication summaries.',
     tags: ['KOL', 'articles', 'infographics'],
     about: [
@@ -654,7 +654,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'content/video': {
     section: 'Content',
-    title: 'Video — from idea to delivery',
+    title: 'HCP video — from script to stage effects in online presentations',
     lede: 'Rep video visits, 3D mechanism visualization, AI animation, video avatars, AI talking head, serialized patient education.',
     tags: ['3D', 'AI avatars', 'series', 'video visit'],
     about: [
@@ -685,7 +685,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'content/presentations': {
     section: 'Content',
-    title: 'Presentations',
+    title: 'Visual concepts, packaging, ad banners, and brand books',
     lede: 'Corporate, investor, product, and brand-team decks—clear, on-brand, and built to persuade.',
     tags: ['design', 'presentations'],
     about: [
@@ -716,7 +716,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'content/advertising': {
     section: 'Content',
-    title: 'Advertising',
+    title: 'AI content: avatars, audio podcasts, medical copywriting',
     lede: 'Creatives for digital campaigns—within Belarus pharmaceutical advertising law.',
     tags: ['digital', 'advertising', 'Belarus'],
     about: [
@@ -747,7 +747,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'content/gamification': {
     section: 'Content',
-    title: 'Gamification and quizzes',
+    title: 'Games, quizzes, and clinical detective stories',
     lede: 'Games for serious learning: congress quizzes, educational challenges, learning points, leaderboards—everything that lifts HCP engagement.',
     tags: ['gamified learning', 'quizzes', 'challenges'],
     about: [
@@ -840,7 +840,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'team/career': {
     section: 'Team',
-    title: 'Careers at PharmConsilium',
+    title: 'Team',
     lede: 'Eight people in the core team and dozens of contractors on projects. We grow by projects, not headcount—we look for people who resonate with that model.',
     tags: ['jobs', 'remote · Belarus', 'pharma marketing'],
     about: [

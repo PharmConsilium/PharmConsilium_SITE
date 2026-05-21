@@ -18,11 +18,25 @@ const FONT_PAIRS = {
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [route, setRoute] = React.useState('home');
-  const [lang, setLang] = React.useState('ru');
+  const [lang, setLangState] = React.useState('ru');
+  const [langTick, setLangTick] = React.useState(0);
   const [scenario, setScenario] = React.useState('comms');
   const [contactOpen, setContactOpen] = React.useState(false);
   const ContactFormModal = window.ContactFormModal;
   const EndContactStrip = window.EndContactStrip;
+
+  const setLang = React.useCallback((next) => {
+    const applied = window.applySiteLang ? window.applySiteLang(next) : next;
+    setLangState(applied);
+    setLangTick((n) => n + 1);
+  }, []);
+
+  React.useLayoutEffect(() => {
+    const initial = window.getSiteLang ? window.getSiteLang() : 'ru';
+    const applied = window.applySiteLang ? window.applySiteLang(initial) : initial;
+    setLangState(applied);
+    setLangTick((n) => n + 1);
+  }, []);
 
   React.useLayoutEffect(() => {
     window.openPharmContact = () => setContactOpen(true);
@@ -36,7 +50,6 @@ function App() {
     const root = document.documentElement;
     root.dataset.theme = t.dark ? 'dark' : 'light';
     root.style.setProperty('--accent', t.accent);
-    // softer accent derived from accent
     const soft = `${t.accent}26`;
     root.style.setProperty('--accent-soft', soft);
     root.style.setProperty('--accent-glow', `${t.accent}40`);
@@ -45,7 +58,6 @@ function App() {
     root.style.setProperty('--font-body', fp.body);
   }, [t]);
 
-  // Track route in hash so reloads land back
   React.useEffect(() => {
     const h = location.hash.replace('#', '');
     if (h) setRoute(h);
@@ -53,28 +65,28 @@ function App() {
   React.useEffect(() => {
     location.hash = route;
     window.scrollTo({ top: 0, behavior: 'instant' });
-    if (window.updatePageSeo) window.updatePageSeo(route);
-  }, [route]);
+    if (window.updatePageSeo) window.updatePageSeo(route, lang);
+  }, [route, lang, langTick]);
 
   const navigate = (r) => setRoute(r);
+  const pageKey = `${route}-${lang}-${langTick}`;
 
-  // Route can be "section" or "section/sub". Detail page for the latter.
   let page;
   if (route === 'portfolio') {
-    page = <PortfolioPage navigate={navigate}/>;
+    page = <PortfolioPage key={pageKey} navigate={navigate} lang={lang}/>;
   } else if (route.startsWith('portfolio/')) {
-    page = <ProjectPage slug={route.split('/')[1]} navigate={navigate}/>;
+    page = <ProjectPage key={pageKey} slug={route.split('/')[1]} navigate={navigate} lang={lang}/>;
   } else if (route.includes('/')) {
-    page = <DetailPage routeId={route} navigate={navigate}/>;
+    page = <DetailPage key={pageKey} routeId={route} navigate={navigate} lang={lang}/>;
   } else {
     switch (route) {
-      case 'marketing': page = <MarketingPage navigate={navigate}/>; break;
-      case 'hcp':       page = <HcpPage navigate={navigate}/>; break;
-      case 'sales':     page = <SalesPage navigate={navigate}/>; break;
-      case 'content':   page = <ContentPage navigate={navigate}/>; break;
-      case 'directory': page = <DirectoryPage navigate={navigate}/>; break;
-      case 'team':      page = <TeamPage navigate={navigate}/>; break;
-      default:          page = <HomePage navigate={navigate} scenario={scenario} setScenario={setScenario}/>;
+      case 'marketing': page = <MarketingPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'hcp':       page = <HcpPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'sales':     page = <SalesPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'content':   page = <ContentPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'directory': page = <DirectoryPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'team':      page = <TeamPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      default:          page = <HomePage key={pageKey} navigate={navigate} scenario={scenario} setScenario={setScenario} lang={lang}/>;
     }
   }
 
@@ -89,15 +101,15 @@ function App() {
         setTheme={(v) => setTweak('dark', v === 'dark')}
       />
 
-      {ContactFormModal && <ContactFormModal open={contactOpen} onClose={() => setContactOpen(false)} />}
+      {ContactFormModal && <ContactFormModal open={contactOpen} onClose={() => setContactOpen(false)} lang={lang} />}
 
       {page}
 
-      {EndContactStrip ? <EndContactStrip /> : null}
+      {EndContactStrip ? <EndContactStrip lang={lang} /> : null}
 
       {t.robot !== false && <RobotCompanion/>}
 
-      <Footer navigate={navigate}/>
+      <Footer navigate={navigate} lang={lang}/>
 
       <TweaksPanel title="Tweaks · ФармКонсилиум">
         <TweakSection label="Тема"/>

@@ -81,9 +81,10 @@ const MARQUEE_TICKERS = [
   'WhatsApp for Pharma',
 ];
 
-function HomePage({ navigate, scenario, setScenario }) {
+function HomePage({ navigate, scenario, setScenario, lang }) {
   const [heroQuery, setHeroQuery] = React.useState('');
   const MidContactStrip = window.MidContactStrip;
+  const en = lang === 'en' && window.getHomeCopy ? window.getHomeCopy('en') : null;
 
   const heroQueryReady = heroQuery.trim().length > 0;
 
@@ -91,18 +92,33 @@ function HomePage({ navigate, scenario, setScenario }) {
     if (!heroQuery.trim()) return;
     window.openPharmContact?.();
   }
-  const heroTiles = [
+  const heroTilesBase = [
   { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг.',
-    desc: 'Цифровые инструменты для работы медицинских представителей.', art: 'ArtNodes' },
+    desc: 'Цифровые инструменты для работы медицинских представителей.', art: 'ArtTileMarketing' },
   { id: 'hcp', num: '02', title: 'Цифровые решения для здравоохранения.',
-    desc: 'Мобильные приложения, образовательные платформы, сайты, боты, ИИ-ассистенты.', art: 'ArtPulse' },
+    desc: 'Мобильные приложения, образовательные платформы, сайты, боты, ИИ-ассистенты.', art: 'ArtTileHcp' },
   { id: 'sales', num: '03', title: 'Аутсорсинг.',
-    desc: 'Комплексные цифровые программы продвижения. Цифровой медицинский представитель.', art: 'ArtLaunch' },
+    desc: 'Комплексные цифровые программы продвижения. Цифровой медицинский представитель.', art: 'ArtTileSales' },
   { id: 'content', num: '04', title: 'Контент.',
-    desc: 'Медицинскую науку переводим в CLM-презентации, дейтейлеры, видео, игры, квизы. Нравится врачам и провизорам.', art: 'ArtVideo', wide: true },
+    desc: 'Медицинскую науку переводим в CLM-презентации, дейтейлеры, видео, игры, квизы. Нравится врачам и провизорам.', art: 'ArtTileContent', wide: true },
   { id: 'directory', num: '05', title: 'Справочник ЛС ФармКонсилиум.',
-    desc: 'Инструкции по применению, примеры выписки рецептов, калькуляторы.', art: 'ArtDirectory', wide: true }];
+    desc: 'Инструкции по применению, примеры выписки рецептов, калькуляторы.', art: 'ArtTileDirectory', wide: true }];
+  const heroTiles = en ?
+    en.tiles.map((t) => {
+      const base = heroTilesBase.find((b) => b.id === t.id) || {};
+      return { ...base, ...t, art: t.art || base.art };
+    }) :
+    heroTilesBase;
 
+  const insightCards = en ? en.insightCards : [
+  { n: '01', t: 'Портфолио и проекты.', d: 'Проекты, портфолио, события.', to: 'portfolio' },
+  { n: '02', t: 'Цифровой медицинский представитель.', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
+  { n: '03', t: 'Справочник ЛС ФармКонсилиум.', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
+  { n: '04', t: 'Разработка мобильных приложений.', d: 'Для операционных систем iOS и Android под ключ.', to: 'hcp/mobile' }];
+
+  const scenarios = en ?
+    [['organic', en.scenarioOrganic], ['comms', en.scenarioComms], ['launch', en.scenarioLaunch]] :
+    [['organic', 'Инерционный'], ['comms', 'Базовый'], ['launch', 'Максимальный']];
 
   return (
     <main className="page-route">
@@ -110,15 +126,13 @@ function HomePage({ navigate, scenario, setScenario }) {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <div className="eyebrow">Команда внедрения цифровых технологий в сфере фармацевтики и здравоохранения. Работаем с 2015 года.</div>
-            <h1>
-              IT-решения<br />
-              <span className="accent">для лечения доверия</span>
-            </h1>
+            <div className="eyebrow">{en ? en.heroEyebrow : 'Команда внедрения цифровых технологий в сфере фармацевтики и здравоохранения. Работаем с 2015 года.'}</div>
+            <PageHeroH1
+              line1={en ? en.heroH1Line1 : 'IT-решения'}
+              accent={en ? en.heroH1Accent : 'для лечения доверия'}
+            />
             <p className="hero-lede">
-              Узнайте прогноз Вашего бренда на фармацевтическом рынке СНГ, наш искусственный интеллект
-              «Робби» представит вам основные показатели рынка и возможности для роста. Просто введите название
-              вашего бренда и страны, через несколько секунд узнаете прогноз.
+              {en ? en.heroLede : 'Узнайте прогноз Вашего бренда на фармацевтическом рынке СНГ, наш искусственный интеллект «Робби» представит вам основные показатели рынка и возможности для роста. Просто введите название вашего бренда и страны, через несколько секунд узнаете прогноз.'}
             </p>
             <div className="hero-cta">
               <button
@@ -126,7 +140,7 @@ function HomePage({ navigate, scenario, setScenario }) {
                 className="btn btn-primary btn-sm hero-cta-submit"
                 disabled={!heroQueryReady}
                 onClick={runHeroForecast}>
-                Прогноз
+                {en ? en.heroForecast : 'Прогноз'}
               </button>
               <label className="hero-cta-field hero-cta-field--combined">
                 <input
@@ -140,15 +154,15 @@ function HomePage({ navigate, scenario, setScenario }) {
                       runHeroForecast();
                     }
                   }}
-                  placeholder="Укажите название бренда и страну СНГ"
+                  placeholder={en ? en.heroPlaceholder : 'Укажите название бренда и страну СНГ'}
                   autoComplete="off"
                 />
               </label>
             </div>
             <div className="hero-trust">
-              <div><div className="stat-num">2015</div><div className="stat-lbl">год основания</div></div>
-              <div><div className="stat-num">22 000</div><div className="stat-lbl">в активной базе HCP</div></div>
-              <div><div className="stat-num">7</div><div className="stat-lbl">стран с нашими Клиентами</div></div>
+              <div><div className="stat-num">2015</div><div className="stat-lbl">{en ? en.statFounded : 'год основания'}</div></div>
+              <div><div className="stat-num">22 000</div><div className="stat-lbl">{en ? en.statHcp : 'в активной базе HCP'}</div></div>
+              <div><div className="stat-num">7</div><div className="stat-lbl">{en ? en.statCountries : 'стран с нашими Клиентами'}</div></div>
             </div>
           </div>
 
@@ -156,18 +170,14 @@ function HomePage({ navigate, scenario, setScenario }) {
           <div className="forecast-card">
             <div className="fc-head">
               <div>
-                <div className="fc-title">ИИ Робби рассчитает прогноз Вашего бренда на фармацевтическом рынке СНГ</div>
+                <div className="fc-title">{en ? en.forecastTitle : 'ИИ Робби рассчитает прогноз Вашего бренда на фармацевтическом рынке СНГ'}</div>
               </div>
               <div className="fc-pill"><span className="dot"></span>LIVE</div>
             </div>
 
             <div style={{ position: 'relative' }}>
               <div className="fc-scenarios">
-                {[
-                ['organic', 'Инерционный'],
-                ['comms', 'Базовый'],
-                ['launch', 'Максимальный']].
-                map(([k, l]) =>
+                {scenarios.map(([k, l]) =>
                 <button key={k}
                 className={scenario === k ? 'on' : ''}
                 onClick={() => setScenario(k)}>{l}</button>
@@ -177,9 +187,9 @@ function HomePage({ navigate, scenario, setScenario }) {
             </div>
 
             <div className="fc-legend">
-              <span className="li"><span className="sw"></span>факт</span>
-              <span className="li"><span className="sw dashed"></span>прогноз ИИ</span>
-              <span className="li"><span className="sw band"></span>границы нормы</span>
+              <span className="li"><span className="sw"></span>{en ? en.legendFact : 'факт'}</span>
+              <span className="li"><span className="sw dashed"></span>{en ? en.legendForecast : 'прогноз ИИ'}</span>
+              <span className="li"><span className="sw band"></span>{en ? en.legendBand : 'границы нормы'}</span>
             </div>
           </div>
         </div>
@@ -204,11 +214,11 @@ function HomePage({ navigate, scenario, setScenario }) {
         <div className="container">
           <div className="section-head">
             <div>
-              <div className="eyebrow">Что мы делаем</div>
-              <h2>5 цифровых<br />направлений</h2>
+              <div className="eyebrow">{en ? en.tilesEyebrow : 'Что мы делаем'}</div>
+              <h2>{en ? <>5 digital<br />directions</> : <>5 цифровых<br />направлений</>}</h2>
             </div>
             <div className="right">
-              От стратегической архитектуры омниканальной коммуникации с HCP до пациентского сериала на YouTube.
+              {en ? en.tilesRight : 'От стратегической архитектуры омниканальной коммуникации с HCP до пациентского сериала на YouTube.'}
             </div>
           </div>
 
@@ -223,7 +233,7 @@ function HomePage({ navigate, scenario, setScenario }) {
                     <span className="num">— {t.num}</span>
                     <h3>{t.title}</h3>
                     <p>{t.desc}</p>
-                    <span className="tile-cta">Открыть раздел <span className="arrow">→</span></span>
+                    <span className="tile-cta">{en ? en.tileOpen : 'Открыть раздел'} <span className="arrow">→</span></span>
                   </div>
                 </div>);
 
@@ -233,9 +243,9 @@ function HomePage({ navigate, scenario, setScenario }) {
       </section>
 
       {MidContactStrip ?
-      <div className="home-tiles-cta" role="region" aria-label="Обсудить проект">
+      <div className="home-tiles-cta" role="region" aria-label={en ? en.discussAria : 'Обсудить проект'}>
         <div className="container">
-          <MidContactStrip inline />
+          <MidContactStrip inline lang={lang} />
         </div>
       </div> :
       null}
@@ -245,10 +255,10 @@ function HomePage({ navigate, scenario, setScenario }) {
         <div className="container">
           <div className="feature-row">
             <div>
-              <span className="chip">Хит продаж 2026</span>
-              <h3>CRM-PharmConsilium для работы медицинских представителей.</h3>
+              <span className="chip">{en ? en.featureChip : 'Хит продаж 2026'}</span>
+              <h3>{en ? en.featureH3 : 'CRM-PharmConsilium для работы медицинских представителей.'}</h3>
               <p>
-                Специализированная CRM для фармацевтических компаний и омниканальной работы с HCP.
+                {en ? en.featureP : 'Специализированная CRM для фармацевтических компаний и омниканальной работы с HCP.'}
               </p>
               <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
                 <button
@@ -270,20 +280,15 @@ function HomePage({ navigate, scenario, setScenario }) {
       <section className="section section--know-now" style={{ paddingTop: 32 }}>
         <div className="container">
           <div className="section-head section-head--title-sync section-head--insights">
-            <div className="eyebrow">Инсайты ФармКонсилиум</div>
-            <h2>Вам лучше это<br />узнать сейчас.</h2>
+            <div className="eyebrow">{en ? en.insightsEyebrow : 'Инсайты ФармКонсилиум'}</div>
+            <h2>{en ? <>Better to know<br />this now.</> : <>Вам лучше это<br />узнать сейчас.</>}</h2>
             <div className="right">
-              3 в 1: маркетинговая экспертиза, разработка цифровых решений, студия контент дейлинга.
+              {en ? en.insightsRight : '3 в 1: маркетинговая экспертиза, разработка цифровых решений, студия контент дейлинга.'}
             </div>
           </div>
 
           <div className="cards-grid cards-grid--2x2">
-            {[
-            { n: '01', t: 'Портфолио и проекты.', d: 'Проекты, портфолио, события.', to: 'portfolio' },
-            { n: '02', t: 'Цифровой медицинский представитель.', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
-            { n: '03', t: 'Справочник ЛС ФармКонсилиум.', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
-            { n: '04', t: 'Разработка мобильных приложений.', d: 'Для операционных систем iOS и Android под ключ.', to: 'hcp/mobile' }].
-            map((s) => {
+            {insightCards.map((s) => {
               const clickable = Boolean(s.to || s.href);
               return (
             <div
@@ -316,23 +321,56 @@ function HomePage({ navigate, scenario, setScenario }) {
 
 /* ────────────────────────────── INNER PAGES ────────────────────────────── */
 
-function PageShell({ crumb, title, lede, cards, navigate, section }) {
+function splitPageTitle(title) {
+  if (!title || typeof title !== 'string') return { line1: title, accent: null, accent2: null };
+  const seps = [' — ', ' - ', ' · ', ' для '];
+  for (let i = 0; i < seps.length; i += 1) {
+    const sep = seps[i];
+    const idx = title.indexOf(sep);
+    if (idx > 0) {
+      return { line1: title.slice(0, idx), accent: title.slice(idx + sep.length), accent2: null };
+    }
+  }
+  const colon = title.indexOf(': ');
+  if (colon > 0 && colon < 48) {
+    return { line1: title.slice(0, colon), accent: title.slice(colon + 2), accent2: null };
+  }
+  return { line1: title, accent: null, accent2: null };
+}
+
+function PageHeroH1({ line1, accent, accent2 }) {
+  if (!accent && !accent2) return <h1><span className="h1-primary">{line1}</span></h1>;
+  return (
+    <h1>
+      <span className="h1-primary">{line1}</span>
+      {accent ? <><br /><span className="accent">{accent}</span></> : null}
+      {accent2 ? <><br /><span className="accent">{accent2}</span></> : null}
+    </h1>
+  );
+}
+
+function PageShell({ crumb, title, h1Line1, h1Accent, h1Accent2, lede, cards, navigate, section, lang }) {
   const MidContactStrip = window.MidContactStrip;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
   return (
     <main className="page-route">
       <section className="page-hero">
         <div className="container">
           <div className="crumbs">
-            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>Главная</span>
+            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
             <span style={{ color: 'var(--ink)' }}>{crumb}</span>
           </div>
-          <h1>{title}</h1>
+          <PageHeroH1
+            line1={h1Line1 || title}
+            accent={h1Accent}
+            accent2={h1Accent2}
+          />
           {lede && <p className="lede">{lede}</p>}
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
 
       <section className="container">
         <div className="cards-grid">
@@ -352,7 +390,7 @@ function PageShell({ crumb, title, lede, cards, navigate, section }) {
                     background: 'transparent', border: 'none', color: 'var(--muted)'
                   }}>{t.trim()}</span>)}
                 </div>}
-                {target && <a className="read">Подробнее <span className="arrow">→</span></a>}
+                {target && <a className="read">{t('readMore')} <span className="arrow">→</span></a>}
               </div>);
 
           })}
@@ -362,13 +400,19 @@ function PageShell({ crumb, title, lede, cards, navigate, section }) {
 
 }
 
-function MarketingPage({ navigate }) {
-  return <PageShell navigate={navigate}
-  section="marketing"
-  crumb="Фармацевтический маркетинг"
-  title="Цифровые инструменты для фармацевтического маркетинга"
-  lede="От CRM медицинского представителя до AI-тренера и платформы омниканального взаимодействия с HCP. Берём на себя всю архитектуру и контент."
-  cards={[
+function SectionPage({ id, navigate, lang, ru }) {
+  const en = lang === 'en' && window.getSectionCopy ? window.getSectionCopy(id, lang) : null;
+  const copy = en || ru;
+  return <PageShell navigate={navigate} section={id} lang={lang} {...copy} />;
+}
+
+function MarketingPage({ navigate, lang }) {
+  return <SectionPage id="marketing" navigate={navigate} lang={lang} ru={{
+  crumb: 'Фармацевтический маркетинг',
+  h1Line1: 'Цифровые инструменты',
+  h1Accent: 'для фармацевтического маркетинга',
+  lede: 'От CRM медицинского представителя до AI-тренера и платформы омниканального взаимодействия с HCP. Берём на себя всю архитектуру и контент.',
+  cards: [
   { title: 'CRM', sub: 'crm', size: 'huge', art: 'ArtNodes',
     desc: 'Для медицинских представителей и омниканального цифрового взаимодействия с HCP. Сегментация, сценарии визита, оркестрация каналов, отчётность для бренд-команды.',
     tag: 'Veeva, IQVIA, Pitcher' },
@@ -393,16 +437,16 @@ function MarketingPage({ navigate }) {
   { title: 'ИИ-решения', sub: 'ai', art: 'ArtAI',
     desc: 'AI-тренер для медпредов, ИИ-ассистенты, платформы опросов и бизнес-анализа, ИИ-консалтинг.',
     tag: 'AI · 2026' }]
-  } />;
+  }} />;
 }
 
-function HcpPage({ navigate }) {
-  return <PageShell navigate={navigate}
-  section="hcp"
-  crumb="Здравоохранение"
-  title="Разработка цифровых решений для здравоохранения"
-  lede="Платформы, рекомендательные системы, ИИ-ассистенты и программы поддержки пациентов — в регуляторных рамках, с заботой о практической пользе."
-  cards={[
+function HcpPage({ navigate, lang }) {
+  return <SectionPage id="hcp" navigate={navigate} lang={lang} ru={{
+  crumb: 'Здравоохранение',
+  h1Line1: 'Разработка цифровых решений',
+  h1Accent: 'для здравоохранения',
+  lede: 'Платформы, рекомендательные системы, ИИ-ассистенты и программы поддержки пациентов — в регуляторных рамках, с заботой о практической пользе.',
+  cards: [
   { title: 'ИИ-ассистенты и рекомендательные системы', sub: 'ai-recom', size: 'huge', art: 'ArtAI',
     desc: 'Чат-боты, голосовые-боты, навигация по контенту, подбор релевантных материалов для врача или пациента. Персональный контентный путь, который перестраивается по поведению.',
     tag: 'recsys, NLP' },
@@ -424,16 +468,16 @@ function HcpPage({ navigate }) {
   { title: 'Готовый стартовый набор для бренда', art: 'ArtMolecule', size: 'wide',
     desc: 'Связка лендинг + бот + материалы для HCP + базовая CRM — за 4 недели от подписания брифа.',
     tag: '4 недели · фикс' }]
-  } />;
+  }} />;
 }
 
-function SalesPage({ navigate }) {
-  return <PageShell navigate={navigate}
-  section="sales"
-  crumb="Аутсорсинг"
-  title="Комплексное продвижение и аутсорсинг продаж"
-  lede="Если у вас нет своего отдела продаж в РБ — соберём его за вас. Если есть — добавим цифровой слой и омниканальный охват."
-  cards={[
+function SalesPage({ navigate, lang }) {
+  return <SectionPage id="sales" navigate={navigate} lang={lang} ru={{
+  crumb: 'Аутсорсинг',
+  h1Line1: 'Комплексное продвижение',
+  h1Accent: 'и аутсорсинг продаж',
+  lede: 'Если у вас нет своего отдела продаж в РБ — соберём его за вас. Если есть — добавим цифровой слой и омниканальный охват.',
+  cards: [
   { title: 'Цифровой медицинский представитель', sub: 'digital-rep', size: 'huge', art: 'ArtTablet',
     desc: 'Удалённый медпред нашей команды работает по вашему бренду: визиты remote eDetailing, follow-up по контенту, аналитика по контактам. Покрытие — все области РБ.',
     tag: 'remote eDetail, покрытие РБ' },
@@ -446,16 +490,16 @@ function SalesPage({ navigate }) {
   { title: 'Аналитика продаж и доли голоса', sub: 'analytics', art: 'ArtDashboard',
     desc: 'Дашборд: визиты, контакты, отклик, метрики кампании. Связка с IQVIA / закупочными данными.',
     tag: 'IQVIA' }]
-  } />;
+  }} />;
 }
 
-function ContentPage({ navigate }) {
-  return <PageShell navigate={navigate}
-  section="content"
-  crumb="Контент и игры"
-  title="HCP-контент на языке медицинской науки для врачей и фармацевтов"
-  lede="Сценарии, презентации, видео, статьи, игры и квизы. Делаем сложное понятным — для врача, провизора и пациента."
-  cards={[
+function ContentPage({ navigate, lang }) {
+  return <SectionPage id="content" navigate={navigate} lang={lang} ru={{
+  crumb: 'Контент и игры',
+  h1Line1: 'HCP-контент на языке медицинской науки',
+  h1Accent: 'для врачей и фармацевтов',
+  lede: 'Сценарии, презентации, видео, статьи, игры и квизы. Делаем сложное понятным — для врача, провизора и пациента.',
+  cards: [
   { title: 'Медицинские презентации и научные статьи', sub: 'medical', size: 'huge', art: 'ArtDoc',
     desc: 'Экспертные материалы, инфографика, сценарии презентаций, доказательная база, KOL-контент. Литературные обзоры и сводки публикаций под ваш бренд.',
     tag: 'KOL, доказательная база' },
@@ -471,56 +515,73 @@ function ContentPage({ navigate }) {
   { title: 'Реклама', sub: 'advertising', art: 'ArtBrowser',
     desc: 'Креативы для digital-кампаний — в рамках законодательства РБ о рекламе ЛС.',
     tag: 'digital · РБ' }]
-  } />;
+  }} />;
 }
 
-function DirectoryPage({ navigate }) {
-  const cats = ['Кардиология', 'Эндокринология', 'Онкология', 'Неврология', 'Пульмонология', 'Педиатрия', 'Терапия', 'Психиатрия'];
+function DirectoryPage({ navigate, lang }) {
+  const en = lang === 'en' && window.getDirectoryCopy ? window.getDirectoryCopy(lang) : null;
+  const cats = en ? en.cats : ['Кардиология', 'Эндокринология', 'Онкология', 'Неврология', 'Пульмонология', 'Педиатрия', 'Терапия', 'Психиатрия'];
   const [activeCat, setActiveCat] = React.useState(cats[0]);
+  React.useEffect(() => { setActiveCat(cats[0]); }, [lang]);
   const MidContactStrip = window.MidContactStrip;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
+  const features = en ? en.features : [
+    { t: 'Поиск по МНН и торговым наименованиям', d: 'Быстрый ввод МНН, торгового или АТХ-кода. Подсказки по мере набора, история запросов.', art: 'ArtDirectory' },
+    { t: 'Профессиональные карточки препаратов', d: 'Показания, режимы дозирования, противопоказания, лекарственные взаимодействия — собрано в одну карточку.', art: 'ArtDoc' },
+    { t: 'Доказательная база и публикации', d: 'У каждой карточки — ссылки на публикации, мета-анализы и клинические протоколы.', art: 'ArtBooks' },
+    { t: 'Доверительная среда без рекламного шума', d: 'Никакого продакт-плейсмента и баннеров. Монетизация — через подписку для аптек и клиник.', art: 'ArtPulse' },
+  ];
+  const mockDrugs = en ? en.mockDrugs : [
+    { name: 'Препарат-альфа', mnn: 'rosuvastatinum', atc: 'C10AA07', cls: 'Гиполипидемическое' },
+    { name: 'Препарат-бета', mnn: 'metformin', atc: 'A10BA02', cls: 'Антидиабетическое' },
+    { name: 'Препарат-гамма', mnn: 'amlodipinum', atc: 'C08CA01', cls: 'Антагонист кальция' },
+    { name: 'Препарат-дельта', mnn: 'omeprazolum', atc: 'A02BC01', cls: 'Ингибитор протонного насоса' },
+    { name: 'Препарат-эпсилон', mnn: 'azithromycinum', atc: 'J01FA10', cls: 'Макролид' },
+    { name: 'Препарат-зета', mnn: 'levothyroxinum', atc: 'H03AA01', cls: 'Тиреоидный гормон' },
+  ];
+  const stats = en ? en.stats : [
+    { n: '01', t: '1 000+ специалистов', d: 'врачей и провизоров используют справочник ежедневно' },
+    { n: '02', t: 'Без рекламного шума', d: 'Атмосфера ординаторской: только экспертный контент' },
+    { n: '03', t: 'Доказательная база', d: 'Каждая карточка — со ссылками на публикации и протоколы' },
+    { n: '04', t: 'API для интеграций', d: 'Подключайте справочник в свои продукты и системы' },
+  ];
   return (
     <main className="page-route">
       <section className="page-hero">
         <div className="container">
           <div className="crumbs">
-            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>Главная</span>
+            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>Справочник ЛС</span>
+            <span style={{ color: 'var(--ink)' }}>{en ? en.crumb : 'Справочник ЛС'}</span>
           </div>
-          <h1>Справочник ЛС<br /><span style={{ color: 'var(--muted-2)' }}>ФармКонсилиум</span></h1>
+          <PageHeroH1
+            line1={en ? en.h1 : 'Справочник ЛС'}
+            accent={en ? en.h1Brand : 'ФармКонсилиум'}
+          />
           <p className="lede">
-            Профессиональный цифровой ресурс для врачей и фармацевтов. Сегодня его используют
-            более 1 000 специалистов ежедневно для поиска экспертного справочного контента.
-            Доверительная атмосфера ординаторской — без рекламного шума.
+            {en ? en.lede : 'Профессиональный цифровой ресурс для врачей и фармацевтов. Сегодня его используют более 1 000 специалистов ежедневно для поиска экспертного справочного контента. Доверительная атмосфера ординаторской — без рекламного шума.'}
           </p>
           <div style={{ display: 'flex', gap: 10, marginTop: 32, flexWrap: 'wrap', alignItems: 'center' }}>
-            {MidContactStrip ? <MidContactStrip inline /> : null}
-            <button className="btn btn-ghost">Открыть справочник →</button>
-            <button className="btn btn-ghost">Получить демо-доступ</button>
+            {MidContactStrip ? <MidContactStrip inline lang={lang} /> : null}
+            <button className="btn btn-ghost">{en ? en.openDir : 'Открыть справочник →'}</button>
+            <button className="btn btn-ghost">{en ? en.demoAccess : 'Получить демо-доступ'}</button>
           </div>
         </div>
       </section>
 
-      {/* Mocked search UI */}
       <section className="container" style={{ margin: '48px auto' }}>
         <div>
           <div className="section-head">
             <div>
-              <div className="eyebrow">Преимущества</div>
-              <h2>Почему врачи и провизоры<br />возвращаются.</h2>
+              <div className="eyebrow">{en ? en.benefitsEyebrow : 'Преимущества'}</div>
+              <h2>{en ? en.benefitsH2 : <>Почему врачи и провизоры<br />возвращаются.</>}</h2>
             </div>
             <div className="right">
-              Доверительная атмосфера ординаторской: только экспертный контент,
-              никакого рекламного шума, прозрачные источники.
+              {en ? en.benefitsRight : 'Доверительная атмосфера ординаторской: только экспертный контент, никакого рекламного шума, прозрачные источники.'}
             </div>
           </div>
           <div className="cards-grid">
-            {[
-              { t: 'Поиск по МНН и торговым наименованиям', d: 'Быстрый ввод МНН, торгового или АТХ-кода. Подсказки по мере набора, история запросов.', art: 'ArtDirectory' },
-              { t: 'Профессиональные карточки препаратов',   d: 'Показания, режимы дозирования, противопоказания, лекарственные взаимодействия — собрано в одну карточку.', art: 'ArtDoc' },
-              { t: 'Доказательная база и публикации',          d: 'У каждой карточки — ссылки на публикации, мета-анализы и клинические протоколы.', art: 'ArtBooks' },
-              { t: 'Доверительная среда без рекламного шума', d: 'Никакого продакт-плейсмента и баннеров. Монетизация — через подписку для аптек и клиник.', art: 'ArtPulse' },
-            ].map((a, i) => {
+            {features.map((a, i) => {
               const A = window[a.art];
               return (
                 <div key={i} className="card" style={{ gridColumn: 'span 6' }}>
@@ -561,14 +622,7 @@ function DirectoryPage({ navigate }) {
           </div>
 
           <div style={{ marginTop: 28, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
-            {[
-            { name: 'Препарат-альфа', mnn: 'rosuvastatinum', atc: 'C10AA07', cls: 'Гиполипидемическое' },
-            { name: 'Препарат-бета', mnn: 'metformin', atc: 'A10BA02', cls: 'Антидиабетическое' },
-            { name: 'Препарат-гамма', mnn: 'amlodipinum', atc: 'C08CA01', cls: 'Антагонист кальция' },
-            { name: 'Препарат-дельта', mnn: 'omeprazolum', atc: 'A02BC01', cls: 'Ингибитор протонного насоса' },
-            { name: 'Препарат-эпсилон', mnn: 'azithromycinum', atc: 'J01FA10', cls: 'Макролид' },
-            { name: 'Препарат-зета', mnn: 'levothyroxinum', atc: 'H03AA01', cls: 'Тиреоидный гормон' }].
-            map((p, i) =>
+            {mockDrugs.map((p, i) =>
             <div key={i} style={{
               border: 'none', borderRadius: 'var(--radius)',
               padding: 18,
@@ -582,7 +636,7 @@ function DirectoryPage({ navigate }) {
                 <div style={{ color: 'var(--muted)', fontSize: 12.5, marginTop: 2, fontStyle: 'italic' }}>{p.mnn}</div>
                 <div style={{ fontSize: 12.5, color: 'var(--ink-2)', marginTop: 10 }}>{p.cls}</div>
                 <div style={{ display: 'flex', gap: 6, marginTop: 14, fontSize: 11, color: 'var(--muted)' }}>
-                  <span>14 публикаций</span>·<span>3 клин. протокола</span>
+                  <span>{en ? en.pubCount : '14 публикаций'}</span>·<span>{en ? en.protocolCount : '3 клин. протокола'}</span>
                 </div>
               </div>
             )}
@@ -590,12 +644,7 @@ function DirectoryPage({ navigate }) {
         </div>
 
         <div className="cards-grid" style={{ marginTop: 32 }}>
-          {[
-          { n: '01', t: '1 000+ специалистов', d: 'врачей и провизоров используют справочник ежедневно' },
-          { n: '02', t: 'Без рекламного шума', d: 'Атмосфера ординаторской: только экспертный контент' },
-          { n: '03', t: 'Доказательная база', d: 'Каждая карточка — со ссылками на публикации и протоколы' },
-          { n: '04', t: 'API для интеграций', d: 'Подключайте справочник в свои продукты и системы' }].
-          map((s) =>
+          {stats.map((s) =>
           <div key={s.n} className="card" style={{ gridColumn: 'span 6', minHeight: 'auto', paddingBottom: 18 }}>
               <div className="card-num">— {s.n}</div>
               <h3>{s.t}</h3>
@@ -650,8 +699,21 @@ function TeamMemberPortrait({ member, seed, layer }) {
   return <PortraitPlaceholder seed={seed} />;
 }
 
-function TeamPage({ navigate }) {
+function teamLedePart(text, key) {
+  if (!text || !text.includes('**')) return <p key={key}>{text}</p>;
+  const parts = text.split(/\*\*(.+?)\*\*/);
+  return (
+    <p key={key}>
+      {parts.map((part, i) => (i % 2 === 1 ? <strong key={i}>{part}</strong> : part))}
+    </p>
+  );
+}
+
+function TeamPage({ navigate, lang }) {
+  const en = lang === 'en' && window.getTeamCopy ? window.getTeamCopy(lang) : null;
+  const team = en ? en.members : TEAM;
   const MidContactStrip = window.MidContactStrip;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
 
   React.useEffect(() => {
     ['assets/uploads/team-robbie.png', 'assets/uploads/team-robbie-hover.png'].forEach((src) => {
@@ -665,56 +727,40 @@ function TeamPage({ navigate }) {
       <section className="page-hero">
         <div className="container">
           <div className="crumbs">
-            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>Главная</span>
+            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>Команда</span>
+            <span style={{ color: 'var(--ink)' }}>{en ? en.crumb : 'Команда'}</span>
           </div>
-          <h1>Наша миссия<br />в этой Вселенной:</h1>
+          <PageHeroH1
+            line1={en ? (en.h1Line1 || 'Our mission') : 'Наша миссия'}
+            accent={en ? (en.h1Accent || 'in this universe:') : 'в этой Вселенной:'}
+          />
           <div className="team-lede-stack">
-            <p>
-              Каждое утро, перед началом работы мы говорим: <strong>СДЕЛАЕМ МИР ЛУЧШЕ!</strong>
-            </p>
-            <p>
-              Мы объединяем фармацевтические компании медицинских специалистов и людей, заботящихся о своём здоровье,
-              в информационных пространствах.
-            </p>
-            <p>
-              Мы работаем, чтобы содействовать скорейшей доступности самых инновационных и эффективных фармацевтических
-              продуктов для врачей и их пациентов в Беларуси.
-            </p>
-            <p>
-              Мы мечтаем, что у нас получится улучшить взаимодействие в области медицинских технологий и этим быть
-              полезными людям с проблемами здоровья.
-            </p>
-            <p>
-              Мы гордимся тем, что наши партнёры — мировые лидеры в фармацевтике, которые создают продукты и услуги для
-              улучшения жизни людей!
-            </p>
-            <p>… и мы знаем — всё зависит от людей!</p>
-            <p>
-              Наш подход основан на цифровых технологиях и глубоком понимании потребностей рынка здравоохранения. Мы
-              помогаем вам наладить эффективную коммуникацию с ключевыми аудиториями через персонализированные кампании,
-              интегрированные цифровые платформы и инновационные решения с применением искусственного интеллекта.
-            </p>
-            <p>
-              Благодаря нашей работе пациенты и врачи получают лучший доступ к медицинским знаниям, производители
-              лекарств — возможность эффективно продвигать продукцию, а общество — улучшение здоровья и повышение
-              качества жизни.
-            </p>
-            <p>
-              Доверьтесь нам — и мы вместе откроем новые возможности для вашего бренда в сфере здравоохранения.
-            </p>
+            {en ?
+              en.lede.map((para, i) => teamLedePart(para, i)) :
+              <>
+                <p>Каждое утро, перед началом работы мы говорим: <strong>СДЕЛАЕМ МИР ЛУЧШЕ!</strong></p>
+                <p>Мы объединяем фармацевтические компании медицинских специалистов и людей, заботящихся о своём здоровье, в информационных пространствах.</p>
+                <p>Мы работаем, чтобы содействовать скорейшей доступности самых инновационных и эффективных фармацевтических продуктов для врачей и их пациентов в Беларуси.</p>
+                <p>Мы мечтаем, что у нас получится улучшить взаимодействие в области медицинских технологий и этим быть полезными людям с проблемами здоровья.</p>
+                <p>Мы гордимся тем, что наши партнёры — мировые лидеры в фармацевтике, которые создают продукты и услуги для улучшения жизни людей!</p>
+                <p>… и мы знаем — всё зависит от людей!</p>
+                <p>Наш подход основан на цифровых технологиях и глубоком понимании потребностей рынка здравоохранения. Мы помогаем вам наладить эффективную коммуникацию с ключевыми аудиториями через персонализированные кампании, интегрированные цифровые платформы и инновационные решения с применением искусственного интеллекта.</p>
+                <p>Благодаря нашей работе пациенты и врачи получают лучший доступ к медицинским знаниям, производители лекарств — возможность эффективно продвигать продукцию, а общество — улучшение здоровья и повышение качества жизни.</p>
+                <p>Доверьтесь нам — и мы вместе откроем новые возможности для вашего бренда в сфере здравоохранения.</p>
+              </>
+            }
           </div>
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
 
       <section className="container">
         <div className="team-grid">
-          {TEAM.map((m, i) =>
+          {team.map((m, i) =>
           <div key={i} className="tm">
-              <div className={`tm-portrait${m.n === 'Робби' ? ' tm-portrait--robbie' : ''}`}>
+              <div className={`tm-portrait${m.n === 'Робби' || m.n === 'Robbie' ? ' tm-portrait--robbie' : ''}`}>
                 <div className="tm-portrait-img tm-portrait-default">
                   <TeamMemberPortrait member={m} seed={i + 1} layer="default" />
                 </div>
@@ -731,20 +777,20 @@ function TeamPage({ navigate }) {
         <div style={{ marginTop: 64 }}>
           <div className="section-head">
             <div>
-              <div className="eyebrow">Портфолио</div>
-              <h2>Проекты последних<br />двенадцати месяцев.</h2>
+              <div className="eyebrow">{en ? en.portfolioEyebrow : 'Портфолио'}</div>
+              <h2>{en ? en.portfolioH2 : <>Проекты последних<br />двенадцати месяцев.</>}</h2>
             </div>
-            <div className="right">8 запусков, 3 ИИ-продукта, 2 справочника, 1 победа на премии. Подробное портфолио — по запросу.</div>
+            <div className="right">{en ? en.portfolioRight : '8 запусков, 3 ИИ-продукта, 2 справочника, 1 победа на премии. Подробное портфолио — по запросу.'}</div>
           </div>
           <div className="cards-grid">
-            {[
+            {(en ? en.portfolioCards : [
             { t: 'Лонч кардиопрепарата · 90 дней', d: 'Полный пакет: лендинг, CRM, e-detailing, омниканальная кампания.', art: 'ArtLaunch', slug: 'cardio-lonch' },
             { t: 'AI-тренер для медпредов', d: 'Внутренний продукт, развёрнут для трёх международных фармкомпаний.', art: 'ArtAI', slug: 'ai-trener' },
             { t: 'Сериал для пациентов · 6 серий', d: 'Образовательный сериал с AI-аватарами на трёх языках.', art: 'ArtVideo', slug: 'patient-series' },
             { t: 'Конференция «ФармКонсилиум-2025»', d: '1 500 участников, эвент-бот, ИИ-помощник на программе.', art: 'ArtRadar', slug: 'conference-pk25' },
             { t: 'Программа поддержки пациентов', d: '24 месяца сопровождения, +38% к удержанию терапии.', art: 'ArtPulse', slug: 'psp-platform' },
-            { t: 'CLM-обновление под Veeva', d: '12 модулей, перенос на 2CLM, тренинг команды.', art: 'ArtLayers', slug: 'clm-veeva' }].
-            map((p, i) => {
+            { t: 'CLM-обновление под Veeva', d: '12 модулей, перенос на 2CLM, тренинг команды.', art: 'ArtLayers', slug: 'clm-veeva' },
+            ]).map((p, i) => {
               const A = window[p.art];
               return (
                 <div key={i} className="card" style={{ gridColumn: 'span 4' }}
@@ -752,14 +798,13 @@ function TeamPage({ navigate }) {
                   <div className="card-art"><A /></div>
                   <h3>{p.t}</h3>
                   <p>{p.d}</p>
-                  <a className="read">Открыть кейс <span className="arrow">→</span></a>
+                  <a className="read">{en ? en.openCase : 'Открыть кейс'} <span className="arrow">→</span></a>
                 </div>);
 
             })}
           </div>
         </div>
 
-        {/* Contacts */}
         <div data-contacts style={{
           margin: '64px 0',
           background: 'var(--surface)',
@@ -771,17 +816,17 @@ function TeamPage({ navigate }) {
           alignItems: 'center'
         }}>
           <div>
-            <div className="eyebrow">Контакты</div>
+            <div className="eyebrow">{en ? en.contactsEyebrow : 'Контакты'}</div>
             <h2 style={{
               fontFamily: 'var(--font-display)', fontWeight: 500,
               fontSize: 'clamp(28px, 3.4vw, 44px)', letterSpacing: '-.025em',
               margin: '12px 0 24px', lineHeight: 1.05
-            }}>Напишите —<br />придумаем вместе.</h2>
+            }}>{en ? en.contactsH2 : <>Напишите —<br />придумаем вместе.</>}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>☎</div>
                 <div>
-                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>Телефон</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{en ? en.phone : 'Телефон'}</div>
                   <div style={{ fontWeight: 600, display: 'flex', flexDirection: 'column', gap: 4 }}>
                     <a href="tel:+375293220018" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (29) 322-00-18</a>
                     <a href="tel:+375152685050" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (15) 268-50-50</a>
@@ -791,7 +836,7 @@ function TeamPage({ navigate }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>@</div>
                 <div>
-                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>Почта</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{en ? en.email : 'Почта'}</div>
                   <div style={{ fontWeight: 600, display: 'flex', flexDirection: 'column', gap: 4 }}>
                     <a href="mailto:pharmconsilium@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>pharmconsilium@gmail.com</a>
                     <a href="mailto:pharmconsilium.office@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>pharmconsilium.office@gmail.com</a>
@@ -801,8 +846,8 @@ function TeamPage({ navigate }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>◎</div>
                 <div>
-                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>Адрес</div>
-                  <div style={{ fontWeight: 600, lineHeight: 1.45 }}>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{en ? en.address : 'Адрес'}</div>
+                  <div style={{ fontWeight: 600, lineHeight: 1.45 }}>{en ? en.addressLines : <>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</>}</div>
                 </div>
               </div>
             </div>
@@ -817,5 +862,6 @@ function TeamPage({ navigate }) {
 }
 
 Object.assign(window, {
-  HomePage, MarketingPage, HcpPage, SalesPage, ContentPage, DirectoryPage, TeamPage
+  HomePage, MarketingPage, HcpPage, SalesPage, ContentPage, DirectoryPage, TeamPage,
+  PageHeroH1, splitPageTitle,
 });

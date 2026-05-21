@@ -169,7 +169,10 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
     setOpenMenu(null);
   }, [route]);
 
-  const ArtTag = openMenu ? window[MEGA[openMenu].featured.art] : null;
+  const navItems = window.getSiteNav ? window.getSiteNav(lang) : NAV_ITEMS;
+  const megaConfig = window.getSiteMega ? window.getSiteMega(lang) : MEGA;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
+  const ArtTag = openMenu && megaConfig[openMenu] ? window[megaConfig[openMenu].featured.art] : null;
 
   return (
     <header className="header">
@@ -177,13 +180,13 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
         {/* LEFT: brand */}
         <div className="header-left">
           <div className="brand" onClick={() => {navigate('home');setOpenMenu(null);}}>
-            <img src="assets/logo.svg" alt="ФармКонсилиум — IT-решения для фарм-маркетинга" className="brand-logo" />
+            <img src="assets/logo.svg" alt={t('brandAlt')} className="brand-logo" />
           </div>
         </div>
 
         {/* CENTER: nav */}
         <nav className="nav" onMouseLeave={scheduleClose}>
-          {NAV_ITEMS.map((item) =>
+          {navItems.map((item) =>
           <div key={item.id}
           className={`nav-item ${route === item.id ? 'active' : ''}`}
           onMouseEnter={() => open(item.id)}
@@ -200,7 +203,7 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             className="nav-menu-btn btn-icon"
             aria-expanded={mobileNavOpen}
             aria-controls="mobile-nav"
-            aria-label={mobileNavOpen ? 'Закрыть меню разделов' : 'Открыть меню разделов'}
+            aria-label={mobileNavOpen ? t('closeMenu') : t('openMenu')}
             onClick={() => {
               setMobileNavOpen((o) => {
                 if (o) setMobileExpanded(null);
@@ -219,8 +222,8 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')}>EN</button>
           </div>
           <button className="btn-icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          title={theme === 'dark' ? 'Светлая тема' : 'Тёмная тема'}
-          aria-label="Сменить тему">
+          title={theme === 'dark' ? t('themeLight') : t('themeDark')}
+          aria-label={theme === 'dark' ? t('themeLight') : t('themeDark')}>
             {theme === 'dark' ?
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg> :
 
@@ -228,7 +231,7 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             }
           </button>
             <button className="btn btn-primary btn-sm" onClick={() => { window.openPharmContact?.(); setOpenMenu(null); }}>
-            Контакты <span className="arrow">→</span>
+            {t('contacts')} <span className="arrow">→</span>
           </button>
         </div>
       </div>
@@ -236,12 +239,12 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
       <div className={`mega-overlay ${openMenu ? 'open' : ''}`}
       onMouseEnter={() => open(openMenu)}
       onMouseLeave={scheduleClose}>
-        {openMenu &&
+        {openMenu && megaConfig[openMenu] &&
         <div className="container mega-inner">
             <div className="mega-left">
-              <h3>{MEGA[openMenu].title}</h3>
+              <h3>{megaConfig[openMenu].title}</h3>
               <ul className="mega-links">
-                {MEGA[openMenu].links.map((l, i) => {
+                {megaConfig[openMenu].links.map((l, i) => {
                 const label = typeof l === 'string' ? l : l.label;
                 const to = typeof l === 'string' ? openMenu : l.to;
                 return (
@@ -254,9 +257,9 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             </div>
             <div className="mega-feature">
               <div>
-                <div className="mf-tag">{MEGA[openMenu].featured.tag}</div>
-                <div className="mf-title">{MEGA[openMenu].featured.title}</div>
-                <div className="mf-desc">{MEGA[openMenu].featured.desc}</div>
+                <div className="mf-tag">{megaConfig[openMenu].featured.tag}</div>
+                <div className="mf-title">{megaConfig[openMenu].featured.title}</div>
+                <div className="mf-desc">{megaConfig[openMenu].featured.desc}</div>
               </div>
               <div className="mf-art">{ArtTag && <ArtTag />}</div>
             </div>
@@ -272,9 +275,9 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
       <nav id="mobile-nav"
         className={`mobile-nav-sheet ${mobileNavOpen ? 'open' : ''}`}
         role="navigation"
-        aria-label="Разделы сайта">
-        {NAV_ITEMS.map((item) => {
-          const mega = MEGA[item.id];
+        aria-label={t('navAria')}>
+        {navItems.map((item) => {
+          const mega = megaConfig[item.id];
           const expanded = mobileExpanded === item.id;
           const sectionActive = routeInSection(item.id);
           return (
@@ -315,10 +318,11 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
 
 }
 
-function FooterSocialLinks() {
+function FooterSocialLinks({ lang }) {
   const c = 'footer-social-link';
+  const socialAria = window.tUI ? window.tUI('socialAria', lang) : 'Социальные сети ФармКонсилиума';
   return (
-    <div className="footer-social" role="navigation" aria-label="Социальные сети ФармКонсилиума">
+    <div className="footer-social" role="navigation" aria-label={socialAria}>
       <a href="https://t.me/PharmConsilium"
         className={c}
         target="_blank"
@@ -352,42 +356,54 @@ function FooterSocialLinks() {
 
 }
 
-function Footer({ navigate }) {
+function Footer({ navigate, lang }) {
+  const navItems = window.getSiteNav ? window.getSiteNav(lang) : NAV_ITEMS;
+  const fc = window.getFooterCopy ? window.getFooterCopy(lang) : null;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
+  const isEn = lang === 'en' && fc;
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
           <div className="footer-col">
             <div className="brand" style={{ cursor: 'default' }}>
-              <img src="assets/logo.svg" alt="ФармКонсилиум — IT-решения для фарм-маркетинга" className="brand-logo" />
+              <img src="assets/logo.svg" alt={t('brandAlt')} className="brand-logo" />
             </div>
             <div className="footer-tag">
-              IT-решения<br />
-              <span className="accent">для лечения доверия</span>
+              {isEn ? fc.tagline : 'IT-решения'}<br />
+              <span className="accent">{isEn ? fc.taglineAccent : 'для лечения доверия'}</span>
             </div>
-            <div style={{ color: 'var(--muted)', fontSize: 13 }}>© 2026 ФармКонсилиум · РБ</div>
-            <FooterSocialLinks />
+            <div style={{ color: 'var(--muted)', fontSize: 13 }}>{isEn ? fc.copyright : '© 2026 ФармКонсилиум · РБ'}</div>
+            <FooterSocialLinks lang={lang} />
           </div>
           <div className="footer-col">
-            <h4>Разделы</h4>
+            <h4>{isEn ? fc.sections : 'Разделы'}</h4>
             <ul>
-              {NAV_ITEMS.slice(0, 5).map((n) =>
+              {navItems.slice(0, 5).map((n) =>
               <li key={n.id} onClick={() => navigate(n.id)}>{n.label}</li>
               )}
             </ul>
           </div>
           <div className="footer-col">
-            <h4>Компания</h4>
+            <h4>{isEn ? fc.company : 'Компания'}</h4>
             <ul>
-              <li onClick={() => navigate('team')}>Команда</li>
-              <li>Проекты</li>
-              <li>События</li>
-              <li>Карьера</li>
-              <li>Пресс-кит</li>
+              {isEn ?
+                fc.companyLinks.map((item, i) =>
+                  <li key={i} onClick={item.to ? () => navigate(item.to) : undefined} style={item.to ? undefined : { cursor: 'default' }}>{item.label}</li>
+                ) :
+                <>
+                  <li onClick={() => navigate('team')}>Команда</li>
+                  <li>Проекты</li>
+                  <li>События</li>
+                  <li>Карьера</li>
+                  <li>Пресс-кит</li>
+                </>
+              }
             </ul>
           </div>
           <div className="footer-col">
-            <h4>Контакты</h4>
+            <h4>{isEn ? fc.contacts : 'Контакты'}</h4>
             <ul>
               <li style={{ color: 'var(--ink)' }}>
                 <a href="tel:+375293220018" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (29) 322-00-18</a>
@@ -402,22 +418,21 @@ function Footer({ navigate }) {
                 <a href="mailto:pharmconsilium.office@gmail.com" style={{ color: 'inherit' }}>pharmconsilium.office@gmail.com</a>
               </li>
               <li style={{ lineHeight: 1.45, cursor: 'default' }}>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</li>
-              <li style={{ cursor: 'default' }}>пн - пт , 09:00 - 19:00</li>
+              <li style={{ cursor: 'default' }}>{isEn ? fc.hours : 'пн - пт , 09:00 - 19:00'}</li>
             </ul>
           </div>
         </div>
         <div className="footer-meta">
-          <div>УНП 591019395</div>
+          <div>{isEn ? fc.unp : 'УНП 591019395'}</div>
           <div style={{ display: 'flex', gap: 18 }}>
-            <span>Политика конфиденциальности</span>
-            <span>Соглашение</span>
+            <span>{isEn ? fc.privacy : 'Политика конфиденциальности'}</span>
+            <span>{isEn ? fc.terms : 'Соглашение'}</span>
           </div>
         </div>
         <div id="privacy-policy" className="privacy-policy-block">
-          <h4>Политика конфиденциальности</h4>
+          <h4>{isEn ? fc.privacyTitle : 'Политика конфиденциальности'}</h4>
           <p>
-            Здесь будет полный текст политики обработки персональных данных ЧП «ФармКонсилиум».
-            По вопросам обработки данных напишите на{' '}
+            {isEn ? fc.privacyText : 'Здесь будет полный текст политики обработки персональных данных ЧП «ФармКонсилиум». По вопросам обработки данных напишите на'}{' '}
             <a href="mailto:pharmconsilium@gmail.com" style={{ color: 'var(--accent)' }}>pharmconsilium@gmail.com</a>.
           </p>
         </div>

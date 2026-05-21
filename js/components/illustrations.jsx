@@ -389,6 +389,24 @@ function ArtMolecule({ className }) {
   );
 }
 
+/* Home tiles — 3D icons blended into .tile-art gradient (64×64) */
+function createHomeTileArt(src) {
+  return function HomeTileArt({ className }) {
+    return (
+      <span className={className ? `home-tile-art ${className}` : 'home-tile-art'} aria-hidden="true">
+        <img src={src} alt="" loading="lazy" decoding="async" />
+      </span>
+    );
+  };
+}
+
+const ArtTileMarketing = createHomeTileArt('assets/uploads/tile-marketing.png');
+const ArtTileHcp = createHomeTileArt('assets/uploads/tile-hcp.png');
+const ArtTileSales = createHomeTileArt('assets/uploads/tile-sales.png');
+const ArtTileContent = createHomeTileArt('assets/uploads/tile-content.png');
+const ArtTileDirectory = createHomeTileArt('assets/uploads/tile-directory.png');
+const ArtDirectoryTile = ArtTileDirectory;
+
 /* directory — search list */
 function ArtDirectory({ className }) {
   return (
@@ -455,5 +473,7 @@ function ArtConstellation({ className }) {
 Object.assign(window, {
   ArtNodes, ArtLayers, ArtChat, ArtBrowser, ArtPhone, ArtRadar, ArtAI, ArtBooks,
   ArtDashboard, ArtPulse, ArtVideo, ArtSlides, ArtGame, ArtLaunch, ArtDoc,
-  ArtTablet, ArtMolecule, ArtDirectory, ArtConstellation, ArtCrmFeature,
+  ArtTablet, ArtMolecule, ArtDirectory,
+  ArtTileMarketing, ArtTileHcp, ArtTileSales, ArtTileContent, ArtTileDirectory, ArtDirectoryTile,
+  ArtConstellation, ArtCrmFeature,
 });

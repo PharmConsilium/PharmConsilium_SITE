@@ -1,41 +1,44 @@
 // PortfolioPage — gallery of cases.
 // ProjectPage — single case study.
 
-function PortfolioPage({ navigate }) {
+function PortfolioPage({ navigate, lang }) {
   const [filter, setFilter] = React.useState('all');
   const cats = ['all', ...Array.from(new Set(window.PORTFOLIO.map((p) => p.category)))];
   const visible = window.PORTFOLIO.filter((p) => filter === 'all' || p.category === filter);
   const MidContactStrip = window.MidContactStrip;
+  const ui = lang === 'en' && window.getPortfolioUi ? window.getPortfolioUi(lang) : null;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
+  const PageHeroH1 = window.PageHeroH1;
 
   return (
     <main className="page-route">
       <section className="page-hero">
         <div className="container">
           <div className="crumbs">
-            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>Главная</span>
+            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>Проекты и портфолио</span>
+            <span style={{ color: 'var(--ink)' }}>{ui ? ui.crumb : 'Проекты и портфолио'}</span>
           </div>
-          <div className="eyebrow" style={{ marginTop: 18 }}>Проекты последних 24 месяцев</div>
-          <h1>Проекты<br />и портфолио.</h1>
+          <div className="eyebrow" style={{ marginTop: 18 }}>{ui ? ui.eyebrow : 'Проекты последних 24 месяцев'}</div>
+          <PageHeroH1
+            line1={ui ? ui.h1Line1 : 'Проекты'}
+            accent={ui ? ui.h1Line2 : 'и портфолио.'}
+          />
           <p className="lede">
-            Восемь характерных проектов из портфолио ФармКонсилиума:
-            от лонча кардиопрепарата за 90 дней до собственного справочника ЛС с тысячей DAU.
-            Полное портфолио — по запросу.
+            {ui ? ui.lede : 'Восемь характерных проектов из портфолио ФармКонсилиума: от лонча кардиопрепарата за 90 дней до собственного справочника ЛС с тысячей DAU. Полное портфолио — по запросу.'}
           </p>
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
 
       <section className="container" style={{ padding: '40px 0 80px' }}>
-        {/* Filter chips */}
         <div className="pf-filter">
           {cats.map((c) =>
           <button key={c}
           className={`pf-chip ${filter === c ? 'on' : ''}`}
           onClick={() => setFilter(c)}>
-              {c === 'all' ? 'Все' : c}
+              {c === 'all' ? (ui ? ui.filterAll : 'Все') : c}
               {c !== 'all' && <span className="pf-chip-count">
                 {window.PORTFOLIO.filter((p) => p.category === c).length}
               </span>}
@@ -60,21 +63,20 @@ function PortfolioPage({ navigate }) {
                   <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.sector}</span>
                   <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.year}</span>
                 </div>
-                <a className="read">Открыть кейс <span className="arrow">→</span></a>
+                <a className="read">{ui ? ui.openCase : 'Открыть кейс'} <span className="arrow">→</span></a>
               </div>);
 
           })}
         </div>
 
-        {/* Soft CTA */}
         <div className="detail-cta" style={{ marginTop: 64 }}>
           <div>
-            <h3>Не нашли свой кейс?</h3>
-            <p>У нас 80+ запусков и сотни проектов под NDA. Напишите, что нужно — пришлём подходящие материалы.</p>
+            <h3>{ui ? ui.ctaH3 : 'Не нашли свой кейс?'}</h3>
+            <p>{ui ? ui.ctaP : 'У нас 80+ запусков и сотни проектов под NDA. Напишите, что нужно — пришлём подходящие материалы.'}</p>
           </div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>Контакты <span className="arrow">→</span></button>
-            <button className="btn btn-ghost">Скачать полное портфолио · PDF</button>
+            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>
+            <button className="btn btn-ghost">{ui ? ui.downloadPdf : 'Скачать полное портфолио · PDF'}</button>
           </div>
         </div>
       </section>
@@ -82,9 +84,14 @@ function PortfolioPage({ navigate }) {
 
 }
 
-function ProjectPage({ slug, navigate }) {
+function ProjectPage({ slug, navigate, lang }) {
   const MidContactStrip = window.MidContactStrip;
   const p = window.PORTFOLIO.find((x) => x.slug === slug);
+  const ui = lang === 'en' && window.getPortfolioUi ? window.getPortfolioUi(lang) : null;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
+  const PageHeroH1 = window.PageHeroH1;
+  const splitPageTitle = window.splitPageTitle;
+  const titleParts = splitPageTitle ? splitPageTitle(p.name) : { line1: p.name, accent: null };
 
   if (!p) {
     return (
@@ -92,61 +99,59 @@ function ProjectPage({ slug, navigate }) {
         <section className="page-hero">
           <div className="container">
             <div className="crumbs">
-              <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>Главная</span>
+              <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
               <span className="sep">/</span>
-              <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>Портфолио</span>
+              <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>{ui ? ui.crumb : 'Портфолио'}</span>
               <span className="sep">/</span>
-              <span style={{ color: 'var(--ink)' }}>Проект не найден</span>
+              <span style={{ color: 'var(--ink)' }}>{ui ? ui.notFoundCrumb : 'Проект не найден'}</span>
             </div>
-            <h1>Проект не найден.</h1>
-            <button className="btn btn-primary" onClick={() => navigate('portfolio')}>← В портфолио</button>
+            <h1>{ui ? ui.notFoundH1 : 'Проект не найден.'}</h1>
+            <button className="btn btn-primary" onClick={() => navigate('portfolio')}>{ui ? ui.backToPortfolio : '← В портфолио'}</button>
           </div>
         </section>
-        {MidContactStrip ? <MidContactStrip /> : null}
+        {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
       </main>);
 
   }
 
   const Art = window[p.art] || window.ArtConstellation;
 
-  // Slider images — main art + alternate visuals
   const slides = [
-  { art: Art, label: 'Превью проекта' },
-  { art: window.ArtNodes || Art, label: 'Архитектура' },
-  { art: window.ArtDashboard || Art, label: 'Метрики' },
-  { art: window.ArtLayers || Art, label: 'Материалы' }];
+  { art: Art, label: ui ? ui.slidePreview : 'Превью проекта' },
+  { art: window.ArtNodes || Art, label: ui ? ui.slideArch : 'Архитектура' },
+  { art: window.ArtDashboard || Art, label: ui ? ui.slideMetrics : 'Метрики' },
+  { art: window.ArtLayers || Art, label: ui ? ui.slideMaterials : 'Материалы' }];
 
   const [slide, setSlide] = React.useState(0);
   const next = () => setSlide((slide + 1) % slides.length);
   const prev = () => setSlide((slide - 1 + slides.length) % slides.length);
   const CurArt = slides[slide].art;
+  const slideAria = (n) => (ui ? ui.slideN.replace('{n}', n) : `Слайд ${n}`);
 
   return (
     <main className="page-route" style={{ '--accent-local': p.palette }}>
-      {/* Hero — структура как у страницы «Контент и игры» */}
       <section className="page-hero">
         <div className="container">
           <div className="crumbs">
-            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>Главная</span>
+            <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>Проекты и портфолио</span>
+            <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>{ui ? ui.crumb : 'Проекты и портфолио'}</span>
             <span className="sep">/</span>
             <span style={{ color: 'var(--ink)' }}>{p.category}</span>
           </div>
-          <h1>{p.name}</h1>
+          <PageHeroH1 line1={titleParts.line1} accent={titleParts.accent} accent2={titleParts.accent2} />
           <p className="lede">{p.hero}</p>
           <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>
-              ← Все проекты
+              {ui ? ui.backAll : '← Все проекты'}
             </button>
           </div>
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
 
       <section className="container">
-        {/* Metrics strip */}
         <div className="proj-metrics" style={{ '--proj-accent': p.palette }}>
           {p.metrics.map((m, i) =>
           <div key={i} className="proj-metric">
@@ -156,7 +161,6 @@ function ProjectPage({ slug, navigate }) {
           )}
         </div>
 
-        {/* Slider слева + описание проекта справа */}
         <div className="proj-split">
           <div className="proj-slider">
             <div className="proj-slider-stage" style={{ background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
@@ -172,27 +176,27 @@ function ProjectPage({ slug, navigate }) {
                 <span>{String(slide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}</span>
                 <span>· {slides[slide].label}</span>
               </div>
-              <button className="proj-slider-nav prev" onClick={prev} aria-label="Назад">←</button>
-              <button className="proj-slider-nav next" onClick={next} aria-label="Вперёд">→</button>
+              <button className="proj-slider-nav prev" onClick={prev} aria-label={ui ? ui.slidePrev : 'Назад'}>←</button>
+              <button className="proj-slider-nav next" onClick={next} aria-label={ui ? ui.slideNext : 'Вперёд'}>→</button>
             </div>
             <div className="proj-slider-dots">
               {slides.map((_, i) =>
               <button key={i}
               className={`dot ${i === slide ? 'on' : ''}`}
               onClick={() => setSlide(i)}
-              aria-label={`Слайд ${i + 1}`} />
+              aria-label={slideAria(i + 1)} />
               )}
             </div>
           </div>
 
           <div className="proj-desc">
             <div className="proj-desc-block">
-              <div className="proj-section-label">— Задача</div>
+              <div className="proj-section-label">— {ui ? ui.problem : 'Задача'}</div>
               <p className="proj-paragraph">{p.problem}</p>
             </div>
 
             <div className="proj-desc-block">
-              <div className="proj-section-label">— Решение</div>
+              <div className="proj-section-label">— {ui ? ui.solution : 'Решение'}</div>
               <ul className="proj-bullets">
                 {p.approach.map((a, i) =>
                 <li key={i}><b>{a.t}.</b> <span>{a.d}</span></li>
@@ -201,45 +205,43 @@ function ProjectPage({ slug, navigate }) {
             </div>
 
             <div className="proj-desc-block">
-              <div className="proj-section-label">— Что получил клиент</div>
+              <div className="proj-section-label">— {ui ? ui.deliverables : 'Что получил клиент'}</div>
               <ul className="proj-bullets compact">
                 {p.deliverables.map((d, i) => <li key={i}>{d}</li>)}
               </ul>
             </div>
 
             <div className="proj-info" style={{ marginTop: 8 }}>
-              <div className="proj-info-i"><div className="proj-info-l">Клиент</div><div className="proj-info-v">{p.client}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">Сектор</div><div className="proj-info-v">{p.sector}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">Срок</div><div className="proj-info-v">{p.duration}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">Год</div><div className="proj-info-v">{p.year}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.client : 'Клиент'}</div><div className="proj-info-v">{p.client}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.sector : 'Сектор'}</div><div className="proj-info-v">{p.sector}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.duration : 'Срок'}</div><div className="proj-info-v">{p.duration}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.year : 'Год'}</div><div className="proj-info-v">{p.year}</div></div>
             </div>
           </div>
         </div>
 
-        {/* CTA */}
         <div className="detail-cta" style={{ marginTop: 48 }}>
           <div>
-            <h3>Похожий проект для вас?</h3>
-            <p>Покажем кейсы по вашему сектору, разложим бюджет и сроки, дадим пилот за 2 недели.</p>
+            <h3>{ui ? ui.ctaProjectH3 : 'Похожий проект для вас?'}</h3>
+            <p>{ui ? ui.ctaProjectP : 'Покажем кейсы по вашему сектору, разложим бюджет и сроки, дадим пилот за 2 недели.'}</p>
           </div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>Контакты <span className="arrow">→</span></button>
-            <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>← Все кейсы</button>
+            <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>
+            <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>{ui ? ui.backAll : '← Все кейсы'}</button>
           </div>
         </div>
 
-        {/* Related */}
         {p.related && p.related.length > 0 &&
         <div className="proj-section full">
-            <div className="proj-section-label">— Дальше</div>
-            <h2>Смотрите также</h2>
+            <div className="proj-section-label">— {ui ? ui.next : 'Дальше'}</div>
+            <h2>{ui ? ui.related : 'Смотрите также'}</h2>
             <div className="related">
-              {p.related.map((slug) => {
-              const r = window.PORTFOLIO.find((x) => x.slug === slug);
+              {p.related.map((relSlug) => {
+              const r = window.PORTFOLIO.find((x) => x.slug === relSlug);
               if (!r) return null;
               const RA = window[r.art] || window.ArtConstellation;
               return (
-                <div key={slug} className="rel-card" onClick={() => navigate(`portfolio/${slug}`)}>
+                <div key={relSlug} className="rel-card" onClick={() => navigate(`portfolio/${relSlug}`)}>
                     <div className="rel-art" style={{ background: `linear-gradient(140deg, var(--bg-2), ${r.palette}33)` }}>
                       <RA />
                     </div>

@@ -4,8 +4,11 @@
 const SITE = {
   baseUrl: 'https://pharmconsilium.by', // TODO: финальный домен перед запуском
   siteName: 'ФармКонсилиум',
+  siteNameEn: 'PharmConsilium',
   defaultDescription:
     'IT-решения для фарм-маркетинга в Беларуси: CRM, CLM, AI для медпредов, контент, справочник ЛС. Команда внедрения цифровых технологий.',
+  defaultDescriptionEn:
+    'IT solutions for pharmaceutical marketing in Belarus: CRM, CLM, AI for medical reps, content, and drug directory. Digital implementation team.',
 };
 
 const SEO_STATIC = {
@@ -43,6 +46,45 @@ const SEO_STATIC = {
   },
 };
 
+const SEO_STATIC_EN = {
+  home: {
+    title: 'PharmConsilium · IT solutions for pharmaceutical marketing in Belarus',
+    description: SITE.defaultDescriptionEn,
+  },
+  marketing: {
+    title: 'Pharmaceutical marketing · PharmConsilium',
+    description: 'CRM, CLM, chatbots, web and mobile products, AI for medical representatives. Omnichannel HCP engagement in Belarus.',
+  },
+  hcp: {
+    title: 'Healthcare · PharmConsilium',
+    description: 'AI assistants, education platforms, recommender systems, and patient support programs.',
+  },
+  sales: {
+    title: 'Outsourcing · PharmConsilium',
+    description: 'Digital medical representative, omnichannel campaigns, launch outsourcing, and sales analytics in Belarus.',
+  },
+  content: {
+    title: 'Content · PharmConsilium',
+    description: 'Medical presentations, video, eDetailing, gamification, and quizzes for pharma brands.',
+  },
+  directory: {
+    title: 'Drug directory · PharmConsilium',
+    description: 'Trusted professional drug directory for physicians and pharmacists in Belarus.',
+  },
+  team: {
+    title: 'About us · PharmConsilium',
+    description: 'Contact the PharmConsilium team: 80+ launches, 15 years in pharma marketing, turnkey implementation.',
+  },
+  portfolio: {
+    title: 'Portfolio and cases · PharmConsilium',
+    description: 'Delivered projects: CRM, CLM, launches, education platforms, and digital campaigns in Belarus.',
+  },
+};
+
+function siteNameForLang(lang) {
+  return lang === 'en' ? SITE.siteNameEn : SITE.siteName;
+}
+
 function ensureMeta(name, attr, value) {
   let el = document.querySelector(`meta[${attr}="${name}"]`);
   if (!el) {
@@ -63,16 +105,21 @@ function ensureCanonical(href) {
   el.setAttribute('href', href);
 }
 
-function resolveSeo(route) {
-  if (SEO_STATIC[route]) return SEO_STATIC[route];
+function resolveSeo(route, lang) {
+  const l = lang === 'en' ? 'en' : 'ru';
+  const staticMap = l === 'en' ? SEO_STATIC_EN : SEO_STATIC;
+  const brand = siteNameForLang(l);
+  const fallbackDesc = l === 'en' ? SITE.defaultDescriptionEn : SITE.defaultDescription;
+
+  if (staticMap[route]) return staticMap[route];
 
   if (route.startsWith('portfolio/') && window.PORTFOLIO) {
     const slug = route.split('/')[1];
     const p = window.PORTFOLIO.find((x) => x.slug === slug);
     if (p) {
       return {
-        title: `${p.name} · ${SITE.siteName}`,
-        description: p.short || p.hero || SITE.defaultDescription,
+        title: `${p.name} · ${brand}`,
+        description: p.short || p.hero || fallbackDesc,
       };
     }
   }
@@ -80,26 +127,28 @@ function resolveSeo(route) {
   if (route.includes('/') && window.SUBPAGES?.[route]) {
     const d = window.SUBPAGES[route];
     return {
-      title: `${d.title} · ${SITE.siteName}`,
+      title: `${d.title} · ${brand}`,
       description: d.lede,
     };
   }
 
   return {
-    title: `${SITE.siteName} · IT для фарм-маркетинга`,
-    description: SITE.defaultDescription,
+    title: l === 'en' ? `${brand} · IT for pharmaceutical marketing` : `${SITE.siteName} · IT для фарм-маркетинга`,
+    description: fallbackDesc,
   };
 }
 
-window.updatePageSeo = function updatePageSeo(route) {
-  const meta = resolveSeo(route);
+window.updatePageSeo = function updatePageSeo(route, lang) {
+  const l = lang || (window.getSiteLang ? window.getSiteLang() : 'ru');
+  const meta = resolveSeo(route, l);
+  const brand = siteNameForLang(l);
   document.title = meta.title;
   ensureMeta('description', 'name', meta.description);
   ensureMeta('og:title', 'property', meta.title);
   ensureMeta('og:description', 'property', meta.description);
-  ensureMeta('og:site_name', 'property', SITE.siteName);
+  ensureMeta('og:site_name', 'property', brand);
+  ensureMeta('og:locale', 'property', l === 'en' ? 'en_BY' : 'ru_BY');
   ensureMeta('twitter:card', 'name', 'summary_large_image');
-  // До миграции с hash — canonical с якорем; после — path URL
   const canonical = `${SITE.baseUrl.replace(/\/$/, '')}/#${route === 'home' ? '' : route}`;
   ensureCanonical(canonical.replace(/\/#$/, '/'));
 };
