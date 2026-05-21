@@ -459,12 +459,6 @@ function ContentPage({ navigate }) {
   { title: 'Медицинские презентации и научные статьи', sub: 'medical', size: 'huge', art: 'ArtDoc',
     desc: 'Экспертные материалы, инфографика, сценарии презентаций, доказательная база, KOL-контент. Литературные обзоры и сводки публикаций под ваш бренд.',
     tag: 'KOL, доказательная база' },
-  { title: 'CLM и eDetailing', sub: 'edetailing', art: 'ArtTablet',
-    desc: 'Интерактивные CLM-презентации, сценарии визитов, presentations для face-to-face и remote eDetailing, surveys, геймификация.',
-    tag: 'Veeva, Pitcher, Agnitio' },
-  { title: 'Пациентский образовательный контент', sub: 'patient', art: 'ArtChat',
-    desc: 'Расскажем и нарисуем сложное так, что поймёт ребёнок: статьи, видео, анимация, памятки, объяснение заболеваний, терапии, приверженности и образа жизни.',
-    tag: 'просвещение' },
   { title: 'Видео — от идеи до создания', sub: 'video', art: 'ArtVideo', size: 'wide',
     desc: 'Видеовизит медпредставителя, 3D-визуализация механизма действия, AI-анимация, видеоаватары, ИИ-говорящая голова, игровое видео (сериалы).',
     tag: '3D, AI-аватары, сериалы' },
@@ -476,10 +470,7 @@ function ContentPage({ navigate }) {
     tag: 'design' },
   { title: 'Реклама', sub: 'advertising', art: 'ArtBrowser',
     desc: 'Креативы для digital-кампаний — в рамках законодательства РБ о рекламе ЛС.',
-    tag: 'digital · РБ' },
-  { title: 'Программы поддержки пациентов', sub: 'psp', art: 'ArtPulse',
-    desc: 'Цифровые платформы и материалы: напоминания, мотивация, навигация по терапии.',
-    tag: 'PSP' }]
+    tag: 'digital · РБ' }]
   } />;
 }
 
@@ -789,15 +780,30 @@ function TeamPage({ navigate }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>☎</div>
-                <div><div style={{ color: 'var(--muted)', fontSize: 12 }}>Телефон</div><div style={{ fontWeight: 600 }}>+375 (29) 000 — 00 — 00</div></div>
+                <div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>Телефон</div>
+                  <div style={{ fontWeight: 600, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <a href="tel:+375293220018" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (29) 322-00-18</a>
+                    <a href="tel:+375152685050" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (15) 268-50-50</a>
+                  </div>
+                </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>@</div>
-                <div><div style={{ color: 'var(--muted)', fontSize: 12 }}>Почта</div><div style={{ fontWeight: 600 }}>hello@pharmconsilium.by</div></div>
+                <div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>Почта</div>
+                  <div style={{ fontWeight: 600, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <a href="mailto:pharmconsilium@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>pharmconsilium@gmail.com</a>
+                    <a href="mailto:pharmconsilium.office@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>pharmconsilium.office@gmail.com</a>
+                  </div>
+                </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>◎</div>
-                <div><div style={{ color: 'var(--muted)', fontSize: 12 }}>Адрес</div><div style={{ fontWeight: 600 }}>Минск, пр-т Независимости, 00</div></div>
+                <div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>Адрес</div>
+                  <div style={{ fontWeight: 600, lineHeight: 1.45 }}>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</div>
+                </div>
               </div>
             </div>
           </div>

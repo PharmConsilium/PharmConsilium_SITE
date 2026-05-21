@@ -5,23 +5,23 @@ const NAV_ITEMS = [
 { id: 'hcp', label: 'Здравоохранение' },
 { id: 'sales', label: 'Аутсорсинг' },
 { id: 'content', label: 'Контент' },
-{ id: 'directory', label: 'Справочник ЛС' },
-{ id: 'team', label: 'Команда' }];
+{ id: 'directory', label: 'Справочник ЛС ФармКонсилиум' },
+{ id: 'team', label: 'О нас' }];
 
 
 // per-page mega-menu config: sublinks + featured tile
 const MEGA = {
   marketing: {
-    title: 'Цифровые инструменты для фарм-маркетинга',
+    title: 'Цифровые инструменты фармацевтического маркетинга',
     links: [
-    { label: 'CRM — омниканальная работа с HCP', to: 'marketing/crm' },
-    { label: 'CLM',                                        to: 'marketing/clm' },
-    { label: '2CLM',                                       to: 'marketing/clm' },
-    { label: 'Чат-боты и ТелеАпп',                       to: 'marketing/chatbot' },
-    { label: 'Веб и цифровые продукты',                 to: 'marketing/web' },
-    { label: 'Мобильные приложения',                      to: 'marketing/mobile' },
-    { label: 'Цифровая поддержка эвентов',                  to: 'marketing/events' },
-    { label: 'ИИ-решения',                                to: 'marketing/ai' }],
+    { label: 'CRM для медицинских представителей', to: 'marketing/crm' },
+    { label: 'CLM — ПО для работы МП F2F с промоконтентом', to: 'marketing/clm' },
+    { label: '2CLM — ПО для увеличения эффективности визитов SF', to: 'marketing/clm' },
+    { label: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', to: 'marketing/chatbot' },
+    { label: 'Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров', to: 'marketing/web' },
+    { label: 'Разработка мобильных приложений', to: 'marketing/mobile' },
+    { label: 'Цифровая поддержка мероприятий', to: 'marketing/events' },
+    { label: 'Тренинги для медицинских представителей', to: 'marketing/ai' }],
 
     featured: {
       tag: 'Инструмент',
@@ -33,12 +33,11 @@ const MEGA = {
   hcp: {
     title: 'Цифровые решения для здравоохранения',
     links: [
-    { label: 'ИИ-ассистенты и рекомендательные системы', to: 'hcp/ai-recom' },
-    { label: 'Образовательные платформы',                  to: 'hcp/education' },
-    { label: 'Чат-бот и ТелеАпп',                       to: 'hcp/chatbot' },
-    { label: 'Мобильные приложения',                    to: 'hcp/mobile' },
-    { label: 'ИИ-решения для здравоохранения',          to: 'hcp/ai-healthcare' },
-    { label: 'Программы поддержки пациентов',             to: 'hcp/psp' }],
+    { label: 'Цифровые платформы для обучения и видеотренингов', to: 'hcp/ai-recom' },
+    { label: 'Программы поддержки пациентов', to: 'hcp/education' },
+    { label: 'Чат-боты и ИИ-ассистенты для медицины', to: 'hcp/chatbot' },
+    { label: 'Цифровые платформы для научных исследований', to: 'hcp/ai-healthcare' },
+    { label: 'Создание систем анализа и обработки данных RWE', to: 'hcp/psp' }],
 
     featured: {
       tag: 'Платформа',
@@ -48,12 +47,11 @@ const MEGA = {
     }
   },
   sales: {
-    title: 'Комплексное продвижение и аутсорсинг',
+    title: 'Комплексное продвижение, аутсорсинг продаж',
     links: [
     { label: 'Цифровой медицинский представитель', to: 'sales/digital-rep' },
-    { label: 'Омниканальные кампании',         to: 'sales/omnichannel' },
-    { label: 'Лонч-аутсорсинг под ключ',         to: 'sales/launch' },
-    { label: 'Аналитика продаж',                  to: 'sales/analytics' }],
+    { label: 'Лонч - аутсорсинг', to: 'sales/launch' },
+    { label: 'Омниканальные кампании для продвижения', to: 'sales/omnichannel' }],
 
     featured: {
       tag: 'Сервис',
@@ -63,16 +61,13 @@ const MEGA = {
     }
   },
   content: {
-    title: 'HCP-контент на языке медицинской науки',
+    title: 'HCP-контент на языке медицинской науки для врачей, провизоров и фармацевтов в формате Experience Design',
     links: [
-    { label: 'Медицинские презентации и статьи', to: 'content/medical' },
-    { label: 'CLM и eDetailing для визитов',     to: 'content/edetailing' },
-    { label: 'Пациентский образовательный контент', to: 'content/patient' },
-    { label: 'Видео — от идеи до создания',    to: 'content/video' },
-    { label: 'Презентации',                       to: 'content/presentations' },
-    { label: 'Реклама',                             to: 'content/advertising' },
-    { label: 'Геймификация и квизы',              to: 'content/gamification' },
-    { label: 'Программы поддержки пациентов',     to: 'content/psp' }],
+    { label: 'CLM-презентации, детейлеры, слайдбоксы для медицинского представителя', to: 'content/medical' },
+    { label: 'Видео HCP - от сценария до спецэффектов в выступлении OL', to: 'content/video' },
+    { label: 'Игры, квизы, клинические детективы', to: 'content/gamification' },
+    { label: 'ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг', to: 'content/advertising' },
+    { label: 'Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС', to: 'content/presentations' }],
 
     featured: {
       tag: 'Студия',
@@ -82,11 +77,11 @@ const MEGA = {
     }
   },
   directory: {
-    title: 'Справочник лекарственных средств',
+    title: 'Профессиональный цифровой ресурс для врачей, провизоров и фармацевтов',
     links: [
-    { label: 'Поиск по МНН и торговым наименованиям',  to: 'directory' },
-    { label: 'Профессиональные карточки препаратов',     to: 'directory' },
-    { label: 'Доказательная база и публикации',           to: 'directory' },
+    { label: 'Удобство для профессионалов на рабочем месте', to: 'directory' },
+    { label: 'Актуальные данные в формате инструкций для специалистов', to: 'directory' },
+    { label: 'Клинические калькуляторы и медицинские шкалы', to: 'directory' },
     { label: 'Доверительная среда без рекламного шума', to: 'directory' }],
 
     featured: {
@@ -97,13 +92,11 @@ const MEGA = {
     }
   },
   team: {
-    title: 'Команда внедрения цифровых технологий',
+    title: 'Мы делаем мир лучше!',
     links: [
-    { label: 'Наша миссия',           to: 'team' },
-    { label: 'Проекты и портфолио', to: 'portfolio' },
-    { label: 'События и публикации',    to: 'team/events' },
-    { label: 'Контакты и адрес',        to: 'team/contacts' },
-    { label: 'Карьера',                  to: 'team/career' }],
+    { label: 'Наша миссия в этой Вселенной', to: 'team' },
+    { label: 'Команда', to: 'team/career' },
+    { label: 'Портфолио, проекты, и фичи ФармКонсилиум', to: 'portfolio' }],
 
     featured: {
       tag: 'Команда',
@@ -133,7 +126,24 @@ const MEGA = {
 function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   const [openMenu, setOpenMenu] = React.useState(null);
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
+  const [mobileExpanded, setMobileExpanded] = React.useState(null);
   const closeTimer = React.useRef(null);
+
+  function routeInSection(sectionId) {
+    if (!sectionId) return false;
+    return route === sectionId || (typeof route === 'string' && route.startsWith(sectionId + '/'));
+  }
+
+  function closeMobileNav() {
+    setMobileNavOpen(false);
+    setMobileExpanded(null);
+    setOpenMenu(null);
+  }
+
+  function goMobile(to) {
+    navigate(to);
+    closeMobileNav();
+  }
 
   const open = (id) => {
     clearTimeout(closeTimer.current);
@@ -155,6 +165,8 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
 
   React.useEffect(() => {
     setMobileNavOpen(false);
+    setMobileExpanded(null);
+    setOpenMenu(null);
   }, [route]);
 
   const ArtTag = openMenu ? window[MEGA[openMenu].featured.art] : null;
@@ -189,7 +201,13 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             aria-expanded={mobileNavOpen}
             aria-controls="mobile-nav"
             aria-label={mobileNavOpen ? 'Закрыть меню разделов' : 'Открыть меню разделов'}
-            onClick={() => { setMobileNavOpen((o) => !o); setOpenMenu(null); }}>
+            onClick={() => {
+              setMobileNavOpen((o) => {
+                if (o) setMobileExpanded(null);
+                return !o;
+              });
+              setOpenMenu(null);
+            }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
               <line x1="4" x2="20" y1="6" y2="6" />
               <line x1="4" x2="20" y1="12" y2="12" />
@@ -249,21 +267,49 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
       <div
         className={`mobile-nav-backdrop ${mobileNavOpen ? 'open' : ''}`}
         aria-hidden="true"
-        onClick={() => setMobileNavOpen(false)}
+        onClick={closeMobileNav}
       />
       <nav id="mobile-nav"
         className={`mobile-nav-sheet ${mobileNavOpen ? 'open' : ''}`}
         role="navigation"
         aria-label="Разделы сайта">
-        {NAV_ITEMS.map((item) =>
-          <button
-            key={item.id}
-            type="button"
-            className={`mobile-nav-link ${route === item.id ? 'active' : ''}`}
-            onClick={() => { navigate(item.id); setMobileNavOpen(false); setOpenMenu(null); }}>
-            {item.label}
-          </button>
-          )}
+        {NAV_ITEMS.map((item) => {
+          const mega = MEGA[item.id];
+          const expanded = mobileExpanded === item.id;
+          const sectionActive = routeInSection(item.id);
+          return (
+            <div key={item.id} className={`mobile-nav-group${expanded ? ' is-expanded' : ''}`}>
+              <button
+                type="button"
+                className={`mobile-nav-link${sectionActive ? ' active' : ''}${expanded ? ' expanded' : ''}`}
+                aria-expanded={expanded}
+                onClick={() => setMobileExpanded(expanded ? null : item.id)}>
+                <span className="mobile-nav-link-label">{item.label}</span>
+                <span className="mobile-nav-chevron" aria-hidden="true">›</span>
+              </button>
+              {expanded && mega &&
+                <div className="mobile-nav-panel">
+                  <p className="mobile-nav-panel-title">{mega.title}</p>
+                  <ul className="mobile-nav-sublinks">
+                    {mega.links.map((l, i) => {
+                      const label = typeof l === 'string' ? l : l.label;
+                      const to = typeof l === 'string' ? item.id : l.to;
+                      const subActive = route === to;
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            className={`mobile-nav-sublink${subActive ? ' active' : ''}`}
+                            onClick={() => goMobile(to)}>
+                            {label}
+                          </button>
+                        </li>);
+                    })}
+                  </ul>
+                </div>
+              }
+            </div>);
+        })}
       </nav>
     </header>);
 
@@ -356,7 +402,7 @@ function Footer({ navigate }) {
                 <a href="mailto:pharmconsilium.office@gmail.com" style={{ color: 'inherit' }}>pharmconsilium.office@gmail.com</a>
               </li>
               <li style={{ lineHeight: 1.45, cursor: 'default' }}>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</li>
-              <li style={{ cursor: 'default' }}>пн — пт, 10:00 — 19:00</li>
+              <li style={{ cursor: 'default' }}>пн - пт , 09:00 - 19:00</li>
             </ul>
           </div>
         </div>
