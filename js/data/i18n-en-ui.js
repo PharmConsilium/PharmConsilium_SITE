@@ -360,7 +360,7 @@ window.I18N_EN = {
     portfolioH2: 'Projects from the last twelve months.',
     portfolioRight: '8 launches, 3 AI products, 2 directories, 1 award win. Full portfolio on request.',
     portfolioCards: [
-      { t: 'Digital banner · Bepanthen (Bayer)', d: 'Three digital banner concepts: different heroines, local scenarios, Bayer brand book.', art: 'ArtBanner', slug: 'cardio-lonch' },
+      { t: 'Digital banner for Bepanthen (Bayer)', d: 'Three digital banner concepts: different heroines, local scenarios, Bayer brand book.', art: 'ArtBanner', slug: 'cardio-lonch' },
       { t: 'Packaging for IT-tabs', d: 'Three formats — one unified IT-tabs product line.', art: 'ArtAI', slug: 'ai-trener' },
       { t: 'Packaging for Hydrobalance', d: 'Packaging design for the Hydrobalance product.', art: 'ArtVideo', slug: 'patient-series' },
       { t: 'PharmConsilium Conference 2025', d: '1,500 participants, event bot, AI assistant on the program.', art: 'ArtRadar', slug: 'conference-pk25' },

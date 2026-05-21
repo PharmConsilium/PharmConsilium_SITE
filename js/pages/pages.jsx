@@ -787,7 +787,7 @@ function TeamPage({ navigate, lang }) {
           </div>
           <div className="cards-grid">
             {(en ? en.portfolioCards : [
-            { t: 'Цифровой баннер · Бепантен (Bayer)', d: 'Три варианта digital-баннера: разные героини, локальные сценарии, брендбук Bayer.', art: 'ArtBanner', slug: 'cardio-lonch' },
+            { t: 'Цифровой баннер для Бепантен (Bayer)', d: 'Три варианта digital-баннера: разные героини, локальные сценарии, брендбук Bayer.', art: 'ArtBanner', slug: 'cardio-lonch' },
             { t: 'Упаковка для препарата АйТи-табс', d: 'Три формата — единая линейка препарата АйТи-табс.', art: 'ArtAI', slug: 'ai-trener' },
             { t: 'Упаковка для препарата ГидроБаланс', d: 'Разработка упаковки для препарата ГидроБаланс.', art: 'ArtVideo', slug: 'patient-series' },
             { t: 'Конференция «ФармКонсилиум-2025»', d: '1 500 участников, эвент-бот, ИИ-помощник на программе.', art: 'ArtRadar', slug: 'conference-pk25' },
