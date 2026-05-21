@@ -5,7 +5,7 @@ const NAV_ITEMS = [
 { id: 'hcp', label: 'Здравоохранение' },
 { id: 'sales', label: 'Аутсорсинг' },
 { id: 'content', label: 'Контент' },
-{ id: 'directory', label: 'Справочник ЛС ФармКонсилиум' },
+{ id: 'directory', label: 'Справочник ЛС' },
 { id: 'team', label: 'О нас' }];
 
 

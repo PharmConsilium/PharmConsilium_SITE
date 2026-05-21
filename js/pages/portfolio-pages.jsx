@@ -49,11 +49,17 @@ function PortfolioPage({ navigate, lang }) {
         <div className="cards-grid">
           {visible.map((p, i) => {
             const Art = window[p.art] || window.ArtConstellation;
+            const thumb = p.thumb;
+            const thumbWide = p.thumbLayout === 'wide';
             return (
               <div key={p.slug} className="card"
                    onClick={() => navigate(`portfolio/${p.slug}`)}>
-                <div className="card-art" style={{background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)`}}>
-                  <Art />
+                <div
+                  className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}`}
+                  style={thumb ? undefined : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
+                  {thumb
+                    ? <img src={thumb} alt={p.thumbAlt || p.name} loading="lazy" decoding="async" />
+                    : <Art />}
                 </div>
                 <div className="card-num">— {String(i + 1).padStart(2, '0')}</div>
                 <h3>{p.name}</h3>
@@ -123,6 +129,7 @@ function ProjectPage({ slug, navigate, lang }) {
   ];
   const slides = Array.isArray(p.slides) && p.slides.length ? p.slides : defaultArtSlides;
   const slideUsesImages = Boolean(slides[0] && slides[0].src);
+  const slideAspect = p.slideAspect || '950 / 1024';
 
   const [slide, setSlide] = React.useState(0);
   const next = () => setSlide((slide + 1) % slides.length);
@@ -165,8 +172,10 @@ function ProjectPage({ slug, navigate, lang }) {
         <div className="proj-split">
           <div className="proj-slider">
             <div
-              className={`proj-slider-stage${slideUsesImages ? ' proj-slider-stage--portrait' : ''}`}
-              style={slideUsesImages ? undefined : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
+              className={`proj-slider-stage${slideUsesImages ? ' proj-slider-stage--image' : ''}`}
+              style={slideUsesImages
+                ? { aspectRatio: slideAspect, background: 'var(--bg-2)' }
+                : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
               {slides.map((s, i) => {
                 const A = s.art;
                 return (
@@ -245,10 +254,15 @@ function ProjectPage({ slug, navigate, lang }) {
               const r = window.PORTFOLIO.find((x) => x.slug === relSlug);
               if (!r) return null;
               const RA = window[r.art] || window.ArtConstellation;
+              const relThumb = r.thumb;
               return (
                 <div key={relSlug} className="rel-card" onClick={() => navigate(`portfolio/${relSlug}`)}>
-                    <div className="rel-art" style={{ background: `linear-gradient(140deg, var(--bg-2), ${r.palette}33)` }}>
-                      <RA />
+                    <div
+                      className={`rel-art${relThumb ? ' rel-art--photo' : ''}`}
+                      style={relThumb ? undefined : { background: `linear-gradient(140deg, var(--bg-2), ${r.palette}33)` }}>
+                      {relThumb
+                        ? <img src={relThumb} alt="" loading="lazy" decoding="async" />
+                        : <RA />}
                     </div>
                     <div>
                       <h4>{r.name}</h4>

@@ -309,6 +309,66 @@ function ArtGame({ className }) {
   );
 }
 
+/* digital banners — three portrait variants (Bepanthen-style) */
+function ArtBanner({ className }) {
+  const BANNER_TOP = '#B8DFF5';
+  const BANNER_MID = '#7EC8E8';
+  const BANNER_BAR = '#1B6B9A';
+  const frames = [
+    { x: 38, accent: 0.95 },
+    { x: 108, accent: 0.78 },
+    { x: 178, accent: 0.62 },
+  ];
+  return (
+    <ArtFrame className={className}>
+      <rect width="280" height="200" fill={ART_PALETTE.bg} rx="14"/>
+      <defs>
+        <linearGradient id="artBannerSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={BANNER_TOP}/>
+          <stop offset="100%" stopColor={BANNER_MID}/>
+        </linearGradient>
+      </defs>
+      {frames.map(({ x, accent }, i) => (
+        <g key={i} opacity={accent}>
+          <rect x={x} y="36" width="64" height="118" rx="7"
+            fill={ART_PALETTE.surface} stroke={ART_PALETTE.border} strokeWidth="1"/>
+          <rect x={x + 4} y="40" width="56" height="52" rx="5" fill="url(#artBannerSky)"/>
+          <circle cx={x + 32} cy="58" r="11" fill={ART_PALETTE.surface} opacity=".85"/>
+          <rect x={x + 10} y="98" width="44" height="5" rx="2.5" fill={BANNER_BAR} opacity=".55"/>
+          <rect x={x + 10} y="108" width="32" height="4" rx="2" fill={ART_PALETTE.muted} opacity=".35"/>
+          <rect x={x + 28} y="118" width="28" height="22" rx="4"
+            fill={ART_PALETTE.surface} stroke={BANNER_BAR} strokeWidth=".8" opacity=".9"/>
+          <rect x={x + 46} y="124" width="14" height="14" rx="7"
+            fill={ART_PALETTE.accent} opacity=".35"/>
+        </g>
+      ))}
+      <g>
+        <rect x="18" y="148" width="92" height="36" rx="10"
+          fill={ART_PALETTE.surface} stroke={ART_PALETTE.border} strokeWidth="1"/>
+        <text x="34" y="174" fontFamily="var(--font-display), system-ui, sans-serif"
+          fontSize="28" fontWeight="600" fill={ART_PALETTE.accent}>3</text>
+        <text x="58" y="172" fontFamily="var(--font-mono), monospace"
+          fontSize="9" fill={ART_PALETTE.muted} fontWeight="600" letterSpacing=".06em">КОНЦЕПЦИИ</text>
+      </g>
+      <g>
+        <rect x="196" y="42" width="66" height="26" rx="13"
+          fill={ART_PALETTE.accent} opacity=".92"/>
+        <text x="229" y="59" textAnchor="middle" fontFamily="var(--font-mono), monospace"
+          fontSize="10" fill="#fff" fontWeight="700">7 ДН</text>
+      </g>
+      <g>
+        <rect x="196" y="76" width="66" height="26" rx="13"
+          fill={ART_PALETTE.surface} stroke={ART_PALETTE.accent} strokeWidth="1.2"/>
+        <text x="229" y="93" textAnchor="middle" fontFamily="var(--font-mono), monospace"
+          fontSize="10" fill={ART_PALETTE.accent} fontWeight="700">100%</text>
+      </g>
+      <circle cx="248" cy="168" r="18" fill={ART_PALETTE.accentSoft}/>
+      <text x="248" y="173" textAnchor="middle" fontFamily="var(--font-mono), monospace"
+        fontSize="8" fill={ART_PALETTE.accent} fontWeight="600">BAYER</text>
+    </ArtFrame>
+  );
+}
+
 /* sales rocket — launch */
 function ArtLaunch({ className }) {
   return (
@@ -428,16 +488,33 @@ function ArtDirectory({ className }) {
   );
 }
 
-/* CRM feature block — растровая иллюстрация */
-function ArtCrmFeature({ className }) {
+/* Team contacts — омниканальный хаб (телефон, почта, чат) */
+function ArtTeamContacts({ className, alt }) {
   return (
-    <div className={className ? `feature-crm-art-wrap ${className}` : 'feature-crm-art-wrap'}>
+    <div className={className ? `team-contacts-art-wrap ${className}` : 'team-contacts-art-wrap'} aria-hidden="true">
+      <img
+        src="assets/uploads/team-contacts-art.png"
+        alt={alt || 'Омниканальные каналы связи — телефон, почта и чат'}
+        className="team-contacts-art-img"
+        width={1024}
+        height={851}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  );
+}
+
+/* CRM feature block — 3D-иллюстрация омниканальной CRM */
+function ArtCrmFeature({ className, alt }) {
+  return (
+    <div className={className ? `feature-crm-art-wrap ${className}` : 'feature-crm-art-wrap'} aria-hidden="true">
       <img
         src="assets/uploads/crm-feature.png"
-        alt="CRM PharmConsilium — цифровая экосистема для медпредов и омниканальной работы с HCP"
+        alt={alt || 'CRM PharmConsilium — дашборд, HCP и омниканальные каналы связи'}
         className="feature-crm-art"
-        width={800}
-        height={600}
+        width={1024}
+        height={764}
         loading="lazy"
         decoding="async"
       />
@@ -472,8 +549,8 @@ function ArtConstellation({ className }) {
 
 Object.assign(window, {
   ArtNodes, ArtLayers, ArtChat, ArtBrowser, ArtPhone, ArtRadar, ArtAI, ArtBooks,
-  ArtDashboard, ArtPulse, ArtVideo, ArtSlides, ArtGame, ArtLaunch, ArtDoc,
+  ArtDashboard, ArtPulse, ArtVideo, ArtSlides, ArtGame, ArtBanner, ArtLaunch, ArtDoc,
   ArtTablet, ArtMolecule, ArtDirectory,
   ArtTileMarketing, ArtTileHcp, ArtTileSales, ArtTileContent, ArtTileDirectory, ArtDirectoryTile,
-  ArtConstellation, ArtCrmFeature,
+  ArtConstellation, ArtCrmFeature, ArtTeamContacts,
 });

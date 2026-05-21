@@ -120,6 +120,8 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
     [['organic', en.scenarioOrganic], ['comms', en.scenarioComms], ['launch', en.scenarioLaunch]] :
     [['organic', 'Инерционный'], ['comms', 'Базовый'], ['launch', 'Максимальный']];
 
+  const CrmFeatureArt = window.ArtCrmFeature;
+
   return (
     <main className="page-route">
       {/* HERO ─────────────────────────── */}
@@ -269,8 +271,8 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
                 </button>
               </div>
             </div>
-            <div className="feature-row-art">
-              <ArtCrmFeature />
+            <div className="feature-row-art feature-row-art--crm">
+              {CrmFeatureArt ? <CrmFeatureArt /> : null}
             </div>
           </div>
         </div>
@@ -714,6 +716,7 @@ function TeamPage({ navigate, lang }) {
   const team = en ? en.members : TEAM;
   const MidContactStrip = window.MidContactStrip;
   const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
+  const TeamContactsArt = window.ArtTeamContacts;
 
   React.useEffect(() => {
     ['assets/uploads/team-robbie.png', 'assets/uploads/team-robbie-hover.png'].forEach((src) => {
@@ -784,18 +787,33 @@ function TeamPage({ navigate, lang }) {
           </div>
           <div className="cards-grid">
             {(en ? en.portfolioCards : [
-            { t: 'Цифровой баннер · Бепантен (Bayer)', d: 'Три варианта digital-баннера: разные героини, локальные сценарии, брендбук Bayer.', art: 'ArtLaunch', slug: 'cardio-lonch' },
-            { t: 'AI-тренер для медпредов', d: 'Внутренний продукт, развёрнут для трёх международных фармкомпаний.', art: 'ArtAI', slug: 'ai-trener' },
-            { t: 'Сериал для пациентов · 6 серий', d: 'Образовательный сериал с AI-аватарами на трёх языках.', art: 'ArtVideo', slug: 'patient-series' },
+            { t: 'Цифровой баннер · Бепантен (Bayer)', d: 'Три варианта digital-баннера: разные героини, локальные сценарии, брендбук Bayer.', art: 'ArtBanner', slug: 'cardio-lonch' },
+            { t: 'Упаковка для препарата АйТи-табс', d: 'Три формата — единая линейка препарата АйТи-табс.', art: 'ArtAI', slug: 'ai-trener' },
+            { t: 'Упаковка для препарата ГидроБаланс', d: 'Разработка упаковки для препарата ГидроБаланс.', art: 'ArtVideo', slug: 'patient-series' },
             { t: 'Конференция «ФармКонсилиум-2025»', d: '1 500 участников, эвент-бот, ИИ-помощник на программе.', art: 'ArtRadar', slug: 'conference-pk25' },
             { t: 'Программа поддержки пациентов', d: '24 месяца сопровождения, +38% к удержанию терапии.', art: 'ArtPulse', slug: 'psp-platform' },
             { t: 'CLM-обновление под Veeva', d: '12 модулей, перенос на 2CLM, тренинг команды.', art: 'ArtLayers', slug: 'clm-veeva' },
             ]).map((p, i) => {
               const A = window[p.art];
+              const pf = p.slug && window.PORTFOLIO
+                ? window.PORTFOLIO.find((x) => x.slug === p.slug)
+                : null;
+              const thumb = pf?.thumb;
+              const thumbAlt = pf?.thumbAlt || p.t;
+              const thumbWide = pf?.thumbLayout === 'wide';
+              const cardArtStyle = thumb
+                ? undefined
+                : pf?.palette
+                  ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${pf.palette} 28%, var(--accent-soft)))` }
+                  : undefined;
               return (
-                <div key={i} className="card" style={{ gridColumn: 'span 4' }}
+                <div key={i} className="card"
                 onClick={() => navigate(`portfolio/${p.slug}`)}>
-                  <div className="card-art"><A /></div>
+                  <div className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}`} style={cardArtStyle}>
+                    {thumb
+                      ? <img src={thumb} alt={thumbAlt} loading="lazy" decoding="async" />
+                      : A ? <A /> : null}
+                  </div>
                   <h3>{p.t}</h3>
                   <p>{p.d}</p>
                   <a className="read">{en ? en.openCase : 'Открыть кейс'} <span className="arrow">→</span></a>
@@ -805,55 +823,44 @@ function TeamPage({ navigate, lang }) {
           </div>
         </div>
 
-        <div data-contacts style={{
-          margin: '64px 0',
-          background: 'var(--surface)',
-          borderRadius: 'var(--radius-xl)',
-          padding: 48,
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 48,
-          alignItems: 'center'
-        }}>
-          <div>
+        <div className="team-contacts" data-contacts>
+          <div className="team-contacts-copy">
             <div className="eyebrow">{en ? en.contactsEyebrow : 'Контакты'}</div>
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontWeight: 500,
-              fontSize: 'clamp(28px, 3.4vw, 44px)', letterSpacing: '-.025em',
-              margin: '12px 0 24px', lineHeight: 1.05
-            }}>{en ? en.contactsH2 : <>Напишите —<br />придумаем вместе.</>}</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>☎</div>
+            <h2>{en ? en.contactsH2 : <>Напишите —<br />придумаем вместе.</>}</h2>
+            <div className="team-contacts-list">
+              <div className="team-contacts-item">
+                <div className="team-contacts-icon" aria-hidden="true">☎</div>
                 <div>
-                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{en ? en.phone : 'Телефон'}</div>
-                  <div style={{ fontWeight: 600, display: 'flex', flexDirection: 'column', gap: 4 }}>
-                    <a href="tel:+375293220018" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (29) 322-00-18</a>
-                    <a href="tel:+375152685050" style={{ color: 'inherit', textDecoration: 'none' }}>+375 (15) 268-50-50</a>
+                  <div className="team-contacts-label">{en ? en.phone : 'Телефон'}</div>
+                  <div className="team-contacts-value">
+                    <a href="tel:+375293220018">+375 (29) 322-00-18</a>
+                    <a href="tel:+375152685050">+375 (15) 268-50-50</a>
                   </div>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>@</div>
+              <div className="team-contacts-item">
+                <div className="team-contacts-icon" aria-hidden="true">@</div>
                 <div>
-                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{en ? en.email : 'Почта'}</div>
-                  <div style={{ fontWeight: 600, display: 'flex', flexDirection: 'column', gap: 4 }}>
-                    <a href="mailto:pharmconsilium@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>pharmconsilium@gmail.com</a>
-                    <a href="mailto:pharmconsilium.office@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>pharmconsilium.office@gmail.com</a>
+                  <div className="team-contacts-label">{en ? en.email : 'Почта'}</div>
+                  <div className="team-contacts-value">
+                    <a href="mailto:pharmconsilium@gmail.com">pharmconsilium@gmail.com</a>
+                    <a href="mailto:pharmconsilium.office@gmail.com">pharmconsilium.office@gmail.com</a>
                   </div>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--accent-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)', fontWeight: 600 }}>◎</div>
+              <div className="team-contacts-item">
+                <div className="team-contacts-icon" aria-hidden="true">◎</div>
                 <div>
-                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{en ? en.address : 'Адрес'}</div>
-                  <div style={{ fontWeight: 600, lineHeight: 1.45 }}>{en ? en.addressLines : <>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</>}</div>
+                  <div className="team-contacts-label">{en ? en.address : 'Адрес'}</div>
+                  <div className="team-contacts-value team-contacts-value--address">
+                    {en ? en.addressLines : <>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</>}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div style={{ position: 'relative', height: 280 }}>
-            <ArtConstellation />
+          <div className="team-contacts-art">
+            {TeamContactsArt ? <TeamContactsArt alt={en ? en.contactsArtAlt : undefined} /> : null}
           </div>
         </div>
       </section>

@@ -8,6 +8,7 @@ window.PORTFOLIO_EN_PATCHES = {
     duration: '7 days',
     category: 'Content',
     sector: 'Pharmacology',
+    thumbAlt: 'Bepanthen digital banner — heroine variant',
     short: 'Three digital banner concepts for Bepanthen (Bayer): different heroines, local scenarios, strict Bayer brand book.',
     hero: 'For Bayer\'s Bepanthen brand we created three digital banner concepts. Each version uses a different heroine and her local problem, strictly following the Bayer brand book.',
     problem: 'Bayer needed Bepanthen digital banners with recognizable brand codes and distinct local storylines — without deviating from guidelines and with a fast approval cycle.',
@@ -47,11 +48,12 @@ window.PORTFOLIO_EN_PATCHES = {
   },
 
   'ai-trener': {
-    name: 'AI coach for medical representatives',
-    client: 'In-house product + 3 clients',
-    category: 'Product',
-    sector: 'AI / HR',
-    short: 'HCP visit simulator for rep training: realistic scenarios, AI feedback, and progress metrics.',
+    name: 'Packaging for IT-tabs',
+    client: 'Pharma brand client',
+    category: 'Content',
+    sector: 'Pharmacology',
+    thumbAlt: 'IT-tabs — packaging line 15 · 30 · 60 tablets',
+    short: 'Three formats — one unified IT-tabs product line.',
     hero: 'Hybrid training environment where reps practice visits on an AI physician simulator. Deployed for three international pharma companies.',
     problem: 'Rep training is the most expensive part of field-force readiness. Live role-play with actor-physicians runs quarterly, does not scale, and depends on KOL availability. Teams needed a place to rehearse visits every day.',
     approach: [
@@ -86,14 +88,20 @@ window.PORTFOLIO_EN_PATCHES = {
       { value: '+34%', label: 'visit quality (HCP NPS)' },
       { value: '4×', label: 'training sessions in same time' },
     ],
+    slides: [
+      { src: 'assets/uploads/aiti-tabs-slide-1.png', label: '3D line-up', alt: 'IT-tabs — 3D line-up' },
+      { src: 'assets/uploads/aiti-tabs-slide-2.png', label: '15 tablets', alt: 'IT-tabs — 15 tablets' },
+      { src: 'assets/uploads/aiti-tabs-slide-3.png', label: '30 tablets', alt: 'IT-tabs — 30 tablets' },
+      { src: 'assets/uploads/aiti-tabs-slide-4.png', label: '60 tablets', alt: 'IT-tabs — 60 tablets' },
+    ],
   },
 
   'patient-series': {
-    name: 'Patient education series · 6 episodes',
-    client: 'Patient support program',
+    name: 'Packaging for Hydrobalance',
+    client: 'PharmConsilium',
     category: 'Content',
-    sector: 'Endocrinology',
-    short: 'Educational video series with AI avatars in three languages. Complex topics told through narrative, not lectures.',
+    sector: 'OTC / rehydration',
+    short: 'Packaging design for the Hydrobalance product.',
     hero: 'Six 8-minute episodes — educational drama for patients with an endocrine diagnosis. AI avatars, three languages, regulatory approval.',
     problem: 'Endocrine therapy requires long-term adherence. After the first visit, many patients drop off. Text leaflets and push notifications feel too dry. We needed a format that holds attention and explains complexity with empathy.',
     approach: [
@@ -128,6 +136,13 @@ window.PORTFOLIO_EN_PATCHES = {
       { value: '38%', label: 'therapy adherence lift' },
       { value: '180K', label: 'views in 6 months' },
     ],
+    slideAspect: '1024 / 765',
+    slides: [
+      { src: 'assets/uploads/patient-series-slide-1.png', label: 'Box', alt: 'Hydrobalance — box design' },
+      { src: 'assets/uploads/patient-series-slide-2.png', label: 'Dieline', alt: 'Hydrobalance — label dieline' },
+      { src: 'assets/uploads/patient-series-slide-3.png', label: 'Tube', alt: 'Hydrobalance — tube of 20 tablets' },
+    ],
+    thumbAlt: 'Hydrobalance — tube of 20 effervescent tablets',
   },
 
   'conference-pk25': {
