@@ -15,15 +15,30 @@ const FONT_PAIRS = {
   'serif-mod':         { display: "'Fraunces', Georgia, serif",             body: "'Manrope', system-ui, sans-serif" },
 };
 
+function getRouteFromHash() {
+  const h = window.location.hash.replace(/^#/, '').trim();
+  return h || 'home';
+}
+
+function hashForRoute(route) {
+  return `#${route || 'home'}`;
+}
+
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [route, setRoute] = React.useState('home');
+  const [route, setRoute] = React.useState(getRouteFromHash);
   const [lang, setLangState] = React.useState('ru');
   const [langTick, setLangTick] = React.useState(0);
   const [scenario, setScenario] = React.useState('comms');
   const [contactOpen, setContactOpen] = React.useState(false);
   const ContactFormModal = window.ContactFormModal;
   const EndContactStrip = window.EndContactStrip;
+  const scrollByRoute = React.useRef({});
+  const navKind = React.useRef('push');
+  const ignoreHashChange = React.useRef(false);
+  const routeRef = React.useRef(route);
+  const prevRouteRef = React.useRef(route);
+  routeRef.current = route;
 
   const setLang = React.useCallback((next) => {
     const applied = window.applySiteLang ? window.applySiteLang(next) : next;
@@ -58,17 +73,77 @@ function App() {
     root.style.setProperty('--font-body', fp.body);
   }, [t]);
 
-  React.useEffect(() => {
-    const h = location.hash.replace('#', '');
-    if (h) setRoute(h);
+  React.useLayoutEffect(() => {
+    if (!window.location.hash) {
+      window.history.replaceState(null, '', hashForRoute('home'));
+    }
   }, []);
+
   React.useEffect(() => {
-    location.hash = route;
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    const onHashChange = () => {
+      const next = getRouteFromHash();
+      if (ignoreHashChange.current) {
+        ignoreHashChange.current = false;
+        if (next !== routeRef.current) setRoute(next);
+        return;
+      }
+      navKind.current = 'pop';
+      setRoute(next);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  React.useEffect(() => {
+    let tick;
+    const routeChanged = prevRouteRef.current !== route;
+    prevRouteRef.current = route;
+
+    if (routeChanged) {
+      if (navKind.current === 'pop') {
+        const y = scrollByRoute.current[route];
+        tick = requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: typeof y === 'number' ? y : 0, left: 0, behavior: 'instant' });
+          });
+        });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
+      navKind.current = 'push';
+    }
+
     if (window.updatePageSeo) window.updatePageSeo(route, lang);
+
+    return () => {
+      if (tick) cancelAnimationFrame(tick);
+    };
   }, [route, lang, langTick]);
 
-  const navigate = (r) => setRoute(r);
+  React.useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        scrollByRoute.current[routeRef.current] = window.scrollY;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [route]);
+
+  const navigate = React.useCallback((nextRoute) => {
+    const r = nextRoute || 'home';
+    scrollByRoute.current[routeRef.current] = window.scrollY;
+    navKind.current = 'push';
+    setRoute(r);
+    const target = hashForRoute(r);
+    if (window.location.hash !== target) {
+      ignoreHashChange.current = true;
+      window.location.hash = r;
+    }
+  }, []);
   const pageKey = `${route}-${lang}-${langTick}`;
 
   let page;
