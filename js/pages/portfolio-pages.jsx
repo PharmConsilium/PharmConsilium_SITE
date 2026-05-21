@@ -17,12 +17,12 @@ function PortfolioPage({ navigate, lang }) {
           <div className="crumbs">
             <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>{ui ? ui.crumb : 'Проекты и портфолио'}</span>
+            <span style={{ color: 'var(--ink)' }}>{ui ? ui.crumb : 'Портфолио, проекты, и фичи ФармКонсилиум'}</span>
           </div>
           <div className="eyebrow" style={{ marginTop: 18 }}>{ui ? ui.eyebrow : 'Проекты последних 24 месяцев'}</div>
           <PageHeroH1
-            line1={ui ? ui.h1Line1 : 'Проекты'}
-            accent={ui ? ui.h1Line2 : 'и портфолио.'}
+            line1={ui ? ui.h1Line1 : 'Портфолио, проекты,'}
+            accent={ui ? ui.h1Accent : 'и фичи ФармКонсилиум'}
           />
           <p className="lede">
             {ui ? ui.lede : 'Восемь характерных проектов из портфолио ФармКонсилиума: от лонча кардиопрепарата за 90 дней до собственного справочника ЛС с тысячей DAU. Полное портфолио — по запросу.'}
@@ -115,17 +115,18 @@ function ProjectPage({ slug, navigate, lang }) {
   }
 
   const Art = window[p.art] || window.ArtConstellation;
-
-  const slides = [
-  { art: Art, label: ui ? ui.slidePreview : 'Превью проекта' },
-  { art: window.ArtNodes || Art, label: ui ? ui.slideArch : 'Архитектура' },
-  { art: window.ArtDashboard || Art, label: ui ? ui.slideMetrics : 'Метрики' },
-  { art: window.ArtLayers || Art, label: ui ? ui.slideMaterials : 'Материалы' }];
+  const defaultArtSlides = [
+    { art: Art, label: ui ? ui.slidePreview : 'Превью проекта' },
+    { art: window.ArtNodes || Art, label: ui ? ui.slideArch : 'Архитектура' },
+    { art: window.ArtDashboard || Art, label: ui ? ui.slideMetrics : 'Метрики' },
+    { art: window.ArtLayers || Art, label: ui ? ui.slideMaterials : 'Материалы' },
+  ];
+  const slides = Array.isArray(p.slides) && p.slides.length ? p.slides : defaultArtSlides;
+  const slideUsesImages = Boolean(slides[0] && slides[0].src);
 
   const [slide, setSlide] = React.useState(0);
   const next = () => setSlide((slide + 1) % slides.length);
   const prev = () => setSlide((slide - 1 + slides.length) % slides.length);
-  const CurArt = slides[slide].art;
   const slideAria = (n) => (ui ? ui.slideN.replace('{n}', n) : `Слайд ${n}`);
 
   return (
@@ -135,9 +136,9 @@ function ProjectPage({ slug, navigate, lang }) {
           <div className="crumbs">
             <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>{ui ? ui.crumb : 'Проекты и портфолио'}</span>
+            <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>{ui ? ui.crumb : 'Портфолио, проекты, и фичи ФармКонсилиум'}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>{p.category}</span>
+            <span style={{ color: 'var(--ink)' }}>{p.name}</span>
           </div>
           <PageHeroH1 line1={titleParts.line1} accent={titleParts.accent} accent2={titleParts.accent2} />
           <p className="lede">{p.hero}</p>
@@ -163,12 +164,16 @@ function ProjectPage({ slug, navigate, lang }) {
 
         <div className="proj-split">
           <div className="proj-slider">
-            <div className="proj-slider-stage" style={{ background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
+            <div
+              className={`proj-slider-stage${slideUsesImages ? ' proj-slider-stage--portrait' : ''}`}
+              style={slideUsesImages ? undefined : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
               {slides.map((s, i) => {
                 const A = s.art;
                 return (
                   <div key={i} className={`proj-slide ${i === slide ? 'on' : ''}`}>
-                    <A />
+                    {s.src
+                      ? <img className="proj-slide-img" src={s.src} alt={s.alt || s.label} loading={i === 0 ? 'eager' : 'lazy'} />
+                      : A ? <A /> : null}
                   </div>);
 
               })}

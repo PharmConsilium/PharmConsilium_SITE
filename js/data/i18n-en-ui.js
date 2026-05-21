@@ -106,7 +106,7 @@ window.I18N_EN = {
       },
     },
     portfolio: {
-      title: 'Projects and portfolio',
+      title: 'Portfolio, projects, and PharmConsilium features',
       links: [
         { label: 'All projects', to: 'portfolio' },
         { label: 'Launches and campaigns', to: 'portfolio/cardio-lonch' },
@@ -360,7 +360,7 @@ window.I18N_EN = {
     portfolioH2: 'Projects from the last twelve months.',
     portfolioRight: '8 launches, 3 AI products, 2 directories, 1 award win. Full portfolio on request.',
     portfolioCards: [
-      { t: 'Cardiology launch · 90 days', d: 'Full package: landing, CRM, e-detailing, omnichannel campaign.', art: 'ArtLaunch', slug: 'cardio-lonch' },
+      { t: 'Digital banner · Bepanthen (Bayer)', d: 'Three digital banner concepts: different heroines, local scenarios, Bayer brand book.', art: 'ArtLaunch', slug: 'cardio-lonch' },
       { t: 'AI coach for medical representatives', d: 'In-house product deployed for three international pharma companies.', art: 'ArtAI', slug: 'ai-trener' },
       { t: 'Patient series · 6 episodes', d: 'Educational series with AI avatars in three languages.', art: 'ArtVideo', slug: 'patient-series' },
       { t: 'PharmConsilium Conference 2025', d: '1,500 participants, event bot, AI assistant on the program.', art: 'ArtRadar', slug: 'conference-pk25' },
@@ -413,10 +413,10 @@ window.I18N_EN = {
   },
 
   portfolio: {
-    crumb: 'Projects and portfolio',
+    crumb: 'Portfolio, projects, and PharmConsilium features',
     eyebrow: 'Projects from the last 24 months',
-    h1Line1: 'Projects',
-    h1Line2: 'and portfolio.',
+    h1Line1: 'Portfolio, projects,',
+    h1Accent: 'and PharmConsilium features',
     lede: 'Eight representative projects from the PharmConsilium portfolio: from a cardio launch in 90 days to our own drug directory with a thousand daily active users. Full portfolio on request.',
     filterAll: 'All',
     openCase: 'Open case',

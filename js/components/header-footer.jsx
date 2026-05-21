@@ -106,7 +106,7 @@ const MEGA = {
     }
   },
   portfolio: {
-    title: 'Проекты и портфолио',
+    title: 'Портфолио, проекты, и фичи ФармКонсилиум',
     links: [
     { label: 'Все проекты',              to: 'portfolio' },
     { label: 'Лончи и кампании',           to: 'portfolio/cardio-lonch' },

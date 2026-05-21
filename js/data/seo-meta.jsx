@@ -41,7 +41,7 @@ const SEO_STATIC = {
     description: 'Связаться с командой ФармКонсилиум: 80+ запусков, 15 лет в фарм-маркетинге, внедрение под ключ.',
   },
   portfolio: {
-    title: 'Портфолио и кейсы · ФармКонсилиум',
+    title: 'Портфолио, проекты и фичи · ФармКонсилиум',
     description: 'Реализованные проекты: CRM, CLM, лончи, образовательные платформы и цифровые кампании в РБ.',
   },
 };
@@ -76,7 +76,7 @@ const SEO_STATIC_EN = {
     description: 'Contact the PharmConsilium team: 80+ launches, 15 years in pharma marketing, turnkey implementation.',
   },
   portfolio: {
-    title: 'Portfolio and cases · PharmConsilium',
+    title: 'Portfolio, projects, and features · PharmConsilium',
     description: 'Delivered projects: CRM, CLM, launches, education platforms, and digital campaigns in Belarus.',
   },
 };
