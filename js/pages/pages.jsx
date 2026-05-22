@@ -88,6 +88,34 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
 
   const heroQueryReady = heroQuery.trim().length > 0;
 
+  React.useEffect(() => {
+    const section = document.querySelector('.hero');
+    if (!section) return undefined;
+    const accent = section.querySelector('h1 .accent');
+    const cta = section.querySelector('.hero-cta');
+    if (!accent || !cta) return undefined;
+
+    const col = accent.closest('.hero-grid > div') || section;
+    const apply = () => {
+      const accentW = Math.ceil(accent.getBoundingClientRect().width);
+      const cap = col ? col.clientWidth : accentW;
+      cta.style.width = `${Math.min(accentW, cap)}px`;
+    };
+
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(accent);
+    if (col) ro.observe(col);
+    window.addEventListener('resize', apply);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', apply);
+      cta.style.width = '';
+    };
+  }, [lang, en]);
+
   function runHeroForecast() {
     if (!heroQuery.trim()) return;
     window.openPharmContact?.();
@@ -137,13 +165,6 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
               {en ? en.heroLede : 'Узнайте прогноз Вашего бренда на фармацевтическом рынке СНГ, наш искусственный интеллект «Робби» представит Вам основные показатели рынка и возможности для роста. Просто введите название Вашего бренда и страны, через несколько секунд узнаете прогноз.'}
             </p>
             <div className="hero-cta">
-              <button
-                type="button"
-                className="btn btn-primary btn-sm hero-cta-submit"
-                disabled={!heroQueryReady}
-                onClick={runHeroForecast}>
-                {en ? en.heroForecast : 'Прогноз'}
-              </button>
               <label className="hero-cta-field hero-cta-field--combined">
                 <input
                   type="text"
@@ -160,6 +181,13 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
                   autoComplete="off"
                 />
               </label>
+              <button
+                type="button"
+                className="btn btn-primary btn-sm hero-cta-submit"
+                disabled={!heroQueryReady}
+                onClick={runHeroForecast}>
+                {en ? en.heroForecast : 'Прогноз'}
+              </button>
             </div>
             <div className="hero-trust">
               <div><div className="stat-num">2015</div><div className="stat-lbl">{en ? en.statFounded : 'год основания'}</div></div>
@@ -232,7 +260,6 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
                 onClick={() => navigate(t.id)}>
                   <div className="tile-art">{Art && <Art />}</div>
                   <div className="tile-cap">
-                    <span className="num">— {t.num}</span>
                     <h3>{t.title}</h3>
                     <p>{t.desc}</p>
                     <span className="tile-cta">{en ? en.tileOpen : 'Открыть раздел'} <span className="arrow">→</span></span>
@@ -294,7 +321,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
               const clickable = Boolean(s.to || s.href);
               return (
             <div
-              key={s.n}
+              key={s.to || s.href || s.t}
               className="card"
               role={clickable ? 'link' : undefined}
               tabIndex={clickable ? 0 : undefined}
@@ -308,7 +335,6 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
                 if (s.href) window.open(s.href, '_blank', 'noopener,noreferrer');
                 else if (s.to) navigate(s.to);
               } : undefined}>
-                <div className="card-num">— {s.n}</div>
                 <h3>{s.t}</h3>
                 <p>{s.d}</p>
               </div>
@@ -801,15 +827,18 @@ function TeamPage({ navigate, lang }) {
               const thumb = pf?.thumb;
               const thumbAlt = pf?.thumbAlt || p.t;
               const thumbWide = pf?.thumbLayout === 'wide';
+              const thumbPack = thumb && pf?.tag === 'упаковка';
               const cardArtStyle = thumb
-                ? undefined
+                ? (pf?.palette
+                  ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${pf.palette} 22%, var(--accent-soft)))` }
+                  : { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' })
                 : pf?.palette
                   ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${pf.palette} 28%, var(--accent-soft)))` }
                   : undefined;
               return (
                 <div key={i} className="card"
                 onClick={() => navigate(`portfolio/${p.slug}`)}>
-                  <div className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}`} style={cardArtStyle}>
+                  <div className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}${thumbPack ? ' card-art--photo-pack' : ''}`} style={cardArtStyle}>
                     {thumb
                       ? <img src={thumb} alt={thumbAlt} loading="lazy" decoding="async" />
                       : A ? <A /> : null}

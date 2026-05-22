@@ -190,6 +190,8 @@ window.SUBPAGES_EN_PATCHES = {
   'marketing/events': {
     section: 'Pharmaceutical marketing',
     title: 'Digital event support',
+    h1Line1: 'Digital event',
+    h1Accent: 'support',
     lede: 'Registration landings, AI assistants at congresses, event bots, program navigation, and pre/post-event surveys.',
     tags: ['congresses', 'conferences', 'event bot', 'AI assistant'],
     about: [
