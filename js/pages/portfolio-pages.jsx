@@ -133,13 +133,38 @@ function ProjectPage({ slug, navigate, lang }) {
     { art: window.ArtLayers || Art, label: ui ? ui.slideMaterials : 'Материалы' },
   ];
   const slides = Array.isArray(p.slides) && p.slides.length ? p.slides : defaultArtSlides;
-  const slideUsesImages = Boolean(slides[0] && slides[0].src);
-  const slideAspect = p.slideAspect || '950 / 1024';
+  const isSlideVideo = window.isPortfolioSlideVideo || (() => false);
+  const VideoPlayer = window.PortfolioVideoPlayer;
+  const slideUsesMedia = slides.some((s) => s.src || s.art || isSlideVideo(s));
 
   const [slide, setSlide] = React.useState(0);
-  const next = () => setSlide((slide + 1) % slides.length);
-  const prev = () => setSlide((slide - 1 + slides.length) % slides.length);
+  const [videoAspect, setVideoAspect] = React.useState(null);
+  const activeSlide = slides[slide] || slides[0];
+  const stageIsVideo = isSlideVideo(activeSlide);
+  const stageAspect = (stageIsVideo && videoAspect)
+    || activeSlide?.aspect
+    || (stageIsVideo ? '9 / 16' : null)
+    || p.slideAspect
+    || '950 / 1024';
+  const sliderRef = React.useRef(null);
+  const pauseVideos = React.useCallback(() => {
+    sliderRef.current?.querySelectorAll('video').forEach((v) => { v.pause(); });
+  }, []);
+  const goSlide = (index) => {
+    pauseVideos();
+    setSlide(index);
+  };
+  const next = () => goSlide((slide + 1) % slides.length);
+  const prev = () => goSlide((slide - 1 + slides.length) % slides.length);
   const slideAria = (n) => (ui ? ui.slideN.replace('{n}', n) : `Слайд ${n}`);
+
+  React.useEffect(() => {
+    pauseVideos();
+  }, [slide, pauseVideos]);
+
+  React.useEffect(() => {
+    setVideoAspect(null);
+  }, [slide, slug]);
 
   return (
     <main className="page-route" style={{ '--accent-local': p.palette }}>
@@ -177,35 +202,52 @@ function ProjectPage({ slug, navigate, lang }) {
         <div className="proj-split">
           <div className="proj-slider">
             <div
-              className={`proj-slider-stage${slideUsesImages ? ' proj-slider-stage--image' : ''}`}
-              style={slideUsesImages
-                ? { aspectRatio: slideAspect, background: 'var(--bg-2)' }
+              ref={sliderRef}
+              className={`proj-slider-stage${slideUsesMedia ? ' proj-slider-stage--image' : ''}${stageIsVideo ? ' proj-slider-stage--video' : ''}`}
+              style={slideUsesMedia
+                ? { aspectRatio: stageAspect, background: 'var(--bg-2)' }
                 : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
               {slides.map((s, i) => {
                 const A = s.art;
+                const videoSrc = s.video || (isSlideVideo(s) ? s.src : null);
+                const isActive = i === slide;
                 return (
-                  <div key={i} className={`proj-slide ${i === slide ? 'on' : ''}`}>
-                    {s.src
-                      ? <img className="proj-slide-img" src={s.src} alt={s.alt || s.label} loading={i === 0 ? 'eager' : 'lazy'} />
-                      : A ? <A /> : null}
+                  <div key={i} className={`proj-slide${videoSrc ? ' proj-slide--video' : ''} ${isActive ? 'on' : ''}`}>
+                    {videoSrc && VideoPlayer
+                      ? <VideoPlayer
+                          src={videoSrc}
+                          poster={s.poster}
+                          alt={s.alt || s.label}
+                          active={isActive}
+                          onAspect={isActive ? setVideoAspect : undefined}
+                        />
+                      : s.src && !isSlideVideo(s)
+                        ? <img className="proj-slide-img" src={s.src} alt={s.alt || s.label} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                        : A ? <A /> : null}
                   </div>);
 
               })}
-              <div className="proj-slider-meta">
-                <span>{String(slide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}</span>
-                <span>· {slides[slide].label}</span>
-              </div>
-              <button className="proj-slider-nav prev" onClick={prev} aria-label={ui ? ui.slidePrev : 'Назад'}>←</button>
-              <button className="proj-slider-nav next" onClick={next} aria-label={ui ? ui.slideNext : 'Вперёд'}>→</button>
+              {slides.length > 1 ?
+                <>
+                  <div className="proj-slider-meta">
+                    <span>{String(slide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}</span>
+                    <span>· {slides[slide].label}</span>
+                  </div>
+                  <button className="proj-slider-nav prev" onClick={prev} aria-label={ui ? ui.slidePrev : 'Назад'}>←</button>
+                  <button className="proj-slider-nav next" onClick={next} aria-label={ui ? ui.slideNext : 'Вперёд'}>→</button>
+                </> :
+                null}
             </div>
-            <div className="proj-slider-dots">
-              {slides.map((_, i) =>
-              <button key={i}
-              className={`dot ${i === slide ? 'on' : ''}`}
-              onClick={() => setSlide(i)}
-              aria-label={slideAria(i + 1)} />
-              )}
-            </div>
+            {slides.length > 1 ?
+              <div className="proj-slider-dots">
+                {slides.map((_, i) =>
+                <button key={i}
+                className={`dot ${i === slide ? 'on' : ''}`}
+                onClick={() => goSlide(i)}
+                aria-label={slideAria(i + 1)} />
+                )}
+              </div> :
+              null}
           </div>
 
           <div className="proj-desc">

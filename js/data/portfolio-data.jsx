@@ -182,6 +182,9 @@ const PORTFOLIO = [
     art: 'ArtRadar',
     tag: 'эвент',
     palette: '#0EA5E9',
+    thumb: 'assets/uploads/conference-pk25-card-thumb.png',
+    thumbLayout: 'wide',
+    thumbAlt: 'Презентация — функциональные расстройства ЖКТ у детей',
     short: '1 500 участников, эвент-бот, ИИ-помощник по программе, гибридный формат с трансляцией в регионы.',
     hero: 'Ежегодная конференция о цифре в фарме. Полностью своя цифровая обвязка: эвент-бот, AI-навигатор, гибридная трансляция.',
     metrics: [
@@ -216,6 +219,15 @@ const PORTFOLIO = [
       { phase: '−3 мес.', t: 'Бот, лендинг, контент' },
       { phase: '−1 мес.', t: 'Регистрация и реминды' },
       { phase: '+2 нед.', t: 'Follow-up и материалы' },
+    ],
+    slides: [
+      {
+        type: 'video',
+        src: 'assets/uploads/iberogast-visit-1.3.1.mp4',
+        aspect: '9 / 16',
+        label: 'Демо визита',
+        alt: 'ФармКонсилиум-2025 — демонстрация цифрового визита',
+      },
     ],
     related: ['cardio-lonch', 'patient-series', 'ai-trener'],
   },
