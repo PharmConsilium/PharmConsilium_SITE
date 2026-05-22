@@ -801,15 +801,17 @@ button { font-family: inherit; }
   width: 64px; height: 64px;
   margin: 0;
   border-radius: 14px;
-  background: linear-gradient(140deg, var(--bg-2), var(--accent-soft));
+  border: none;
+  box-shadow: none;
+  background: transparent;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
   flex: none;
 }
-.tile .tile-art svg { width: 92%; height: 92%; }
+.tile .tile-art svg { width: 100%; height: 100%; }
 .tile .tile-art .home-tile-art {
-  width: 92%;
-  height: 92%;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -820,12 +822,12 @@ button { font-family: inherit; }
   height: 100%;
   object-fit: contain;
   display: block;
-  mix-blend-mode: darken;
-  filter: saturate(1.1) contrast(1.03);
+  mix-blend-mode: normal;
+  filter: saturate(1.08) contrast(1.02);
 }
 [data-theme="dark"] .tile .tile-art .home-tile-art img {
-  mix-blend-mode: lighten;
-  filter: saturate(1.15) brightness(1.06) contrast(0.98);
+  mix-blend-mode: normal;
+  filter: saturate(1.1) brightness(1.04) contrast(0.98);
 }
 .tile.big .tile-art,
 .tile.wide .tile-art { width: 64px; height: 64px; }
