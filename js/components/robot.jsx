@@ -87,7 +87,7 @@ function RobotCompanion() {
           `translate(calc(-50% + ${p.x}px),` +
           ` calc(-50% + ${p.y}px))` +
           ` rotate(${p.ry}deg)`;
-        el.style.opacity = '1';
+        el.style.opacity = el.classList.contains('robot-img--hide-over-copy') ? '0' : '1';
       }
       if (body) body.style.transform = `scale(${p.s})`;
       raf = requestAnimationFrame(animate);
@@ -100,6 +100,66 @@ function RobotCompanion() {
       window.removeEventListener('resize', onResize);
     };
   }, [computeTarget]);
+
+  // На узком экране скрываем робота над блоком контактов (не перекрывает почту)
+  React.useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+
+    let io = null;
+    let target = null;
+
+    const sync = (visible) => {
+      const narrow = window.innerWidth <= 960;
+      wrap.classList.toggle('robot-img--hide-over-copy', narrow && visible);
+    };
+
+    const unbind = () => {
+      if (io) io.disconnect();
+      io = null;
+      target = null;
+      wrap.classList.remove('robot-img--hide-over-copy');
+    };
+
+    const bind = () => {
+      const contacts = document.querySelector('[data-contacts]');
+      if (contacts === target) return;
+      unbind();
+      if (!contacts) return;
+      target = contacts;
+      io = new IntersectionObserver(
+        ([entry]) => sync(entry.isIntersecting),
+        { threshold: 0.12, rootMargin: '-8% 0px -5% 0px' }
+      );
+      io.observe(contacts);
+      const rect = contacts.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+      sync(inView);
+    };
+
+    bind();
+    const root = document.getElementById('root');
+    const mo = root ? new MutationObserver(bind) : null;
+    if (mo && root) mo.observe(root, { childList: true, subtree: true });
+
+    const onResize = () => {
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+      sync(inView);
+    };
+    const onHash = () => { window.setTimeout(bind, 0); };
+
+    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('hashchange', onHash);
+
+    return () => {
+      mo?.disconnect();
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('hashchange', onHash);
+      unbind();
+    };
+  }, []);
 
   // Цикл лиц Robby_1…10 — только у плавающего робота; карточка «Команда» — отдельные team-robbie*.png
   const RobbieFaceCycle = window.RobbieFaceCycle;

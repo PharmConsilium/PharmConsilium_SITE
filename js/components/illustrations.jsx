@@ -490,12 +490,22 @@ function ArtDirectory({ className }) {
 
 /* Team contacts — омниканальный хаб (телефон, почта, чат) */
 function ArtTeamContacts({ className, alt }) {
+  const altText = alt || 'Омниканальные каналы связи — телефон, почта и чат';
   return (
     <div className={className ? `team-contacts-art-wrap ${className}` : 'team-contacts-art-wrap'} aria-hidden="true">
       <img
         src="assets/uploads/team-contacts-art.png"
-        alt={alt || 'Омниканальные каналы связи — телефон, почта и чат'}
-        className="team-contacts-art-img"
+        alt={altText}
+        className="team-contacts-art-img team-contacts-art-img--theme-light"
+        width={1024}
+        height={851}
+        loading="lazy"
+        decoding="async"
+      />
+      <img
+        src="assets/uploads/team-contacts-art-dark.png"
+        alt=""
+        className="team-contacts-art-img team-contacts-art-img--theme-dark"
         width={1024}
         height={851}
         loading="lazy"
@@ -507,12 +517,22 @@ function ArtTeamContacts({ className, alt }) {
 
 /* CRM feature block — 3D-иллюстрация омниканальной CRM */
 function ArtCrmFeature({ className, alt }) {
+  const altText = alt || 'CRM PharmConsilium — дашборд, HCP и омниканальные каналы связи';
   return (
     <div className={className ? `feature-crm-art-wrap ${className}` : 'feature-crm-art-wrap'} aria-hidden="true">
       <img
         src="assets/uploads/crm-feature.png"
-        alt={alt || 'CRM PharmConsilium — дашборд, HCP и омниканальные каналы связи'}
-        className="feature-crm-art"
+        alt={altText}
+        className="feature-crm-art feature-crm-art--theme-light"
+        width={1024}
+        height={764}
+        loading="lazy"
+        decoding="async"
+      />
+      <img
+        src="assets/uploads/crm-feature-dark.png"
+        alt=""
+        className="feature-crm-art feature-crm-art--theme-dark"
         width={1024}
         height={764}
         loading="lazy"
