@@ -298,14 +298,6 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
                 <div className="mobile-nav-panel">
                   <p className="mobile-nav-panel-title">{mega.title}</p>
                   <ul className="mobile-nav-sublinks">
-                    <li>
-                      <button
-                        type="button"
-                        className="mobile-nav-sublink mobile-nav-sublink--overview"
-                        onClick={() => goMobile(item.id)}>
-                        {lang === 'en' ? 'Section overview' : 'Обзор раздела'}
-                      </button>
-                    </li>
                     {mega.links.map((l, i) => {
                       const label = typeof l === 'string' ? l : l.label;
                       const to = typeof l === 'string' ? item.id : l.to;

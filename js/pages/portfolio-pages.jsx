@@ -52,16 +52,17 @@ function PortfolioPage({ navigate, lang }) {
             const thumb = p.thumb;
             const thumbWide = p.thumbLayout === 'wide';
             const thumbPack = thumb && p.tag === 'упаковка';
+            const thumbTone = p.thumbPalette || p.palette;
             return (
               <div key={p.slug} className="card"
                    onClick={() => navigate(`portfolio/${p.slug}`)}>
                 <div
                   className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}${thumbPack ? ' card-art--photo-pack' : ''}`}
-                  style={thumb
-                    ? (p.palette
-                      ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${p.palette} 22%, var(--accent-soft)))` }
-                      : { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' })
-                    : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
+                  style={thumbTone
+                    ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${thumbTone} ${thumb ? 22 : 28}%, var(--accent-soft)))` }
+                    : thumb
+                      ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
+                      : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}
                   {thumb
                     ? <img src={thumb} alt={p.thumbAlt || p.name} loading="lazy" decoding="async" />
                     : <Art />}

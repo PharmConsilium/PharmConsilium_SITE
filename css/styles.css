@@ -339,9 +339,6 @@ button { font-family: inherit; }
     transform: rotate(-90deg);
     color: var(--accent);
   }
-  .mobile-nav-sublink--overview {
-    font-weight: 600;
-  }
   .mobile-nav-link:hover {
     background: color-mix(in srgb, var(--ink) 6%, transparent);
   }

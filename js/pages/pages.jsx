@@ -828,12 +828,11 @@ function TeamPage({ navigate, lang }) {
               const thumbAlt = pf?.thumbAlt || p.t;
               const thumbWide = pf?.thumbLayout === 'wide';
               const thumbPack = thumb && pf?.tag === 'упаковка';
-              const cardArtStyle = thumb
-                ? (pf?.palette
-                  ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${pf.palette} 22%, var(--accent-soft)))` }
-                  : { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' })
-                : pf?.palette
-                  ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${pf.palette} 28%, var(--accent-soft)))` }
+              const thumbTone = pf?.thumbPalette || pf?.palette;
+              const cardArtStyle = thumbTone
+                ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${thumbTone} ${thumb ? 22 : 28}%, var(--accent-soft)))` }
+                : thumb
+                  ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
                   : undefined;
               return (
                 <div key={i} className="card"

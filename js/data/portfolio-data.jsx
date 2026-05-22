@@ -292,6 +292,10 @@ const PORTFOLIO = [
     art: 'ArtPulse',
     tag: 'PSP',
     palette: '#E5484D',
+    thumb: 'assets/uploads/psp-platform-card-thumb.png',
+    thumbLayout: 'wide',
+    thumbPalette: '#2B7FD4',
+    thumbAlt: 'Программа поддержки пациентов — карточки терапевт и кардиолог',
     short: 'Цифровая программа поддержки на 24 месяца. +38 % к удержанию терапии за 12 месяцев.',
     hero: 'PSP-платформа: приложение, бот, контент, мотивационные механики. 24 месяца сопровождения пациента с момента диагноза.',
     metrics: [
@@ -341,6 +345,7 @@ const PORTFOLIO = [
     art: 'ArtLayers',
     tag: 'CLM',
     palette: '#FF8A4C',
+    thumbPalette: '#2B7FD4',
     short: '12 интерактивных модулей, перенос на 2CLM, тренинг полевой команды из 28 человек.',
     hero: 'Переработали CLM-презентацию пульмонологического бренда на 2CLM-формат. 12 модулей, единый сценарий — для тач- и remote-визита.',
     metrics: [
