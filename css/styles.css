@@ -85,8 +85,28 @@ button { font-family: inherit; }
   color: var(--muted);
 }
 .eyebrow::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-soft);
+}
+/* Hero: длинный текст — точка на уровне первой строки, как у «Что мы делаем» */
+.hero .eyebrow {
+  display: block;
+  position: relative;
+  padding-left: 14px;
+  line-height: 1.48;
+  max-width: 52ch;
+}
+.hero .eyebrow::before {
+  position: absolute;
+  left: 0;
+  top: 0.74em;
+  transform: translateY(-50%);
+  margin: 0;
 }
 
 .kbd {
