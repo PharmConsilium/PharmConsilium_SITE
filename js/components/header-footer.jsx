@@ -129,11 +129,6 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   const [mobileExpanded, setMobileExpanded] = React.useState(null);
   const closeTimer = React.useRef(null);
 
-  function routeInSection(sectionId) {
-    if (!sectionId) return false;
-    return route === sectionId || (typeof route === 'string' && route.startsWith(sectionId + '/'));
-  }
-
   function closeMobileNav() {
     setMobileNavOpen(false);
     setMobileExpanded(null);
@@ -279,30 +274,46 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
         {navItems.map((item) => {
           const mega = megaConfig[item.id];
           const expanded = mobileExpanded === item.id;
-          const sectionActive = routeInSection(item.id);
           return (
             <div key={item.id} className={`mobile-nav-group${expanded ? ' is-expanded' : ''}`}>
-              <button
-                type="button"
-                className={`mobile-nav-link${sectionActive ? ' active' : ''}${expanded ? ' expanded' : ''}`}
-                aria-expanded={expanded}
-                onClick={() => setMobileExpanded(expanded ? null : item.id)}>
-                <span className="mobile-nav-link-label">{item.label}</span>
-                <span className="mobile-nav-chevron" aria-hidden="true">›</span>
-              </button>
+              <div className={`mobile-nav-row${expanded ? ' is-expanded' : ''}`}>
+                <button
+                  type="button"
+                  className="mobile-nav-link"
+                  onClick={() => goMobile(item.id)}>
+                  <span className="mobile-nav-link-label">{item.label}</span>
+                </button>
+                {mega ?
+                  <button
+                    type="button"
+                    className={`mobile-nav-expand${expanded ? ' expanded' : ''}`}
+                    aria-expanded={expanded}
+                    aria-label={expanded ? `${item.label}: свернуть подразделы` : `${item.label}: подразделы`}
+                    onClick={() => setMobileExpanded(expanded ? null : item.id)}>
+                    <span className="mobile-nav-chevron" aria-hidden="true">›</span>
+                  </button> :
+                  null}
+              </div>
               {expanded && mega &&
                 <div className="mobile-nav-panel">
                   <p className="mobile-nav-panel-title">{mega.title}</p>
                   <ul className="mobile-nav-sublinks">
+                    <li>
+                      <button
+                        type="button"
+                        className="mobile-nav-sublink mobile-nav-sublink--overview"
+                        onClick={() => goMobile(item.id)}>
+                        {lang === 'en' ? 'Section overview' : 'Обзор раздела'}
+                      </button>
+                    </li>
                     {mega.links.map((l, i) => {
                       const label = typeof l === 'string' ? l : l.label;
                       const to = typeof l === 'string' ? item.id : l.to;
-                      const subActive = route === to;
                       return (
                         <li key={i}>
                           <button
                             type="button"
-                            className={`mobile-nav-sublink${subActive ? ' active' : ''}`}
+                            className="mobile-nav-sublink"
                             onClick={() => goMobile(to)}>
                             {label}
                           </button>

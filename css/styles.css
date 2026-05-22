@@ -260,10 +260,55 @@ button { font-family: inherit; }
     flex-direction: column;
     gap: 2px;
   }
+  .mobile-nav-row {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+  }
+  .mobile-nav-row .mobile-nav-link {
+    flex: 1;
+    min-width: 0;
+  }
+  .mobile-nav-expand {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    min-width: 56px;
+    width: 56px;
+    min-height: 48px;
+    padding: 0;
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--ink) 4%, var(--surface));
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+  }
+  .mobile-nav-expand:hover {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+    border-color: var(--muted-2);
+  }
+  .mobile-nav-expand.expanded {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-soft) 90%, transparent);
+  }
+  .mobile-nav-group.is-expanded .mobile-nav-link {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent-soft) 45%, transparent);
+  }
+  .mobile-nav-expand .mobile-nav-chevron {
+    color: inherit;
+    font-size: 20px;
+    font-weight: 700;
+  }
   .mobile-nav-link {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 10px;
     width: 100%;
     text-align: left;
@@ -290,16 +335,18 @@ button { font-family: inherit; }
     transform: rotate(90deg);
     transition: transform 200ms ease, color 140ms ease;
   }
-  .mobile-nav-link.expanded .mobile-nav-chevron {
+  .mobile-nav-expand.expanded .mobile-nav-chevron {
     transform: rotate(-90deg);
     color: var(--accent);
+  }
+  .mobile-nav-sublink--overview {
+    font-weight: 600;
   }
   .mobile-nav-link:hover {
     background: color-mix(in srgb, var(--ink) 6%, transparent);
   }
-  .mobile-nav-link.active {
-    color: var(--accent);
-    background: var(--accent-soft);
+  .mobile-nav-group.is-expanded .mobile-nav-link:hover {
+    background: color-mix(in srgb, var(--accent-soft) 65%, transparent);
   }
   .mobile-nav-panel {
     padding: 4px 8px 10px 12px;
@@ -338,10 +385,8 @@ button { font-family: inherit; }
     cursor: pointer;
     transition: background 140ms ease, color 140ms ease;
   }
-  .mobile-nav-sublink:hover,
-  .mobile-nav-sublink.active {
-    background: var(--accent-soft);
-    color: var(--accent);
+  .mobile-nav-sublink:hover {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
   }
 }
 .brand-mark {
