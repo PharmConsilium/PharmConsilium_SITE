@@ -35,6 +35,7 @@ $mime = @{
 
 function Get-LocalPath([string]$urlPath) {
   $p = [Uri]::UnescapeDataString($urlPath.TrimStart("/"))
+  if ($p -match '\?') { $p = $p.Split('?')[0] }
   if ([string]::IsNullOrWhiteSpace($p)) { $p = "index.html" }
   $full = [IO.Path]::GetFullPath((Join-Path $Root $p))
   $rootFull = [IO.Path]::GetFullPath($Root)

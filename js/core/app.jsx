@@ -15,13 +15,24 @@ const FONT_PAIRS = {
   'serif-mod':         { display: "'Fraunces', Georgia, serif",             body: "'Manrope', system-ui, sans-serif" },
 };
 
+function normalizeRoute(raw) {
+  const h = String(raw || '').replace(/^#\/?/, '').trim();
+  const r = h.replace(/^\/+/, '');
+  return r || 'home';
+}
+
 function getRouteFromHash() {
-  const h = window.location.hash.replace(/^#/, '').trim();
-  return h || 'home';
+  return normalizeRoute(window.location.hash);
 }
 
 function hashForRoute(route) {
-  return `#${route || 'home'}`;
+  return `#${normalizeRoute(route)}`;
+}
+
+function portfolioSlugFromRoute(route) {
+  const r = normalizeRoute(route);
+  if (!r.startsWith('portfolio/')) return null;
+  return r.slice('portfolio/'.length).split('/')[0] || null;
 }
 
 function App() {
@@ -77,6 +88,8 @@ function App() {
     if (!window.location.hash) {
       window.history.replaceState(null, '', hashForRoute('home'));
     }
+    const fromHash = getRouteFromHash();
+    if (fromHash !== routeRef.current) setRoute(fromHash);
   }, []);
 
   React.useEffect(() => {
@@ -134,23 +147,30 @@ function App() {
   }, [route]);
 
   const navigate = React.useCallback((nextRoute) => {
-    const r = nextRoute || 'home';
+    const r = normalizeRoute(nextRoute);
     scrollByRoute.current[routeRef.current] = window.scrollY;
     navKind.current = 'push';
     setRoute(r);
-    const target = hashForRoute(r);
-    if (window.location.hash !== target) {
+    if (normalizeRoute(window.location.hash) !== r) {
       ignoreHashChange.current = true;
       window.location.hash = r;
     }
   }, []);
   const pageKey = `${route}-${lang}-${langTick}`;
 
+  const PortfolioPageCmp = window.PortfolioPage;
+  const ProjectPageCmp = window.ProjectPage;
+
   let page;
   if (route === 'portfolio') {
-    page = <PortfolioPage key={pageKey} navigate={navigate} lang={lang}/>;
+    page = PortfolioPageCmp
+      ? <PortfolioPageCmp key={pageKey} navigate={navigate} lang={lang}/>
+      : null;
   } else if (route.startsWith('portfolio/')) {
-    page = <ProjectPage key={pageKey} slug={route.split('/')[1]} navigate={navigate} lang={lang}/>;
+    const slug = portfolioSlugFromRoute(route);
+    page = ProjectPageCmp
+      ? <ProjectPageCmp key={pageKey} slug={slug} navigate={navigate} lang={lang}/>
+      : null;
   } else if (route.includes('/')) {
     page = <DetailPage key={pageKey} routeId={route} navigate={navigate} lang={lang}/>;
   } else {
@@ -216,4 +236,12 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+window.App = App;
+window.mountPharmApp = function mountPharmApp() {
+  const el = document.getElementById('root');
+  if (!el) return;
+  if (!window.__pharmReactRoot) {
+    window.__pharmReactRoot = ReactDOM.createRoot(el);
+  }
+  window.__pharmReactRoot.render(<App />);
+};

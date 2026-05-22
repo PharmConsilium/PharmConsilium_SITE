@@ -844,7 +844,7 @@ function TeamPage({ navigate, lang }) {
                   </div>
                   <h3>{p.t}</h3>
                   <p>{p.d}</p>
-                  <a className="read">{en ? en.openCase : 'Открыть кейс'} <span className="arrow">→</span></a>
+                  <span className="read">{en ? en.openCase : 'Открыть кейс'} <span className="arrow">→</span></span>
                 </div>);
 
             })}

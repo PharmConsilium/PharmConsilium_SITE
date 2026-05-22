@@ -53,16 +53,17 @@ function PortfolioPage({ navigate, lang }) {
             const thumbWide = p.thumbLayout === 'wide';
             const thumbPack = thumb && p.tag === 'упаковка';
             const thumbTone = p.thumbPalette || p.palette;
+            const cardArtStyle = thumbTone
+              ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${thumbTone} ${thumb ? 22 : 28}%, var(--accent-soft)))` }
+              : thumb
+                ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
+                : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` };
             return (
               <div key={p.slug} className="card"
                    onClick={() => navigate(`portfolio/${p.slug}`)}>
                 <div
                   className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}${thumbPack ? ' card-art--photo-pack' : ''}`}
-                  style={thumbTone
-                    ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${thumbTone} ${thumb ? 22 : 28}%, var(--accent-soft)))` }
-                    : thumb
-                      ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
-                      : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}
+                  style={cardArtStyle}>
                   {thumb
                     ? <img src={thumb} alt={p.thumbAlt || p.name} loading="lazy" decoding="async" />
                     : <Art />}
@@ -75,7 +76,7 @@ function PortfolioPage({ navigate, lang }) {
                   <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.sector}</span>
                   <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.year}</span>
                 </div>
-                <a className="read">{ui ? ui.openCase : 'Открыть кейс'} <span className="arrow">→</span></a>
+                <span className="read">{ui ? ui.openCase : 'Открыть кейс'} <span className="arrow">→</span></span>
               </div>);
 
           })}
@@ -98,12 +99,32 @@ function PortfolioPage({ navigate, lang }) {
 
 function ProjectPage({ slug, navigate, lang }) {
   const MidContactStrip = window.MidContactStrip;
-  const p = window.PORTFOLIO.find((x) => x.slug === slug);
+  const portfolio = window.PORTFOLIO || [];
+  const p = slug ? portfolio.find((x) => x.slug === slug) : null;
   const ui = lang === 'en' && window.getPortfolioUi ? window.getPortfolioUi(lang) : null;
   const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
-  const PageHeroH1 = window.PageHeroH1;
-  const splitPageTitle = window.splitPageTitle;
-  const titleParts = splitPageTitle ? splitPageTitle(p.name) : { line1: p.name, accent: null };
+  const HeroH1 = window.PageHeroH1;
+
+  const [slide, setSlide] = React.useState(0);
+  const [videoAspect, setVideoAspect] = React.useState(null);
+  const sliderRef = React.useRef(null);
+
+  const pauseVideos = React.useCallback(() => {
+    sliderRef.current?.querySelectorAll('video').forEach((v) => { v.pause(); });
+  }, []);
+
+  React.useEffect(() => {
+    setSlide(0);
+    setVideoAspect(null);
+  }, [slug]);
+
+  React.useEffect(() => {
+    pauseVideos();
+  }, [slide, pauseVideos]);
+
+  React.useEffect(() => {
+    setVideoAspect(null);
+  }, [slide, slug]);
 
   if (!p) {
     return (
@@ -126,6 +147,10 @@ function ProjectPage({ slug, navigate, lang }) {
 
   }
 
+  const splitPageTitle = window.splitPageTitle;
+  const titleParts = splitPageTitle
+    ? splitPageTitle(p.name)
+    : { line1: p.name, accent: null, accent2: null };
   const Art = window[p.art] || window.ArtConstellation;
   const defaultArtSlides = [
     { art: Art, label: ui ? ui.slidePreview : 'Превью проекта' },
@@ -138,8 +163,6 @@ function ProjectPage({ slug, navigate, lang }) {
   const VideoPlayer = window.PortfolioVideoPlayer;
   const slideUsesMedia = slides.some((s) => s.src || s.art || isSlideVideo(s));
 
-  const [slide, setSlide] = React.useState(0);
-  const [videoAspect, setVideoAspect] = React.useState(null);
   const activeSlide = slides[slide] || slides[0];
   const stageIsVideo = isSlideVideo(activeSlide);
   const stageAspect = (stageIsVideo && videoAspect)
@@ -147,10 +170,7 @@ function ProjectPage({ slug, navigate, lang }) {
     || (stageIsVideo ? '9 / 16' : null)
     || p.slideAspect
     || '950 / 1024';
-  const sliderRef = React.useRef(null);
-  const pauseVideos = React.useCallback(() => {
-    sliderRef.current?.querySelectorAll('video').forEach((v) => { v.pause(); });
-  }, []);
+
   const goSlide = (index) => {
     pauseVideos();
     setSlide(index);
@@ -158,14 +178,6 @@ function ProjectPage({ slug, navigate, lang }) {
   const next = () => goSlide((slide + 1) % slides.length);
   const prev = () => goSlide((slide - 1 + slides.length) % slides.length);
   const slideAria = (n) => (ui ? ui.slideN.replace('{n}', n) : `Слайд ${n}`);
-
-  React.useEffect(() => {
-    pauseVideos();
-  }, [slide, pauseVideos]);
-
-  React.useEffect(() => {
-    setVideoAspect(null);
-  }, [slide, slug]);
 
   return (
     <main className="page-route" style={{ '--accent-local': p.palette }}>
@@ -178,7 +190,9 @@ function ProjectPage({ slug, navigate, lang }) {
             <span className="sep">/</span>
             <span style={{ color: 'var(--ink)' }}>{p.name}</span>
           </div>
-          <PageHeroH1 line1={titleParts.line1} accent={titleParts.accent} accent2={titleParts.accent2} />
+          {HeroH1
+            ? <HeroH1 line1={titleParts.line1} accent={titleParts.accent} accent2={titleParts.accent2} />
+            : <h1><span className="h1-primary">{titleParts.line1}</span></h1>}
           <p className="lede">{p.hero}</p>
           <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>
@@ -209,7 +223,7 @@ function ProjectPage({ slug, navigate, lang }) {
                 ? { aspectRatio: stageAspect, background: 'var(--bg-2)' }
                 : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
               {slides.map((s, i) => {
-                const A = s.art;
+                const A = typeof s.art === 'function' ? s.art : (s.art ? window[s.art] : null);
                 const videoSrc = s.video || (isSlideVideo(s) ? s.src : null);
                 const isActive = i === slide;
                 return (
@@ -327,4 +341,5 @@ function ProjectPage({ slug, navigate, lang }) {
 
 }
 
-Object.assign(window, { PortfolioPage, ProjectPage });
+window.PortfolioPage = PortfolioPage;
+window.ProjectPage = ProjectPage;

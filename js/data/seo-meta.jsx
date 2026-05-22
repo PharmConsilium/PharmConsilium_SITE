@@ -113,8 +113,9 @@ function resolveSeo(route, lang) {
 
   if (staticMap[route]) return staticMap[route];
 
-  if (route.startsWith('portfolio/') && window.PORTFOLIO) {
-    const slug = route.split('/')[1];
+  const normRoute = String(route || '').replace(/^\/+/, '');
+  if (normRoute.startsWith('portfolio/') && window.PORTFOLIO) {
+    const slug = normRoute.slice('portfolio/'.length).split('/')[0];
     const p = window.PORTFOLIO.find((x) => x.slug === slug);
     if (p) {
       return {
