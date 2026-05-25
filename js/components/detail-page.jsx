@@ -220,7 +220,21 @@ function DetailPage({ routeId, navigate, lang }) {
 
             <h2>{data.deliverablesTitle || t('detailDeliverables')}</h2>
             <ul className="deliver-list">
-              {(data.deliverables || []).map((d, i) => <li key={i}>{d}</li>)}
+              {(data.deliverables || []).map((d, i) => {
+                const isObj = d && typeof d === 'object';
+                const label = isObj ? d.t : null;
+                const body = isObj ? d.d : d;
+                return (
+                  <li key={i}>
+                    {label ? (
+                      <span className="deliver-item-inner">
+                        <b className="deliver-item-kicker">{label}</b>
+                        <span className="deliver-item-body">{body}</span>
+                      </span>
+                    ) : body}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -247,10 +261,15 @@ function DetailPage({ routeId, navigate, lang }) {
           </div>
         </div>
 
-        <div className="detail-cta">
-          <div>
+        <div className={`detail-cta${data.detailCtaTopics?.length ? ' detail-cta--scroll-list' : ''}`}>
+          <div className="detail-cta-body">
             <h3>{data.detailCtaH3 || t('detailCtaH3')}</h3>
             {(data.detailCtaP || t('detailCtaP')) ? <p>{data.detailCtaP || t('detailCtaP')}</p> : null}
+            {data.detailCtaTopics?.length ? (
+              <ol className="detail-cta-topics">
+                {data.detailCtaTopics.map((topic, i) => <li key={i}>{topic}</li>)}
+              </ol>
+            ) : null}
           </div>
           <div className="detail-cta-actions">
             <button type="button" className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>
