@@ -141,7 +141,6 @@ window.I18N_EN = {
       { label: 'Projects', to: null },
       { label: 'Events', to: null },
       { label: 'Careers', to: null },
-      { label: 'Press kit', to: null },
     ],
     hours: 'Mon - Fri, 09:00 - 19:00',
     unp: 'UNP 591019395',

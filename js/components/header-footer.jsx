@@ -411,7 +411,6 @@ function Footer({ navigate, lang }) {
                   <li>Проекты</li>
                   <li>События</li>
                   <li>Карьера</li>
-                  <li>Пресс-кит</li>
                 </>
               }
             </ul>
@@ -448,7 +447,6 @@ function Footer({ navigate, lang }) {
             >
               {isEn ? fc.privacy : 'Политика конфиденциальности'}
             </span>
-            <span>{isEn ? fc.terms : 'Соглашение'}</span>
           </div>
         </div>
       </div>
