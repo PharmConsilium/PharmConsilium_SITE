@@ -1,6 +1,6 @@
 // Sequential Babel loader — scripts run in order (fixes portfolio ProjectPage).
 (function () {
-  var CACHE_BUST = '20260525x';
+  var CACHE_BUST = '20260526a';
 
   var BABEL_SCRIPTS = [
     'js/components/tweaks-panel.jsx',

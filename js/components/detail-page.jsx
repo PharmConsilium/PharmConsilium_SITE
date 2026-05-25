@@ -24,6 +24,11 @@ function DetailArtSlides({ slides }) {
 
   React.useEffect(() => {
     if (lightbox == null) return undefined;
+    const slide = items[lightbox];
+    if (slide) {
+      const preload = new Image();
+      preload.src = slide.srcFull || slide.src;
+    }
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     document.body.classList.add('is-detail-slide-lightbox-open');
@@ -70,9 +75,11 @@ function DetailArtSlides({ slides }) {
           {zoomed.label ? <div className="detail-art-lightbox-caption">{zoomed.label}</div> : null}
           <img
             className="detail-art-lightbox-img"
-            src={zoomed.src}
+            src={zoomed.srcFull || zoomed.src}
             alt={zoomed.alt || zoomed.label || ''}
-            decoding="async"
+            loading="eager"
+            decoding="sync"
+            draggable={false}
           />
         </div>
       </div>
@@ -198,7 +205,7 @@ function DetailPage({ routeId, navigate, lang }) {
             <h2>{data.aboutTitle || t('detailAbout')}</h2>
             {(data.about || []).map((p, i) => <p key={i}>{p}</p>)}
 
-            <h2>{t('detailFeatures')}</h2>
+            <h2>{data.featuresTitle || t('detailFeatures')}</h2>
             <ul className="feat-list">
               {(data.features || []).map((f, i) =>
               <li key={i}>
@@ -242,8 +249,8 @@ function DetailPage({ routeId, navigate, lang }) {
 
         <div className="detail-cta">
           <div>
-            <h3>{t('detailCtaH3')}</h3>
-            {t('detailCtaP') ? <p>{t('detailCtaP')}</p> : null}
+            <h3>{data.detailCtaH3 || t('detailCtaH3')}</h3>
+            {(data.detailCtaP || t('detailCtaP')) ? <p>{data.detailCtaP || t('detailCtaP')}</p> : null}
           </div>
           <div className="detail-cta-actions">
             <button type="button" className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>

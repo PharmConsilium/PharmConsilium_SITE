@@ -410,7 +410,6 @@ function PageShell({ crumb, title, h1Line1, h1Accent, h1Accent2, lede, cards, na
               onClick={() => target && navigate(target)}
               style={{ cursor: target ? 'pointer' : 'default' }}>
                 <div className="card-art">{Art ? <Art /> : null}</div>
-                <div className="card-num">— {String(i + 1).padStart(2, '0')}</div>
                 <h3>{c.title}</h3>
                 <p>{c.desc}</p>
                 {c.tag && <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
@@ -442,11 +441,11 @@ function MarketingPage({ navigate, lang }) {
   lede: 'От CRM медицинского представителя до AI-тренера и платформы омниканального взаимодействия с HCP. Берём на себя всю архитектуру и контент.',
   cards: [
   { title: 'CRM', sub: 'crm', size: 'huge', art: 'ArtNodes',
-    desc: 'Для медицинских представителей и омниканального цифрового взаимодействия с HCP. Сегментация, сценарии визита, оркестрация каналов, отчётность для бренд-команды.',
-    tag: 'Veeva, IQVIA, Pitcher' },
+    desc: 'Специализированная CRM для фармы: база HCP, ЛПУ и аптек, визиты медицинских представителей, CLM, 2CLM, digital-коммуникации и аналитика в одной системе.',
+    tag: 'Pharma CRM, CRM для фармацевтических компаний, Контроль эффективности МП' },
   { title: 'CLM', sub: 'clm', art: 'ArtLayers',
-    desc: 'Интерактивные презентации визита. Загружаем в Veeva, IQVIA, Agnitio, Pitcher.',
-    tag: 'визит, контент' },
+    desc: 'Программное обеспечение для демонстрации CLM-презентаций медицинским представителем на F2F-визитах. Интерактивные сценарии, метрики взаимодействия, экспорт данных.',
+    tag: 'CLM, CLM — презентации' },
   { title: '2CLM', sub: '2clm', art: 'ArtTablet',
     desc: 'Двухканальная презентация: тач-визит и удалённая работа с одним сценарием контента.',
     tag: 'remote eDetailing' },
@@ -462,8 +461,8 @@ function MarketingPage({ navigate, lang }) {
   { title: 'Цифровая поддержка эвентов', sub: 'events', art: 'ArtRadar',
     desc: 'Регистрационные лендинги, ИИ-помощник на конференции, эвент-боты, навигация по программе, опросы до и после события.',
     tag: 'конгрессы' },
-  { title: 'ИИ-решения', sub: 'ai', art: 'ArtAI',
-    desc: 'AI-тренер для медпредов, ИИ-ассистенты, платформы опросов и бизнес-анализа, ИИ-консалтинг.',
+  { title: 'Тренинги для медицинских представителей', sub: 'ai', art: 'ArtAI',
+    desc: 'AI-тренер для медпредставителей, ИИ-ассистенты, платформы опросов и бизнес-анализа, ИИ-консалтинг для бренд-команд.',
     tag: 'AI · 2026' }]
   }} />;
 }
@@ -523,7 +522,7 @@ function SalesPage({ navigate, lang }) {
 
 function ContentPage({ navigate, lang }) {
   return <SectionPage id="content" navigate={navigate} lang={lang} ru={{
-  crumb: 'Контент и игры',
+  crumb: 'Контент',
   h1Line1: 'HCP-контент на языке медицинской науки',
   h1Accent: 'для врачей и фармацевтов',
   lede: 'Сценарии, презентации, видео, статьи, игры и квизы. Делаем сложное понятным — для врача, провизора и пациента.',
@@ -614,7 +613,6 @@ function DirectoryPage({ navigate, lang }) {
               return (
                 <div key={i} className="card" style={{ gridColumn: 'span 6' }}>
                   <div className="card-art">{A && <A />}</div>
-                  <div className="card-num">— {String(i + 1).padStart(2, '0')}</div>
                   <h3>{a.t}</h3>
                   <p>{a.d}</p>
                 </div>
@@ -674,7 +672,6 @@ function DirectoryPage({ navigate, lang }) {
         <div className="cards-grid" style={{ marginTop: 32 }}>
           {stats.map((s) =>
           <div key={s.n} className="card" style={{ gridColumn: 'span 6', minHeight: 'auto', paddingBottom: 18 }}>
-              <div className="card-num">— {s.n}</div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </div>
@@ -758,7 +755,7 @@ function TeamPage({ navigate, lang }) {
           <div className="crumbs">
             <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>{en ? en.crumb : 'Команда'}</span>
+            <span style={{ color: 'var(--ink)' }}>{en ? en.crumb : 'О нас'}</span>
           </div>
           <PageHeroH1
             line1={en ? (en.h1Line1 || 'Our mission') : 'Наша миссия'}

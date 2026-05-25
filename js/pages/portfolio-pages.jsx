@@ -68,7 +68,6 @@ function PortfolioPage({ navigate, lang }) {
                     ? <img src={thumb} alt={p.thumbAlt || p.name} loading="lazy" decoding="async" />
                     : <Art />}
                 </div>
-                <div className="card-num">— {String(i + 1).padStart(2, '0')}</div>
                 <h3>{p.name}</h3>
                 <p>{p.short}</p>
                 <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>

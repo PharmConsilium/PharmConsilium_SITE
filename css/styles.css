@@ -1895,7 +1895,8 @@ button { font-family: inherit; }
   padding: 48px 20px 24px;
 }
 .detail-art-lightbox-shell {
-  width: min(1200px, 96vw);
+  width: max-content;
+  max-width: 96vw;
   max-height: 92vh;
   display: flex;
   flex-direction: column;
@@ -1904,7 +1905,8 @@ button { font-family: inherit; }
 }
 .detail-art-lightbox {
   position: relative;
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
   max-height: calc(92vh - 58px);
   display: flex;
   flex-direction: column;
@@ -1943,12 +1945,16 @@ button { font-family: inherit; }
   color: color-mix(in srgb, var(--surface) 90%, transparent);
 }
 .detail-art-lightbox-img {
-  width: 100%;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
   max-height: calc(92vh - 48px);
   object-fit: contain;
   border-radius: var(--radius-lg);
   background: var(--bg-2);
   box-shadow: var(--shadow-md);
+  image-rendering: auto;
 }
 body.is-detail-slide-lightbox-open .robot-img {
   opacity: 0;
