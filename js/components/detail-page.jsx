@@ -243,7 +243,7 @@ function DetailPage({ routeId, navigate, lang }) {
         <div className="detail-cta">
           <div>
             <h3>{t('detailCtaH3')}</h3>
-            <p>{t('detailCtaP')}</p>
+            {t('detailCtaP') ? <p>{t('detailCtaP')}</p> : null}
           </div>
           <div className="detail-cta-actions">
             <button type="button" className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>

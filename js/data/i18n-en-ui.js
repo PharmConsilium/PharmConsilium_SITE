@@ -27,8 +27,8 @@ window.I18N_EN = {
         tag: 'Closed-Loop Marketing',
         title: 'CLM — presentations for medical representatives',
         desc: 'No costly content production. Upload PowerPoint or PDF and the system is ready to go.',
-        artImg: 'assets/uploads/mega-marketing-clm.png',
-        artAlt: 'CLM — closed-loop marketing',
+        artImg: 'assets/uploads/mega-marketing.png',
+        artAlt: 'Pharmaceutical marketing — CRM and analytics',
       },
     },
     hcp: {
@@ -44,7 +44,8 @@ window.I18N_EN = {
         tag: 'Online learning platform',
         title: 'Video training hub for physicians and pharmacists',
         desc: 'Video lectures, reference materials, and quizzes of any complexity in one online workspace.',
-        art: 'ArtPulse',
+        artImg: 'assets/uploads/mega-hcp.png',
+        artAlt: 'Healthcare — video training for HCPs',
       },
     },
     sales: {
@@ -58,7 +59,8 @@ window.I18N_EN = {
         tag: 'D2F, Digital to Face',
         title: 'Digital MedRep: your digital field force promotes your brand',
         desc: 'Greater reach and contact frequency with HCPs. Clear FTE and sales effectiveness metrics.',
-        art: 'ArtLaunch',
+        artImg: 'assets/uploads/mega-sales.png',
+        artAlt: 'Outsourcing — digital medical representative',
       },
     },
     content: {
@@ -74,7 +76,8 @@ window.I18N_EN = {
         tag: 'Experience Design',
         title: 'AI talking head and video avatars',
         desc: 'A digital avatar that speaks to your audience about your brands. We mirror your field force and move it into digital format.',
-        art: 'ArtVideo',
+        artImg: 'assets/uploads/mega-content.png',
+        artAlt: 'Content — digital interfaces and AI',
       },
     },
     directory: {
@@ -89,7 +92,8 @@ window.I18N_EN = {
         tag: 'Drug reference guide',
         title: 'Residency-grade architecture without promotional noise',
         desc: 'Up-to-date data for decision-making at the point of care.',
-        art: 'ArtDirectory',
+        artImg: 'assets/uploads/mega-directory.png',
+        artAlt: 'Drug reference guide',
       },
     },
     team: {
@@ -103,7 +107,8 @@ window.I18N_EN = {
         tag: 'PharmConsilium news',
         title: 'What people say about PharmConsilium — and what they borrow from us',
         desc: 'All PharmConsilium news we forgot to post on Instagram, Telegram, or Pinterest.',
-        art: 'ArtConstellation',
+        artImg: 'assets/uploads/mega-team.png',
+        artAlt: 'About PharmConsilium',
       },
     },
     portfolio: {

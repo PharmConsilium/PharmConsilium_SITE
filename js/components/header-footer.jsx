@@ -1,4 +1,4 @@
-// Header with Apple-style mega-menu drawer, brand, lang toggle, theme switch.
+﻿// Header with Apple-style mega-menu drawer, brand, lang toggle, theme switch.
 
 const NAV_ITEMS = [
 { id: 'marketing', label: 'Фармацевтический маркетинг' },
@@ -27,8 +27,8 @@ const MEGA = {
       tag: 'Closed-Loop Marketing',
       title: 'CLM — презентации для медицинских представителей',
       desc: 'Нет дорогой разработки контента! Загружаете PowerPoint или PDF, и система готова к работе.',
-      artImg: 'assets/uploads/mega-marketing-clm.png',
-      artAlt: 'CLM — closed-loop marketing',
+      artImg: 'assets/uploads/mega-marketing.png',
+      artAlt: 'Фармацевтический маркетинг — CRM и аналитика',
     }
   },
   hcp: {
@@ -44,7 +44,8 @@ const MEGA = {
       tag: 'Online learning platform',
       title: 'Кабинет видеотренингов для врачей и провизоров',
       desc: 'Видеолекция, методические материалы и квизы любой сложности в одном онлайн кабинете.',
-      art: 'ArtPulse'
+      artImg: 'assets/uploads/mega-hcp.png',
+      artAlt: 'Здравоохранение — видеотренинги для HCP',
     }
   },
   sales: {
@@ -58,7 +59,8 @@ const MEGA = {
       tag: 'D2F, Digital to Face',
       title: 'Digital MedRep: цифровой SF продвигает ваш бренд',
       desc: 'Увеличение охвата и частоты контактов с НСP. Понятные метрики эффективности FTE/продажи.',
-      art: 'ArtLaunch'
+      artImg: 'assets/uploads/mega-sales.png',
+      artAlt: 'Аутсорсинг — цифровой медицинский представитель',
     }
   },
   content: {
@@ -74,7 +76,8 @@ const MEGA = {
       tag: 'Experience Design',
       title: 'AI-«говорящая голова» и видеоаватары',
       desc: ' Цифровой аватар, который говорит через с аудиторией про ваши бренды. Скопируем ваш SF и переметим в цифровой формат. ',
-      art: 'ArtVideo'
+      artImg: 'assets/uploads/mega-content.png',
+      artAlt: 'Контент — цифровые интерфейсы и AI',
     }
   },
   directory: {
@@ -89,7 +92,8 @@ const MEGA = {
       tag: 'Drug reference guide ',
       title: 'Архитектура ординаторской без рекламного шума',
       desc: 'Данные для принятия решений на рабочем месте, актуальные.',
-      art: 'ArtDirectory'
+      artImg: 'assets/uploads/mega-directory.png',
+      artAlt: 'Справочник лекарственных средств',
     }
   },
   team: {
@@ -103,7 +107,8 @@ const MEGA = {
       tag: 'PharmConsilium news',
       title: 'Что про ФармКонсилиум говорят и что у нас подсматривают',
       desc: 'Все новости ФармКонсилиум, которые мы забыли опубликовать в Instagram/Telegram/Pinterest.',
-      art: 'ArtConstellation'
+      artImg: 'assets/uploads/mega-team.png',
+      artAlt: 'О нас — ФармКонсилиум',
     }
   },
   portfolio: {
