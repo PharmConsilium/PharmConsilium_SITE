@@ -24,10 +24,11 @@ const MEGA = {
     { label: 'Тренинги для медицинских представителей', to: 'marketing/ai' }],
 
     featured: {
-      tag: 'Инструмент',
-      title: 'AI-тренер для медпредставителей',
-      desc: 'Гибридная среда тренировок на реальных сценариях визита: симулятор HCP, ИИ-обратная связь, метрики прогресса.',
-      art: 'ArtAI'
+      tag: 'Closed-Loop Marketing',
+      title: 'CLM — презентации для медицинских представителей',
+      desc: 'Нет дорогой разработки контента! Загружаете PowerPoint или PDF, и система готова к работе.',
+      artImg: 'assets/uploads/mega-marketing-clm.png',
+      artAlt: 'CLM — closed-loop marketing',
     }
   },
   hcp: {
@@ -40,9 +41,9 @@ const MEGA = {
     { label: 'Создание систем анализа и обработки данных RWE', to: 'hcp/psp' }],
 
     featured: {
-      tag: 'Платформа',
-      title: 'Персональный контентный путь для врача',
-      desc: 'Рекомендательная система собирает релевантные публикации, видео и обновления под профиль специалиста.',
+      tag: 'Online learning platform',
+      title: 'Кабинет видеотренингов для врачей и провизоров',
+      desc: 'Видеолекция, методические материалы и квизы любой сложности в одном онлайн кабинете.',
       art: 'ArtPulse'
     }
   },
@@ -54,9 +55,9 @@ const MEGA = {
     { label: 'Омниканальные кампании для продвижения', to: 'sales/omnichannel' }],
 
     featured: {
-      tag: 'Сервис',
-      title: 'Лонч нового бренда за 90 дней',
-      desc: 'Используйте нашу клиентскую базу медспециалистов и инструменты для быстрого старта на рынке РБ.',
+      tag: 'D2F, Digital to Face',
+      title: 'Digital MedRep: цифровой SF продвигает ваш бренд',
+      desc: 'Увеличение охвата и частоты контактов с НСP. Понятные метрики эффективности FTE/продажи.',
       art: 'ArtLaunch'
     }
   },
@@ -70,9 +71,9 @@ const MEGA = {
     { label: 'Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС', to: 'content/presentations' }],
 
     featured: {
-      tag: 'Студия',
-      title: 'AI-говорящая голова и видеоаватары',
-      desc: 'Готовые видео и анимация: 3D-визуализация механизма действия, ИИ-аватары на 12 языках, серия сценариев.',
+      tag: 'Experience Design',
+      title: 'AI-«говорящая голова» и видеоаватары',
+      desc: ' Цифровой аватар, который говорит через с аудиторией про ваши бренды. Скопируем ваш SF и переметим в цифровой формат. ',
       art: 'ArtVideo'
     }
   },
@@ -85,23 +86,23 @@ const MEGA = {
     { label: 'Доверительная среда без рекламного шума', to: 'directory' }],
 
     featured: {
-      tag: '1000+ специалистов · ежедневно',
-      title: 'Архитектура ординаторской — без шума',
-      desc: 'Контент, который реально помогает в принятии практических решений. Доступ для врачей и провизоров.',
+      tag: 'Drug reference guide ',
+      title: 'Архитектура ординаторской без рекламного шума',
+      desc: 'Данные для принятия решений на рабочем месте, актуальные.',
       art: 'ArtDirectory'
     }
   },
   team: {
-    title: 'Мы делаем мир лучше!',
+    title: 'Сделайте мир лучше!',
     links: [
     { label: 'Наша миссия в этой Вселенной', to: 'team' },
     { label: 'Команда', to: 'team/career' },
     { label: 'Портфолио, проекты, и фичи ФармКонсилиум', to: 'portfolio' }],
 
     featured: {
-      tag: 'Команда',
-      title: 'Лечение доверия — наша работа',
-      desc: '15 лет в фарм-маркетинге, 80+ запусков, экспертиза по всей территории РБ и СНГ.',
+      tag: 'PharmConsilium news',
+      title: 'Что про ФармКонсилиум говорят и что у нас подсматривают',
+      desc: 'Все новости ФармКонсилиум, которые мы забыли опубликовать в Instagram/Telegram/Pinterest.',
       art: 'ArtConstellation'
     }
   },
@@ -167,7 +168,8 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   const navItems = window.getSiteNav ? window.getSiteNav(lang) : NAV_ITEMS;
   const megaConfig = window.getSiteMega ? window.getSiteMega(lang) : MEGA;
   const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
-  const ArtTag = openMenu && megaConfig[openMenu] ? window[megaConfig[openMenu].featured.art] : null;
+  const featured = openMenu && megaConfig[openMenu] ? megaConfig[openMenu].featured : null;
+  const ArtTag = featured?.art && !featured.artImg ? window[featured.art] : null;
 
   return (
     <header className="header">
@@ -256,7 +258,11 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
                 <div className="mf-title">{megaConfig[openMenu].featured.title}</div>
                 <div className="mf-desc">{megaConfig[openMenu].featured.desc}</div>
               </div>
-              <div className="mf-art">{ArtTag && <ArtTag />}</div>
+              <div className={`mf-art${featured?.artImg ? ' mf-art--photo' : ''}`}>
+                {featured?.artImg
+                  ? <img src={featured.artImg} alt={featured.artAlt || ''} className="mf-art-img" decoding="async" />
+                  : ArtTag ? <ArtTag /> : null}
+              </div>
             </div>
           </div>
         }
@@ -447,3 +453,4 @@ function Footer({ navigate, lang }) {
 window.Header = Header;
 window.Footer = Footer;
 window.NAV_ITEMS = NAV_ITEMS;
+window.MEGA = MEGA;

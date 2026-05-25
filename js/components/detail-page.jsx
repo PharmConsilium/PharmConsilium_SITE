@@ -1,5 +1,137 @@
 // DetailPage — renders any subpage from SUBPAGES dictionary.
 
+function DetailArtSlides({ slides }) {
+  const items = slides || [];
+  const [idx, setIdx] = React.useState(0);
+  const [lightbox, setLightbox] = React.useState(null);
+  const n = items.length;
+
+  const prev = React.useCallback(() => {
+    setIdx((i) => (i - 1 + n) % n);
+  }, [n]);
+
+  const next = React.useCallback(() => {
+    setIdx((i) => (i + 1) % n);
+  }, [n]);
+
+  const closeLightbox = React.useCallback(() => setLightbox(null), []);
+
+  React.useEffect(() => {
+    if (n <= 1 || lightbox != null) return undefined;
+    const timer = setInterval(() => setIdx((i) => (i + 1) % n), 6000);
+    return () => clearInterval(timer);
+  }, [n, lightbox]);
+
+  React.useEffect(() => {
+    if (lightbox == null) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('is-detail-slide-lightbox-open');
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.classList.remove('is-detail-slide-lightbox-open');
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [lightbox, closeLightbox]);
+
+  if (!n) return null;
+
+  const cur = items[idx];
+  const zoomed = lightbox != null ? items[lightbox] : null;
+
+  const lightboxLayer = zoomed ? (
+    <div
+      className="detail-art-lightbox-backdrop"
+      role="presentation"
+      onClick={closeLightbox}
+    >
+      <div
+        className="detail-art-lightbox-shell"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          className="detail-art-lightbox-close"
+          onClick={closeLightbox}
+          aria-label="Закрыть"
+        >
+          ×
+        </button>
+        <div
+          className="detail-art-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={zoomed.alt || zoomed.label || 'Увеличенный слайд'}
+        >
+          {zoomed.label ? <div className="detail-art-lightbox-caption">{zoomed.label}</div> : null}
+          <img
+            className="detail-art-lightbox-img"
+            src={zoomed.src}
+            alt={zoomed.alt || zoomed.label || ''}
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  ) : null;
+
+  return (
+    <>
+    <div className="detail-art-slider">
+      <div className="detail-art-slider-stage proj-slider-stage proj-slider-stage--image">
+        {items.map((s, i) =>
+          <div key={i} className={`proj-slide ${i === idx ? 'on' : ''}`}>
+            <button
+              type="button"
+              className="detail-art-slide-zoom"
+              onClick={() => i === idx && setLightbox(i)}
+              aria-label={s.alt ? `Увеличить: ${s.alt}` : 'Увеличить слайд'}
+              tabIndex={i === idx ? 0 : -1}
+            >
+              <img
+                className="proj-slide-img detail-art-slide-img"
+                src={s.src}
+                alt={s.alt || s.label || ''}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </button>
+          </div>
+        )}
+        {n > 1 &&
+          <>
+            <div className="proj-slider-meta">
+              <span>{String(idx + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
+              {cur.label ? <span>· {cur.label}</span> : null}
+            </div>
+            <button type="button" className="proj-slider-nav prev" onClick={prev} aria-label="Предыдущий слайд">←</button>
+            <button type="button" className="proj-slider-nav next" onClick={next} aria-label="Следующий слайд">→</button>
+          </>
+        }
+      </div>
+      {n > 1 &&
+        <div className="proj-slider-dots detail-art-slider-dots">
+          {items.map((_, i) =>
+            <button
+              key={i}
+              type="button"
+              className={`dot ${i === idx ? 'on' : ''}`}
+              onClick={() => setIdx(i)}
+              aria-label={`Слайд ${i + 1}`}
+            />
+          )}
+        </div>
+      }
+    </div>
+    {lightboxLayer && ReactDOM.createPortal(lightboxLayer, document.body)}
+    </>
+  );
+}
+
 function DetailPage({ routeId, navigate, lang }) {
   const data = window.SUBPAGES[routeId];
   const MidContactStrip = window.MidContactStrip;
@@ -55,9 +187,6 @@ function DetailPage({ routeId, navigate, lang }) {
             }}>{tag}</span>
             )}
           </div>
-          <div style={{ display: 'flex', gap: 10, marginTop: 32 }}>
-            <button className="btn btn-ghost">{t('detailDownload')}</button>
-          </div>
         </div>
       </section>
 
@@ -66,7 +195,7 @@ function DetailPage({ routeId, navigate, lang }) {
       <section className="container">
         <div className="detail-grid">
           <div className="detail-body">
-            <h2>{t('detailAbout')}</h2>
+            <h2>{data.aboutTitle || t('detailAbout')}</h2>
             {(data.about || []).map((p, i) => <p key={i}>{p}</p>)}
 
             <h2>{t('detailFeatures')}</h2>
@@ -82,14 +211,16 @@ function DetailPage({ routeId, navigate, lang }) {
               )}
             </ul>
 
-            <h2>{t('detailDeliverables')}</h2>
+            <h2>{data.deliverablesTitle || t('detailDeliverables')}</h2>
             <ul className="deliver-list">
               {(data.deliverables || []).map((d, i) => <li key={i}>{d}</li>)}
             </ul>
           </div>
 
-          <div className="detail-art">
-            <Art />
+          <div className={`detail-art${data.artSlides?.length ? ' detail-art--slides' : ''}`}>
+            {data.artSlides?.length
+              ? <DetailArtSlides slides={data.artSlides} />
+              : Art ? <Art /> : null}
           </div>
         </div>
 
@@ -98,11 +229,10 @@ function DetailPage({ routeId, navigate, lang }) {
             fontFamily: 'var(--font-display)', fontWeight: 500,
             fontSize: 'clamp(28px, 3.4vw, 42px)',
             letterSpacing: '-.025em', margin: '0 0 24px'
-          }}>{t('detailSteps')}</h2>
+          }}>{data.stepsTitle || t('detailSteps')}</h2>
           <div className="steps">
             {(data.steps || []).map((s, i) =>
             <div key={i} className="step">
-                <div className="step-n">— {s.n}</div>
                 <h4>{s.t}</h4>
                 <p>{s.d}</p>
               </div>
@@ -117,7 +247,6 @@ function DetailPage({ routeId, navigate, lang }) {
           </div>
           <div className="detail-cta-actions">
             <button type="button" className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>
-            <button type="button" className="btn btn-ghost">{t('detailCases')}</button>
           </div>
         </div>
 
