@@ -40,6 +40,10 @@ const SEO_STATIC = {
     title: 'Команда и контакты · ФармКонсилиум',
     description: 'Связаться с командой ФармКонсилиум: 80+ запусков, 15 лет в фарм-маркетинге, внедрение под ключ.',
   },
+  privacy: {
+    title: 'Политика конфиденциальности · ФармКонсилиум',
+    description: 'Политика обработки и защиты персональных данных ЧП «ФармКонсилиум» на цифровых ресурсах. Контакты ответственного лица.',
+  },
   portfolio: {
     title: 'Портфолио, проекты и фичи · ФармКонсилиум',
     description: 'Реализованные проекты: CRM, CLM, лончи, образовательные платформы и цифровые кампании в РБ.',
@@ -74,6 +78,10 @@ const SEO_STATIC_EN = {
   team: {
     title: 'About us · PharmConsilium',
     description: 'Contact the PharmConsilium team: 80+ launches, 15 years in pharma marketing, turnkey implementation.',
+  },
+  privacy: {
+    title: 'Privacy policy · PharmConsilium',
+    description: 'Personal data processing and protection policy of PharmConsilium on digital resources. Data protection contact.',
   },
   portfolio: {
     title: 'Portfolio, projects, and features · PharmConsilium',

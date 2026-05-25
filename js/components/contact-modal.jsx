@@ -101,8 +101,12 @@ function ContactFormModal({ open, onClose, lang }) {
     e.preventDefault();
     onClose();
     window.setTimeout(() => {
-      const el = document.getElementById('privacy-policy');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.location.hash.replace(/^#\/?/, '') !== 'privacy') {
+        window.location.hash = 'privacy';
+      } else {
+        const el = document.getElementById('privacy-policy');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }, 80);
   }
 
@@ -259,7 +263,7 @@ function ContactFormModal({ open, onClose, lang }) {
             <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
             <span>
               {s.consentBefore}{' '}
-              <a href="#privacy-policy" className="contact-inline-link" onClick={goPrivacy}>
+              <a href="#privacy" className="contact-inline-link" onClick={goPrivacy}>
                 {s.consentLink}
               </a>{' '}
               {s.consentAfter}

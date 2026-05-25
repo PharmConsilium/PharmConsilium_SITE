@@ -439,16 +439,17 @@ function Footer({ navigate, lang }) {
         <div className="footer-meta">
           <div>{isEn ? fc.unp : 'УНП 591019395'}</div>
           <div style={{ display: 'flex', gap: 18 }}>
-            <span>{isEn ? fc.privacy : 'Политика конфиденциальности'}</span>
+            <span
+              role="link"
+              tabIndex={0}
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate('privacy')}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('privacy'); } }}
+            >
+              {isEn ? fc.privacy : 'Политика конфиденциальности'}
+            </span>
             <span>{isEn ? fc.terms : 'Соглашение'}</span>
           </div>
-        </div>
-        <div id="privacy-policy" className="privacy-policy-block">
-          <h4>{isEn ? fc.privacyTitle : 'Политика конфиденциальности'}</h4>
-          <p>
-            {isEn ? fc.privacyText : 'Здесь будет полный текст политики обработки персональных данных ЧП «ФармКонсилиум». По вопросам обработки данных напишите на'}{' '}
-            <a href="mailto:pharmconsilium@gmail.com" style={{ color: 'var(--accent)' }}>pharmconsilium@gmail.com</a>.
-          </p>
         </div>
       </div>
     </footer>);

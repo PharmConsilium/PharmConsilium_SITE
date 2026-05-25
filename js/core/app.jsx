@@ -160,6 +160,7 @@ function App() {
 
   const PortfolioPageCmp = window.PortfolioPage;
   const ProjectPageCmp = window.ProjectPage;
+  const PrivacyPageCmp = window.PrivacyPage;
 
   let page;
   if (route === 'portfolio') {
@@ -181,6 +182,11 @@ function App() {
       case 'content':   page = <ContentPage key={pageKey} navigate={navigate} lang={lang}/>; break;
       case 'directory': page = <DirectoryPage key={pageKey} navigate={navigate} lang={lang}/>; break;
       case 'team':      page = <TeamPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'privacy':
+        page = PrivacyPageCmp
+          ? <PrivacyPageCmp key={pageKey} navigate={navigate} lang={lang}/>
+          : null;
+        break;
       default:          page = <HomePage key={pageKey} navigate={navigate} scenario={scenario} setScenario={setScenario} lang={lang}/>;
     }
   }

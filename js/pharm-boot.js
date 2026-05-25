@@ -8,6 +8,7 @@
     'js/components/forecast-chart.jsx',
     'js/components/header-footer.jsx',
     'js/pages/pages.jsx',
+    'js/pages/privacy-page.jsx',
     'js/data/subpages-data.jsx',
     'js/data/portfolio-data.jsx',
     'js/data/i18n.jsx',
