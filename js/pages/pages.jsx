@@ -162,7 +162,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
               accent={en ? en.heroH1Accent : 'для лечения доверия'}
             />
             <p className="hero-lede">
-              {en ? en.heroLede : 'Узнайте прогноз Вашего бренда на фармацевтическом рынке СНГ, наш искусственный интеллект «Робби» представит Вам основные показатели рынка и возможности для роста. Просто введите название Вашего бренда и страны, через несколько секунд узнаете прогноз.'}
+              {en ? en.heroLede : 'Узнайте прогноз вашего бренда на фармацевтическом рынке СНГ, наш искусственный интеллект «Робби» представит вам основные показатели рынка и возможности для роста. Просто введите название вашего бренда и страны, через несколько секунд узнаете прогноз.'}
             </p>
             <div className="hero-cta">
               <label className="hero-cta-field hero-cta-field--combined">
@@ -200,7 +200,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
           <div className="forecast-card">
             <div className="fc-head">
               <div>
-                <div className="fc-title">{en ? en.forecastTitle : 'ИИ Робби рассчитает прогноз Вашего бренда на фармацевтическом рынке СНГ'}</div>
+                <div className="fc-title">{en ? en.forecastTitle : 'ИИ Робби рассчитает прогноз вашего бренда на фармацевтическом рынке СНГ'}</div>
               </div>
               <div className="fc-pill"><span className="dot"></span>LIVE</div>
             </div>
