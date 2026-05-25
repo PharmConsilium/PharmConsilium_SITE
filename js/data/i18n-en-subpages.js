@@ -17,16 +17,16 @@ window.SUBPAGES_EN_PATCHES = {
     stepsTitle: 'You get valuable bonuses',
     deliverablesTitle: 'Modular CRM-PharmConsilium structure',
     about: [
-      'CRM-PharmConsilium is built specifically for pharmaceutical business needs. The platform unifies in one system a database of physicians, pharmacies, healthcare facilities, and organizations; field force activity; CLM presentations on visits; post-visit content engagement; digital communications; and management analytics. It is not a generic CRM adapted for pharma, but a dedicated solution for how field teams, marketing, and management actually work.',
+      'CRM-PharmConsilium is built specifically for pharmaceutical business needs. The platform unifies in one system a physician database, a full pharmacy database, healthcare facilities and organizations, field force activity, CLM presentations on visits, post-visit content engagement, digital communications, and management analytics. It is not a generic CRM adapted for pharma, but a dedicated solution for how field teams, marketing, and management actually work.',
     ],
     features: [
       { t: 'Tailored to your business goals', d: 'Reporting configured to your KPIs, with a modular system for flexibility.' },
       { t: 'All marketing activity on one screen', d: 'From rep calls to medical congresses.' },
       { t: 'Ready-made database for a fast start', d: 'Full Belarus HCO and pharmacy database with geolocation.' },
-      { t: 'Modular CRM-PharmConsilium structure', d: 'What you get—nothing extra, only tools to reach your business goals.' },
+      { t: 'Modular CRM-PharmConsilium structure', d: 'You get nothing extra—only tools to reach your business goals.' },
     ],
     steps: [
-      { n: '01', t: 'Powered by AI', d: 'AI analyzes current data and focuses on SF management: it aggregates F2F, CLM, 2CLM, and digital touchpoints into clear signals for field force leaders.' },
+      { n: '01', t: 'AI-powered', d: 'AI analyzes current data and focuses on SF management: it aggregates F2F, CLM, 2CLM, and digital touchpoints into clear signals for field force leaders.' },
       { n: '02', t: 'Fast reporting', d: 'Every company has its own rules for SF activity reports. We configure one-click export to match your requirements.' },
       { n: '03', t: 'Pharmacovigilance', d: 'We implement your corporate pharmacovigilance form and configure data collection procedures precisely.' },
       { n: '04', t: 'Implementation', d: 'Staff training and support. Proprietary tools for remote learning and SF training.' },
@@ -49,6 +49,7 @@ window.SUBPAGES_EN_PATCHES = {
       'CLM-PharmConsilium is a CLM system built for how medical representatives actually work: fast rollout, minimal content spend, managed analytics, and CRM export. We turn your PowerPoint/PDF decks and video into CLM presentations—without bespoke development or long production cycles.',
     ],
     featuresTitle: 'CLM-PharmConsilium:',
+    deliverablesTitle: 'What you get',
     stepsTitle: 'You get valuable bonuses',
     features: [
       { t: 'Works on smartphone and tablet', d: 'Choose the device that suits your field team. We help format presentations and e-detailers for phones. Light design tweaks and decluttered slides create a tool reps actually want for HCP engagement.' },
@@ -73,7 +74,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'marketing/2clm': {
     section: 'Pharmaceutical marketing',
-    title: '2CLM — dual-channel presentation',
+    title: '2CLM — software to improve SF visit effectiveness',
     lede: 'One scenario, two modes: touch visit and remote engagement. Content adapts to the communication format without rebuilding.',
     tags: ['2CLM', 'remote eDetailing', 'omnichannel'],
     about: [

@@ -16,7 +16,7 @@ window.I18N_EN = {
       links: [
         { label: 'CRM for medical representatives', to: 'marketing/crm' },
         { label: 'CLM — F2F detailing software with promo content', to: 'marketing/clm' },
-        { label: '2CLM — software to improve SF visit effectiveness', to: 'marketing/clm' },
+        { label: '2CLM — software to improve SF visit effectiveness', to: 'marketing/2clm' },
         { label: 'Chatbot and TeleApp — digital ecosystem for HCP engagement', to: 'marketing/chatbot' },
         { label: 'Web development: sites, landing pages, longreads, congress and webinar platforms', to: 'marketing/web' },
         { label: 'Mobile app development', to: 'marketing/mobile' },

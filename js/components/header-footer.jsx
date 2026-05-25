@@ -16,7 +16,7 @@ const MEGA = {
     links: [
     { label: 'CRM для медицинских представителей', to: 'marketing/crm' },
     { label: 'CLM — ПО для работы МП F2F с промоконтентом', to: 'marketing/clm' },
-    { label: '2CLM — ПО для увеличения эффективности визитов SF', to: 'marketing/clm' },
+    { label: '2CLM — ПО для увеличения эффективности визитов SF', to: 'marketing/2clm' },
     { label: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', to: 'marketing/chatbot' },
     { label: 'Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров', to: 'marketing/web' },
     { label: 'Разработка мобильных приложений', to: 'marketing/mobile' },
