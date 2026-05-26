@@ -551,8 +551,8 @@ function ContentPage({ navigate, lang }) {
     desc: 'Визуальная идентичность бренда: брендбук, упаковка, баннеры и промоматериалы для HCP и пациентов.',
     tag: 'PharmaBranding · PackagingDesign' },
   { title: 'Реклама', sub: 'advertising', art: 'ArtBrowser',
-    desc: 'Креативы для digital-кампаний — в рамках законодательства РБ о рекламе ЛС.',
-    tag: 'digital · РБ' }]
+    desc: 'ИИ-аватары, подкасты для HCP и AI-копирайтинг — контент-фабрика из одного брифа.',
+    tag: 'AIcontent · DigitalAvatar · HCPengagement' }]
   }} />;
 }
 
