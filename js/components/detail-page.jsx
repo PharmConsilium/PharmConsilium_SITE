@@ -58,7 +58,6 @@ function DetailArtSlides({ slides }) {
 
   if (!n) return null;
 
-  const cur = items[idx];
   const zoomed = lightbox != null ? items[lightbox] : null;
 
   const lightboxLayer = zoomed ? (
@@ -151,12 +150,6 @@ function DetailArtSlides({ slides }) {
           </>
         ) : null}
       </div>
-      {n > 1 ? (
-        <div className="proj-slider-meta detail-art-slider-meta">
-          <span>{String(idx + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
-          {cur.label ? <span>· {cur.label}</span> : null}
-        </div>
-      ) : null}
       {n > 1 &&
         <div className="proj-slider-dots detail-art-slider-dots">
           {items.map((_, i) =>

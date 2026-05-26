@@ -115,6 +115,11 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'Chatbot and TeleApp — digital ecosystem for HCP engagement',
     lede: 'For long-term engagement with your clients, we build a unique digital architecture in Telegram—a bot in the user\'s chat list with built-in mobile-app capabilities.',
     tags: ['TelegramBot', 'TeleApp', 'ChatBot', 'ConversationalAI', 'HCPEngagement', 'PharmaMarketing', 'DigitalHealth', 'WebApp'],
+    artSlides: [
+      { src: 'assets/uploads/chatbot-detail-slide-1.png?v=20260525', label: 'Unified digital ecosystem', alt: 'PharmConsilium chatbot and TeleApp: hybrid of Telegram chat and mobile app experience' },
+      { src: 'assets/uploads/chatbot-detail-slide-2.png?v=20260525', label: 'Telegram chatbot', alt: 'PharmConsilium Telegram bot: dialogue, drug search, navigation menu, and TeleApp launch' },
+      { src: 'assets/uploads/chatbot-detail-slide-3.png?v=20260525', label: 'TeleApp — web app in Telegram', alt: 'PharmConsilium TeleApp: Telegram mini-app with calculators, drug search, and catalogs' },
+    ],
     aboutTitle: 'About the project',
     about: [
       'The Telegram chatbot and TeleApp are a unified two-level digital ecosystem built by PharmConsilium for pharma. Level one—an AI chatbot for personalized HCP dialogue: answers questions, delivers content, guides scenarios. Level two—TeleApp (Telegram Web App): a full mobile-style UI with catalogs and trackers, opened from chat with no install. Together: seamless path from first message to deep brand engagement.',
@@ -148,6 +153,11 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'Web development: sites, landing pages, longreads, congress and webinar platforms',
     lede: 'PharmConsilium web solutions for pharma brands: HCP portals, product landing pages, longreads, and turnkey online congress platforms.',
     tags: ['WebDevelopment', 'PharmaWeb', 'HCPPortal', 'LandingPage', 'Longread', 'OnlineCongress', 'WebinarPlatform', 'PharmaMarketing', 'DigitalHealth', 'CME'],
+    artSlides: [
+      { src: 'assets/uploads/web-detail-slide-1.png?v=20260526', label: 'HCP portal / verified access', alt: 'HCP portal: gated educational site for physicians with registration and verification' },
+      { src: 'assets/uploads/web-detail-slide-2.png?v=20260526', label: 'Landing page / product promo site', alt: 'Product promo landing: patient-facing site with navigation and core brand message' },
+      { src: 'assets/uploads/web-detail-slide-3.png?v=20260526', label: 'Longread / educational content hub', alt: 'Longread and education platform: video lessons, scientific content, and interactive quizzes' },
+    ],
     aboutTitle: 'Web development for pharmaceutical brands',
     about: [
       'PharmConsilium web development is the full cycle of digital solutions for pharma—from product promo landings to large online congress platforms with thousands of participants. Every project embeds regulatory needs by default: MLR compliance, disclaimers, consent forms, and HCP verification. The result is a marketing-grade digital venue that drives traffic, engages audiences, collects data, and converts interest into action.',
