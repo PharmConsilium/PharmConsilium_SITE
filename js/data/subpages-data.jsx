@@ -12,6 +12,7 @@ const SUBPAGES = {
     tags: ['Pharma CRM', 'Контроль эффективности МП', 'CRM для фармацевтических компаний', 'CRM для фармы', 'Омниканальный маркетинг'],
     art: 'ArtNodes',
     artSlides: [
+      { src: 'assets/uploads/crm-detail-slide-0.png?v=20260527', label: 'База ЛПУ и аптек', alt: 'CRM-PharmConsilium: интегрирована актуальная база ЛПУ и аптек по РБ' },
       { src: 'assets/uploads/crm-detail-slide-1.png?v=20260526', label: 'Статистика', alt: 'CRM-PharmConsilium: общая статистика по региональным менеджерам' },
       { src: 'assets/uploads/crm-detail-slide-2.png?v=20260526', label: 'Организации', alt: 'CRM-PharmConsilium: база организаций и аптек' },
       { src: 'assets/uploads/crm-detail-slide-3.png?v=20260526', label: 'Клиенты', alt: 'CRM-PharmConsilium: база клиентов HCP' },
@@ -50,6 +51,11 @@ const SUBPAGES = {
     tags: ['CLM', 'CLM-презентации', 'Detailing CLM — ФармКонсилиум'],
     aboutTitle: 'О проекте',
     art: 'ArtLayers',
+    artSlides: [
+      { src: 'assets/uploads/clm-detail-slide-1.png?v=20260527', label: 'CLM-PharmConsilium', alt: 'CLM-PharmConsilium: приложение на планшете и смартфоне, App Store и Google Play, облачное хранилище' },
+      { src: 'assets/uploads/clm-detail-slide-2.png?v=20260527', label: 'Адаптация контента', alt: 'CLM-PharmConsilium: адаптация PowerPoint, PDF и видео в CLM-презентации и аналитика просмотров' },
+      { src: 'assets/uploads/clm-detail-slide-3.png?v=20260527', label: 'Аналитика F2F-визитов', alt: 'CLM-PharmConsilium: анализ работы с промоматериалами на F2F-визитах — геометка, время, отчёт' },
+    ],
     about: [
       'CLM-PharmConsilium — это CLM-система, созданная под реальную работу медицинского представителя: быстрый запуск, минимум затрат на контент, управляемая аналитика и экспорт в CRM. Берём ваши презентации PowerPoint/PDF и видео и превращаем их в CLM-презентации — без «спецразработки» и долгих циклов производства.',
     ],
@@ -265,6 +271,8 @@ const SUBPAGES = {
   'marketing/ai': {
     section: 'Фармацевтический маркетинг', sectionId: 'marketing',
     title: 'Тренинги для медицинских представителей',
+    h1Line1: 'Тренинги для',
+    h1Accent: 'медицинских представителей',
     lede: 'Более 30 тренинговых тем для медицинских представителей, реализованных за несколько десятилетий. Тренинги для МП от ФармКонсилиум с 2005 года: виртуальный видеозал, квиз-тренажёры и 10 готовых ролевых игр с геймификацией под бренд клиента.',
     tags: ['MedRepTraining', 'FieldForceTraining', 'Gamification', 'eLearning', 'RolePlay', 'PharmaSalesTraining', 'LMS', 'DistanceLearning', 'PharmaMarketing', 'SalesForce'],
     art: 'ArtAI',

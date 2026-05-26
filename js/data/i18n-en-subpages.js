@@ -9,6 +9,7 @@ window.SUBPAGES_EN_PATCHES = {
     lede: 'Specialized pharma CRM: HCP, facility, and pharmacy database, medical representative visits, CLM, 2CLM, digital communications, and analytics in one system.',
     tags: ['Pharma CRM', 'Rep effectiveness control', 'CRM for pharmaceutical companies', 'Pharma CRM platform', 'Omnichannel marketing'],
     artSlides: [
+      { src: 'assets/uploads/crm-detail-slide-0.png?v=20260527', label: 'HCO and pharmacy database', alt: 'CRM-PharmConsilium: integrated up-to-date HCO and pharmacy database for Belarus' },
       { src: 'assets/uploads/crm-detail-slide-1.png?v=20260526', label: 'Statistics', alt: 'CRM-PharmConsilium: regional manager statistics' },
       { src: 'assets/uploads/crm-detail-slide-2.png?v=20260526', label: 'Organizations', alt: 'CRM-PharmConsilium: pharmacy and HCO database' },
       { src: 'assets/uploads/crm-detail-slide-3.png?v=20260526', label: 'Clients', alt: 'CRM-PharmConsilium: HCP client database' },
@@ -45,6 +46,11 @@ window.SUBPAGES_EN_PATCHES = {
     lede: 'Software for medical representatives to deliver CLM presentations on face-to-face visits. Interactive scenarios, engagement metrics, and data export.',
     tags: ['CLM', 'CLM presentations', 'Detailing CLM — PharmConsilium'],
     aboutTitle: 'About the project',
+    artSlides: [
+      { src: 'assets/uploads/clm-detail-slide-1.png?v=20260527', label: 'CLM-PharmConsilium', alt: 'CLM-PharmConsilium: app on tablet and phone, App Store and Google Play, cloud storage' },
+      { src: 'assets/uploads/clm-detail-slide-2.png?v=20260527', label: 'Content adaptation', alt: 'CLM-PharmConsilium: adapting PowerPoint, PDF, and video into CLM with view analytics' },
+      { src: 'assets/uploads/clm-detail-slide-3.png?v=20260527', label: 'F2F visit analytics', alt: 'CLM-PharmConsilium: promo material analytics on rep F2F visits—geotag, time, reporting' },
+    ],
     about: [
       'CLM-PharmConsilium is a CLM system built for how medical representatives actually work: fast rollout, minimal content spend, managed analytics, and CRM export. We turn your PowerPoint/PDF decks and video into CLM presentations—without bespoke development or long production cycles.',
     ],
@@ -249,6 +255,8 @@ window.SUBPAGES_EN_PATCHES = {
   'marketing/ai': {
     section: 'Pharmaceutical marketing',
     title: 'Training for medical representatives',
+    h1Line1: 'Training for',
+    h1Accent: 'medical representatives',
     lede: 'More than 30 training topics for medical representatives built over decades. PharmConsilium rep training since 2005: virtual video hall, quiz simulators, and 10 ready-made role-play games with client-branded gamification.',
     tags: ['MedRepTraining', 'FieldForceTraining', 'Gamification', 'eLearning', 'RolePlay', 'PharmaSalesTraining', 'LMS', 'DistanceLearning', 'PharmaMarketing', 'SalesForce'],
     aboutTitle: 'Training',

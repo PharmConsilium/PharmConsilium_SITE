@@ -404,12 +404,17 @@ function PageShell({ crumb, title, h1Line1, h1Accent, h1Accent2, lede, cards, na
         <div className="cards-grid">
           {cards.map((c, i) => {
             const Art = window[c.art];
+            const cardArt = c.cardArt;
             const target = c.sub ? `${section}/${c.sub}` : null;
             return (
               <div key={i} className={`card ${c.size || ''}`}
               onClick={() => target && navigate(target)}
               style={{ cursor: target ? 'pointer' : 'default' }}>
-                <div className="card-art">{Art ? <Art /> : null}</div>
+                <div className={`card-art${cardArt ? ` card-art--photo${c.cardArtPhoto === 'contain' ? ' card-art--photo-contain' : ''}` : ''}`}>
+                  {cardArt
+                    ? <img src={cardArt} alt={c.cardArtAlt || c.title} loading="lazy" decoding="async" />
+                    : Art ? <Art /> : null}
+                </div>
                 <h3>{c.title}</h3>
                 <p>{c.desc}</p>
                 {c.tag && <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
@@ -440,10 +445,16 @@ function MarketingPage({ navigate, lang }) {
   h1Accent: 'для фармацевтического маркетинга',
   lede: 'От CRM медицинского представителя до AI-тренера и платформы омниканального взаимодействия с HCP. Берём на себя всю архитектуру и контент.',
   cards: [
-  { title: 'CRM', sub: 'crm', size: 'huge', art: 'ArtNodes',
+  { title: 'CRM', sub: 'crm', size: 'huge',
+    cardArt: 'assets/uploads/marketing-crm-card.png?v=20260529',
+    cardArtAlt: 'CRM-PharmConsilium: база организаций и аптек',
+    cardArtPhoto: 'contain',
     desc: 'Специализированная CRM для фармы: база HCP, ЛПУ и аптек, визиты медицинских представителей, CLM, 2CLM, digital-коммуникации и аналитика в одной системе.',
     tag: 'Pharma CRM, CRM для фармацевтических компаний, Контроль эффективности МП' },
-  { title: 'CLM', sub: 'clm', art: 'ArtLayers',
+  { title: 'CLM', sub: 'clm',
+    cardArt: 'assets/uploads/marketing-clm-card.png?v=20260529',
+    cardArtAlt: 'CLM-PharmConsilium на планшете и смартфоне',
+    cardArtPhoto: 'contain',
     desc: 'Программное обеспечение для демонстрации CLM-презентаций медицинским представителем на F2F-визитах. Интерактивные сценарии, метрики взаимодействия, экспорт данных.',
     tag: 'CLM, CLM — презентации' },
   { title: '2CLM', sub: '2clm', art: 'ArtTablet',

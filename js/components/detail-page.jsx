@@ -16,6 +16,24 @@ function DetailArtSlides({ slides }) {
 
   const closeLightbox = React.useCallback(() => setLightbox(null), []);
 
+  const lightboxPrev = React.useCallback(() => {
+    if (n <= 1) return;
+    setLightbox((i) => {
+      const next = (i - 1 + n) % n;
+      setIdx(next);
+      return next;
+    });
+  }, [n]);
+
+  const lightboxNext = React.useCallback(() => {
+    if (n <= 1) return;
+    setLightbox((i) => {
+      const next = (i + 1) % n;
+      setIdx(next);
+      return next;
+    });
+  }, [n]);
+
   React.useEffect(() => {
     if (n <= 1 || lightbox != null) return undefined;
     const timer = setInterval(() => setIdx((i) => (i + 1) % n), 6000);
@@ -34,6 +52,8 @@ function DetailArtSlides({ slides }) {
     document.body.classList.add('is-detail-slide-lightbox-open');
     const onKey = (e) => {
       if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') lightboxPrev();
+      else if (e.key === 'ArrowRight') lightboxNext();
     };
     window.addEventListener('keydown', onKey);
     return () => {
@@ -41,7 +61,7 @@ function DetailArtSlides({ slides }) {
       document.body.classList.remove('is-detail-slide-lightbox-open');
       window.removeEventListener('keydown', onKey);
     };
-  }, [lightbox, closeLightbox]);
+  }, [lightbox, closeLightbox, lightboxPrev, lightboxNext, items]);
 
   if (!n) return null;
 
@@ -58,14 +78,36 @@ function DetailArtSlides({ slides }) {
         className="detail-art-lightbox-shell"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          type="button"
-          className="detail-art-lightbox-close"
-          onClick={closeLightbox}
-          aria-label="Закрыть"
-        >
-          ×
-        </button>
+        <div className="detail-art-lightbox-toolbar">
+          {n > 1 ? (
+            <>
+              <button
+                type="button"
+                className="detail-art-lightbox-nav"
+                onClick={(e) => { e.stopPropagation(); lightboxPrev(); }}
+                aria-label="Предыдущий слайд"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                className="detail-art-lightbox-nav"
+                onClick={(e) => { e.stopPropagation(); lightboxNext(); }}
+                aria-label="Следующий слайд"
+              >
+                →
+              </button>
+            </>
+          ) : null}
+          <button
+            type="button"
+            className="detail-art-lightbox-close"
+            onClick={closeLightbox}
+            aria-label="Закрыть"
+          >
+            ×
+          </button>
+        </div>
         <div
           className="detail-art-lightbox"
           role="dialog"
