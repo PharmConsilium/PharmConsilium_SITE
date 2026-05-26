@@ -53,7 +53,7 @@ window.I18N_EN = {
       links: [
         { label: 'Outsourcing of medical representatives and a digital alternative for pharma companies', to: 'sales/digital-rep' },
         { label: 'Launch outsourcing', to: 'sales/launch' },
-        { label: 'Omnichannel promotion campaigns', to: 'sales/omnichannel' },
+        { label: 'Digital medical representative in hybrid pharma brand promotion', to: 'sales/omnichannel' },
       ],
       featured: {
         tag: 'D2F, Digital to Face',
@@ -271,9 +271,9 @@ window.I18N_EN = {
         { title: 'Digital medical representative', sub: 'digital-rep', size: 'huge', art: 'ArtTablet',
           desc: 'Our remote rep works your brand: remote eDetailing visits, content follow-up, contact analytics. Nationwide coverage in Belarus.',
           tag: 'remote eDetail, Belarus coverage' },
-        { title: 'Omnichannel campaigns', sub: 'omnichannel', art: 'ArtNodes',
-          desc: 'Personal architecture and content for long-term engagement with physicians, pharmacists, and target groups. Email + push + bot + visit in one plan.',
-          tag: 'communication architecture' },
+        { title: 'Digital medical representative in hybrid pharma brand promotion', sub: 'omnichannel', art: 'ArtNodes',
+          desc: 'Digital twins (digital avatars) of medical representatives are embedded in an omnichannel digital promotion system: an F2F rep visit, then video viewing where the rep\'s digital avatar comments on clinical trial data.',
+          tag: 'DigitalRep, Omnichannel, HCPengagement' },
         { title: 'Launch outsourcing', sub: 'launch', art: 'ArtLaunch',
           desc: 'Use our tools and HCP client base for a fast start of a new brand in Belarus. From 90 days to first communication.',
           tag: 'launch · 90 days' },
