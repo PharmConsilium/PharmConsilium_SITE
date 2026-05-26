@@ -121,12 +121,14 @@ function App() {
           });
         });
       } else {
-        let pendingDirectoryScroll = false;
+        let pendingAnchorScroll = false;
         try {
-          pendingDirectoryScroll = !!(window.DIRECTORY_SCROLL_KEY &&
-            sessionStorage.getItem(window.DIRECTORY_SCROLL_KEY));
+          pendingAnchorScroll = !!(
+            (window.DIRECTORY_SCROLL_KEY && sessionStorage.getItem(window.DIRECTORY_SCROLL_KEY)) ||
+            (window.TEAM_SCROLL_KEY && sessionStorage.getItem(window.TEAM_SCROLL_KEY))
+          );
         } catch (e) { /* ignore */ }
-        if (!pendingDirectoryScroll) {
+        if (!pendingAnchorScroll) {
           window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         }
       }

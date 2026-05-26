@@ -11,6 +11,7 @@ const NAV_ITEMS = [
 
 // per-page mega-menu config: sublinks + featured tile
 const DIRECTORY_SCROLL_KEY = 'pharmconsilium-directory-scroll';
+const TEAM_SCROLL_KEY = 'pharmconsilium-team-scroll';
 
 function scrollToDirectoryCard(id) {
   if (!id) return;
@@ -34,6 +35,14 @@ function goNavLink(navigate, currentRoute, sectionId, link, onClose) {
       return;
     }
     try { sessionStorage.setItem(DIRECTORY_SCROLL_KEY, scrollTo); } catch (e) { /* ignore */ }
+  }
+  if (scrollTo && to === 'team') {
+    if (currentRoute === 'team') {
+      scrollToDirectoryCard(scrollTo);
+      onClose?.();
+      return;
+    }
+    try { sessionStorage.setItem(TEAM_SCROLL_KEY, scrollTo); } catch (e) { /* ignore */ }
   }
   navigate(to);
   onClose?.();
@@ -80,7 +89,7 @@ const MEGA = {
   sales: {
     title: 'Комплексное продвижение, аутсорсинг продаж',
     links: [
-    { label: 'Цифровой медицинский представитель', to: 'sales/digital-rep' },
+    { label: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', to: 'sales/digital-rep' },
     { label: 'Лонч - аутсорсинг', to: 'sales/launch' },
     { label: 'Омниканальные кампании для продвижения', to: 'sales/omnichannel' }],
 
@@ -128,8 +137,8 @@ const MEGA = {
   team: {
     title: 'Сделайте мир лучше!',
     links: [
-    { label: 'Наша миссия в этой Вселенной', to: 'team' },
-    { label: 'Команда', to: 'team/career' },
+    { label: 'Наша миссия в этой Вселенной', to: 'team', scrollTo: 'team-mission' },
+    { label: 'Команда', to: 'team', scrollTo: 'team-members' },
     { label: 'Портфолио, проекты, и фичи ФармКонсилиум', to: 'portfolio' }],
 
     featured: {
@@ -487,3 +496,4 @@ window.NAV_ITEMS = NAV_ITEMS;
 window.MEGA = MEGA;
 window.scrollToDirectoryCard = scrollToDirectoryCard;
 window.DIRECTORY_SCROLL_KEY = DIRECTORY_SCROLL_KEY;
+window.TEAM_SCROLL_KEY = TEAM_SCROLL_KEY;

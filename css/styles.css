@@ -1678,6 +1678,18 @@ button { font-family: inherit; }
 }
 
 /* ─────────── team ─────────── */
+.team-members-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 48px 0 24px;
+  color: var(--ink);
+}
+.team-members-section .team-grid {
+  margin-top: 0;
+}
 .team-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
   margin: 48px 0;
@@ -1917,6 +1929,17 @@ button { font-family: inherit; }
   position: relative;
   overflow: hidden;
 }
+.detail-hero .eyebrow--one-line {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  max-width: none;
+  font-size: clamp(9.5px, 2.15vw, 11.5px);
+}
+.detail-hero--h1-wide h1 {
+  max-width: min(44ch, 100%);
+  line-height: 1.02;
+}
 .detail-hero::after {
   content: ''; position: absolute; right: -180px; top: -40px;
   width: 540px; height: 540px; border-radius: 50%;
@@ -2126,6 +2149,90 @@ body.is-detail-slide-lightbox-open .robot-img {
 .detail-body ul + h2,
 .detail-body ol + h2,
 .detail-body div + h2 { margin-top: 40px; }
+
+.detail-longform {
+  margin-top: 8px;
+}
+.detail-longform h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.8vw, 32px);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 40px 0 14px;
+  color: var(--ink);
+}
+.detail-longform h2:first-child {
+  margin-top: 28px;
+}
+.detail-longform p {
+  color: var(--ink-2);
+  font-size: 15.5px;
+  line-height: 1.62;
+  margin: 0 0 14px;
+}
+.detail-longform-ul {
+  margin: 0 0 20px;
+  padding-left: 1.15em;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.detail-longform-ul li {
+  margin-bottom: 8px;
+}
+.detail-longform-ul li:last-child {
+  margin-bottom: 0;
+}
+.detail-longform-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0 20px;
+}
+.detail-longform-card {
+  padding: 14px 16px;
+  background: var(--bg-2);
+  border-radius: var(--radius);
+}
+.detail-longform-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+.detail-longform-card p {
+  font-size: 14px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.detail-longform-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 4px;
+}
+.detail-longform-faq-item {
+  padding: 14px 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.detail-longform-faq-item h3 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.detail-longform-faq-item p {
+  font-size: 14px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
 
 .feat-list {
   list-style: none; margin: 24px 0 0; padding: 0;

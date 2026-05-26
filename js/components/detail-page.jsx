@@ -200,19 +200,27 @@ function DetailPage({ routeId, navigate, lang }) {
   const titleParts = data.h1Line1 != null ?
     { line1: data.h1Line1, accent: data.h1Accent, accent2: data.h1Accent2 } :
     (splitPageTitle ? splitPageTitle(data.title) : { line1: data.title, accent: null, accent2: null });
+  const longformSections = data.detailLongform && window.getDigitalRepDetailSections
+    ? window.getDigitalRepDetailSections(lang)
+    : null;
 
   return (
     <main className="page-route">
-      <section className="detail-hero">
+      <section className={`detail-hero${data.h1Wide ? ' detail-hero--h1-wide' : ''}`}>
         <div className="container">
           <div className="crumbs">
             <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
             <span onClick={() => navigate(data.sectionId)} style={{ cursor: 'pointer' }}>{data.section}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>{data.title}</span>
+            <span style={{ color: 'var(--ink)' }}>{data.crumb || data.title}</span>
           </div>
-          <div className="eyebrow" style={{ marginTop: 18 }}>{data.section}</div>
+          <div
+            className={`eyebrow${data.eyebrowOneLine ? ' eyebrow--one-line' : ''}`}
+            style={{ marginTop: 18 }}
+          >
+            {data.eyebrow || data.section}
+          </div>
           <PageHeroH1 line1={titleParts.line1} accent={titleParts.accent} accent2={titleParts.accent2} />
           <p className="lede">{data.lede}</p>
           <div className="tags">
@@ -235,6 +243,10 @@ function DetailPage({ routeId, navigate, lang }) {
             <h2>{data.aboutTitle || t('detailAbout')}</h2>
             {(data.about || []).map((p, i) => <p key={i}>{p}</p>)}
 
+            {longformSections ? <DetailLongform sections={longformSections} /> : null}
+
+            {!data.detailLongform ?
+              <>
             <h2>{data.featuresTitle || t('detailFeatures')}</h2>
             <ul className="feat-list">
               {(data.features || []).map((f, i) =>
@@ -279,6 +291,8 @@ function DetailPage({ routeId, navigate, lang }) {
                 );
               })}
             </ul>
+              </> :
+              null}
           </div>
 
           <div className={`detail-art${data.artSlides?.length ? ' detail-art--slides' : ''}`}>
@@ -288,6 +302,7 @@ function DetailPage({ routeId, navigate, lang }) {
           </div>
         </div>
 
+        {!data.detailLongform ?
         <div>
           <h2 style={{
             fontFamily: 'var(--font-display)', fontWeight: 500,
@@ -325,7 +340,8 @@ function DetailPage({ routeId, navigate, lang }) {
               </>
             );
           })()}
-        </div>
+        </div> :
+        null}
 
         <div className={`detail-cta${data.detailCtaTopics?.length ? ' detail-cta--scroll-list' : ''}`}>
           <div className="detail-cta-body">
@@ -370,6 +386,50 @@ function DetailPage({ routeId, navigate, lang }) {
       </section>
     </main>);
 
+}
+
+function DetailLongform({ sections }) {
+  if (!sections?.length) return null;
+  return (
+    <div className="detail-longform">
+      {sections.map((block, i) => {
+        if (block.type === 'h2') return <h2 key={i}>{block.text}</h2>;
+        if (block.type === 'p') return <p key={i}>{block.text}</p>;
+        if (block.type === 'ul') {
+          return (
+            <ul key={i} className="detail-longform-ul">
+              {block.items.map((item, j) => <li key={j}>{item}</li>)}
+            </ul>
+          );
+        }
+        if (block.type === 'cards') {
+          return (
+            <div key={i} className="detail-longform-cards">
+              {block.items.map((c, j) => (
+                <div key={j} className="detail-longform-card">
+                  <h3>{c.t}</h3>
+                  {c.d ? <p>{c.d}</p> : null}
+                </div>
+              ))}
+            </div>
+          );
+        }
+        if (block.type === 'faq') {
+          return (
+            <div key={i} className="detail-longform-faq">
+              {block.items.map((f, j) => (
+                <div key={j} className="detail-longform-faq-item">
+                  <h3>{f.q}</h3>
+                  <p>{f.a}</p>
+                </div>
+              ))}
+            </div>
+          );
+        }
+        return null;
+      })}
+    </div>
+  );
 }
 
 window.DetailPage = DetailPage;

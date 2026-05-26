@@ -51,7 +51,7 @@ window.I18N_EN = {
     sales: {
       title: 'Integrated promotion and sales outsourcing',
       links: [
-        { label: 'Digital medical representative', to: 'sales/digital-rep' },
+        { label: 'Outsourcing of medical representatives and a digital alternative for pharma companies', to: 'sales/digital-rep' },
         { label: 'Launch outsourcing', to: 'sales/launch' },
         { label: 'Omnichannel promotion campaigns', to: 'sales/omnichannel' },
       ],
@@ -99,8 +99,8 @@ window.I18N_EN = {
     team: {
       title: 'Make the world better!',
       links: [
-        { label: 'Our mission in this universe', to: 'team' },
-        { label: 'Team', to: 'team/career' },
+        { label: 'Our mission in this universe', to: 'team', scrollTo: 'team-mission' },
+        { label: 'Team', to: 'team', scrollTo: 'team-members' },
         { label: 'Portfolio, projects, and PharmConsilium features', to: 'portfolio' },
       ],
       featured: {
@@ -454,6 +454,7 @@ window.I18N_EN = {
 
   team: {
     crumb: 'About us',
+    teamHeading: 'Team',
     h1Line1: 'Our mission',
     h1Accent: 'in this universe:',
     lede: [

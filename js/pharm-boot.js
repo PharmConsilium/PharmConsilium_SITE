@@ -15,7 +15,7 @@
     document.body.classList.remove('is-scroll-locked');
   };
 
-  var CACHE_BUST = '20260526b';
+  var CACHE_BUST = '20260526c';
 
   var BABEL_SCRIPTS = [
     'js/components/tweaks-panel.jsx',
@@ -24,6 +24,7 @@
     'js/components/header-footer.jsx',
     'js/pages/pages.jsx',
     'js/pages/privacy-page.jsx',
+    'js/data/digital-rep-sections.js',
     'js/data/subpages-data.jsx',
     'js/data/portfolio-data.jsx',
     'js/data/i18n.jsx',

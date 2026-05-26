@@ -83,6 +83,11 @@ window.SUBPAGES_EN_PATCHES = {
     title: '2CLM — software to improve SF visit effectiveness',
     lede: 'One scenario, two modes: touch visit and remote engagement. Content adapts to the communication format without rebuilding.',
     tags: ['Rep-Triggered Email', 'Post-Call Digital Content Push', 'Post-Call Follow-Up Materials Delivery', 'Post-Visit Promotional Content Distribution'],
+    artSlides: [
+      { src: 'assets/uploads/2clm-detail-slide-1.png?v=20260526', label: '2CLM — second-generation CLM', alt: '2CLM: digital promo materials HCPs view at a convenient time—measurable brand content interaction' },
+      { src: 'assets/uploads/2clm-detail-slide-2.png?v=20260526', label: 'How 2CLM works', alt: '2CLM: link on visit, physician watches video and rates, analytics in the dashboard' },
+      { src: 'assets/uploads/2clm-detail-slide-3.png?v=20260526', label: 'CLM vs 2CLM', alt: 'CLM on the rep device vs 2CLM on the HCP smartphone' },
+    ],
     aboutTitle: '2CLM software',
     about: [
       'Next-generation CLM presentations for pharmaceutical companies. After the visit, the rep gives the HCP a personal link to promo content on the physician\'s device—engagement continues when it suits them. Reps distribute via messengers, email, and SMS; built-in analytics capture views, CTR, and time on content with reports for reps and managers.',
@@ -517,12 +522,18 @@ window.SUBPAGES_EN_PATCHES = {
 
   'sales/digital-rep': {
     section: 'Outsourcing',
+    eyebrow: 'Digital medical representative',
+    eyebrowOneLine: true,
     title: 'Digital medical representative',
-    lede: 'Remote reps work your brand: remote eDetailing visits, content follow-up, contact analytics. Coverage across all regions of Belarus.',
+    crumb: 'Outsourcing of medical representatives and a digital alternative for pharma companies',
+    h1Line1: 'Outsourcing of medical representatives',
+    h1Accent: 'and a digital alternative for pharma companies',
+    h1Wide: true,
+    lede: 'We build digital omnichannel promotion campaigns that take on the role of an outsourced medical representative team: personalized communication architecture for physicians, pharmacists, and pharmacy professionals—on PharmConsilium’s own platform and technology stack.',
     tags: ['remote eDetail', 'Belarus coverage', 'outsourcing'],
     about: [
-      'Not every company needs a full in-house rep force across Belarus. PharmConsilium digital reps work your brand—with our tools, database, and quality protocols.',
-      'Test a new brand, reach remote regions, and support the portfolio without capital hiring costs.',
+      'We help pharma brands solve the same business goals as medical representative outsourcing—but through a digital omnichannel program: the reach and contact frequency you need with HCPs, more time with the brand, managed engagement, and evidence-based penetration of retail pharmacy and movement of products from pharmacies.',
+      'You reduce dependence on field teams, lower cost per contact, and gain full transparency on data and ROI—hard to achieve with classic rep outsourcing. Final project metrics stay familiar from SF evaluation: share growth, FTE, P&L.',
     ],
     features: [
       { t: 'Belarus coverage', d: 'All regions, key hospitals, pharmacy chains.' },
@@ -544,6 +555,9 @@ window.SUBPAGES_EN_PATCHES = {
       'Monthly KPI report',
       'Program support',
     ],
+    detailLongform: true,
+    detailCtaH3: 'Estimate the benefit — contact us',
+    detailCtaP: 'If you want to model replacing part of your rep team with a digital omnichannel program for your target audience, we will prepare a custom campaign architecture, contact volume, and projected engagement metrics.',
   },
 
   'sales/omnichannel': {

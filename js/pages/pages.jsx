@@ -929,9 +929,21 @@ function TeamPage({ navigate, lang }) {
     });
   }, []);
 
+  React.useEffect(() => {
+    const key = window.TEAM_SCROLL_KEY || 'pharmconsilium-team-scroll';
+    let scrollId;
+    try {
+      scrollId = sessionStorage.getItem(key);
+      if (scrollId) sessionStorage.removeItem(key);
+    } catch (e) { /* ignore */ }
+    if (!scrollId || !window.scrollToDirectoryCard) return undefined;
+    const t = window.setTimeout(() => window.scrollToDirectoryCard(scrollId), 80);
+    return () => window.clearTimeout(t);
+  }, [lang]);
+
   return (
     <main className="page-route">
-      <section className="page-hero">
+      <section id="team-mission" className="page-hero" style={{ scrollMarginTop: 96 }}>
         <div className="container">
           <div className="crumbs">
             <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
@@ -963,7 +975,8 @@ function TeamPage({ navigate, lang }) {
 
       {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
 
-      <section className="container">
+      <section id="team-members" className="container team-members-section" style={{ scrollMarginTop: 96 }}>
+        <h2 className="team-members-heading">{en ? en.teamHeading : 'Команда'}</h2>
         <div className="team-grid">
           {team.map((m, i) =>
           <div key={i} className="tm">
