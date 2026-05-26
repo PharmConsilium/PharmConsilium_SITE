@@ -1,6 +1,14 @@
 // PortfolioPage — gallery of cases.
 // ProjectPage — single case study.
 
+function isProjSlideImage(s, isSlideVideo) {
+  return Boolean(s && s.src && !isSlideVideo(s));
+}
+
+function projSlideImageSrc(s) {
+  return s.srcFull || s.src;
+}
+
 function PortfolioPage({ navigate, lang }) {
   const [filter, setFilter] = React.useState('all');
   const cats = ['all', ...Array.from(new Set(window.PORTFOLIO.map((p) => p.category)))];
@@ -106,15 +114,55 @@ function ProjectPage({ slug, navigate, lang }) {
 
   const [slide, setSlide] = React.useState(0);
   const [videoAspect, setVideoAspect] = React.useState(null);
+  const [lightbox, setLightbox] = React.useState(null);
   const sliderRef = React.useRef(null);
+  const isSlideVideo = window.isPortfolioSlideVideo || (() => false);
+
+  const slides = React.useMemo(() => {
+    if (!p) return [];
+    const Art = window[p.art] || window.ArtConstellation;
+    const defaultArtSlides = [
+      { art: Art, label: ui ? ui.slidePreview : 'Превью проекта' },
+      { art: window.ArtNodes || Art, label: ui ? ui.slideArch : 'Архитектура' },
+      { art: window.ArtDashboard || Art, label: ui ? ui.slideMetrics : 'Метрики' },
+      { art: window.ArtLayers || Art, label: ui ? ui.slideMaterials : 'Материалы' },
+    ];
+    return Array.isArray(p.slides) && p.slides.length ? p.slides : defaultArtSlides;
+  }, [p, ui]);
+
+  const imageSlideIndexes = React.useMemo(
+    () => slides.map((s, i) => (isProjSlideImage(s, isSlideVideo) ? i : -1)).filter((i) => i >= 0),
+    [slides, isSlideVideo]
+  );
 
   const pauseVideos = React.useCallback(() => {
     sliderRef.current?.querySelectorAll('video').forEach((v) => { v.pause(); });
   }, []);
 
+  const closeLightbox = React.useCallback(() => setLightbox(null), []);
+
+  const lightboxPrev = React.useCallback(() => {
+    if (lightbox == null || imageSlideIndexes.length <= 1) return;
+    const pos = imageSlideIndexes.indexOf(lightbox);
+    const nextIdx = imageSlideIndexes[(pos - 1 + imageSlideIndexes.length) % imageSlideIndexes.length];
+    pauseVideos();
+    setSlide(nextIdx);
+    setLightbox(nextIdx);
+  }, [lightbox, imageSlideIndexes, pauseVideos]);
+
+  const lightboxNext = React.useCallback(() => {
+    if (lightbox == null || imageSlideIndexes.length <= 1) return;
+    const pos = imageSlideIndexes.indexOf(lightbox);
+    const nextIdx = imageSlideIndexes[(pos + 1) % imageSlideIndexes.length];
+    pauseVideos();
+    setSlide(nextIdx);
+    setLightbox(nextIdx);
+  }, [lightbox, imageSlideIndexes, pauseVideos]);
+
   React.useEffect(() => {
     setSlide(0);
     setVideoAspect(null);
+    setLightbox(null);
   }, [slug]);
 
   React.useEffect(() => {
@@ -124,6 +172,28 @@ function ProjectPage({ slug, navigate, lang }) {
   React.useEffect(() => {
     setVideoAspect(null);
   }, [slide, slug]);
+
+  React.useEffect(() => {
+    if (lightbox == null) return undefined;
+    const item = slides[lightbox];
+    if (item && isProjSlideImage(item, isSlideVideo)) {
+      const preload = new Image();
+      preload.src = projSlideImageSrc(item);
+    }
+    if (window.lockPageScroll) window.lockPageScroll();
+    document.body.classList.add('is-detail-slide-lightbox-open');
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') lightboxPrev();
+      else if (e.key === 'ArrowRight') lightboxNext();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      if (window.unlockPageScroll) window.unlockPageScroll();
+      document.body.classList.remove('is-detail-slide-lightbox-open');
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [lightbox, closeLightbox, lightboxPrev, lightboxNext, slides, isSlideVideo]);
 
   if (!p) {
     return (
@@ -150,15 +220,6 @@ function ProjectPage({ slug, navigate, lang }) {
   const titleParts = splitPageTitle
     ? splitPageTitle(p.name)
     : { line1: p.name, accent: null, accent2: null };
-  const Art = window[p.art] || window.ArtConstellation;
-  const defaultArtSlides = [
-    { art: Art, label: ui ? ui.slidePreview : 'Превью проекта' },
-    { art: window.ArtNodes || Art, label: ui ? ui.slideArch : 'Архитектура' },
-    { art: window.ArtDashboard || Art, label: ui ? ui.slideMetrics : 'Метрики' },
-    { art: window.ArtLayers || Art, label: ui ? ui.slideMaterials : 'Материалы' },
-  ];
-  const slides = Array.isArray(p.slides) && p.slides.length ? p.slides : defaultArtSlides;
-  const isSlideVideo = window.isPortfolioSlideVideo || (() => false);
   const VideoPlayer = window.PortfolioVideoPlayer;
   const slideUsesMedia = slides.some((s) => s.src || s.art || isSlideVideo(s));
 
@@ -177,6 +238,66 @@ function ProjectPage({ slug, navigate, lang }) {
   const next = () => goSlide((slide + 1) % slides.length);
   const prev = () => goSlide((slide - 1 + slides.length) % slides.length);
   const slideAria = (n) => (ui ? ui.slideN.replace('{n}', n) : `Слайд ${n}`);
+  const zoomAria = (alt) => (alt ? `Увеличить: ${alt}` : 'Увеличить слайд');
+  const zoomed = lightbox != null ? slides[lightbox] : null;
+  const canLightboxNav = imageSlideIndexes.length > 1;
+
+  const lightboxLayer = zoomed && isProjSlideImage(zoomed, isSlideVideo) ? (
+    <div
+      className="detail-art-lightbox-backdrop"
+      role="presentation"
+      onClick={closeLightbox}
+    >
+      <div className="detail-art-lightbox-shell" onClick={(e) => e.stopPropagation()}>
+        <div className="detail-art-lightbox-toolbar">
+          {canLightboxNav ? (
+            <>
+              <button
+                type="button"
+                className="detail-art-lightbox-nav"
+                onClick={(e) => { e.stopPropagation(); lightboxPrev(); }}
+                aria-label={ui ? ui.slidePrev : 'Предыдущий слайд'}
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                className="detail-art-lightbox-nav"
+                onClick={(e) => { e.stopPropagation(); lightboxNext(); }}
+                aria-label={ui ? ui.slideNext : 'Следующий слайд'}
+              >
+                →
+              </button>
+            </>
+          ) : null}
+          <button
+            type="button"
+            className="detail-art-lightbox-close"
+            onClick={closeLightbox}
+            aria-label={ui ? ui.lightboxClose : 'Закрыть'}
+          >
+            ×
+          </button>
+        </div>
+        <div
+          className="detail-art-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={zoomed.alt || zoomed.label || 'Увеличенный слайд'}
+        >
+          {zoomed.label ? <div className="detail-art-lightbox-caption">{zoomed.label}</div> : null}
+          <img
+            className="detail-art-lightbox-img"
+            src={projSlideImageSrc(zoomed)}
+            alt={zoomed.alt || zoomed.label || ''}
+            loading="eager"
+            decoding="sync"
+            draggable={false}
+          />
+        </div>
+      </div>
+    </div>
+  ) : null;
 
   return (
     <main className="page-route" style={{ '--accent-local': p.palette }}>
@@ -236,7 +357,23 @@ function ProjectPage({ slug, navigate, lang }) {
                           onAspect={isActive ? setVideoAspect : undefined}
                         />
                       : s.src && !isSlideVideo(s)
-                        ? <img className="proj-slide-img" src={s.src} alt={s.alt || s.label} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                        ? (
+                          <button
+                            type="button"
+                            className="detail-art-slide-zoom proj-slide-zoom"
+                            onClick={() => isActive && setLightbox(i)}
+                            aria-label={zoomAria(s.alt || s.label)}
+                            tabIndex={isActive ? 0 : -1}
+                          >
+                            <img
+                              className="proj-slide-img"
+                              src={s.src}
+                              alt={s.alt || s.label}
+                              loading={i === 0 ? 'eager' : 'lazy'}
+                              decoding="async"
+                            />
+                          </button>
+                        )
                         : A ? <A /> : null}
                   </div>);
 
@@ -336,6 +473,7 @@ function ProjectPage({ slug, navigate, lang }) {
           </div>
         }
       </section>
+      {lightboxLayer && ReactDOM.createPortal(lightboxLayer, document.body)}
     </main>);
 
 }

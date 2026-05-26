@@ -1,5 +1,20 @@
 // Sequential Babel loader — scripts run in order (fixes portfolio ProjectPage).
 (function () {
+  var scrollLockCount = 0;
+
+  window.lockPageScroll = function lockPageScroll() {
+    scrollLockCount += 1;
+    if (scrollLockCount > 1) return;
+    document.body.classList.add('is-scroll-locked');
+  };
+
+  window.unlockPageScroll = function unlockPageScroll() {
+    if (scrollLockCount <= 0) return;
+    scrollLockCount -= 1;
+    if (scrollLockCount > 0) return;
+    document.body.classList.remove('is-scroll-locked');
+  };
+
   var CACHE_BUST = '20260526b';
 
   var BABEL_SCRIPTS = [

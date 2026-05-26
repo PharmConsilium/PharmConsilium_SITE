@@ -47,8 +47,7 @@ function DetailArtSlides({ slides }) {
       const preload = new Image();
       preload.src = slide.srcFull || slide.src;
     }
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    if (window.lockPageScroll) window.lockPageScroll();
     document.body.classList.add('is-detail-slide-lightbox-open');
     const onKey = (e) => {
       if (e.key === 'Escape') closeLightbox();
@@ -57,7 +56,7 @@ function DetailArtSlides({ slides }) {
     };
     window.addEventListener('keydown', onKey);
     return () => {
-      document.body.style.overflow = prevOverflow;
+      if (window.unlockPageScroll) window.unlockPageScroll();
       document.body.classList.remove('is-detail-slide-lightbox-open');
       window.removeEventListener('keydown', onKey);
     };
@@ -151,17 +150,19 @@ function DetailArtSlides({ slides }) {
             </button>
           </div>
         )}
-        {n > 1 &&
+        {n > 1 ? (
           <>
-            <div className="proj-slider-meta">
-              <span>{String(idx + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
-              {cur.label ? <span>· {cur.label}</span> : null}
-            </div>
             <button type="button" className="proj-slider-nav prev" onClick={prev} aria-label="Предыдущий слайд">←</button>
             <button type="button" className="proj-slider-nav next" onClick={next} aria-label="Следующий слайд">→</button>
           </>
-        }
+        ) : null}
       </div>
+      {n > 1 ? (
+        <div className="proj-slider-meta detail-art-slider-meta">
+          <span>{String(idx + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
+          {cur.label ? <span>· {cur.label}</span> : null}
+        </div>
+      ) : null}
       {n > 1 &&
         <div className="proj-slider-dots detail-art-slider-dots">
           {items.map((_, i) =>
