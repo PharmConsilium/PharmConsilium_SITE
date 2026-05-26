@@ -35,12 +35,6 @@ function DetailArtSlides({ slides }) {
   }, [n]);
 
   React.useEffect(() => {
-    if (n <= 1 || lightbox != null) return undefined;
-    const timer = setInterval(() => setIdx((i) => (i + 1) % n), 6000);
-    return () => clearInterval(timer);
-  }, [n, lightbox]);
-
-  React.useEffect(() => {
     if (lightbox == null) return undefined;
     const slide = items[lightbox];
     if (slide) {
@@ -255,7 +249,20 @@ function DetailPage({ routeId, navigate, lang }) {
                   <div className="ic">{String(i + 1).padStart(2, '0')}</div>
                   <div className="ft">
                     <b>{f.t}</b>
-                    <span>{f.d}</span>
+                    {f.d ? <span>{f.d}</span> : null}
+                    {f.list?.length ? (
+                      <ul className="feat-sublist">
+                        {f.list.map((item, j) => (
+                          <li key={j}>
+                            <span className="feat-sublist-text">
+                              <b>{item.t}</b>
+                              {' — '}
+                              {item.d}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </div>
                 </li>
               )}

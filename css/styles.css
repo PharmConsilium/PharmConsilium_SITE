@@ -2040,6 +2040,7 @@ body.is-detail-slide-lightbox-open .robot-img {
   background: var(--bg-2);
   border-radius: var(--radius);
   align-items: flex-start;
+  overflow: visible;
 }
 .feat-list li .ic {
   width: 28px; height: 28px; flex: none;
@@ -2048,9 +2049,46 @@ body.is-detail-slide-lightbox-open .robot-img {
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: 12px; font-weight: 700;
 }
-.feat-list li .ft { display: flex; flex-direction: column; gap: 2px; }
+.feat-list li .ft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow: visible;
+}
 .feat-list li .ft b { font-weight: 600; font-size: 15px; }
-.feat-list li .ft span { color: var(--muted); font-size: 13.5px; }
+.feat-list li .ft span { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+.feat-list li .ft .feat-sublist {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+.feat-list li .ft .feat-sublist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-bottom: 3px;
+  padding: 0;
+  list-style: none;
+}
+.feat-list li .ft .feat-sublist li::before {
+  content: '';
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
+  margin-top: 0.48em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.feat-list li .ft .feat-sublist li:last-child { margin-bottom: 0; }
+.feat-list li .ft .feat-sublist-text {
+  flex: 1;
+  min-width: 0;
+}
+.feat-list li .ft .feat-sublist b { color: var(--ink); font-weight: 600; }
 
 .steps {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;

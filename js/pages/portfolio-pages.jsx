@@ -94,9 +94,8 @@ function PortfolioPage({ navigate, lang }) {
             <h3>{ui ? ui.ctaH3 : 'Не нашли свой кейс?'}</h3>
             <p>{ui ? ui.ctaP : 'У нас 80+ запусков и сотни проектов под NDA. Напишите, что нужно — пришлём подходящие материалы.'}</p>
           </div>
-          <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+          <div className="detail-cta-actions">
             <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>
-            <button className="btn btn-ghost">{ui ? ui.downloadPdf : 'Скачать полное портфолио · PDF'}</button>
           </div>
         </div>
       </section>

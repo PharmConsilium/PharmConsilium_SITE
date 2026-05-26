@@ -142,7 +142,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
   { n: '01', t: 'Портфолио и проекты.', d: 'Проекты, портфолио, события.', to: 'portfolio' },
   { n: '02', t: 'Цифровой медицинский представитель.', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
   { n: '03', t: 'Справочник ЛС ФармКонсилиум.', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
-  { n: '04', t: 'Разработка мобильных приложений.', d: 'Для операционных систем iOS и Android под ключ.', to: 'hcp/mobile' }];
+  { n: '04', t: 'Разработка мобильных приложений.', d: 'Для операционных систем iOS и Android под ключ.', to: 'marketing/mobile' }];
 
   const scenarios = en ?
     [['organic', en.scenarioOrganic], ['comms', en.scenarioComms], ['launch', en.scenarioLaunch]] :
@@ -542,8 +542,8 @@ function ContentPage({ navigate, lang }) {
     desc: 'CLM-детейлеры для F2F-визитов: нарратив, compliance, аналитика визита под контролем PM.',
     tag: 'CLM · eDetailing' },
   { title: 'Видео — от идеи до создания', sub: 'video', art: 'ArtVideo', size: 'wide',
-    desc: 'Видеовизит медпредставителя, 3D-визуализация механизма действия, AI-анимация, видеоаватары, ИИ-говорящая голова, игровое видео (сериалы).',
-    tag: '3D, AI-аватары, сериалы' },
+    desc: 'Видеовизиты, интерактивные видео и вертикальные форматы для смартфонов — от линейного текинга до архитектуры уровня топ-студии.',
+    tag: 'PharmaVideo · eDetailing · HCPengagement' },
   { title: 'Геймификация и квизы', sub: 'gamification', art: 'ArtGame', size: 'wide',
     desc: 'Клинические детективы, квизы и кейс-игры для HCP — геймификация, которая обучает и вовлекает.',
     tag: 'MedicalGamification · HCPengagement' },
