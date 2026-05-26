@@ -556,26 +556,186 @@ function ContentPage({ navigate, lang }) {
   }} />;
 }
 
+function DirectoryFeatureText({ item }) {
+  const renderParts = (parts) =>
+    parts.map((part, j) => (part.b ? <strong key={j}>{part.s}</strong> : part.s));
+  if (item.dTable) {
+    return (
+      <>
+        {item.dIntroParts
+          ? <p>{renderParts(item.dIntroParts)}</p>
+          : item.dIntro ? <p>{item.dIntro}</p> : null}
+        <div className="directory-spec-table-wrap">
+          <table className="directory-spec-table">
+            <thead>
+              <tr>
+                {item.dTable.head.map((cell, i) => <th key={i} scope="col">{cell}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {item.dTable.rows.map((row, ri) =>
+                <tr key={ri}>
+                  {row.map((cell, ci) =>
+                    <td key={ci}>{ci === 0 ? <strong>{cell}</strong> : cell}</td>
+                  )}
+                </tr>
+                  )}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
+  }
+  if (item.dParagraphs) {
+    return item.dParagraphs.map((para, pi) =>
+      <p key={pi} style={pi > 0 ? { marginTop: 12 } : undefined}>{renderParts(para)}</p>
+    );
+  }
+  if (item.dParts) return <p>{renderParts(item.dParts)}</p>;
+  return <p>{item.d}</p>;
+}
+
 function DirectoryPage({ navigate, lang }) {
   const en = lang === 'en' && window.getDirectoryCopy ? window.getDirectoryCopy(lang) : null;
-  const cats = en ? en.cats : ['Кардиология', 'Эндокринология', 'Онкология', 'Неврология', 'Пульмонология', 'Педиатрия', 'Терапия', 'Психиатрия'];
-  const [activeCat, setActiveCat] = React.useState(cats[0]);
-  React.useEffect(() => { setActiveCat(cats[0]); }, [lang]);
+  React.useEffect(() => {
+    const key = window.DIRECTORY_SCROLL_KEY || 'pharmconsilium-directory-scroll';
+    let scrollId;
+    try {
+      scrollId = sessionStorage.getItem(key);
+      if (scrollId) sessionStorage.removeItem(key);
+    } catch (e) { /* ignore */ }
+    if (!scrollId || !window.scrollToDirectoryCard) return undefined;
+    const t = window.setTimeout(() => window.scrollToDirectoryCard(scrollId), 80);
+    return () => window.clearTimeout(t);
+  }, [lang]);
   const MidContactStrip = window.MidContactStrip;
   const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
   const features = en ? en.features : [
-    { t: 'Поиск по МНН и торговым наименованиям', d: 'Быстрый ввод МНН, торгового или АТХ-кода. Подсказки по мере набора, история запросов.', art: 'ArtDirectory' },
-    { t: 'Профессиональные карточки препаратов', d: 'Показания, режимы дозирования, противопоказания, лекарственные взаимодействия — собрано в одну карточку.', art: 'ArtDoc' },
-    { t: 'Доказательная база и публикации', d: 'У каждой карточки — ссылки на публикации, мета-анализы и клинические протоколы.', art: 'ArtBooks' },
-    { t: 'Доверительная среда без рекламного шума', d: 'Никакого продакт-плейсмента и баннеров. Монетизация — через подписку для аптек и клиник.', art: 'ArtPulse' },
+    {
+      t: 'Архитектура ординаторской без рекламного шума. Нам доверяют',
+      art: 'ArtDirectory',
+      dParagraphs: [
+        [
+          { s: 'ФармКонсилиум', b: true },
+          { s: ' — это профессиональная среда для клинициста, а не рекламная витрина. Интерфейс построен по принципу «информация без отвлечений»: врач, провизор или медсестра попадает в пространство, где нет баннеров, нет рекламных блоков конкурентов, нет всплывающих окон. Это цифровой аналог ординаторской — место, где работают, а не листают рекламу.' },
+        ],
+        [
+          { s: 'Именно такое окружение формирует доверие к контенту, размещённому на платформе. Для производителей лекарств принципиально: информация о вашем препарате воспринимается врачом ' },
+          { s: 'в нейтральном профессиональном контексте', b: true },
+          { s: ', а не на фоне продвижения прямых конкурентов. Проект молодой — основан в 2025 году — однако уже получил признание: производители лекарственных средств самостоятельно цитируют материалы справочника, а практикующие врачи регулярно обращаются к базе инструкций. Это органически сформированное доверие — не купленное охватами, а завоёванное точностью данных.' },
+        ],
+      ],
+    },
+    {
+      t: 'Как выглядит информация о ЛС, описание карточки препарата',
+      art: 'ArtDoc',
+      dIntroParts: [
+        { s: 'Карточка препарата в Справочнике ЛС ' },
+        { s: 'ФармКонсилиум', b: true },
+        { s: ' — это структурированный профессиональный документ, а не SEO-оптимизированный текст для неспециалиста. Архитектура карточки включает:' },
+      ],
+      dTable: {
+        head: ['Блок карточки', 'Содержание'],
+        rows: [
+          ['Официальная инструкция', 'Полный текст, утверждённый регулятором, с указанием версии документа и даты обновления'],
+          ['Пример рецепта', 'Готовый шаблон оформления рецепта на данный препарат — уникальная функция для практикующего врача'],
+          ['МНН / АТХ / бренд', 'Все поисковые идентификаторы препарата присутствуют и индексируются'],
+          ['Аналоги внутри класса', 'Подбор аналогов по логике «МНН → АТХ-класс», курируется клиническим фармакологом'],
+          ['Инструкции из разных стран СНГ', 'На один препарат могут быть представлены версии инструкций из нескольких юрисдикций'],
+          ['Базовая фармакология', 'Механизм действия, фармакокинетика — в клинически ориентированном формате'],
+          ['Дата обновления', 'Фиксируется на каждой карточке; правки вносятся при выходе новых версий инструкций'],
+          ['Ссылки на источники', 'Прозрачная атрибуция — врач видит, откуда взяты данные'],
+        ],
+      },
+    },
+    {
+      t: 'Веб-версия и мобильная версия',
+      art: 'ArtBooks',
+      dParagraphs: [
+        [
+          { s: 'Справочник ЛС ' },
+          { s: 'ФармКонсилиум', b: true },
+          { s: ' реализован в двух форматах доступа — веб-сайт для десктопа и смартфон «Бот+ Telegram-приложение» (TeleАпп).' },
+        ],
+        [
+          { s: 'Для десктопа', b: true },
+          { s: ' — на компьютере в аптеке обеспечивает полный доступ к справочнику, разделам фармакологии и рейтингам препаратов. Интерфейс адаптирован под профессиональный сценарий: быстрый поиск по МНН, бренду, АТХ и показаниям, фильтрация результатов, навигация по разделам.' },
+        ],
+        [
+          { s: 'Для смартфона', b: true },
+          { s: ' — для СНГ-аудитории HCP, где Telegram является основным профессиональным мессенджером. Справочник доступен без установки отдельного приложения, прямо внутри привычной среды врача. ИТ-команда проекта поддерживает оба интерфейса в параллельном режиме, регулярно обновляя код, базы данных и UX.' },
+        ],
+      ],
+    },
+    {
+      t: 'Приглашаем продакт-менеджеров фармкомпаний к сотрудничеству',
+      art: 'ArtPulse',
+      dParagraphs: [
+        [
+          { s: '«Справочник лекарственных средств ' },
+          { s: 'ФармКонсилиум', b: true },
+          { s: '» — это молодой, но уже авторитетный профессиональный ресурс, основанный 1 сентября 2025 года. За короткое время проект сформировал репутацию точного источника: производители ЛС его цитируют, практикующие врачи используют ежедневно. Команда Справочника ЛС ' },
+          { s: 'ФармКонсилиум', b: true },
+          { s: ' объединяет врачей-редакторов, ИТ-специалистов, дизайнеров и клинического фармаколога — это означает, что вы работаете с партнёром, который понимает и медицинскую сторону, и цифровые технологии одновременно.' },
+        ],
+        [
+          { s: 'Что предлагает проект продакт-менеджеру фармкомпании:', b: true },
+        ],
+        [
+          { s: 'Точные данные о вашем ЛС в правильном формате — официальные инструкции, примеры рецептов, базовая фармакология: контент, который HCP реально использует в работе.' },
+        ],
+        [
+          { s: 'Один ресурс для СНГ — один препарат, несколько версий инструкций из разных стран СНГ: инструмент для мультирыночного портфеля.' },
+        ],
+        [
+          { s: 'Редакционная верификация — тексты проверяют практикующие врачи-редакторы и клинический фармаколог; дата обновления фиксируется на карточке.' },
+        ],
+      ],
+    },
   ];
   const mockDrugs = en ? en.mockDrugs : [
-    { name: 'Препарат-альфа', mnn: 'rosuvastatinum', atc: 'C10AA07', cls: 'Гиполипидемическое' },
-    { name: 'Препарат-бета', mnn: 'metformin', atc: 'A10BA02', cls: 'Антидиабетическое' },
-    { name: 'Препарат-гамма', mnn: 'amlodipinum', atc: 'C08CA01', cls: 'Антагонист кальция' },
-    { name: 'Препарат-дельта', mnn: 'omeprazolum', atc: 'A02BC01', cls: 'Ингибитор протонного насоса' },
-    { name: 'Препарат-эпсилон', mnn: 'azithromycinum', atc: 'J01FA10', cls: 'Макролид' },
-    { name: 'Препарат-зета', mnn: 'levothyroxinum', atc: 'H03AA01', cls: 'Тиреоидный гормон' },
+    {
+      name: 'Пример ОХЛП (BY, KZ)',
+      desc: 'Инструкция по медицинскому применению (листок-вкладыш) — структурированная карточка ЛС с официальной инструкцией, дозировками и примером рецепта на конкретный препарат',
+      href: 'https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
+      hrefLabel: 'Ссылка: https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
+      tags: ['ОХЛП', 'ФармКонсилиум'],
+    },
+    {
+      name: 'Клинические калькуляторы, оценка функции почек',
+      desc: 'Калькулятор Cockcroft–Gault, CKD‑EPI, Schwartz и CKiD U25 с автоматическим расчётом клиренса и стадий ХБП.',
+      href: 'https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
+      hrefLabel: 'Ссылка: https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
+      hashTags: ['клинические калькуляторы', 'нефрология'],
+    },
+    {
+      name: 'Умный поиск по ТН, МНН, АТХ и производителю',
+      desc: 'Единый поиск приводит к карточке ЛС с инструкцией, аналогами и оценками врачей.',
+      href: 'https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+      hrefLabel: 'Ссылка: https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+      hashTags: ['поиск лекарств', 'для врачей'],
+    },
+    {
+      name: 'Оценки ЛС практикующими врачами',
+      desc: 'К официальным данным добавляются отзывы и рейтинги от врачей с реальным опытом применения. Только для зарегистрированных пользователей, подтвердивших свою квалификацию.',
+      href: 'https://farmconsilium.com/ls/medicines/konkor-rp',
+      hrefLabel: 'Ссылка: https://farmconsilium.com/ls/medicines/konkor-rp',
+      hashTags: ['оценка врачей', 'карточка препарата'],
+    },
+    {
+      name: 'Общая и клиническая фармакология',
+      desc: 'Ключевые таблицы, инфографика и статьи по фармакодинамике, фармакокинетике и рациональной фармакотерапии.',
+      href: 'https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+      hrefLabel: 'Ссылка: https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+      hashTags: ['клиническая фармакология', 'образование врачей'],
+    },
+    {
+      name: 'Примеры выписки медицинских рецептов',
+      desc: 'Готовые образцы рецептов по льготам с корректным заполнением для конкретных препаратов.',
+      href: 'https://farmconsilium.com/ls/medicines/1645-mirena',
+      hrefLabel: 'Ссылка: https://farmconsilium.com/ls/medicines/1645-mirena',
+      hashTags: ['медицинские рецепты', 'льготное лекарство'],
+    },
   ];
   const stats = en ? en.stats : [
     { n: '01', t: '1 000+ специалистов', d: 'врачей и провизоров используют справочник ежедневно' },
@@ -599,11 +759,6 @@ function DirectoryPage({ navigate, lang }) {
           <p className="lede">
             {en ? en.lede : 'Профессиональный цифровой ресурс для врачей и фармацевтов. Сегодня его используют более 1 000 специалистов ежедневно для поиска экспертного справочного контента. Доверительная атмосфера ординаторской — без рекламного шума.'}
           </p>
-          <div style={{ display: 'flex', gap: 10, marginTop: 32, flexWrap: 'wrap', alignItems: 'center' }}>
-            {MidContactStrip ? <MidContactStrip inline lang={lang} /> : null}
-            <button className="btn btn-ghost">{en ? en.openDir : 'Открыть справочник →'}</button>
-            <button className="btn btn-ghost">{en ? en.demoAccess : 'Получить демо-доступ'}</button>
-          </div>
         </div>
       </section>
 
@@ -611,7 +766,7 @@ function DirectoryPage({ navigate, lang }) {
         <div>
           <div className="section-head">
             <div>
-              <div className="eyebrow">{en ? en.benefitsEyebrow : 'Преимущества'}</div>
+              <div className="eyebrow">{en ? en.benefitsEyebrow : 'Справочник препаратов'}</div>
               <h2>{en ? en.benefitsH2 : <>Почему врачи и провизоры<br />возвращаются.</>}</h2>
             </div>
             <div className="right">
@@ -622,13 +777,18 @@ function DirectoryPage({ navigate, lang }) {
             {features.map((a, i) => {
               const A = window[a.art];
               return (
-                <div key={i} className="card" style={{ gridColumn: 'span 6' }}>
+                <div key={i} id={`directory-benefit-${i}`} className="card directory-benefit-card" style={{ gridColumn: 'span 6' }}>
                   <div className="card-art">{A && <A />}</div>
                   <h3>{a.t}</h3>
-                  <p>{a.d}</p>
+                  <DirectoryFeatureText item={a} />
                 </div>
               );
             })}
+            {MidContactStrip ?
+              <div className="directory-benefit-cta">
+                <MidContactStrip inline lang={lang} />
+              </div> :
+              null}
           </div>
         </div>
 
@@ -639,41 +799,50 @@ function DirectoryPage({ navigate, lang }) {
           padding: 32,
           boxShadow: 'var(--shadow-md)'
         }}>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            {cats.map((c) => {
-              const on = c === activeCat;
-              return (
-                <button key={c}
-                  onClick={() => setActiveCat(c)}
-                  className="chip"
-                  style={{
-                    cursor: 'pointer',
-                    background: on ? 'var(--accent)' : 'transparent',
-                    border: 'none',
-                    color: on ? 'white' : 'var(--ink-2)',
-                    fontFamily: 'inherit', fontSize: 13,
-                    transition: 'background 180ms, color 180ms'
-                  }}>{c}</button>
-              );
-            })}
-          </div>
-
-          <div style={{ marginTop: 28, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+          <div className="directory-drug-samples">
             {mockDrugs.map((p, i) =>
-            <div key={i} style={{
-              border: 'none', borderRadius: 'var(--radius)',
-              padding: 18,
-              background: 'var(--surface-2)'
-            }}>
-                <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--muted)',
-                letterSpacing: '.08em', textTransform: 'uppercase'
-              }}>{p.atc} · ATC</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 500, marginTop: 6, letterSpacing: '-.015em' }}>{p.name}</div>
-                <div style={{ color: 'var(--muted)', fontSize: 12.5, marginTop: 2, fontStyle: 'italic' }}>{p.mnn}</div>
-                <div style={{ fontSize: 12.5, color: 'var(--ink-2)', marginTop: 10 }}>{p.cls}</div>
-                <div style={{ display: 'flex', gap: 6, marginTop: 14, fontSize: 11, color: 'var(--muted)' }}>
-                  <span>{en ? en.pubCount : '14 публикаций'}</span>·<span>{en ? en.protocolCount : '3 клин. протокола'}</span>
+            <div key={i} className="directory-drug-sample">
+                {p.atc ?
+                  <div className="directory-drug-sample-kicker">{p.atc} · ATC</div> :
+                  null}
+                <div className="directory-drug-sample-title">{p.name}</div>
+                {p.mnn && !p.href ?
+                  <div className="directory-drug-sample-mnn">{p.mnn}</div> :
+                  null}
+                {p.desc || p.cls ?
+                  <div className="directory-drug-sample-desc">{p.desc || p.cls}</div> :
+                  null}
+                {p.href ?
+                  <a
+                    className="directory-drug-sample-link"
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {p.hrefLabel || p.href}
+                  </a> :
+                  null}
+                <div className="directory-drug-sample-meta">
+                  {p.hashTags ?
+                    p.hashTags.map((tag, j) =>
+                      <React.Fragment key={typeof tag === 'string' ? tag : tag.label}>
+                        {j > 0 ? <span aria-hidden="true">·</span> : null}
+                        <span>{typeof tag === 'string' ? tag : tag.label}</span>
+                      </React.Fragment>
+                    ) :
+                    p.tags ?
+                      p.tags.map((tag, j) =>
+                        <React.Fragment key={tag}>
+                          {j > 0 ? <span aria-hidden="true">·</span> : null}
+                          <span>{tag}</span>
+                        </React.Fragment>
+                      ) :
+                      <>
+                        <span>{en ? en.pubCount : '14 публикаций'}</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{en ? en.protocolCount : '3 клин. протокола'}</span>
+                      </>
+                  }
                 </div>
               </div>
             )}

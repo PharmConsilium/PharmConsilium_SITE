@@ -1470,6 +1470,112 @@ button { font-family: inherit; }
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+.directory-spec-table-wrap {
+  margin-top: 12px;
+  overflow: hidden;
+}
+.directory-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  table-layout: fixed;
+}
+.directory-spec-table th,
+.directory-spec-table td {
+  padding: 9px 10px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.directory-spec-table th {
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-2);
+}
+.directory-spec-table th:first-child,
+.directory-spec-table td:first-child {
+  width: 34%;
+}
+.directory-spec-table td strong {
+  color: var(--ink-2);
+  font-weight: 600;
+}
+.directory-spec-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.directory-benefit-card {
+  scroll-margin-top: 96px;
+}
+.directory-benefit-cta {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+.directory-drug-samples {
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.directory-drug-sample {
+  border: none;
+  border-radius: var(--radius);
+  padding: 18px;
+  background: var(--surface-2);
+}
+.directory-drug-sample-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.directory-drug-sample-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 6px;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+.directory-drug-sample-mnn {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 2px;
+  font-style: italic;
+}
+.directory-drug-sample-link {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--accent);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.directory-drug-sample-link:hover {
+  text-decoration: underline;
+}
+.directory-drug-sample-desc {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.directory-drug-sample-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--muted);
+}
 .card .read {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 13px; font-weight: 600; color: var(--accent);

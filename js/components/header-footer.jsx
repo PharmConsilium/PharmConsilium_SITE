@@ -10,6 +10,35 @@ const NAV_ITEMS = [
 
 
 // per-page mega-menu config: sublinks + featured tile
+const DIRECTORY_SCROLL_KEY = 'pharmconsilium-directory-scroll';
+
+function scrollToDirectoryCard(id) {
+  if (!id) return;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+  });
+}
+
+function goNavLink(navigate, currentRoute, sectionId, link, onClose) {
+  const to = typeof link === 'string' ? sectionId : (link.to || sectionId);
+  const scrollTo = typeof link === 'string' ? null : link.scrollTo;
+  if (scrollTo && to === 'directory') {
+    if (currentRoute === 'directory') {
+      scrollToDirectoryCard(scrollTo);
+      onClose?.();
+      return;
+    }
+    try { sessionStorage.setItem(DIRECTORY_SCROLL_KEY, scrollTo); } catch (e) { /* ignore */ }
+  }
+  navigate(to);
+  onClose?.();
+}
+
 const MEGA = {
   marketing: {
     title: 'Цифровые инструменты фармацевтического маркетинга',
@@ -83,10 +112,10 @@ const MEGA = {
   directory: {
     title: 'Профессиональный цифровой ресурс для врачей, провизоров и фармацевтов',
     links: [
-    { label: 'Удобство для профессионалов на рабочем месте', to: 'directory' },
-    { label: 'Актуальные данные в формате инструкций для специалистов', to: 'directory' },
-    { label: 'Клинические калькуляторы и медицинские шкалы', to: 'directory' },
-    { label: 'Доверительная среда без рекламного шума', to: 'directory' }],
+    { label: 'Архитектура ординаторской без рекламного шума. Нам доверяют', to: 'directory', scrollTo: 'directory-benefit-0' },
+    { label: 'Как выглядит информация о ЛС, описание карточки препарата', to: 'directory', scrollTo: 'directory-benefit-1' },
+    { label: 'Веб-версия и мобильная версия', to: 'directory', scrollTo: 'directory-benefit-2' },
+    { label: 'Приглашаем продакт-менеджеров фармкомпаний к сотрудничеству', to: 'directory', scrollTo: 'directory-benefit-3' }],
 
     featured: {
       tag: 'Drug reference guide ',
@@ -248,9 +277,8 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
               <ul className="mega-links">
                 {megaConfig[openMenu].links.map((l, i) => {
                 const label = typeof l === 'string' ? l : l.label;
-                const to = typeof l === 'string' ? openMenu : l.to;
                 return (
-                  <li key={i} onClick={() => {navigate(to);setOpenMenu(null);}}>
+                  <li key={i} onClick={() => goNavLink(navigate, route, openMenu, l, () => setOpenMenu(null))}>
                       {label}<span className="arrow">→</span>
                     </li>);
 
@@ -311,13 +339,12 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
                   <ul className="mobile-nav-sublinks">
                     {mega.links.map((l, i) => {
                       const label = typeof l === 'string' ? l : l.label;
-                      const to = typeof l === 'string' ? item.id : l.to;
                       return (
                         <li key={i}>
                           <button
                             type="button"
                             className="mobile-nav-sublink"
-                            onClick={() => goMobile(to)}>
+                            onClick={() => goNavLink(navigate, route, item.id, l, closeMobileNav)}>
                             {label}
                           </button>
                         </li>);
@@ -458,3 +485,5 @@ window.Header = Header;
 window.Footer = Footer;
 window.NAV_ITEMS = NAV_ITEMS;
 window.MEGA = MEGA;
+window.scrollToDirectoryCard = scrollToDirectoryCard;
+window.DIRECTORY_SCROLL_KEY = DIRECTORY_SCROLL_KEY;

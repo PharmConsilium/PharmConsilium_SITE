@@ -292,6 +292,8 @@ window.SUBPAGES_EN_PATCHES = {
   'hcp/ai-recom': {
     section: 'Healthcare',
     title: 'Digital platforms for educational medical programs',
+    h1Line1: 'Digital platforms',
+    h1Accent: 'for educational medical programs',
     lede: 'Webinars, online courses, training, and certification for physicians and pharmacists—on your own LMS platforms.',
     tags: ['CME', 'MedicalEducation', 'ePharma', 'HCPEducation', 'DigitalHealth'],
     aboutTitle: 'Continuous education for healthcare professionals',
@@ -425,7 +427,9 @@ window.SUBPAGES_EN_PATCHES = {
   'hcp/ai-healthcare': {
     section: 'Healthcare',
     title: 'Digital platforms for scientific research',
-    lede: 'Clinical data capture panels, physician AI assistant, ePRO bots, and AI analytics—we build digital tools for scientific research within your regulatory framework.',
+    h1Line1: 'Digital platforms',
+    h1Accent: 'for scientific research',
+    lede: 'Clinical data capture panels, physician AI assistant, ePRO bots, and AI analytics—we build digital tools for scientific research with your regulatory requirements in mind.',
     tags: ['ClinicalResearch', 'ClinicalData', 'AIinPharma', 'DigitalHealth', 'RealWorldEvidence'],
     aboutTitle: 'Digital tools for scientific research',
     about: [
@@ -434,21 +438,21 @@ window.SUBPAGES_EN_PATCHES = {
     ],
     featuresTitle: 'Pick a direction—we start building science',
     features: [
-      { t: 'Data capture panels', d: 'ePRO bot / Messenger / Voice input / Patient-reported data. Messenger bot replaces paper diaries: PRO, reminders, adverse events in real time, eCRF feed—less site load, fewer missed entries, more remote participation.' },
+      { t: 'Data capture panels', d: 'ePRO bot / Messenger / Voice input / Patient-reported data. Messenger bot replaces paper diaries: PRO, reminders, adverse events in real time, eCRF feed—less site load, fewer missed entries, and lets participants complete the study remotely without frequent clinic visits.' },
       { t: 'Physician AI assistant', d: 'Mobile app / eCRF / ePRO / Wearable import. Structured eCRF, wearables (HR, steps, sleep), real-time biometrics; front-end AI flags required fields and logical errors, fewer data queries.' },
-      { t: 'AI consultant', d: 'Investigator web panel / Central monitoring / AI analytics. Aggregates eCRF, ePRO, labs, EHR with real-time dashboards; back-end AI detects outliers, protocol deviations, site risks, auto-reports.' },
+      { t: 'AI consultant', d: 'Investigator web panel / Central monitoring / AI analytics. Online platform aggregates eCRF, ePRO, labs, and EHR into one panel with dashboards in real time; back-end AI detects outliers, protocol deviations, site risks, and auto-generates investigator reports.' },
       { t: 'Secure perimeter', d: 'Patient AI consultant / eCONSENT / Screening bot. Guides candidates through protocol Q&A and screening to eCONSENT—faster recruitment, less coordinator load; one deployment cut recruitment time by 25%.' },
     ],
     stepsTitle: 'Trial digitization when it truly matters',
     steps: [
       { n: '01', t: 'Post-marketing studies and Real-World Evidence (RWE)', d: 'Capturing real-world product use through traditional eCRF is slow and costly. Bots or mobile apps scale RWE from thousands of patients—evidence for label expansion, publications, and regulator dialogue.' },
-      { n: '02', t: 'Multi-center trials with geographically distributed sites', d: 'When participants and investigators span cities or countries, one digital platform with central monitoring and AI dashboards gives sponsors real-time visibility per site—without frequent on-site audits.' },
+      { n: '02', t: 'Multi-center trials with geographically distributed sites', d: 'When participants and investigators span cities or countries, one digital platform with central monitoring and AI dashboards give the sponsor full visibility per site in real time—without frequent on-site audits.' },
       { n: '03', t: 'Studies with patient PRO data in chronic disease', d: 'In chronic conditions (diabetes, COPD, rheumatology), systematic patient data over months is critical. ePRO bots or mobile apps improve diary compliance, cut visits, and preserve data quality.' },
       { n: '04', t: 'Pharma-led NIS/PASS programs to expand brand science', d: 'Non-interventional (NIS) and post-authorization safety (PASS) studies need structured, compliant real-world data capture. Digital platforms with AI assistants run these programs efficiently—broad physician reach, minimal investigator burden.' },
     ],
     deliverablesTitle: 'Faster, more accurate data capture—problems the digital approach solves',
     deliverables: [
-      { t: 'Manual entry errors and missing clinical data', d: 'Paper or disconnected e-forms drive most database errors. Front-end AI blocks illogical entries at input, cutting data queries and speeding database lock.' },
+      { t: 'Manual entry errors and missing clinical data', d: 'Paper or disconnected e-forms are the source of 60–80% of errors in clinical databases. Front-end AI flags logical contradictions at entry and blocks invalid saves, sharply reducing data queries and accelerating database readiness for lock.' },
       { t: 'Slow, costly participant recruitment', d: 'Manual screening is slow and expensive. An AI screening bot checks criteria, answers questions 24/7, and eases site load—faster enrollment without losing quality.' },
       { t: 'Low adherence and high dropout', d: 'Diary burden, missed visits, and no feedback drive loss. Reminder bots, simple mobile UX, and remote capture keep participants through the study.' },
       { t: 'Fragmented data from multiple sources', d: 'eCRF, labs, wearables, and EHR need harmonization. Back-end AI normalizes streams into one SDTM-ready dataset.' },
@@ -566,6 +570,8 @@ window.SUBPAGES_EN_PATCHES = {
   'sales/launch': {
     section: 'Outsourcing',
     title: 'Launch outsourcing',
+    h1Line1: 'Launch —',
+    h1Accent: 'outsourcing',
     lede: 'Launch outsourcing with PharmConsilium: from strategy and soft launch to digital launch and a full suite of services to bring your brand to the Belarus market.',
     tags: ['PharmaLaunch', 'LaunchOutsourcing', 'SoftLaunch', 'DigitalLaunch', 'PharmaMarketing', 'HCPEngagement', 'Belarus', 'GoToMarket', 'Omnichannel', 'MedicalEvents'],
     aboutTitle: 'Pharmaceutical product launch on the market',

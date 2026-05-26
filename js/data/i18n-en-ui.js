@@ -83,10 +83,10 @@ window.I18N_EN = {
     directory: {
       title: 'Professional digital resource for physicians, pharmacists, and pharmaceutical specialists',
       links: [
-        { label: 'Workflow convenience for professionals', to: 'directory' },
-        { label: 'Up-to-date data in specialist-oriented SmPC format', to: 'directory' },
-        { label: 'Clinical calculators and medical scales', to: 'directory' },
-        { label: 'Trusted environment without promotional noise', to: 'directory' },
+        { label: 'Residency-grade architecture without promotional noise. Trusted by clinicians', to: 'directory', scrollTo: 'directory-benefit-0' },
+        { label: 'How drug information looks: the product card', to: 'directory', scrollTo: 'directory-benefit-1' },
+        { label: 'Web and mobile versions', to: 'directory', scrollTo: 'directory-benefit-2' },
+        { label: 'We invite pharmaceutical product managers to partner with us', to: 'directory', scrollTo: 'directory-benefit-3' },
       ],
       featured: {
         tag: 'Drug reference guide',
@@ -312,25 +312,135 @@ window.I18N_EN = {
     h1: 'Drug directory',
     h1Brand: 'PharmConsilium',
     lede: 'A professional digital resource for physicians and pharmacists. More than 1,000 specialists use it daily for expert reference content. A residency-grade atmosphere — without promotional noise.',
-    openDir: 'Open directory →',
-    demoAccess: 'Request demo access',
-    benefitsEyebrow: 'Benefits',
+    benefitsEyebrow: 'Drug reference guide',
     benefitsH2: 'Why physicians and pharmacists come back.',
     benefitsRight: 'A residency-grade atmosphere: expert content only, no promotional noise, transparent sources.',
     features: [
-      { t: 'Search by INN and trade names', d: 'Fast entry of INN, trade name, or ATC code. Suggestions as you type, query history.', art: 'ArtDirectory' },
-      { t: 'Professional drug cards', d: 'Indications, dosing, contraindications, interactions — in one card.', art: 'ArtDoc' },
-      { t: 'Evidence base and publications', d: 'Each card links to publications, meta-analyses, and clinical protocols.', art: 'ArtBooks' },
-      { t: 'Trusted environment without ads', d: 'No product placement or banners. Monetization via subscription for pharmacies and clinics.', art: 'ArtPulse' },
+      {
+        t: 'Residency-grade architecture without promotional noise. Trusted by clinicians',
+        art: 'ArtDirectory',
+        dParagraphs: [
+          [
+            { s: 'PharmConsilium', b: true },
+            { s: ' is a professional environment for clinicians—not a promotional storefront. The interface follows an “information without distraction” principle: physicians, pharmacists, and nurses enter a space with no banners, no competitor ad blocks, and no pop-ups. It is a digital residency room—a place to work, not scroll ads.' },
+          ],
+          [
+            { s: 'That environment builds trust in content on the platform. For drug manufacturers it matters: information about your product is perceived by physicians ' },
+            { s: 'in a neutral professional context', b: true },
+            { s: ', not against direct competitors’ promotion. The project is young—founded in 2025—yet already recognized: manufacturers cite directory materials on their own, and practicing physicians regularly use the instruction database. That is organically earned trust—not bought reach, but won through data accuracy.' },
+          ],
+        ],
+      },
+      {
+        t: 'How drug information looks: the product card',
+        art: 'ArtDoc',
+        dIntroParts: [
+          { s: 'A product card in the ' },
+          { s: 'PharmConsilium', b: true },
+          { s: ' Drug Directory is a structured professional document—not SEO copy for lay readers. The card architecture includes:' },
+        ],
+        dTable: {
+          head: ['Card block', 'Content'],
+          rows: [
+            ['Official label (SmPC)', 'Full regulator-approved text with document version and update date'],
+            ['Sample prescription', 'Ready prescription template for the product—a unique feature for practicing physicians'],
+            ['INN / ATC / brand', 'All search identifiers present and indexed'],
+            ['Class analogues', 'Analogues selected by INN → ATC class logic, curated by a clinical pharmacologist'],
+            ['Labels from CIS countries', 'Multiple jurisdiction-specific label versions for one product where available'],
+            ['Core pharmacology', 'Mechanism of action and pharmacokinetics in a clinically oriented format'],
+            ['Update date', 'Recorded on every card; updated when new label versions are released'],
+            ['Source links', 'Transparent attribution—physicians see where data comes from'],
+          ],
+        },
+      },
+      {
+        t: 'Web and mobile versions',
+        art: 'ArtBooks',
+        dParagraphs: [
+          [
+            { s: 'The ' },
+            { s: 'PharmConsilium', b: true },
+            { s: ' Drug Directory is available in two access formats—a desktop website and a smartphone “Bot + Telegram app” (TeleApp).' },
+          ],
+          [
+            { s: 'Desktop', b: true },
+            { s: ' — on a pharmacy computer, full access to the directory, pharmacology sections, and product ratings. The interface supports professional workflows: fast search by INN, brand, ATC, and indications, result filters, and section navigation.' },
+          ],
+          [
+            { s: 'Smartphone', b: true },
+            { s: ' — for CIS HCP audiences where Telegram is the main professional messenger. The directory works without a separate app install, inside the physician’s familiar environment. The project IT team maintains both interfaces in parallel, regularly updating code, databases, and UX.' },
+          ],
+        ],
+      },
+      {
+        t: 'We invite pharmaceutical product managers to partner with us',
+        art: 'ArtPulse',
+        dParagraphs: [
+          [
+            { s: 'The ' },
+            { s: 'PharmConsilium', b: true },
+            { s: ' Drug Directory is a young but already authoritative professional resource, launched on 1 September 2025. In a short time it has built a reputation as an accurate source: manufacturers cite it, practicing physicians use it daily. The ' },
+            { s: 'PharmConsilium', b: true },
+            { s: ' directory team brings together physician editors, IT specialists, designers, and a clinical pharmacologist—you work with a partner who understands both medicine and digital technology.' },
+          ],
+          [
+            { s: 'What the project offers a pharmaceutical product manager:', b: true },
+          ],
+          [
+            { s: 'Accurate data on your product in the right format—official labels, sample prescriptions, core pharmacology: content HCPs actually use in practice.' },
+          ],
+          [
+            { s: 'One resource for the CIS—one product, several label versions from different CIS countries: a tool for a multi-market portfolio.' },
+          ],
+          [
+            { s: 'Editorial verification—texts are reviewed by practicing physician editors and a clinical pharmacologist; the update date is recorded on every card.' },
+          ],
+        ],
+      },
     ],
-    cats: ['Cardiology', 'Endocrinology', 'Oncology', 'Neurology', 'Pulmonology', 'Pediatrics', 'General therapy', 'Psychiatry'],
     mockDrugs: [
-      { name: 'Product-alpha', mnn: 'rosuvastatinum', atc: 'C10AA07', cls: 'Lipid-lowering' },
-      { name: 'Product-beta', mnn: 'metformin', atc: 'A10BA02', cls: 'Antidiabetic' },
-      { name: 'Product-gamma', mnn: 'amlodipinum', atc: 'C08CA01', cls: 'Calcium antagonist' },
-      { name: 'Product-delta', mnn: 'omeprazolum', atc: 'A02BC01', cls: 'Proton pump inhibitor' },
-      { name: 'Product-epsilon', mnn: 'azithromycinum', atc: 'J01FA10', cls: 'Macrolide' },
-      { name: 'Product-zeta', mnn: 'levothyroxinum', atc: 'H03AA01', cls: 'Thyroid hormone' },
+      {
+        name: 'Sample SmPC (BY, KZ)',
+        desc: 'Package leaflet — a structured drug card with the official label, dosing, and a sample prescription for a specific product.',
+        href: 'https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
+        hrefLabel: 'Link: https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
+        tags: ['SmPC', 'PharmConsilium'],
+      },
+      {
+        name: 'Clinical calculators, kidney function assessment',
+        desc: 'Cockcroft–Gault, CKD-EPI, Schwartz, and CKiD U25 calculators with automatic clearance and CKD stage estimates.',
+        href: 'https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
+        hrefLabel: 'Link: https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
+        hashTags: ['clinical calculators', 'nephrology'],
+      },
+      {
+        name: 'Smart search by trade name, INN, ATC, and manufacturer',
+        desc: 'One search leads to the drug card with the label, analogues, and physician ratings.',
+        href: 'https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+        hrefLabel: 'Link: https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+        hashTags: ['drug search', 'for physicians'],
+      },
+      {
+        name: 'Ratings from practicing physicians',
+        desc: 'Alongside official data—reviews and ratings from physicians with real-world experience. For registered users who verified their credentials only.',
+        href: 'https://farmconsilium.com/ls/medicines/konkor-rp',
+        hrefLabel: 'Link: https://farmconsilium.com/ls/medicines/konkor-rp',
+        hashTags: ['physician ratings', 'drug card'],
+      },
+      {
+        name: 'General and clinical pharmacology',
+        desc: 'Key tables, infographics, and articles on pharmacodynamics, pharmacokinetics, and rational pharmacotherapy.',
+        href: 'https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+        hrefLabel: 'Link: https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
+        hashTags: ['clinical pharmacology', 'physician education'],
+      },
+      {
+        name: 'Sample medical prescription forms',
+        desc: 'Ready benefit-prescription templates with correct completion for specific products.',
+        href: 'https://farmconsilium.com/ls/medicines/1645-mirena',
+        hrefLabel: 'Link: https://farmconsilium.com/ls/medicines/1645-mirena',
+        hashTags: ['medical prescriptions', 'benefit medicines'],
+      },
     ],
     pubCount: '14 publications',
     protocolCount: '3 clinical protocols',
