@@ -29,7 +29,7 @@ const SEO_STATIC = {
     description: 'Цифровой медпред, омниканальные кампании, лонч-аутсорсинг и аналитика продаж на рынке РБ.',
   },
   content: {
-    title: 'Контент и игры · ФармКонсилиум',
+    title: 'Дизайн · ФармКонсилиум',
     description: 'Медицинские презентации, видео, eDetailing, геймификация и квизы для фарм-брендов.',
   },
   directory: {
@@ -68,7 +68,7 @@ const SEO_STATIC_EN = {
     description: 'Digital medical representative, omnichannel campaigns, launch outsourcing, and sales analytics in Belarus.',
   },
   content: {
-    title: 'Content · PharmConsilium',
+    title: 'Design · PharmConsilium',
     description: 'Medical presentations, video, eDetailing, gamification, and quizzes for pharma brands.',
   },
   directory: {

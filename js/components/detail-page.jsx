@@ -293,14 +293,37 @@ function DetailPage({ routeId, navigate, lang }) {
             fontSize: 'clamp(28px, 3.4vw, 42px)',
             letterSpacing: '-.025em', margin: '0 0 24px'
           }}>{data.stepsTitle || t('detailSteps')}</h2>
-          <div className="steps">
-            {(data.steps || []).map((s, i) =>
-            <div key={i} className="step">
-                <h4>{s.t}</h4>
-                <p>{s.d}</p>
-              </div>
-            )}
-          </div>
+          {(() => {
+            const allSteps = data.steps || [];
+            const reg = data.stepsRegulatory;
+            const stepsGridClass = reg ? 'steps steps--2col' : 'steps';
+            return (
+              <>
+                <div className={stepsGridClass}>
+                  {allSteps.map((s, i) => (
+                    <div key={i} className="step">
+                      <h4>{s.t}</h4>
+                      <p>{s.d}</p>
+                    </div>
+                  ))}
+                </div>
+                {reg ? (
+                  <div className="detail-regulatory">
+                    <h2 className="detail-regulatory-title">{reg.title}</h2>
+                    {reg.intro ? <p className="detail-regulatory-intro">{reg.intro}</p> : null}
+                    <ul className="detail-regulatory-list">
+                      {(reg.items || []).map((item, i) => (
+                        <li key={i}>
+                          <b>{item.t}</b>
+                          <span>{item.d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </>
+            );
+          })()}
         </div>
 
         <div className={`detail-cta${data.detailCtaTopics?.length ? ' detail-cta--scroll-list' : ''}`}>

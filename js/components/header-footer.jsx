@@ -4,7 +4,7 @@ const NAV_ITEMS = [
 { id: 'marketing', label: 'Фармацевтический маркетинг' },
 { id: 'hcp', label: 'Здравоохранение' },
 { id: 'sales', label: 'Аутсорсинг' },
-{ id: 'content', label: 'Контент' },
+{ id: 'content', label: 'Дизайн' },
 { id: 'directory', label: 'Справочник ЛС' },
 { id: 'team', label: 'О нас' }];
 
@@ -34,7 +34,7 @@ const MEGA = {
   hcp: {
     title: 'Цифровые решения для здравоохранения',
     links: [
-    { label: 'Цифровые платформы для обучения и видеотренингов', to: 'hcp/ai-recom' },
+    { label: 'Цифровые платформы для образовательных медицинских программ', to: 'hcp/ai-recom' },
     { label: 'Программы поддержки пациентов', to: 'hcp/education' },
     { label: 'Чат-боты и ИИ-ассистенты для медицины', to: 'hcp/chatbot' },
     { label: 'Цифровые платформы для научных исследований', to: 'hcp/ai-healthcare' },
@@ -68,7 +68,7 @@ const MEGA = {
     links: [
     { label: 'CLM-презентации, детейлеры, слайдбоксы для медицинского представителя', to: 'content/medical' },
     { label: 'Видео HCP - от сценария до спецэффектов в выступлении OL', to: 'content/video' },
-    { label: 'Игры, квизы, клинические детективы', to: 'content/gamification' },
+    { label: 'Игры, квизы и клинические детективы для HCP', to: 'content/gamification' },
     { label: 'ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг', to: 'content/advertising' },
     { label: 'Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС', to: 'content/presentations' }],
 
