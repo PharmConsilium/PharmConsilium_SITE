@@ -52,9 +52,9 @@ const SUBPAGES = {
     aboutTitle: 'О проекте',
     art: 'ArtLayers',
     artSlides: [
-      { src: 'assets/uploads/clm-detail-slide-1.png?v=20260527', label: 'CLM-PharmConsilium', alt: 'CLM-PharmConsilium: приложение на планшете и смартфоне, App Store и Google Play, облачное хранилище' },
-      { src: 'assets/uploads/clm-detail-slide-2.png?v=20260527', label: 'Адаптация контента', alt: 'CLM-PharmConsilium: адаптация PowerPoint, PDF и видео в CLM-презентации и аналитика просмотров' },
-      { src: 'assets/uploads/clm-detail-slide-3.png?v=20260527', label: 'Аналитика F2F-визитов', alt: 'CLM-PharmConsilium: анализ работы с промоматериалами на F2F-визитах — геометка, время, отчёт' },
+      { src: 'assets/uploads/clm-detail-slide-1.png?v=20260530', label: 'CLM-PharmConsilium', alt: 'CLM-PharmConsilium: приложение на планшете и смартфоне, App Store и Google Play, облачное хранилище' },
+      { src: 'assets/uploads/clm-detail-slide-2.png?v=20260530', label: 'Адаптация контента', alt: 'CLM-PharmConsilium: адаптация PowerPoint, PDF и видео в CLM-презентации и аналитика просмотров' },
+      { src: 'assets/uploads/clm-detail-slide-3.png?v=20260530', label: 'Аналитика F2F-визитов', alt: 'CLM-PharmConsilium: анализ работы с промоматериалами на F2F-визитах — геометка, время, отчёт' },
     ],
     about: [
       'CLM-PharmConsilium — это CLM-система, созданная под реальную работу медицинского представителя: быстрый запуск, минимум затрат на контент, управляемая аналитика и экспорт в CRM. Берём ваши презентации PowerPoint/PDF и видео и превращаем их в CLM-презентации — без «спецразработки» и долгих циклов производства.',

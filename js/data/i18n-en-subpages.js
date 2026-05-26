@@ -47,9 +47,9 @@ window.SUBPAGES_EN_PATCHES = {
     tags: ['CLM', 'CLM presentations', 'Detailing CLM — PharmConsilium'],
     aboutTitle: 'About the project',
     artSlides: [
-      { src: 'assets/uploads/clm-detail-slide-1.png?v=20260527', label: 'CLM-PharmConsilium', alt: 'CLM-PharmConsilium: app on tablet and phone, App Store and Google Play, cloud storage' },
-      { src: 'assets/uploads/clm-detail-slide-2.png?v=20260527', label: 'Content adaptation', alt: 'CLM-PharmConsilium: adapting PowerPoint, PDF, and video into CLM with view analytics' },
-      { src: 'assets/uploads/clm-detail-slide-3.png?v=20260527', label: 'F2F visit analytics', alt: 'CLM-PharmConsilium: promo material analytics on rep F2F visits—geotag, time, reporting' },
+      { src: 'assets/uploads/clm-detail-slide-1.png?v=20260530', label: 'CLM-PharmConsilium', alt: 'CLM-PharmConsilium: app on tablet and phone, App Store and Google Play, cloud storage' },
+      { src: 'assets/uploads/clm-detail-slide-2.png?v=20260530', label: 'Content adaptation', alt: 'CLM-PharmConsilium: adapting PowerPoint, PDF, and video into CLM with view analytics' },
+      { src: 'assets/uploads/clm-detail-slide-3.png?v=20260530', label: 'F2F visit analytics', alt: 'CLM-PharmConsilium: promo material analytics on rep F2F visits—geotag, time, reporting' },
     ],
     about: [
       'CLM-PharmConsilium is a CLM system built for how medical representatives actually work: fast rollout, minimal content spend, managed analytics, and CRM export. We turn your PowerPoint/PDF decks and video into CLM presentations—without bespoke development or long production cycles.',

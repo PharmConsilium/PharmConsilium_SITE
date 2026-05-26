@@ -1437,12 +1437,11 @@ button { font-family: inherit; }
   overflow: hidden;
 }
 .card-art--photo-contain img {
-  object-fit: contain;
-  object-position: 100% 100%;
+  object-fit: cover;
+  object-position: center center;
   padding: 0;
   background: transparent;
-  transform: scale(1.04);
-  transform-origin: 100% 100%;
+  transform: none;
   filter: none;
 }
 .card-num {
