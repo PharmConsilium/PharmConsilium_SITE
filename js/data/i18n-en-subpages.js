@@ -884,7 +884,7 @@ window.SUBPAGES_EN_PATCHES = {
       { t: 'Low engagement with traditional education formats', d: 'Linear lectures and PDFs lose the busy physician’s attention. Game formats activate cognitive and emotional engagement—problem-solving mode learns deeper and retains longer than passive viewing.' },
       { t: 'Weak knowledge retention after one-off events', d: 'Lecture content fades in days without repetition. Staged play, instant feedback, and revisiting hard questions implement spaced repetition for long-term retention.' },
       { t: 'Hard to deliver brand messages in non-promotional context', d: 'HCPs filter overt promotion. Clinical detectives and case games embed the message in narrative—specialists discover therapeutic advantages through the decision.' },
-      { t: 'Insufficient motivation for continuous learning', d: 'Points, rankings, badges, certificates, and unlock levels sustain regular platform use—not one-offs. Gamified programs build durable learning habits.' },
+      { t: 'Insufficient motivation for continuous learning', d: 'Points, rankings, badges, certificates, and unlock levels build external and internal motivation for regular, not one-off, engagement with the education platform. Evidence shows gamified programs form durable learning habits.' },
       { t: 'Hard to assess real HCP competence', d: 'Classic tests show “right answer” recall, not clinical application. Branching cases and simulations assess thinking in action—for the physician and the program owner.' },
       { t: 'Hard to hold audience at multi-day congresses and webinars', d: 'Passive listening tires delegates. Between-session quizzes, live contests, booth activity rankings, and team games restore attention and positive brand association.' },
     ],

@@ -356,7 +356,8 @@ function splitPageTitle(title) {
     const sep = seps[i];
     const idx = title.indexOf(sep);
     if (idx > 0) {
-      return { line1: title.slice(0, idx), accent: title.slice(idx + sep.length), accent2: null };
+      const accent = sep === ' для ' ? title.slice(idx + 1) : title.slice(idx + sep.length);
+      return { line1: title.slice(0, idx), accent, accent2: null };
     }
   }
   const colon = title.indexOf(': ');
@@ -456,16 +457,16 @@ function MarketingPage({ navigate, lang }) {
     cardArtAlt: 'CLM-PharmConsilium на планшете и смартфоне',
     cardArtPhoto: 'contain',
     desc: 'Программное обеспечение для демонстрации CLM-презентаций медицинским представителем на F2F-визитах. Интерактивные сценарии, метрики взаимодействия, экспорт данных.',
-    tag: 'CLM, CLM — презентации' },
-  { title: '2CLM', sub: '2clm', art: 'ArtTablet',
-    desc: 'Двухканальная презентация: тач-визит и удалённая работа с одним сценарием контента.',
-    tag: 'remote eDetailing' },
-  { title: 'Чат-боты и ТелеАпп', sub: 'chatbot', art: 'ArtChat',
-    desc: 'Сценарные боты для HCP и пациентов: рассылки, опросники, навигация, NPS, поддержка терапии.',
-    tag: 'Telegram, WhatsApp' },
-  { title: 'Веб и цифровые продукты', sub: 'web', art: 'ArtBrowser', size: 'wide',
-    desc: 'Сайты, лендинги, лонгриды, порталы, онлайн-конгрессы, вебинары, интерактивные игры. Полный цикл — от UX до релиза.',
-    tag: 'портал, лонгрид' },
+    tag: 'CLM, CLM — презентации, Detailing CLM — ФармКонсилиум' },
+  { title: '2CLM — ПО для увеличения эффективности визитов SF', sub: '2clm', art: 'ArtTablet',
+    desc: 'Один сценарий — два режима: тач-визит и удалённая работа. Контент адаптируется под формат коммуникации без переделки.',
+    tag: 'Rep-Triggered Email, Post-Call Digital Content Push, Post-Call Follow-Up Materials Delivery' },
+  { title: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', sub: 'chatbot', art: 'ArtChat',
+    desc: 'Для долгосрочной коммуникации с вашими клиентами создаем уникальную цифровую архитектуру в мессенджере Телеграм, где в списке личных чатов пользователя находится чат-бот с встроенными функциями мобильного приложения.',
+    tag: 'TelegramBot, TeleApp, ChatBot' },
+  { title: 'Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров', sub: 'web', art: 'ArtBrowser', size: 'wide',
+    desc: 'Веб-решения ФармКонсилиум для фармацевтических брендов: HCP-порталы, лендинги препаратов, лонгриды и платформы онлайн-конгрессов под ключ.',
+    tag: 'WebDevelopment, PharmaWeb, PharmaMarketing' },
   { title: 'Мобильные приложения', sub: 'mobile', art: 'ArtPhone', size: 'wide',
     desc: 'iOS и Android для HCP-сообществ и программ поддержки пациентов. Доступы, push, аналитика, маркетплейс.',
     tag: 'iOS, Android' },
