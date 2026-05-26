@@ -548,8 +548,8 @@ function ContentPage({ navigate, lang }) {
     desc: 'Клинические детективы, квизы и кейс-игры для HCP — геймификация, которая обучает и вовлекает.',
     tag: 'MedicalGamification · HCPengagement' },
   { title: 'Презентации', sub: 'presentations', art: 'ArtSlides',
-    desc: 'Корпоративные, инвесторские, продуктовые, бренд-команда. Делаем красиво и понятно.',
-    tag: 'design' },
+    desc: 'Визуальная идентичность бренда: брендбук, упаковка, баннеры и промоматериалы для HCP и пациентов.',
+    tag: 'PharmaBranding · PackagingDesign' },
   { title: 'Реклама', sub: 'advertising', art: 'ArtBrowser',
     desc: 'Креативы для digital-кампаний — в рамках законодательства РБ о рекламе ЛС.',
     tag: 'digital · РБ' }]
