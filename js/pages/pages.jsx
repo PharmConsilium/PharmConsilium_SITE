@@ -700,11 +700,11 @@ function DirectoryPage({ navigate, lang }) {
               {en ? en.benefitsRight : 'Доверительная атмосфера ординаторской: только экспертный контент, никакого рекламного шума, прозрачные источники.'}
             </div>
           </div>
-          <div className="cards-grid">
+          <div className="cards-grid cards-grid--directory-benefits">
             {features.map((a, i) => {
               const A = window[a.art];
               return (
-                <div key={i} id={`directory-benefit-${i}`} className="card directory-benefit-card" style={{ gridColumn: 'span 6' }}>
+                <div key={i} id={`directory-benefit-${i}`} className="card directory-benefit-card">
                   <div className="card-art">{A && <A />}</div>
                   <h3>{a.t}</h3>
                   <DirectoryFeatureText item={a} />
@@ -776,9 +776,9 @@ function DirectoryPage({ navigate, lang }) {
           </div>
         </div>
 
-        <div className="cards-grid" style={{ marginTop: 32 }}>
+        <div className="cards-grid cards-grid--directory-stats" style={{ marginTop: 32 }}>
           {stats.map((s) =>
-          <div key={s.n} className="card" style={{ gridColumn: 'span 6', minHeight: 'auto', paddingBottom: 18 }}>
+          <div key={s.n} className="card directory-stat-card">
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </div>
