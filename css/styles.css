@@ -658,6 +658,15 @@ button { font-family: inherit; }
 .detail-hero h1 .accent {
   color: var(--accent);
 }
+
+/* Keep accent phrases readable on desktop */
+@media (min-width: 721px) {
+  .detail-hero h1 .accent {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
 .hero h1 .h1-primary,
 .page-hero h1 .h1-primary,
 .detail-hero h1 .h1-primary {

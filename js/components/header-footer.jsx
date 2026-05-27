@@ -91,7 +91,7 @@ const MEGA = {
     links: [
     { label: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', to: 'sales/digital-rep' },
     { label: 'Лонч - аутсорсинг', to: 'sales/launch' },
-    { label: 'Цифровой медицинский представитель в гибридной продвижении фармбрендов', to: 'sales/omnichannel' }],
+    { label: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов', to: 'sales/omnichannel' }],
 
     featured: {
       tag: 'D2F, Digital to Face',
