@@ -121,15 +121,15 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
     window.openPharmContact?.();
   }
   const heroTilesBase = [
-  { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг.',
+  { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг',
     desc: 'Цифровые инструменты для работы медицинских представителей.', art: 'ArtTileMarketing' },
-  { id: 'hcp', num: '02', title: 'Цифровые решения для здравоохранения.',
+  { id: 'hcp', num: '02', title: 'Цифровые решения для здравоохранения',
     desc: 'Мобильные приложения, образовательные платформы, сайты, боты, ИИ-ассистенты.', art: 'ArtTileHcp' },
-  { id: 'sales', num: '03', title: 'Аутсорсинг.',
+  { id: 'sales', num: '03', title: 'Аутсорсинг',
     desc: 'Комплексные цифровые программы продвижения. Цифровой медицинский представитель.', art: 'ArtTileSales' },
-  { id: 'content', num: '04', title: 'Дизайн.',
+  { id: 'content', num: '04', title: 'Дизайн',
     desc: 'Медицинскую науку переводим в CLM-презентации, дейтейлеры, видео, игры, квизы. Нравится врачам и провизорам.', art: 'ArtTileContent', wide: true },
-  { id: 'directory', num: '05', title: 'Справочник ЛС ФармКонсилиум.',
+  { id: 'directory', num: '05', title: 'Справочник ЛС ФармКонсилиум',
     desc: 'Инструкции по применению, примеры выписки рецептов, калькуляторы.', art: 'ArtTileDirectory', wide: true }];
   const heroTiles = en ?
     en.tiles.map((t) => {
@@ -139,10 +139,10 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
     heroTilesBase;
 
   const insightCards = en ? en.insightCards : [
-  { n: '01', t: 'Портфолио и проекты.', d: 'Проекты, портфолио, события.', to: 'portfolio' },
-  { n: '02', t: 'Цифровой медицинский представитель.', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
-  { n: '03', t: 'Справочник ЛС ФармКонсилиум.', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
-  { n: '04', t: 'Разработка мобильных приложений.', d: 'Для операционных систем iOS и Android под ключ.', to: 'marketing/mobile' }];
+  { n: '01', t: 'Портфолио и проекты', d: 'Проекты, портфолио, события.', to: 'portfolio' },
+  { n: '02', t: 'Цифровой медицинский представитель', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
+  { n: '03', t: 'Справочник ЛС ФармКонсилиум', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
+  { n: '04', t: 'Разработка мобильных приложений', d: 'Для операционных систем iOS и Android под ключ.', to: 'marketing/mobile' }];
 
   const scenarios = en ?
     [['organic', en.scenarioOrganic], ['comms', en.scenarioComms], ['launch', en.scenarioLaunch]] :
@@ -285,7 +285,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
           <div className="feature-row">
             <div>
               <span className="chip">{en ? en.featureChip : 'Хит продаж 2026'}</span>
-              <h3>{en ? en.featureH3 : 'CRM-PharmConsilium для работы медицинских представителей.'}</h3>
+              <h3>{en ? en.featureH3 : 'CRM-PharmConsilium для работы медицинских представителей'}</h3>
               <p>
                 {en ? en.featureP : 'Специализированная CRM для фармацевтических компаний и омниканальной работы с HCP.'}
               </p>
@@ -310,7 +310,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
         <div className="container">
           <div className="section-head section-head--title-sync section-head--insights">
             <div className="eyebrow">{en ? en.insightsEyebrow : 'Инсайты ФармКонсилиум'}</div>
-            <h2>{en ? <>Better to know<br />this now.</> : <>Вам лучше это<br />узнать сейчас.</>}</h2>
+            <h2>{en ? <>Better to know<br />this now</> : <>Вам лучше это<br />узнать сейчас</>}</h2>
             <div className="right">
               {en ? en.insightsRight : '3 в 1: маркетинговая экспертиза, разработка цифровых решений, студия контент дейлинга.'}
             </div>
