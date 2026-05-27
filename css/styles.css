@@ -2537,6 +2537,39 @@ body.is-detail-slide-lightbox-open .robot-img {
   object-position: center center;
   display: block;
 }
+.rel-art--photo-contain img {
+  object-fit: contain;
+  padding: 4px;
+}
+.rel-card .rel-art.rel-art--section-card {
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, var(--bg-2), var(--accent-soft));
+  border: 1px solid color-mix(in srgb, var(--ink) 7%, transparent);
+  box-shadow: none;
+}
+.rel-card .rel-art.rel-art--section-card:not(.rel-art--photo) svg {
+  width: 72%;
+  height: 72%;
+}
+.rel-card .rel-art.rel-art--section-card.rel-art--photo img {
+  object-fit: cover;
+  object-position: var(--rel-art-position, center center);
+  padding: 0;
+  transform: scale(1.12);
+  transform-origin: var(--rel-art-position, center center);
+}
+[data-theme="dark"] .rel-card .rel-art.rel-art--section-card {
+  background: #0a0a0f;
+  border: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 6%, transparent);
+}
+[data-theme="dark"] .rel-card .rel-art.rel-art--section-card:not(.rel-art--photo) {
+  background: linear-gradient(140deg, var(--bg-2), var(--accent-soft));
+  border-color: transparent;
+  box-shadow: none;
+}
 .rel-card h4 {
   font-family: var(--font-display); font-weight: 500;
   font-size: 15px; letter-spacing: -0.01em; margin: 0;

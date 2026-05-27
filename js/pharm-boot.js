@@ -26,6 +26,7 @@
     'js/pages/privacy-page.jsx',
     'js/data/digital-rep-sections.js',
     'js/data/subpages-data.jsx',
+    'js/data/section-cards.jsx',
     'js/data/portfolio-data.jsx',
     'js/data/i18n.jsx',
     'js/data/seo-meta.jsx',

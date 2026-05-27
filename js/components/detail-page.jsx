@@ -209,10 +209,37 @@ function DetailArtSlides({ slides }) {
   );
 }
 
+function DetailRelatedCard({ item, navigate }) {
+  const Art = item.art ? window[item.art] : null;
+  const photo = item.cardArt;
+  const thumbStyle = item.cardArtThumbPosition
+    ? { '--rel-art-position': item.cardArtThumbPosition }
+    : undefined;
+  return (
+    <div className="rel-card" onClick={() => navigate(item.routeId)}>
+      <div
+        className={`rel-art rel-art--section-card${photo ? ' rel-art--photo' : ''}`}
+        style={thumbStyle}
+      >
+        {photo
+          ? <img src={photo} alt={item.cardArtAlt || item.title} loading="lazy" decoding="async" />
+          : Art ? <Art /> : null}
+      </div>
+      <div>
+        <h4>{item.title}</h4>
+        <p>{item.section}</p>
+      </div>
+    </div>
+  );
+}
+
 function DetailPage({ routeId, navigate, lang }) {
   const data = window.SUBPAGES[routeId];
   const MidContactStrip = window.MidContactStrip;
   const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
+  const sectionRelated = data?.sectionId && window.getSectionRelatedCards
+    ? window.getSectionRelatedCards(data.sectionId, routeId, lang)
+    : [];
 
   if (!data) {
     return (
@@ -398,7 +425,20 @@ function DetailPage({ routeId, navigate, lang }) {
           </div>
         </div>
 
-        {data.related && data.related.length > 0 &&
+        {sectionRelated.length > 0 ?
+        <div>
+            <h2 style={{
+            fontFamily: 'var(--font-display)', fontWeight: 500,
+            fontSize: 'clamp(24px, 3vw, 36px)',
+            letterSpacing: '-.025em', margin: '40px 0 20px'
+          }}>{t('detailRelated')}</h2>
+            <div className="related">
+              {sectionRelated.map((item) =>
+                <DetailRelatedCard key={item.routeId} item={item} navigate={navigate} />
+              )}
+            </div>
+          </div> :
+        data.related && data.related.length > 0 ?
         <div>
             <h2 style={{
             fontFamily: 'var(--font-display)', fontWeight: 500,
@@ -421,8 +461,8 @@ function DetailPage({ routeId, navigate, lang }) {
 
             })}
             </div>
-          </div>
-        }
+          </div> :
+        null}
       </section>
     </main>);
 
