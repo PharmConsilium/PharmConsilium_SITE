@@ -544,6 +544,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Wide: true,
     lede: 'We build digital omnichannel promotion campaigns that take on the role of an outsourced medical representative team: personalized communication architecture for physicians, pharmacists, and pharmacy professionals—on PharmConsilium’s own platform and technology stack.',
     tags: ['remote eDetail', 'Belarus coverage', 'outsourcing'],
+    artSlides: [
+      { src: 'assets/uploads/digital-rep-detail-slide-1.png?v=20260528', label: 'MedRep vs Digital MedRep', alt: 'Medical representative outsourcing: 3D illustration of MedRep vs Digital MedRep — human and robot' },
+    ],
     about: [
       'We help pharma brands solve the same business goals as medical representative outsourcing—but through a digital omnichannel program: the reach and contact frequency you need with HCPs, more time with the brand, managed engagement, and evidence-based penetration of retail pharmacy and movement of products from pharmacies.',
       'You reduce dependence on field teams, lower cost per contact, and gain full transparency on data and ROI—hard to achieve with classic rep outsourcing. Final project metrics stay familiar from SF evaluation: share growth, FTE, P&L.',
@@ -581,6 +584,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Wide: true,
     lede: 'Digital twins (digital avatars) of medical representatives are embedded in an omnichannel digital promotion system: an F2F rep visit, then video viewing where the rep\'s digital avatar comments on clinical trial data.',
     tags: ['DigitalRep', 'Omnichannel', 'HCPengagement', 'PharmaMarketing', 'AIavatar', 'DigitalMedRep', 'D2F', '#F2F'],
+    artSlides: [
+      { src: 'assets/uploads/omnichannel-detail-slide-1.png?v=20260528', label: 'Digital medical representative', alt: 'Digital medical representative: 3D hybrid promotion illustration with digital twin and hologram' },
+    ],
     aboutTitle: 'Hybrid “D2F+F2F” format: one medical representative runs face-to-face and digital-to-face visits',
     about: [
       'Hybrid promotion combines offline visits, remote touchpoints, and digital content in one omnichannel funnel: every HCP contact point is linked in a managed chain. In this model, the digital medical representative extends the live rep—keeping physician engagement between visits through video visits, interactive formats, and personalized mailings. AI avatars and virtual reps let HCPs interact with the “same” representative digitally 24/7, amplifying—not replacing—human contact.',
@@ -618,6 +624,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'outsourcing',
     lede: 'Launch outsourcing with PharmConsilium: from strategy and soft launch to digital launch and a full suite of services to bring your brand to the Belarus market.',
     tags: ['PharmaLaunch', 'LaunchOutsourcing', 'SoftLaunch', 'DigitalLaunch', 'PharmaMarketing', 'HCPEngagement', 'Belarus', 'GoToMarket', 'Omnichannel', 'MedicalEvents'],
+    artSlides: [
+      { src: 'assets/uploads/launch-detail-slide-1.png?v=20260529', label: 'Launch outsourcing', alt: 'Launch outsourcing: 3D illustration of an expert with a medical outsourcing and strategy journal' },
+    ],
     aboutTitle: 'Pharmaceutical product launch on the market',
     about: [
       'Launch outsourcing means delegating turnkey market entry of a new pharma brand to PharmConsilium—from strategy and messaging core to physician and pharmacy network communication. It works when competition demands high-intensity audience engagement and advanced marketing activity. We build communication strategy, brand imagery, channel mix, scientific events, digital campaigns, and the full information package—backed by our experience and current Belarus HCP database for a confident market entry.',
