@@ -2593,12 +2593,15 @@ body.is-detail-slide-lightbox-open .robot-img {
   margin: 48px 0;
 }
 @media (max-width: 800px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
 .step {
   background: var(--surface);
   border: none;
   border-radius: var(--radius);
   padding: 20px;
   position: relative;
+  height: auto;
+  overflow: visible;
 }
 .step .step-n {
   font-family: var(--font-mono); font-size: 11px;
@@ -2610,7 +2613,7 @@ body.is-detail-slide-lightbox-open .robot-img {
   font-size: 16px; letter-spacing: -0.01em;
   margin: 8px 0;
 }
-.step p { color: var(--muted); font-size: 13px; margin: 0; line-height: 1.5; }
+.step p { color: var(--muted); font-size: 13px; margin: 0; line-height: 1.5; overflow: visible; }
 
 .steps--2col {
   grid-template-columns: repeat(2, 1fr);
