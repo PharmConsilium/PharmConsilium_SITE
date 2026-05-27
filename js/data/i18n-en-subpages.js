@@ -241,6 +241,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'support',
     lede: 'Digital support for medical events: registration landings, event bots, AI assistants, interactives, and HCP communication before and after the event.',
     tags: ['PharmaEvents', 'HCPengagement', 'OnlineCongress', 'WebinarPlatform', 'EventBot', 'AIAssistant', 'RegistrationLanding', 'PharmaMarketing', 'HybridEvents', 'DigitalHealth'],
+    artSlides: [
+      { src: 'assets/uploads/events-detail-slide-1.png?v=20260528', label: 'Online voting at a conference', alt: 'Online voting at a conference: interactive 3D hall illustration with smartphone voting' },
+    ],
     aboutTitle: 'Digital event support',
     about: [
       'Digital event support deepens HCP emotional engagement and gives your brand a clear edge when a congress has dozens of booths and parallel activities. Registration landings, event bots, AI assistants, interactives, and post-event communications turn the congress into a managed digital participant journey—not a one-off date.',
@@ -279,6 +282,11 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'medical representatives',
     lede: 'More than 30 training topics for medical representatives built over decades. PharmConsilium rep training since 2005: virtual video hall, quiz simulators, and 10 ready-made role-play games with client-branded gamification.',
     tags: ['MedRepTraining', 'FieldForceTraining', 'Gamification', 'eLearning', 'RolePlay', 'PharmaSalesTraining', 'LMS', 'DistanceLearning', 'PharmaMarketing', 'SalesForce'],
+    artSlides: [
+      { src: 'assets/uploads/ai-detail-slide-1.png?v=20260528', label: 'Product presentation at training', alt: 'Medical representative training: trainer at screen with product promo materials' },
+      { src: 'assets/uploads/ai-detail-slide-2.png?v=20260528', label: 'In-person training for the rep team', alt: 'Medical representative training: in-person session with field force participants' },
+      { src: 'assets/uploads/ai-detail-slide-3.png?v=20260528', label: 'Corporate training and seminars', alt: 'Medical representative training: session in a conference room' },
+    ],
     aboutTitle: 'Training',
     about: [
       'PharmConsilium has trained medical representative teams since 2005—programs now reflect crystallized experience from successful projects with proven field results. We believe corporate learning lands best in a positive, game-based atmosphere. Our training drives lasting behavior change—not a one-off motivation spike: reps enjoy the work more and show measurable visit effectiveness gains. Every program builds three core competencies: communication, persuasion, and selling skills.',
