@@ -1999,6 +1999,10 @@ button { font-family: inherit; }
 .detail-art--slides .detail-art-slider-stage.proj-slider-stage--image {
   background: transparent;
 }
+.detail-art--slides .detail-art-slider-stage.proj-slider-stage--video {
+  background: var(--bg-2);
+  max-height: min(78vh, 720px);
+}
 .detail-art--slides .detail-art-slide-img,
 [data-theme="dark"] .detail-art--slides .detail-art-slide-img {
   object-fit: contain;

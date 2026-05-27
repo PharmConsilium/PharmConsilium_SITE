@@ -1,10 +1,22 @@
 // DetailPage — renders any subpage from SUBPAGES dictionary.
 
+function detailSlideIsImage(s, isSlideVideo) {
+  return Boolean(s && s.src && !isSlideVideo(s));
+}
+
 function DetailArtSlides({ slides }) {
   const items = slides || [];
+  const isSlideVideo = window.isPortfolioSlideVideo || (() => false);
+  const VideoPlayer = window.PortfolioVideoPlayer;
   const [idx, setIdx] = React.useState(0);
+  const [videoAspect, setVideoAspect] = React.useState(null);
   const [lightbox, setLightbox] = React.useState(null);
   const n = items.length;
+
+  const imageIndices = React.useMemo(
+    () => items.map((s, i) => (detailSlideIsImage(s, isSlideVideo) ? i : -1)).filter((i) => i >= 0),
+    [items, isSlideVideo]
+  );
 
   const prev = React.useCallback(() => {
     setIdx((i) => (i - 1 + n) % n);
@@ -17,27 +29,31 @@ function DetailArtSlides({ slides }) {
   const closeLightbox = React.useCallback(() => setLightbox(null), []);
 
   const lightboxPrev = React.useCallback(() => {
-    if (n <= 1) return;
-    setLightbox((i) => {
-      const next = (i - 1 + n) % n;
-      setIdx(next);
-      return next;
+    if (imageIndices.length <= 1) return;
+    setLightbox((lb) => {
+      const pos = imageIndices.indexOf(lb);
+      const nextPos = (pos - 1 + imageIndices.length) % imageIndices.length;
+      const nextIdx = imageIndices[nextPos];
+      setIdx(nextIdx);
+      return nextIdx;
     });
-  }, [n]);
+  }, [imageIndices]);
 
   const lightboxNext = React.useCallback(() => {
-    if (n <= 1) return;
-    setLightbox((i) => {
-      const next = (i + 1) % n;
-      setIdx(next);
-      return next;
+    if (imageIndices.length <= 1) return;
+    setLightbox((lb) => {
+      const pos = imageIndices.indexOf(lb);
+      const nextPos = (pos + 1) % imageIndices.length;
+      const nextIdx = imageIndices[nextPos];
+      setIdx(nextIdx);
+      return nextIdx;
     });
-  }, [n]);
+  }, [imageIndices]);
 
   React.useEffect(() => {
     if (lightbox == null) return undefined;
     const slide = items[lightbox];
-    if (slide) {
+    if (slide && detailSlideIsImage(slide, isSlideVideo)) {
       const preload = new Image();
       preload.src = slide.srcFull || slide.src;
     }
@@ -54,10 +70,14 @@ function DetailArtSlides({ slides }) {
       document.body.classList.remove('is-detail-slide-lightbox-open');
       window.removeEventListener('keydown', onKey);
     };
-  }, [lightbox, closeLightbox, lightboxPrev, lightboxNext, items]);
+  }, [lightbox, closeLightbox, lightboxPrev, lightboxNext, items, isSlideVideo]);
 
   if (!n) return null;
 
+  const active = items[idx] || items[0];
+  const activeVideoSrc = active && (active.video || (isSlideVideo(active) ? active.src : null));
+  const stageIsVideo = Boolean(activeVideoSrc);
+  const stageAspect = stageIsVideo && videoAspect ? videoAspect : '4 / 3';
   const zoomed = lightbox != null ? items[lightbox] : null;
 
   const lightboxLayer = zoomed ? (
@@ -71,7 +91,7 @@ function DetailArtSlides({ slides }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="detail-art-lightbox-toolbar">
-          {n > 1 ? (
+          {imageIndices.length > 1 ? (
             <>
               <button
                 type="button"
@@ -123,15 +143,32 @@ function DetailArtSlides({ slides }) {
   return (
     <>
     <div className="detail-art-slider">
-      <div className="detail-art-slider-stage proj-slider-stage proj-slider-stage--image">
-        {items.map((s, i) =>
-          <div key={i} className={`proj-slide ${i === idx ? 'on' : ''}`}>
+      <div
+        className={`detail-art-slider-stage proj-slider-stage proj-slider-stage--image${stageIsVideo ? ' proj-slider-stage--video' : ''}`}
+        style={stageIsVideo ? { aspectRatio: stageAspect, background: 'var(--bg-2)' } : undefined}
+      >
+        {items.map((s, i) => {
+          const videoSrc = s.video || (isSlideVideo(s) ? s.src : null);
+          const isActive = i === idx;
+          return (
+          <div key={i} className={`proj-slide${videoSrc ? ' proj-slide--video' : ''} ${isActive ? 'on' : ''}`}>
+            {videoSrc && VideoPlayer
+              ? <VideoPlayer
+                  src={videoSrc}
+                  poster={s.poster}
+                  alt={s.alt || s.label}
+                  active={isActive}
+                  className="detail-art-slide-video"
+                  onAspect={isActive ? setVideoAspect : undefined}
+                />
+              : detailSlideIsImage(s, isSlideVideo)
+                ? (
             <button
               type="button"
               className="detail-art-slide-zoom"
-              onClick={() => i === idx && setLightbox(i)}
+              onClick={() => isActive && setLightbox(i)}
               aria-label={s.alt ? `Увеличить: ${s.alt}` : 'Увеличить слайд'}
-              tabIndex={i === idx ? 0 : -1}
+              tabIndex={isActive ? 0 : -1}
             >
               <img
                 className="proj-slide-img detail-art-slide-img"
@@ -141,8 +178,11 @@ function DetailArtSlides({ slides }) {
                 decoding="async"
               />
             </button>
+                )
+                : null}
           </div>
-        )}
+          );
+        })}
         {n > 1 ? (
           <>
             <button type="button" className="proj-slider-nav prev" onClick={prev} aria-label="Предыдущий слайд">←</button>

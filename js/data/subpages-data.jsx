@@ -211,6 +211,11 @@ const SUBPAGES = {
     lede: 'Мы создаём mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.',
     tags: ['mHealth', 'PharmaApp', 'MobileApp', 'DigitalCompanion', 'PatientSupport', 'HCPEngagement', 'PharmaBrand', 'UXDesign', 'DigitalHealth', 'Adherence'],
     art: 'ArtPhone',
+    artSlides: [
+      { src: 'assets/uploads/mobile-detail-slide-1.png?v=20260527', label: 'Публикация в App Store и Google Play', alt: 'Разработка мобильных приложений ФармКонсилиум: макет приложения, бейджи App Store и Google Play' },
+      { src: 'assets/uploads/mobile-detail-slide-2.png?v=20260527', label: 'PharmaApp — трекер терапии', alt: 'PharmaApp: экраны мобильного приложения для поддержки терапии пациента' },
+      { src: 'assets/uploads/mobile-detail-video.mp4?v=20260527', type: 'video', label: 'Разработка мобильных приложений', alt: 'Видео: разработка мобильных приложений ФармКонсилиум' },
+    ],
     aboutTitle: 'Идея мобильного приложения',
     about: [
       'Мы не просто «пишем мобильные приложения» и выкладываем их в App Store и Google Play — мы создаём полноценные акселераторы роста вокруг бренда. Наш фокус — на том, чтобы приложение было продолжением бренд-стратегии: поддерживало пациентов и HCP на всём пути терапии, усиливало позиционирование и повышало приверженность лечению. Мы работаем «под ключ»: от маркетинговой идеи и сценариев использования до UX/UI-дизайна, разработки, тестирования, комплаенс-проверки и сопровождения релизов в сторах с учётом требований к контенту.',

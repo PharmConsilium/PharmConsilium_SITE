@@ -195,9 +195,14 @@ window.SUBPAGES_EN_PATCHES = {
 
   'marketing/mobile': {
     section: 'Pharmaceutical marketing',
-    title: 'Mobile applications',
+    title: 'Mobile app development',
     lede: 'We build turnkey mHealth apps for pharma brands—from idea and UX concept through design, development, and App Store and Google Play publication.',
     tags: ['mHealth', 'PharmaApp', 'MobileApp', 'DigitalCompanion', 'PatientSupport', 'HCPEngagement', 'PharmaBrand', 'UXDesign', 'DigitalHealth', 'Adherence'],
+    artSlides: [
+      { src: 'assets/uploads/mobile-detail-slide-1.png?v=20260527', label: 'App Store and Google Play release', alt: 'PharmConsilium mobile app development: app mockup with App Store and Google Play badges' },
+      { src: 'assets/uploads/mobile-detail-slide-2.png?v=20260527', label: 'PharmaApp — therapy tracker', alt: 'PharmaApp: mobile app screens for patient therapy support' },
+      { src: 'assets/uploads/mobile-detail-video.mp4?v=20260527', type: 'video', label: 'Mobile app development', alt: 'Video: PharmConsilium mobile app development' },
+    ],
     aboutTitle: 'The mobile app idea',
     about: [
       'We do more than code apps and publish to the App Store and Google Play—we build full growth accelerators around your brand. The app extends brand strategy: supporting patients and HCPs across the therapy journey, strengthening positioning, and improving treatment adherence. Turnkey from marketing concept and use cases through UX/UI, development, testing, compliance review, and store releases aligned with content requirements.',
