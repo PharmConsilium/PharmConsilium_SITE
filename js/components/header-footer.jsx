@@ -1,4 +1,4 @@
-﻿// Header with Apple-style mega-menu drawer, brand, lang toggle, theme switch.
+// Header with Apple-style mega-menu drawer, brand, lang toggle, theme switch.
 
 const NAV_ITEMS = [
 { id: 'marketing', label: 'Фармацевтический маркетинг' },
@@ -189,6 +189,9 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
     setOpenMenu(id);
   };
   const scheduleClose = () => {
+    // На тач-устройствах hover/mouse события могут срабатывать “рывками”.
+    // Если открыт мобильный лист меню — не запускаем авто-закрытие mega.
+    if (mobileNavOpen) return;
     closeTimer.current = setTimeout(() => setOpenMenu(null), 200);
   };
 
@@ -214,6 +217,34 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   const featured = openMenu && megaConfig[openMenu] ? megaConfig[openMenu].featured : null;
   const ArtTag = featured?.art && !featured.artImg ? window[featured.art] : null;
 
+  const NavActions = (
+    <>
+      <div className="lang-toggle">
+        <button className={lang === 'ru' ? 'on' : ''} onClick={() => setLang('ru')}>RU</button>
+        <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')}>EN</button>
+      </div>
+      <button
+        type="button"
+        className="btn-icon"
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        title={theme === 'dark' ? t('themeLight') : t('themeDark')}
+        aria-label={theme === 'dark' ? t('themeLight') : t('themeDark')}
+      >
+        {theme === 'dark' ?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg> :
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+        }
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary btn-sm"
+        onClick={() => { window.openPharmContact?.(); setOpenMenu(null); }}
+      >
+        {t('contacts')} <span className="arrow">→</span>
+      </button>
+    </>
+  );
+
   return (
     <header className="header">
       <div className="container header-inner">
@@ -226,14 +257,20 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
 
         {/* CENTER: nav */}
         <nav className="nav" onMouseLeave={scheduleClose}>
-          {navItems.map((item) =>
-          <div key={item.id}
-          className={`nav-item ${route === item.id ? 'active' : ''}`}
-          onMouseEnter={() => open(item.id)}
-          onClick={() => {navigate(item.id);setOpenMenu(null);}}>
-              {item.label}
-            </div>
-          )}
+          <div className="nav-items">
+            {navItems.map((item) =>
+              <div key={item.id}
+                className={`nav-item ${route === item.id ? 'active' : ''}`}
+                onMouseEnter={() => open(item.id)}
+                onClick={() => {navigate(item.id);setOpenMenu(null);}}
+              >
+                {item.label}
+              </div>
+            )}
+          </div>
+          <div className="nav-actions" aria-label={t('headerActionsAria') || 'Действия'}>
+            {NavActions}
+          </div>
         </nav>
 
         {/* RIGHT: actions */}
@@ -244,7 +281,11 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             aria-expanded={mobileNavOpen}
             aria-controls="mobile-nav"
             aria-label={mobileNavOpen ? t('closeMenu') : t('openMenu')}
-            onClick={() => {
+            onTouchStart={(e) => { e.stopPropagation(); }}
+            onMouseDown={(e) => { e.stopPropagation(); }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
               setMobileNavOpen((o) => {
                 if (o) setMobileExpanded(null);
                 return !o;
@@ -257,28 +298,15 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
               <line x1="4" x2="20" y1="18" y2="18" />
             </svg>
           </button>
-          <div className="lang-toggle">
-            <button className={lang === 'ru' ? 'on' : ''} onClick={() => setLang('ru')}>RU</button>
-            <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')}>EN</button>
-          </div>
-          <button className="btn-icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          title={theme === 'dark' ? t('themeLight') : t('themeDark')}
-          aria-label={theme === 'dark' ? t('themeLight') : t('themeDark')}>
-            {theme === 'dark' ?
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg> :
-
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
-            }
-          </button>
-            <button className="btn btn-primary btn-sm" onClick={() => { window.openPharmContact?.(); setOpenMenu(null); }}>
-            {t('contacts')} <span className="arrow">→</span>
-          </button>
+          {NavActions}
         </div>
       </div>
 
-      <div className={`mega-overlay ${openMenu ? 'open' : ''}`}
-      onMouseEnter={() => open(openMenu)}
-      onMouseLeave={scheduleClose}>
+      <div
+        className={`mega-overlay ${openMenu ? 'open' : ''}`}
+        onMouseEnter={() => open(openMenu)}
+        onMouseLeave={scheduleClose}
+      >
         {openMenu && megaConfig[openMenu] &&
         <div className="container mega-inner">
             <div className="mega-left">

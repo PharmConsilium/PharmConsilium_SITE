@@ -54,7 +54,7 @@ function PortfolioPage({ navigate, lang }) {
           )}
         </div>
 
-        <div className="cards-grid">
+        <div className="cards-grid cards-grid--portfolio">
           {visible.map((p, i) => {
             const Art = window[p.art] || window.ArtConstellation;
             const thumb = p.thumb;

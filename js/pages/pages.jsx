@@ -406,7 +406,7 @@ function PageShell({ crumb, title, h1Line1, h1Accent, h1Accent2, lede, cards, na
       {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
 
       <section className="container">
-        <div className="cards-grid">
+        <div className="cards-grid cards-grid--section">
           {cards.map((c, i) => {
             const Art = window[c.art];
             const cardArt = c.cardArt;
@@ -928,7 +928,7 @@ function TeamPage({ navigate, lang }) {
             </div>
             <div className="right">{en ? en.portfolioRight : '8 запусков, 3 ИИ-продукта, 2 справочника, 1 победа на премии. Подробное портфолио — по запросу.'}</div>
           </div>
-          <div className="cards-grid">
+          <div className="cards-grid cards-grid--portfolio">
             {(en ? en.portfolioCards : [
             { t: 'Цифровой баннер для Бепантен (Bayer)', d: 'Три варианта digital-баннера: разные героини, локальные сценарии, брендбук Bayer.', art: 'ArtBanner', slug: 'cardio-lonch' },
             { t: 'Упаковка для препарата АйТи-табс', d: 'Три формата — единая линейка препарата АйТи-табс.', art: 'ArtAI', slug: 'ai-trener' },
