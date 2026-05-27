@@ -97,6 +97,10 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
 
     const col = accent.closest('.hero-grid > div') || section;
     const apply = () => {
+      if (window.innerWidth <= 1024) {
+        cta.style.width = '';
+        return;
+      }
       const accentW = Math.ceil(accent.getBoundingClientRect().width);
       const cap = col ? col.clientWidth : accentW;
       cta.style.width = `${Math.min(accentW, cap)}px`;

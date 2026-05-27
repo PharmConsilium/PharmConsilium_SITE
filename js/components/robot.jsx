@@ -11,8 +11,15 @@ function RobotCompanion() {
 
   // Compute waypoints in pixels from the current viewport size.
   const buildWaypoints = React.useCallback(() => {
-    const halfW = Math.max(180, window.innerWidth / 2 - 140);
-    const halfH = Math.max(180, window.innerHeight / 2 - 140);
+    const vw = window.innerWidth;
+    const isTablet = vw <= 1024;
+    const isPhone = vw <= 720;
+    const edgeX = isPhone ? 72 : isTablet ? 96 : 140;
+    const edgeY = isPhone ? 72 : isTablet ? 96 : 140;
+    const travelX = isTablet ? 0.62 : 1;
+    const travelY = isTablet ? 0.72 : 1;
+    const halfW = Math.max(isPhone ? 48 : 100, window.innerWidth / 2 - edgeX) * travelX;
+    const halfH = Math.max(isPhone ? 48 : 100, window.innerHeight / 2 - edgeY) * travelY;
     // Each waypoint: x, y in pixels from screen center, rotation deg, scale.
     return [
       { x:  0.85 * halfW, y: -0.45 * halfH, ry: -10, s: 0.95 }, // 0: top-right (hero)
