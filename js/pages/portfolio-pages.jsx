@@ -27,13 +27,13 @@ function PortfolioPage({ navigate, lang }) {
             <span className="sep">/</span>
             <span style={{ color: 'var(--ink)' }}>{ui ? ui.crumb : 'Портфолио, проекты и фичи ФармКонсилиум'}</span>
           </div>
-          <div className="eyebrow" style={{ marginTop: 18 }}>{ui ? ui.eyebrow : 'Проекты последних 24 месяцев'}</div>
+          <div className="eyebrow" style={{ marginTop: 18 }}>{ui ? ui.eyebrow : 'Хайп ФармКонсилиум'}</div>
           <PageHeroH1
             line1={ui ? ui.h1Line1 : 'Портфолио, проекты'}
             accent={ui ? ui.h1Accent : 'и фичи ФармКонсилиум'}
           />
           <p className="lede">
-            {ui ? ui.lede : 'Восемь характерных проектов из портфолио ФармКонсилиума: от лонча кардиопрепарата за 90 дней до собственного справочника ЛС с тысячей DAU. Полное портфолио — по запросу.'}
+            {ui ? ui.lede : 'В этом разделе мы поделились теми реализованными проектами, которыми мы гордимся, и за которые нас похвалили наши клиенты.'}
           </p>
         </div>
       </section>
