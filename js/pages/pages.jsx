@@ -611,45 +611,39 @@ function DirectoryPage({ navigate, lang }) {
   ];
   const mockDrugs = en ? en.mockDrugs : [
     {
-      name: 'Пример ОХЛП (BY, KZ)',
-      desc: 'Инструкция по медицинскому применению (листок-вкладыш) — структурированная карточка ЛС с официальной инструкцией, дозировками и примером рецепта на конкретный препарат',
+      name: 'Пример ОХЛП (BY, KZ), инструкция по медицинскому применению (листок-вкладыш)',
+      desc: 'Структурированная карточка ЛС с официальной инструкцией, дозировками и примером рецепта на конкретный препарат',
       href: 'https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
-      hrefLabel: 'Ссылка: https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
       tags: ['ОХЛП', 'ФармКонсилиум'],
     },
     {
       name: 'Клинические калькуляторы, оценка функции почек',
       desc: 'Калькулятор Cockcroft–Gault, CKD‑EPI, Schwartz и CKiD U25 с автоматическим расчётом клиренса и стадий ХБП.',
       href: 'https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
-      hrefLabel: 'Ссылка: https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
       hashTags: ['клинические калькуляторы', 'нефрология'],
     },
     {
       name: 'Умный поиск по ТН, МНН, АТХ и производителю',
       desc: 'Единый поиск приводит к карточке ЛС с инструкцией, аналогами и оценками врачей.',
       href: 'https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
-      hrefLabel: 'Ссылка: https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
       hashTags: ['поиск лекарств', 'для врачей'],
     },
     {
       name: 'Оценки ЛС практикующими врачами',
       desc: 'К официальным данным добавляются отзывы и рейтинги от врачей с реальным опытом применения. Только для зарегистрированных пользователей, подтвердивших свою квалификацию.',
       href: 'https://farmconsilium.com/ls/medicines/konkor-rp',
-      hrefLabel: 'Ссылка: https://farmconsilium.com/ls/medicines/konkor-rp',
       hashTags: ['оценка врачей', 'карточка препарата'],
     },
     {
       name: 'Общая и клиническая фармакология',
       desc: 'Ключевые таблицы, инфографика и статьи по фармакодинамике, фармакокинетике и рациональной фармакотерапии.',
       href: 'https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
-      hrefLabel: 'Ссылка: https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
       hashTags: ['клиническая фармакология', 'образование врачей'],
     },
     {
       name: 'Примеры выписки медицинских рецептов',
       desc: 'Готовые образцы рецептов по льготам с корректным заполнением для конкретных препаратов.',
       href: 'https://farmconsilium.com/ls/medicines/1645-mirena',
-      hrefLabel: 'Ссылка: https://farmconsilium.com/ls/medicines/1645-mirena',
       hashTags: ['медицинские рецепты', 'льготное лекарство'],
     },
   ];
@@ -702,7 +696,29 @@ function DirectoryPage({ navigate, lang }) {
             })}
             {MidContactStrip ?
               <div className="directory-benefit-cta">
-                <MidContactStrip inline lang={lang} />
+                <div className="directory-benefit-cta-row">
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-sm"
+                    onClick={() => window.openPharmContact?.()}
+                  >
+                    {en ? 'Suggest material' : 'Предложить материал'} <span className="arrow">↑</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-sm"
+                    onClick={() => window.openPharmContact?.()}
+                  >
+                    {en ? 'Suggest directory improvement' : 'Предложить улучшение справочника'} <span className="arrow">↑</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-sm"
+                    onClick={() => window.openPharmContact?.()}
+                  >
+                    {en ? 'Discuss drug listing' : 'Обсудить размещение препарата'} <span className="arrow">↑</span>
+                  </button>
+                </div>
               </div> :
               null}
           </div>
@@ -735,17 +751,86 @@ function DirectoryPage({ navigate, lang }) {
                   <div className="directory-drug-sample-mnn">{p.mnn}</div> :
                   null}
                 {p.desc || p.cls ?
-                  <div className="directory-drug-sample-desc">{p.desc || p.cls}</div> :
-                  null}
-                {p.href ?
-                  <a
-                    className="directory-drug-sample-link"
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {p.hrefLabel || p.href}
-                  </a> :
+                  (p.href ?
+                    <a
+                      className="directory-drug-sample-desc directory-drug-sample-desc-link"
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => {
+                        // Mobile browsers / WebViews may fire pointer/touch + click for one tap.
+                        // Deduplicate to avoid opening several tabs/windows per one user action.
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) e.nativeEvent.stopImmediatePropagation();
+                        const now = Date.now();
+                        const key = `__pharm_last_ext_open_ms__:${p.href}`;
+                        const last = Number(window[key] || 0);
+                        if (now - last < 1200) return;
+                        window[key] = String(now);
+                        window.open(p.href, '_blank', 'noopener,noreferrer');
+                      }}
+                      onPointerUp={(e) => {
+                        // Some environments open external links on pointer/touch end.
+                        // Keep the same dedupe key as onClick.
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) e.nativeEvent.stopImmediatePropagation();
+                        const now = Date.now();
+                        const key = `__pharm_last_ext_open_ms__:${p.href}`;
+                        const last = Number(window[key] || 0);
+                        if (now - last < 1200) return;
+                        window[key] = String(now);
+                        window.open(p.href, '_blank', 'noopener,noreferrer');
+                      }}
+                    >
+                      {(() => {
+                        const raw = p.desc || p.cls;
+                        if (typeof raw !== 'string') return raw;
+                        const parts = raw.split(' — ');
+                        if (parts.length < 2) return raw;
+                        const head = parts.shift();
+                        const rest = parts.join(' — ');
+                        return (
+                          <>
+                            <strong>{head}</strong>
+                            <br />
+                            {rest}
+                          </>
+                        );
+                      })()}
+                    </a> :
+                    <div className="directory-drug-sample-desc">
+                      {(() => {
+                        const raw = p.desc || p.cls;
+                        if (typeof raw !== 'string') return raw;
+                        const parts = raw.split(' — ');
+                        if (parts.length < 2) return raw;
+                        const head = parts.shift();
+                        const rest = parts.join(' — ');
+                        return (
+                          <>
+                            <strong>{head}</strong>
+                            <br />
+                            {rest}
+                          </>
+                        );
+                      })()}
+                      {(p.href && p.hrefInline === true && (p.desc || p.cls)) ? (
+                        <>
+                          {' '}
+                          <a
+                            className="directory-drug-sample-link directory-drug-sample-link--inline"
+                            href={p.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {en ? 'link' : 'ссылка'}
+                          </a>
+                        </>
+                      ) : null}
+                    </div>
+                  ) :
                   null}
                 <div className="directory-drug-sample-meta">
                   {p.hashTags ?

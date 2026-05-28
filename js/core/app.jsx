@@ -254,7 +254,7 @@ function App() {
 
       {page}
 
-      {EndContactStrip ? <EndContactStrip lang={lang} /> : null}
+      {EndContactStrip && route !== 'directory' ? <EndContactStrip lang={lang} /> : null}
 
       {t.robot !== false && <RobotCompanion/>}
 
