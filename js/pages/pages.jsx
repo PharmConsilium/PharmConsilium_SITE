@@ -83,10 +83,43 @@ const MARQUEE_TICKERS = [
 
 function HomePage({ navigate, scenario, setScenario, lang }) {
   const [heroQuery, setHeroQuery] = React.useState('');
+  const insightsGridRef = React.useRef(null);
   const MidContactStrip = window.MidContactStrip;
   const en = lang === 'en' && window.getHomeCopy ? window.getHomeCopy('en') : null;
 
   const heroQueryReady = heroQuery.trim().length > 0;
+
+  const insightCards = en ? en.insightCards : [
+  { n: '01', t: 'Портфолио, проекты и фичи ФармКонсилиум', d: 'В этом разделе мы поделились теми реализованными проектами, которыми мы гордимся, и за которые нас похвалили наши клиенты.', to: 'portfolio' },
+  { n: '02', t: 'Цифровой медицинский представитель', d: 'Создаем цифровые омниканальные кампании продвижения, которые берут на себя функции аутсорсинговой команды медицинских представителей.', to: 'sales/digital-rep' },
+  { n: '03', t: 'Справочник ЛС ФармКонсилиум', d: 'Цифровой медицинский ресурс для врачей, провизоров и фармацевтов, созданный для профессиональной работы с информацией о лекарственных препаратах.', href: 'https://farmconsilium.com/' },
+  { n: '04', t: 'Разработка мобильных приложений', d: 'Мы создаём mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.', to: 'marketing/mobile' }];
+
+  React.useEffect(() => {
+    const grid = insightsGridRef.current;
+    if (!grid) return undefined;
+    const getCards = () => Array.from(grid.querySelectorAll('.card'));
+    const equalize = () => {
+      const cards = getCards();
+      if (!cards.length) return;
+      cards.forEach((el) => { el.style.minHeight = ''; });
+      const maxH = Math.max(...cards.map((el) => el.getBoundingClientRect().height));
+      if (!maxH) return;
+      const h = `${Math.ceil(maxH)}px`;
+      cards.forEach((el) => { el.style.minHeight = h; });
+    };
+    equalize();
+    const ro = new ResizeObserver(equalize);
+    ro.observe(grid);
+    getCards().forEach((el) => ro.observe(el));
+    window.addEventListener('resize', equalize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(equalize);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', equalize);
+      getCards().forEach((el) => { el.style.minHeight = ''; });
+    };
+  }, [lang, en]);
 
   React.useEffect(() => {
     const section = document.querySelector('.hero');
@@ -141,12 +174,6 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
       return { ...base, ...t, art: t.art || base.art };
     }) :
     heroTilesBase;
-
-  const insightCards = en ? en.insightCards : [
-  { n: '01', t: 'Портфолио и проекты', d: 'Проекты, портфолио, события.', to: 'portfolio' },
-  { n: '02', t: 'Цифровой медицинский представитель', d: 'Диджитальная экосистема с клиентской базой HCP, которая работает в KPI медицинского представителя.', to: 'sales' },
-  { n: '03', t: 'Справочник ЛС ФармКонсилиум', d: 'Собственный профессиональный ресурс для врачей, провизоров, фармацевтов.', href: 'https://farmconsilium.com/' },
-  { n: '04', t: 'Разработка мобильных приложений', d: 'Для операционных систем iOS и Android под ключ.', to: 'marketing/mobile' }];
 
   const scenarios = en ?
     [['organic', en.scenarioOrganic], ['comms', en.scenarioComms], ['launch', en.scenarioLaunch]] :
@@ -316,11 +343,11 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
             <div className="eyebrow">{en ? en.insightsEyebrow : 'Инсайты ФармКонсилиум'}</div>
             <h2>{en ? <>Better to know<br />this now</> : <>Вам лучше это<br />узнать сейчас</>}</h2>
             <div className="right">
-              {en ? en.insightsRight : '3 в 1: маркетинговая экспертиза, разработка цифровых решений, студия контент дейлинга.'}
+              {en ? en.insightsRight : '3 в 1: маркетинговая экспертиза, разработка цифровых решений, студия контент-дейлинга.'}
             </div>
           </div>
 
-          <div className="cards-grid cards-grid--2x2">
+          <div className="cards-grid cards-grid--2x2" ref={insightsGridRef}>
             {insightCards.map((s) => {
               const clickable = Boolean(s.to || s.href);
               return (
@@ -622,37 +649,37 @@ function DirectoryPage({ navigate, lang }) {
       name: 'Пример ОХЛП (BY, KZ), инструкция по медицинскому применению (листок-вкладыш)',
       desc: 'Структурированная карточка ЛС с официальной инструкцией, дозировками и примером рецепта на конкретный препарат',
       href: 'https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
-      tags: ['ОХЛС', 'ИнструкцииЛС', 'Фармокология'],
+      tags: ['ОХЛП', 'ИнструкцииЛС', 'Листок-вкладыш'],
     },
     {
       name: 'Клинические калькуляторы, оценка функции почек',
       desc: 'Калькулятор Cockcroft–Gault, CKD‑EPI, Schwartz и CKiD U25 с автоматическим расчётом клиренса и стадий ХБП.',
       href: 'https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
-      hashTags: ['МедицинскиеСпециалисты', 'ДляВрачей', 'КлиническиеКалькуляторы'],
+      hashTags: ['Клинические калькуляторы', 'Медицинские шкалы', 'Медицинские калькуляторы'],
     },
     {
       name: 'Умный поиск по ТН, МНН, АТХ и производителю',
       desc: 'Единый поиск приводит к карточке ЛС с инструкцией, аналогами и оценками врачей.',
       href: 'https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
-      hashTags: ['MedTech', 'ЦифроваяМедецина', 'СправочникЛС'],
+      hashTags: ['Аналоги ЛС', 'АТХ аналоги', 'СправочникЛС'],
     },
     {
       name: 'Оценки ЛС практикующими врачами',
       desc: 'К официальным данным добавляются отзывы и рейтинги от врачей с реальным опытом применения. Только для зарегистрированных пользователей, подтвердивших свою квалификацию.',
       href: 'https://farmconsilium.com/ls/medicines/konkor-rp',
-      hashTags: ['СправочникЛекарственныхСредств', 'ФармКонсилиум', 'Фармокология'],
+      hashTags: ['Отзывы врачей', 'Оценки практикующих врачей', 'Рейтинги ЛС'],
     },
     {
       name: 'Общая и клиническая фармакология',
       desc: 'Ключевые таблицы, инфографика и статьи по фармакодинамике, фармакокинетике и рациональной фармакотерапии.',
       href: 'https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
-      hashTags: ['РациональнаяФармакотерапия', 'КлиническиеПротоколы', 'ДляФармацевтов'],
+      hashTags: ['Медицинские гайды', 'КлиническиеПротоколы', 'Протоколы и стандарты лечения'],
     },
     {
       name: 'Примеры выписки медицинских рецептов',
       desc: 'Готовые образцы рецептов по льготам с корректным заполнением для конкретных препаратов.',
       href: 'https://farmconsilium.com/ls/medicines/1645-mirena',
-      hashTags: ['DigitalHealth', 'ЛекарственныеСредства', 'МедицинскиеШкалы'],
+      hashTags: ['Рецепт на лекарство', 'Медицинский рецепт', 'Пример оформления медицинского рецепта'],
     },
   ];
   const stats = en ? en.stats : [

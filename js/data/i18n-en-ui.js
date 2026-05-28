@@ -188,7 +188,7 @@ window.I18N_EN = {
     insightsRight: '3 in 1: marketing expertise, digital product development, and content daylining studio.',
     insightCards: [
       { n: '01', t: 'Portfolio and projects', d: 'Projects, portfolio, and events.', to: 'portfolio' },
-      { n: '02', t: 'Digital medical representative', d: 'A digital ecosystem with an HCP client base aligned to rep KPIs.', to: 'sales' },
+      { n: '02', t: 'Digital medical representative', d: 'A digital ecosystem with an HCP client base aligned to rep KPIs.', to: 'sales/digital-rep' },
       { n: '03', t: 'PharmConsilium Drug Directory', d: 'Our own professional resource for physicians, pharmacists, and pharmaceutical specialists.', href: 'https://farmconsilium.com/' },
       { n: '04', t: 'Mobile app development', d: 'Turnkey iOS and Android applications.', to: 'marketing/mobile' },
     ],

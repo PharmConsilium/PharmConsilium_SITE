@@ -982,24 +982,50 @@ button { font-family: inherit; }
 }
 .section--know-now .cards-grid--2x2 {
   margin-top: 20px;
+  align-items: stretch;
 }
 .section--know-now .cards-grid--2x2 .card {
-  min-height: 148px;
-  height: 100%;
-  padding: 14px 16px 16px;
+  min-height: auto;
+  height: auto;
+  align-self: stretch;
+  padding: 16px 18px 18px;
 }
 .section--know-now .cards-grid--2x2 .card-num {
   margin-bottom: 4px;
 }
 .section--know-now .cards-grid--2x2 .card h3 {
-  font-size: 18px;
-  margin: 0 0 6px;
-  line-height: 1.2;
+  font-size: clamp(16px, 2vw, 18px);
+  margin: 0 0 8px;
+  line-height: 1.25;
+  flex: 0 0 auto;
 }
 .section--know-now .cards-grid--2x2 .card p {
   font-size: 13px;
-  line-height: 1.4;
-  flex: 0 1 auto;
+  line-height: 1.45;
+  flex: 1 1 auto;
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .section--know-now .cards-grid--2x2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .section--know-now .cards-grid--2x2 .card {
+    padding: 12px 14px 14px;
+  }
+  .section--know-now .cards-grid--2x2 .card h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .section--know-now .cards-grid--2x2 .card p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 400px) {
+  .section--know-now .cards-grid--2x2 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tiles-grid {
@@ -1547,8 +1573,8 @@ button { font-family: inherit; }
 }
 .cards-grid--2x2 .card {
   grid-column: auto;
-  min-height: 220px;
-  height: 100%;
+  min-height: auto;
+  height: auto;
   align-self: stretch;
 }
 @media (max-width: 720px) {
