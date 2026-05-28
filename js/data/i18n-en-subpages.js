@@ -847,6 +847,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent2: 'and brand books',
     lede: 'Pharmaceutical brand visual identity: from concept and brand book to packaging, banners, and promo materials—design trusted by medical professionals and patients.',
     tags: ['PharmaBranding', 'PackagingDesign', 'BrandBook', 'VisualIdentity', 'PharmaBrand'],
+    artSlides: [
+      { src: 'assets/uploads/content-presentations-detail.png?v=20260528', label: 'Visual concepts and brand design', alt: 'Visual concepts and brand design: packaging and ad materials illustration' },
+    ],
     aboutTitle: 'A visual language people trust',
     about: [
       'In pharma, visual identity directly shapes trust and treatment decisions: physicians and patients read professionalism, reliability, and expertise in every element—from pharmacy shelf pack to a medical portal banner. For a product manager, inconsistent or dated visuals literally cost sales; strong brand design pays back at every touchpoint. We build visual systems that work for HCP and patients alike, meet regulatory requirements, and scale across channels without losing coherence.',
@@ -885,6 +888,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'avatars, audio podcasts, medical copywriting',
     lede: 'AI avatars, HCP audio podcasts, and AI copywriting—a next-generation content factory: vertical video visits, brand voice, and copy for every channel from one brief.',
     tags: ['AIcontent', 'DigitalAvatar', 'MedPodcast', 'MedicalCopywriting', 'HCPengagement'],
+    artSlides: [
+      { src: 'assets/uploads/content-ai-detail.png?v=20260528', label: 'AI content', alt: 'AI content: avatars, podcasts, and medical copywriting illustration' },
+    ],
     aboutTitle: 'A next-generation content engine for product managers',
     about: [
       'The shared model: AI speeds production and scale; medical experts and copywriters ensure accuracy, trust, and regulatory fit. That cuts the cycle from brief to multi-channel content from weeks to days without sacrificing medical depth. For product managers it means a managed content ecosystem—one approved scientific narrative replicated in video, audio, and copy across the full HCP funnel.',
