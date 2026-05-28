@@ -36,6 +36,7 @@
     'js/components/robbie-face-cycle.jsx',
     'js/components/robot.jsx',
     'js/components/contact-modal.jsx',
+    'js/components/forecast-modal.jsx',
     'js/components/contact-strip.jsx',
     'js/core/app.jsx',
   ];

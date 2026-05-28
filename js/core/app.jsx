@@ -61,7 +61,10 @@ function App() {
   const [langTick, setLangTick] = React.useState(0);
   const [scenario, setScenario] = React.useState('comms');
   const [contactOpen, setContactOpen] = React.useState(false);
+  const [forecastOpen, setForecastOpen] = React.useState(false);
+  const [forecastTopic, setForecastTopic] = React.useState('');
   const ContactFormModal = window.ContactFormModal;
+  const ForecastRequestModal = window.ForecastRequestModal;
   const EndContactStrip = window.EndContactStrip;
   const scrollByRoute = React.useRef({});
   const navKind = React.useRef('push');
@@ -86,6 +89,16 @@ function App() {
     window.openPharmContact = () => setContactOpen(true);
     return () => {
       delete window.openPharmContact;
+    };
+  }, []);
+
+  React.useLayoutEffect(() => {
+    window.openPharmForecast = (topic) => {
+      setForecastTopic(String(topic || '').trim());
+      setForecastOpen(true);
+    };
+    return () => {
+      delete window.openPharmForecast;
     };
   }, []);
 
@@ -251,6 +264,14 @@ function App() {
       />
 
       {ContactFormModal && <ContactFormModal open={contactOpen} onClose={() => setContactOpen(false)} lang={lang} />}
+      {ForecastRequestModal && (
+        <ForecastRequestModal
+          open={forecastOpen}
+          onClose={() => setForecastOpen(false)}
+          lang={lang}
+          presetTopic={forecastTopic}
+        />
+      )}
 
       {page}
 

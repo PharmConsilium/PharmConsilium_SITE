@@ -273,7 +273,13 @@ function ContactFormModal({ open, onClose, lang }) {
           </label>
 
           <div className="contact-modal-actions">
-            <button type="submit" className="btn btn-primary">{s.submit}</button>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={!consent || !fullName.trim() || !company.trim() || !emailVal.trim() || !message.trim()}
+            >
+              {s.submit}
+            </button>
             <button type="button" className="btn btn-ghost" onClick={onClose}>{s.cancel}</button>
           </div>
         </form>

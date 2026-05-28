@@ -1729,6 +1729,18 @@ button { font-family: inherit; }
   cursor: default;
   min-height: 280px;
 }
+.directory-benefit-card .card-art {
+  height: 220px;
+}
+.directory-benefit-card .directory-benefit-art.card-art--photo-contain {
+  background: var(--directory-benefit-art-bg);
+}
+[data-theme="light"] .directory-benefit-card .directory-benefit-art.card-art--photo-contain {
+  background: #fff;
+}
+[data-theme="dark"] .directory-benefit-card .directory-benefit-art.card-art--photo-contain {
+  background: var(--surface-2);
+}
 .directory-benefit-card:hover {
   transform: none;
   box-shadow: var(--shadow-sm);
@@ -1761,6 +1773,9 @@ button { font-family: inherit; }
   .cards-grid--directory-stats .directory-stat-card {
     grid-column: 1 / -1;
     min-height: 0;
+  }
+  .directory-benefit-card .card-art {
+    height: 200px;
   }
 }
 .directory-benefit-cta {
