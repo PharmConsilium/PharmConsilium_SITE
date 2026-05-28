@@ -158,6 +158,8 @@ window.updatePageSeo = function updatePageSeo(route, lang) {
   ensureMeta('og:site_name', 'property', brand);
   ensureMeta('og:locale', 'property', l === 'en' ? 'en_BY' : 'ru_BY');
   ensureMeta('twitter:card', 'name', 'summary_large_image');
-  const canonical = `${SITE.baseUrl.replace(/\/$/, '')}/#${route === 'home' ? '' : route}`;
-  ensureCanonical(canonical.replace(/\/#$/, '/'));
+  const base = SITE.baseUrl.replace(/\/$/, '');
+  const r = String(route || 'home').replace(/^\/+/, '').replace(/\/+$/, '');
+  const canonical = r === 'home' ? `${base}/` : `${base}/${r}`;
+  ensureCanonical(canonical);
 };

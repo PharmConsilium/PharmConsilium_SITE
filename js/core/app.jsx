@@ -17,16 +17,32 @@ const FONT_PAIRS = {
 
 function normalizeRoute(raw) {
   const h = String(raw || '').replace(/^#\/?/, '').trim();
-  const r = h.replace(/^\/+/, '');
+  const noLeading = h.replace(/^\/+/, '');
+  const noTrailing = noLeading.replace(/\/+$/, '');
+  // Avoid treating the file itself as a route.
+  const r = noTrailing.replace(/^index\.html$/i, '');
   return r || 'home';
 }
 
-function getRouteFromHash() {
-  return normalizeRoute(window.location.hash);
+function getHashRoute() {
+  const raw = String(window.location.hash || '').trim();
+  const norm = normalizeRoute(raw);
+  return raw ? norm : null;
 }
 
-function hashForRoute(route) {
-  return `#${normalizeRoute(route)}`;
+function routeFromPathname(pathname) {
+  const raw = String(pathname || '/');
+  const clean = raw.split('?')[0].split('#')[0];
+  return normalizeRoute(clean.replace(/^\//, ''));
+}
+
+function pathForRoute(route) {
+  const r = normalizeRoute(route);
+  return r === 'home' ? '/' : `/${r}`;
+}
+
+function dispatchRouteChange(route, kind) {
+  window.dispatchEvent(new CustomEvent('pharm:routechange', { detail: { route, kind: kind || 'push' } }));
 }
 
 function portfolioSlugFromRoute(route) {
@@ -37,7 +53,10 @@ function portfolioSlugFromRoute(route) {
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [route, setRoute] = React.useState(getRouteFromHash);
+  const [route, setRoute] = React.useState(() => {
+    const h = getHashRoute();
+    return h || routeFromPathname(window.location.pathname);
+  });
   const [lang, setLangState] = React.useState('ru');
   const [langTick, setLangTick] = React.useState(0);
   const [scenario, setScenario] = React.useState('comms');
@@ -46,7 +65,6 @@ function App() {
   const EndContactStrip = window.EndContactStrip;
   const scrollByRoute = React.useRef({});
   const navKind = React.useRef('push');
-  const ignoreHashChange = React.useRef(false);
   const routeRef = React.useRef(route);
   const prevRouteRef = React.useRef(route);
   routeRef.current = route;
@@ -85,26 +103,41 @@ function App() {
   }, [t]);
 
   React.useLayoutEffect(() => {
-    if (!window.location.hash) {
-      window.history.replaceState(null, '', hashForRoute('home'));
+    const h = getHashRoute();
+    if (h) {
+      // Backward compatibility: convert `/#route` to `/route` without adding a history entry.
+      window.history.replaceState(null, '', pathForRoute(h) + window.location.search);
+      navKind.current = 'pop';
+      if (h !== routeRef.current) setRoute(h);
+      dispatchRouteChange(h, 'replace');
+      return;
     }
-    const fromHash = getRouteFromHash();
-    if (fromHash !== routeRef.current) setRoute(fromHash);
+    const fromPath = routeFromPathname(window.location.pathname);
+    if (fromPath !== routeRef.current) setRoute(fromPath);
   }, []);
 
   React.useEffect(() => {
-    const onHashChange = () => {
-      const next = getRouteFromHash();
-      if (ignoreHashChange.current) {
-        ignoreHashChange.current = false;
-        if (next !== routeRef.current) setRoute(next);
-        return;
-      }
+    const onPopState = () => {
+      const next = routeFromPathname(window.location.pathname);
       navKind.current = 'pop';
       setRoute(next);
+      dispatchRouteChange(next, 'pop');
     };
+    const onHashChange = () => {
+      const h = getHashRoute();
+      if (!h) return;
+      // Backward compatibility for any late-arriving hash navigations.
+      window.history.replaceState(null, '', pathForRoute(h) + window.location.search);
+      navKind.current = 'pop';
+      setRoute(h);
+      dispatchRouteChange(h, 'replace');
+    };
+    window.addEventListener('popstate', onPopState);
     window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+      window.removeEventListener('hashchange', onHashChange);
+    };
   }, []);
 
   React.useEffect(() => {
@@ -160,11 +193,17 @@ function App() {
     scrollByRoute.current[routeRef.current] = window.scrollY;
     navKind.current = 'push';
     setRoute(r);
-    if (normalizeRoute(window.location.hash) !== r) {
-      ignoreHashChange.current = true;
-      window.location.hash = r;
+    const nextPath = pathForRoute(r);
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState(null, '', nextPath + window.location.search);
     }
+    dispatchRouteChange(r, 'push');
   }, []);
+  React.useEffect(() => {
+    // Allow deep components (e.g. modal) to navigate without props.
+    window.pharmNavigate = navigate;
+    return () => { delete window.pharmNavigate; };
+  }, [navigate]);
   const pageKey = `${route}-${lang}-${langTick}`;
 
   const PortfolioPageCmp = window.PortfolioPage;

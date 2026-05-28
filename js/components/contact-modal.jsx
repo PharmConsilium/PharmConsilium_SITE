@@ -100,8 +100,11 @@ function ContactFormModal({ open, onClose, lang }) {
     e.preventDefault();
     onClose();
     window.setTimeout(() => {
-      if (window.location.hash.replace(/^#\/?/, '') !== 'privacy') {
-        window.location.hash = 'privacy';
+      const nav = window.pharmNavigate;
+      const current = String(window.location.pathname || '/').replace(/^\/+/, '').replace(/\/+$/, '') || 'home';
+      if (current !== 'privacy') {
+        if (typeof nav === 'function') nav('privacy');
+        else window.history.pushState(null, '', '/privacy');
       } else {
         const el = document.getElementById('privacy-policy');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
