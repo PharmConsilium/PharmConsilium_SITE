@@ -135,11 +135,11 @@ const MEGA = {
     }
   },
   team: {
-    title: 'Сделайте мир лучше!',
+    title: 'Сделаем мир лучше!',
     links: [
-    { label: 'Наша миссия в этой Вселенной', to: 'team', scrollTo: 'team-mission' },
-    { label: 'Команда', to: 'team', scrollTo: 'team-members' },
-    { label: 'Портфолио, проекты, и фичи ФармКонсилиум', to: 'portfolio' }],
+    { label: 'Миссия ФармКонсилиум в этой Вселенной', to: 'team', scrollTo: 'team-mission' },
+    { label: 'Команда ФармКонсилиум', to: 'team', scrollTo: 'team-members' },
+    { label: 'Портфолио, проекты и фичи ФармКонсилиум', to: 'portfolio' }],
 
     featured: {
       tag: 'PharmConsilium news',

@@ -25,11 +25,11 @@ function PortfolioPage({ navigate, lang }) {
           <div className="crumbs">
             <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--ink)' }}>{ui ? ui.crumb : 'Портфолио, проекты, и фичи ФармКонсилиум'}</span>
+            <span style={{ color: 'var(--ink)' }}>{ui ? ui.crumb : 'Портфолио, проекты и фичи ФармКонсилиум'}</span>
           </div>
           <div className="eyebrow" style={{ marginTop: 18 }}>{ui ? ui.eyebrow : 'Проекты последних 24 месяцев'}</div>
           <PageHeroH1
-            line1={ui ? ui.h1Line1 : 'Портфолио, проекты,'}
+            line1={ui ? ui.h1Line1 : 'Портфолио, проекты'}
             accent={ui ? ui.h1Accent : 'и фичи ФармКонсилиум'}
           />
           <p className="lede">
@@ -38,7 +38,7 @@ function PortfolioPage({ navigate, lang }) {
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} hide /> : null}
 
       <section className="container" style={{ padding: '40px 0 80px' }}>
         <div className="pf-filter">
@@ -66,6 +66,9 @@ function PortfolioPage({ navigate, lang }) {
               : thumb
                 ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
                 : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` };
+              const chips = Array.isArray(p.cardChips) && p.cardChips.length
+                ? p.cardChips
+                : [p.category, p.sector, p.year];
             return (
               <div key={p.slug} className="card"
                    onClick={() => navigate(`portfolio/${p.slug}`)}>
@@ -79,9 +82,15 @@ function PortfolioPage({ navigate, lang }) {
                 <h3>{p.name}</h3>
                 <p>{p.short}</p>
                 <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.category}</span>
-                  <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.sector}</span>
-                  <span className="chip" style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}>{p.year}</span>
+                  {chips.map((chip) => (
+                    <span
+                      key={chip}
+                      className="chip"
+                      style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}
+                    >
+                      {chip}
+                    </span>
+                  ))}
                 </div>
                 <span className="read">{ui ? ui.openCase : 'Открыть кейс'} <span className="arrow">→</span></span>
               </div>);
@@ -305,7 +314,7 @@ function ProjectPage({ slug, navigate, lang }) {
           <div className="crumbs">
             <span onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>{t('home')}</span>
             <span className="sep">/</span>
-            <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>{ui ? ui.crumb : 'Портфолио, проекты, и фичи ФармКонсилиум'}</span>
+            <span onClick={() => navigate('portfolio')} style={{ cursor: 'pointer' }}>{ui ? ui.crumb : 'Портфолио, проекты и фичи ФармКонсилиум'}</span>
             <span className="sep">/</span>
             <span style={{ color: 'var(--ink)' }}>{p.name}</span>
           </div>
@@ -321,7 +330,7 @@ function ProjectPage({ slug, navigate, lang }) {
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip lang={lang} /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'cardio-lonch'} /> : null}
 
       <section className="container">
         <div className="proj-metrics" style={{ '--proj-accent': p.palette }}>
@@ -423,10 +432,10 @@ function ProjectPage({ slug, navigate, lang }) {
             </div>
 
             <div className="proj-info" style={{ marginTop: 8 }}>
-              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.client : 'Клиент'}</div><div className="proj-info-v">{p.client}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.sector : 'Сектор'}</div><div className="proj-info-v">{p.sector}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.duration : 'Срок'}</div><div className="proj-info-v">{p.duration}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">{ui ? ui.year : 'Год'}</div><div className="proj-info-v">{p.year}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{p.infoClientLabel || (ui ? ui.client : 'Клиент')}</div><div className="proj-info-v">{p.infoClient || p.client}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{p.infoSectorLabel || (ui ? ui.sector : 'Сектор')}</div><div className="proj-info-v">{p.infoSector || p.sector}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{p.infoDurationLabel || (ui ? ui.duration : 'Срок')}</div><div className="proj-info-v">{p.infoDuration || p.duration}</div></div>
+              <div className="proj-info-i"><div className="proj-info-l">{p.infoYearLabel || (ui ? ui.year : 'Год')}</div><div className="proj-info-v">{p.infoYear || p.year}</div></div>
             </div>
           </div>
         </div>
@@ -434,7 +443,6 @@ function ProjectPage({ slug, navigate, lang }) {
         <div className="detail-cta" style={{ marginTop: 48 }}>
           <div>
             <h3>{ui ? ui.ctaProjectH3 : 'Похожий проект для вас?'}</h3>
-            <p>{ui ? ui.ctaProjectP : 'Покажем кейсы по вашему сектору, разложим бюджет и сроки, дадим пилот за 2 недели.'}</p>
           </div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
             <button className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>

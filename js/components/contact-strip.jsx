@@ -1,6 +1,7 @@
 // Статичные CTA «Обсудить проект» / «Больше информации» — mid и end полосы.
 
-function MidContactStrip({ compact, alignStart, inline, lang }) {
+function MidContactStrip({ compact, alignStart, inline, lang, hide }) {
+  if (hide) return null;
   const l = lang || (window.getSiteLang ? window.getSiteLang() : 'ru');
   const label = window.tUI ? window.tUI('discussProject', l) : 'Обсудить проект';
   const aria = window.tUI ? window.tUI('midStripAria', l) : 'Обсудить проект';

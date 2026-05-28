@@ -278,7 +278,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
       {MidContactStrip ?
       <div className="home-tiles-cta" role="region" aria-label={en ? en.discussAria : 'Обсудить проект'}>
         <div className="container">
-          <MidContactStrip inline lang={lang} />
+          <MidContactStrip inline lang={lang} hide />
         </div>
       </div> :
       null}
@@ -616,37 +616,37 @@ function DirectoryPage({ navigate, lang }) {
       name: 'Пример ОХЛП (BY, KZ), инструкция по медицинскому применению (листок-вкладыш)',
       desc: 'Структурированная карточка ЛС с официальной инструкцией, дозировками и примером рецепта на конкретный препарат',
       href: 'https://farmconsilium.com/ls/medicines/835-depakin-hronosfera',
-      tags: ['ОХЛП', 'ФармКонсилиум'],
+      tags: ['ОХЛС', 'ИнструкцииЛС', 'Фармокология'],
     },
     {
       name: 'Клинические калькуляторы, оценка функции почек',
       desc: 'Калькулятор Cockcroft–Gault, CKD‑EPI, Schwartz и CKiD U25 с автоматическим расчётом клиренса и стадий ХБП.',
       href: 'https://farmconsilium.com/calculator/kalkulyator-diagnostiki-funkcii-pochek-cockcroft-gault-ckd-epi-schwartz-ckid-u25',
-      hashTags: ['клинические калькуляторы', 'нефрология'],
+      hashTags: ['МедицинскиеСпециалисты', 'ДляВрачей', 'КлиническиеКалькуляторы'],
     },
     {
       name: 'Умный поиск по ТН, МНН, АТХ и производителю',
       desc: 'Единый поиск приводит к карточке ЛС с инструкцией, аналогами и оценками врачей.',
       href: 'https://farmconsilium.com/ls?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
-      hashTags: ['поиск лекарств', 'для врачей'],
+      hashTags: ['MedTech', 'ЦифроваяМедецина', 'СправочникЛС'],
     },
     {
       name: 'Оценки ЛС практикующими врачами',
       desc: 'К официальным данным добавляются отзывы и рейтинги от врачей с реальным опытом применения. Только для зарегистрированных пользователей, подтвердивших свою квалификацию.',
       href: 'https://farmconsilium.com/ls/medicines/konkor-rp',
-      hashTags: ['оценка врачей', 'карточка препарата'],
+      hashTags: ['СправочникЛекарственныхСредств', 'ФармКонсилиум', 'Фармокология'],
     },
     {
       name: 'Общая и клиническая фармакология',
       desc: 'Ключевые таблицы, инфографика и статьи по фармакодинамике, фармакокинетике и рациональной фармакотерапии.',
       href: 'https://farmconsilium.com/lib?utm_content=link_in_bio&utm_medium=search&utm_timestamp=1779193963&utm_source=google',
-      hashTags: ['клиническая фармакология', 'образование врачей'],
+      hashTags: ['РациональнаяФармакотерапия', 'КлиническиеПротоколы', 'ДляФармацевтов'],
     },
     {
       name: 'Примеры выписки медицинских рецептов',
       desc: 'Готовые образцы рецептов по льготам с корректным заполнением для конкретных препаратов.',
       href: 'https://farmconsilium.com/ls/medicines/1645-mirena',
-      hashTags: ['медицинские рецепты', 'льготное лекарство'],
+      hashTags: ['DigitalHealth', 'ЛекарственныеСредства', 'МедицинскиеШкалы'],
     },
   ];
   const stats = en ? en.stats : [
@@ -1015,13 +1015,13 @@ function TeamPage({ navigate, lang }) {
           <div className="section-head">
             <div>
               <div className="eyebrow">{en ? en.portfolioEyebrow : 'Портфолио'}</div>
-              <h2>{en ? en.portfolioH2 : <>Проекты последних<br />двенадцати месяцев.</>}</h2>
+              <h2>{en ? en.portfolioH2 : <>Проекты ФармКонсилиум,<br />которые в этом месяце смотрели больше всего</>}</h2>
             </div>
-            <div className="right">{en ? en.portfolioRight : '8 запусков, 3 ИИ-продукта, 2 справочника, 1 победа на премии. Подробное портфолио — по запросу.'}</div>
+            <div className="right">{en ? en.portfolioRight : 'Кейсы, продуктовые решения use cases, solutions'}</div>
           </div>
           <div className="cards-grid cards-grid--portfolio">
             {(en ? en.portfolioCards : [
-            { t: 'Цифровой баннер для Бепантен (Bayer)', d: 'Три варианта digital-баннера: разные героини, локальные сценарии, брендбук Bayer.', art: 'ArtBanner', slug: 'cardio-lonch' },
+            { t: 'Рекламный баннер Бепантен-крем', d: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.', art: 'ArtBanner', slug: 'cardio-lonch' },
             { t: 'Упаковка для препарата АйТи-табс', d: 'Три формата — единая линейка препарата АйТи-табс.', art: 'ArtAI', slug: 'ai-trener' },
             { t: 'Упаковка для препарата ГидроБаланс', d: 'Разработка упаковки для препарата ГидроБаланс.', art: 'ArtVideo', slug: 'patient-series' },
             { t: 'Конференция «ФармКонсилиум-2025»', d: '1 500 участников, эвент-бот, ИИ-помощник на программе.', art: 'ArtRadar', slug: 'conference-pk25' },
