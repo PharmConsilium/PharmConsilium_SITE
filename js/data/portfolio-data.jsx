@@ -4,12 +4,14 @@
 const PORTFOLIO = [
   {
     slug: 'cardio-lonch',
-    name: 'Рекламный баннер — Бепантен-крем',
+    name: 'Рекламный баннер Бепантен крем',
     client: 'Bayer',
     infoClientLabel: 'Target',
     infoClient: 'Consumer',
     year: '2026',
     duration: '7 дней',
+    hideInfoDuration: true,
+    hideInfoYear: true,
     category: 'Контент',
     sector: 'Фармакология',
     infoSectorLabel: 'Rx/OTC',
@@ -18,15 +20,10 @@ const PORTFOLIO = [
     tag: 'banner',
     palette: '#2B9FD9',
     thumb: 'assets/uploads/bepanten-card-thumb.png',
-    thumbAlt: 'Бепантен — цифровой баннер, вариант с героиней',
-    short: 'Три варианта цифрового баннера для Бепантен (Bayer): разные героини, локальные сценарии, брендбук Bayer.',
+    thumbAlt: 'Бепантен крем — цифровой баннер, вариант с героиней',
+    short: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.',
     hero: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.',
-    metrics: [
-      { value: '3', label: 'концепции' },
-      { value: '100 %', label: 'соответствие брендбуку' },
-      { value: '2', label: 'количество ревизий' },
-      { value: '7 дней', label: 'срок выполнения' },
-    ],
+    metrics: [],
     problem: 'Разработать рекламный баннер крема с акцентом на зоны применения — лицо, руки и тело, передающий летнее настроение, женственность и проблему сухости/раздражения кожи. Визуал должен строго соответствовать брендбуку и требованиям законодательства Республики Беларусь о рекламе.',
     approach: [
       { t: 'Анализ аудитории и триггеров',
@@ -40,8 +37,8 @@ const PORTFOLIO = [
     ],
     deliverables: [
       'Согласованный с регулятором рекламный визуал',
-      'Адаптации для различных digital- и offline-носителей',
-      'Анимированная 3–5 секундная версия персонажа для социальных сетей и digital-кампаний',
+      'Адаптации размеров для различных носителей',
+      'Анимированная 3–5 секундная версия персонажа для социальных сетей',
     ],
     timeline: [
       { phase: '1 нед.', t: 'Бриф · брендбук · концепции' },
@@ -51,9 +48,9 @@ const PORTFOLIO = [
     ],
     slideAspect: '723 / 1024',
     slides: [
-      { src: 'assets/uploads/bepanten-banner-1.png', label: 'Баннер 1', alt: 'Цифровой баннер Бепантен — баннер 1' },
-      { src: 'assets/uploads/bepanten-banner-2.png', label: 'Баннер 2', alt: 'Цифровой баннер Бепантен — баннер 2' },
-      { src: 'assets/uploads/bepanten-banner-3.png', label: 'Баннер 3', alt: 'Цифровой баннер Бепантен — баннер 3' },
+      { src: 'assets/uploads/bepanten-banner-1.png', label: 'Баннер 1', alt: 'Цифровой баннер Бепантен крем — баннер 1' },
+      { src: 'assets/uploads/bepanten-banner-2.png', label: 'Баннер 2', alt: 'Цифровой баннер Бепантен крем — баннер 2' },
+      { src: 'assets/uploads/bepanten-banner-3.png', label: 'Баннер 3', alt: 'Цифровой баннер Бепантен крем — баннер 3' },
     ],
     related: ['ai-trener', 'omni-rebranding', 'conference-pk25'],
   },

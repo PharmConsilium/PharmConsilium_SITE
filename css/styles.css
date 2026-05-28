@@ -1741,6 +1741,48 @@ button { font-family: inherit; }
 [data-theme="dark"] .directory-benefit-card .directory-benefit-art.card-art--photo-contain {
   background: var(--surface-2);
 }
+.directory-benefit-card#directory-benefit-0 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+[data-theme="dark"] .directory-benefit-card#directory-benefit-0 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+.directory-benefit-card#directory-benefit-0 .directory-benefit-art.card-art--photo-contain img {
+  object-fit: contain;
+  object-position: center center;
+}
+.directory-benefit-card#directory-benefit-1 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+[data-theme="dark"] .directory-benefit-card#directory-benefit-1 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+.directory-benefit-card#directory-benefit-1 .directory-benefit-art.card-art--photo-contain img {
+  object-fit: contain;
+  object-position: center center;
+}
+.directory-benefit-card#directory-benefit-3 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+[data-theme="dark"] .directory-benefit-card#directory-benefit-3 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+.directory-benefit-card#directory-benefit-3 .directory-benefit-art.card-art--photo-contain img {
+  object-fit: contain;
+  object-position: center center;
+  background: transparent;
+  filter: none;
+}
+.directory-benefit-card#directory-benefit-2 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+[data-theme="dark"] .directory-benefit-card#directory-benefit-2 .directory-benefit-art.card-art--photo-contain {
+  background: transparent;
+}
+.directory-benefit-card#directory-benefit-2 .directory-benefit-art.card-art--photo-contain img {
+  object-fit: contain;
+  object-position: center center;
+}
 .directory-benefit-card:hover {
   transform: none;
   box-shadow: var(--shadow-sm);

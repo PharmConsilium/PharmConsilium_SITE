@@ -326,6 +326,12 @@ function ProjectPage({ slug, navigate, lang }) {
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>
               {ui ? ui.backAll : '← Все проекты'}
             </button>
+            <button
+              className="btn btn-primary"
+              onClick={() => navigate('content/presentations')}
+            >
+              Узнать больше об этой услуге <span className="arrow">→</span>
+            </button>
           </div>
         </div>
       </section>
@@ -333,14 +339,16 @@ function ProjectPage({ slug, navigate, lang }) {
       {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'cardio-lonch'} /> : null}
 
       <section className="container">
-        <div className="proj-metrics" style={{ '--proj-accent': p.palette }}>
-          {p.metrics.map((m, i) =>
-          <div key={i} className="proj-metric">
-              <div className="proj-metric-v">{m.value}</div>
-              <div className="proj-metric-l">{m.label}</div>
-            </div>
-          )}
-        </div>
+        {Array.isArray(p.metrics) && p.metrics.length > 0 ? (
+          <div className="proj-metrics" style={{ '--proj-accent': p.palette }}>
+            {p.metrics.map((m, i) =>
+            <div key={i} className="proj-metric">
+                <div className="proj-metric-v">{m.value}</div>
+                <div className="proj-metric-l">{m.label}</div>
+              </div>
+            )}
+          </div>
+        ) : null}
 
         <div className="proj-split">
           <div className="proj-slider">
@@ -431,12 +439,25 @@ function ProjectPage({ slug, navigate, lang }) {
               </ul>
             </div>
 
-            <div className="proj-info" style={{ marginTop: 8 }}>
-              <div className="proj-info-i"><div className="proj-info-l">{p.infoClientLabel || (ui ? ui.client : 'Клиент')}</div><div className="proj-info-v">{p.infoClient || p.client}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">{p.infoSectorLabel || (ui ? ui.sector : 'Сектор')}</div><div className="proj-info-v">{p.infoSector || p.sector}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">{p.infoDurationLabel || (ui ? ui.duration : 'Срок')}</div><div className="proj-info-v">{p.infoDuration || p.duration}</div></div>
-              <div className="proj-info-i"><div className="proj-info-l">{p.infoYearLabel || (ui ? ui.year : 'Год')}</div><div className="proj-info-v">{p.infoYear || p.year}</div></div>
-            </div>
+            {(() => {
+              const infoItems = [
+                { l: p.infoClientLabel || (ui ? ui.client : 'Клиент'), v: p.infoClient || p.client },
+                { l: p.infoSectorLabel || (ui ? ui.sector : 'Сектор'), v: p.infoSector || p.sector },
+                !p.hideInfoDuration ? { l: p.infoDurationLabel || (ui ? ui.duration : 'Срок'), v: p.infoDuration || p.duration } : null,
+                !p.hideInfoYear ? { l: p.infoYearLabel || (ui ? ui.year : 'Год'), v: p.infoYear || p.year } : null,
+              ].filter(Boolean);
+              const cols = Math.min(4, infoItems.length || 1);
+              return (
+                <div className="proj-info" style={{ marginTop: 8, gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+                  {infoItems.map((it) => (
+                    <div key={`${it.l}-${it.v}`} className="proj-info-i">
+                      <div className="proj-info-l">{it.l}</div>
+                      <div className="proj-info-v">{it.v}</div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
           </div>
         </div>
 
