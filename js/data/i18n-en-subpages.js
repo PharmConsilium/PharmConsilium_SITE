@@ -196,6 +196,8 @@ window.SUBPAGES_EN_PATCHES = {
   'marketing/mobile': {
     section: 'Pharmaceutical marketing',
     title: 'Mobile app development',
+    h1Line1: 'Mobile app',
+    h1Accent: 'development',
     lede: 'We build turnkey mHealth apps for pharma brands—from idea and UX concept through design, development, and App Store and Google Play publication.',
     tags: ['mHealth', 'PharmaApp', 'MobileApp', 'DigitalCompanion', 'PatientSupport', 'HCPEngagement', 'PharmaBrand', 'UXDesign', 'DigitalHealth', 'Adherence'],
     artSlides: [
@@ -356,6 +358,8 @@ window.SUBPAGES_EN_PATCHES = {
   'hcp/education': {
     section: 'Healthcare',
     title: 'Patient support programs',
+    h1Line1: 'Patient support',
+    h1Accent: 'programs',
     lede: 'LMS platforms for HCP and patients: webinars, online courses, certification, CME points, progress, and certificates—all in one digital environment.',
     tags: ['PatientSupport', 'PSP', 'CME', 'LMS', 'DigitalHealth', 'DTP'],
     aboutTitle: 'Digital education at the core of patient support programs',
@@ -492,6 +496,8 @@ window.SUBPAGES_EN_PATCHES = {
   'hcp/psp': {
     section: 'Healthcare',
     title: 'RWE data analysis and processing systems',
+    h1Line1: 'RWE data analysis',
+    h1Accent: 'and processing systems',
     lede: 'Platforms for collecting and analyzing real-world clinical data for healthcare, drug manufacturers, and medical device makers: cohort analytics, AI-powered data processing, therapy effectiveness evidence, and outcomes-based contract models.',
     tags: ['RWE', 'RealWorldEvidence', 'ClinicalData', 'HealthcareAnalytics', 'PharmaStrategy'],
     aboutTitle: 'Real-world clinical data as a strategic asset',
@@ -830,6 +836,9 @@ window.SUBPAGES_EN_PATCHES = {
   'content/presentations': {
     section: 'Design',
     title: 'Visual concepts, packaging, ad banners, and brand books',
+    h1Line1: 'Visual concepts,',
+    h1Accent: 'packaging, ad banners,',
+    h1Accent2: 'and brand books',
     lede: 'Pharmaceutical brand visual identity: from concept and brand book to packaging, banners, and promo materials—design trusted by medical professionals and patients.',
     tags: ['PharmaBranding', 'PackagingDesign', 'BrandBook', 'VisualIdentity', 'PharmaBrand'],
     aboutTitle: 'A visual language people trust',
@@ -904,6 +913,9 @@ window.SUBPAGES_EN_PATCHES = {
   'content/gamification': {
     section: 'Design',
     title: 'Games, quizzes, and clinical detective stories for HCP',
+    h1Line1: 'Games, quizzes, and',
+    h1Accent: 'clinical detective stories',
+    h1Accent2: 'for HCP',
     lede: 'Clinical detective stories, quizzes, and case games for physicians and pharmacists—pharma gamification that educates, engages, and builds brand loyalty.',
     tags: ['MedicalGamification', 'SeriousGames', 'HCPengagement', 'ClinicalQuiz', 'PharmaEducation'],
     aboutTitle: 'Games in medicine for serious learning',

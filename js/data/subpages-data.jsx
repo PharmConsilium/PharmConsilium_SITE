@@ -208,6 +208,8 @@ const SUBPAGES = {
   'marketing/mobile': {
     section: 'Фармацевтический маркетинг', sectionId: 'marketing',
     title: 'Разработка мобильных приложений',
+    h1Line1: 'Разработка мобильных',
+    h1Accent: 'приложений',
     lede: 'Мы создаём mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.',
     tags: ['mHealth', 'PharmaApp', 'MobileApp', 'DigitalCompanion', 'PatientSupport', 'HCPEngagement', 'PharmaBrand', 'UXDesign', 'DigitalHealth', 'Adherence'],
     art: 'ArtPhone',
@@ -380,6 +382,8 @@ const SUBPAGES = {
   'hcp/education': {
     section: 'Здравоохранение', sectionId: 'hcp',
     title: 'Программы поддержки пациентов',
+    h1Line1: 'Программы поддержки',
+    h1Accent: 'пациентов',
     lede: 'LMS-платформы для HCP и пациентов: вебинары, онлайн-курсы, аттестация, баллы CME, прогресс и сертификаты — всё в одной цифровой среде.',
     tags: ['PatientSupport', 'PSP', 'CME', 'LMS', 'DigitalHealth', 'DTP'],
     art: 'ArtBooks',
@@ -533,6 +537,8 @@ const SUBPAGES = {
   'hcp/psp': {
     section: 'Здравоохранение', sectionId: 'hcp',
     title: 'Создание систем анализа и обработки данных RWE',
+    h1Line1: 'Создание систем анализа',
+    h1Accent: 'и обработки данных RWE',
     lede: 'Платформы для сбора и анализа реальных клинических данных для медицинской отрасли, производителей лекарственных препаратов и медицинских изделий: когортная аналитика, обработка данных с применением ИИ, формирование доказательств эффективности терапии и модели контрактов, основанные на клинических результатах.',
     tags: ['RWE', 'RealWorldEvidence', 'ClinicalData', 'HealthcareAnalytics', 'PharmaStrategy'],
     art: 'ArtPulse',
@@ -894,6 +900,9 @@ const SUBPAGES = {
   'content/presentations': {
     section: 'Дизайн', sectionId: 'content',
     title: 'Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС',
+    h1Line1: 'Визуальные концепты,',
+    h1Accent: 'упаковка, рекламные',
+    h1Accent2: 'баннера, брендбук ЛС',
     lede: 'Визуальная идентичность фармацевтического бренда: от концепта и брендбука до упаковки, баннеров и промоматериалов — дизайн, которому доверяют медицинские специалисты и пациенты.',
     tags: ['PharmaBranding', 'PackagingDesign', 'BrandBook', 'VisualIdentity', 'PharmaBrand'],
     art: 'ArtSlides',
@@ -972,6 +981,9 @@ const SUBPAGES = {
   'content/gamification': {
     section: 'Дизайн', sectionId: 'content',
     title: 'Игры, квизы и клинические детективы для HCP',
+    h1Line1: 'Игры, квизы и',
+    h1Accent: 'клинические детективы',
+    h1Accent2: 'для HCP',
     lede: 'Клинические детективы, квизы и кейс-игры для врачей и провизоров — геймификация в фармацевтическом маркетинге, которая обучает, вовлекает и формирует лояльность к бренду.',
     tags: ['MedicalGamification', 'SeriousGames', 'HCPengagement', 'ClinicalQuiz', 'PharmaEducation'],
     art: 'ArtGame',

@@ -373,11 +373,12 @@ function splitPageTitle(title) {
 
 function PageHeroH1({ line1, accent, accent2 }) {
   if (!accent && !accent2) return <h1><span className="h1-primary">{line1}</span></h1>;
+  const shouldNowrap = (s) => typeof s === 'string' && s.length <= 28;
   return (
     <h1>
       <span className="h1-primary">{line1}</span>
-      {accent ? <><br /><span className="accent">{accent}</span></> : null}
-      {accent2 ? <><br /><span className="accent">{accent2}</span></> : null}
+      {accent ? <><br /><span className={`accent${shouldNowrap(accent) ? ' accent--nowrap' : ''}`}>{accent}</span></> : null}
+      {accent2 ? <><br /><span className={`accent${shouldNowrap(accent2) ? ' accent--nowrap' : ''}`}>{accent2}</span></> : null}
     </h1>
   );
 }
