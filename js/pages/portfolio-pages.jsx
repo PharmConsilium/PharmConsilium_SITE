@@ -326,12 +326,14 @@ function ProjectPage({ slug, navigate, lang }) {
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>
               {ui ? ui.backAll : '← Все проекты'}
             </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => navigate('content/presentations')}
-            >
-              Узнать больше об этой услуге <span className="arrow">→</span>
-            </button>
+            {slug === 'cardio-lonch' ? (
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate('content/presentations')}
+              >
+                Узнать больше об этой услуге <span className="arrow">→</span>
+              </button>
+            ) : null}
           </div>
         </div>
       </section>
