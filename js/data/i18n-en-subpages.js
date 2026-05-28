@@ -800,6 +800,9 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'HCP video — from script to stage effects in online presentations',
     lede: 'Video visits, interactive video, and vertical formats for smartphones. From linear shoots to complex architecture with clinical accuracy and top-studio production quality.',
     tags: ['PharmaVideo', 'eDetailing', 'KOLvideo', 'VideoMarketing', 'HCPengagement'],
+    artSlides: [
+      { src: 'assets/uploads/content-video-detail.png?v=20260528', label: 'HCP video', alt: 'HCP video: production and stage effects illustration' },
+    ],
     aboutTitle: 'A video visit is video that works like a great rep',
     about: [
       'Video is the most powerful way to deliver clinical knowledge and emotional trust at once: HCPs remember information from video 3–5× better than from text or static slides. For a product manager, well-produced video covers several promo-cycle jobs: clinical conviction, brand image, and the voice of a key opinion leader. We build video from scratch—from a script structured like a rep visit in the cycle book to final edit with medical infographics, MOA 3D animation, VFX, and interactive branches.',
