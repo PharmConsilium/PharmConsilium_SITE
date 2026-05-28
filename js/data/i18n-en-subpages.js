@@ -924,6 +924,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent2: 'for HCP',
     lede: 'Clinical detective stories, quizzes, and case games for physicians and pharmacists—pharma gamification that educates, engages, and builds brand loyalty.',
     tags: ['MedicalGamification', 'SeriousGames', 'HCPengagement', 'ClinicalQuiz', 'PharmaEducation'],
+    artSlides: [
+      { src: 'assets/uploads/content-gamification-detail.png?v=20260528', label: 'Gamification for HCP', alt: 'HCP games and quizzes: clinical detective illustration' },
+    ],
     aboutTitle: 'Games in medicine for serious learning',
     about: [
       'Gamification in medical education and pharma marketing is not entertainment for its own sake—it is evidence-based engagement, knowledge retention, and clinical reasoning for physicians and pharmacists. Game formats can reach 95–97% program completion versus traditional modules and sustain professional interest beyond work hours. For brands, it is a unique way to embed key messages emotionally in the clinical experience.',
