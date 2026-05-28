@@ -155,15 +155,15 @@ function RobotCompanion() {
       const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
       sync(inView);
     };
-    const onHash = () => { window.setTimeout(bind, 0); };
+    const onRoute = () => { window.setTimeout(bind, 0); };
 
     window.addEventListener('resize', onResize, { passive: true });
-    window.addEventListener('hashchange', onHash);
+    window.addEventListener('pharm:routechange', onRoute);
 
     return () => {
       mo?.disconnect();
       window.removeEventListener('resize', onResize);
-      window.removeEventListener('hashchange', onHash);
+      window.removeEventListener('pharm:routechange', onRoute);
       unbind();
     };
   }, []);

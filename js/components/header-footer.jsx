@@ -185,6 +185,11 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   }
 
   const open = (id) => {
+    // Directory page already contains all sub-sections; no mega-panel needed.
+    if (id === 'directory') {
+      setOpenMenu(null);
+      return;
+    }
     clearTimeout(closeTimer.current);
     setOpenMenu(id);
   };
@@ -348,7 +353,8 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
         role="navigation"
         aria-label={t('navAria')}>
         {navItems.map((item) => {
-          const mega = megaConfig[item.id];
+          // Keep "Directory" mobile nav clean: everything is inside the page itself.
+          const mega = item.id === 'directory' ? null : megaConfig[item.id];
           const expanded = mobileExpanded === item.id;
           return (
             <div key={item.id} className={`mobile-nav-group${expanded ? ' is-expanded' : ''}`}>
