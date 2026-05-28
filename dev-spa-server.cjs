@@ -32,7 +32,7 @@ const mime = {
 
 function safeFsPath(urlPath) {
   const decoded = decodeURIComponent(String(urlPath || '/').split('?')[0]);
-  const clean = decoded.replace(/\0/g, '');
+  const clean = decoded.replace(/\0/g, '').replace(/^\/+/, '');
   const joined = path.join(root, clean);
   const rel = path.relative(root, joined);
   if (rel.startsWith('..') || path.isAbsolute(rel)) return null;
@@ -47,7 +47,7 @@ function sendFile(res, absPath) {
 
 const server = http.createServer((req, res) => {
   const urlPath = req.url || '/';
-  const resolved = urlPath === '/' ? '/index.html' : urlPath;
+  const resolved = urlPath === '/' ? 'index.html' : urlPath;
   const abs = safeFsPath(resolved);
   if (!abs) {
     res.writeHead(400);
