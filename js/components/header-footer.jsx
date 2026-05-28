@@ -389,7 +389,6 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
               </div>
               {expanded && mega &&
                 <div className="mobile-nav-panel">
-                  <p className="mobile-nav-panel-title">{mega.title}</p>
                   <ul className="mobile-nav-sublinks">
                     {mega.links.map((l, i) => {
                       const label = typeof l === 'string' ? l : l.label;

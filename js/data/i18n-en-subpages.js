@@ -699,6 +699,9 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'CLM presentations, e-detailers, and slide boxes for medical representatives',
     lede: 'CLM detailers and visual aids for rep F2F visits: clinically accurate narrative, evidence-based design, compliance, and per-visit analytics—all under product manager control.',
     tags: ['CLM', 'eDetailing', 'VisualAid', 'FieldForce', 'PharmaBrand'],
+    artSlides: [
+      { src: 'assets/uploads/content-medical-detail.png?v=20260528', label: 'CLM presentations and e-detailers', alt: 'CLM presentations and e-detailers: illustration for medical representative content' },
+    ],
     aboutTitle: 'Promo that works—and makes the product manager happy',
     about: [
       'A product manager invests in building a detailer once, but hundreds of visits in the promo cycle depend on its quality. A strong detailer is not pretty slides—it is a clinically accurate narrative in visual language the physician reads in seconds and treats as professional information, not a promo flyer. That takes two expertises together: medical defines what to prove and which data to trust; copy and design make it land in a three-minute visit without losing the core message.',
