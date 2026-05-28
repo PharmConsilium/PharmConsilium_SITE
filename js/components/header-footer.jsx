@@ -280,6 +280,7 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
 
         {/* RIGHT: actions */}
         <div className="header-right">
+          {NavActions}
           <button
             type="button"
             className="nav-menu-btn btn-icon"
@@ -297,13 +298,19 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
               });
               setOpenMenu(null);
             }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-              <line x1="4" x2="20" y1="6" y2="6" />
-              <line x1="4" x2="20" y1="12" y2="12" />
-              <line x1="4" x2="20" y1="18" y2="18" />
-            </svg>
+            {mobileNavOpen ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <line x1="6" x2="18" y1="6" y2="18" />
+                <line x1="18" x2="6" y1="6" y2="18" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="12" y2="12" />
+                <line x1="4" x2="20" y1="18" y2="18" />
+              </svg>
+            )}
           </button>
-          {NavActions}
         </div>
       </div>
 
@@ -372,7 +379,11 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
                     aria-expanded={expanded}
                     aria-label={expanded ? `${item.label}: свернуть подразделы` : `${item.label}: подразделы`}
                     onClick={() => setMobileExpanded(expanded ? null : item.id)}>
-                    <span className="mobile-nav-chevron" aria-hidden="true">›</span>
+                    <span className="mobile-nav-chevron" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
                   </button> :
                   null}
               </div>
@@ -397,6 +408,16 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
               }
             </div>);
         })}
+
+        <button
+          type="button"
+          className="mobile-nav-close mobile-nav-close--bottom"
+          onClick={closeMobileNav}
+          aria-label={lang === 'en' ? 'Close' : 'Закрыть'}
+        >
+          <span className="mobile-nav-close-label">{lang === 'en' ? 'Close' : 'Закрыть'}</span>
+          <span className="mobile-nav-close-arrow" aria-hidden="true">×</span>
+        </button>
       </nav>
     </header>);
 
