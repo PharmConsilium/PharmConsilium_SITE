@@ -329,10 +329,28 @@ function ProjectPage({ slug, navigate, lang }) {
             ? <HeroH1 line1={titleParts.line1} accent={titleParts.accent} accent2={titleParts.accent2} />
             : <h1><span className="h1-primary">{titleParts.line1}</span></h1>}
           <p className="lede">{p.hero}</p>
-          <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <div className="proj-hero-actions">
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>
               {ui ? ui.backAll : '← Все проекты'}
             </button>
+            {Array.isArray(p.storeLinks) && p.storeLinks.length > 0 ? (
+              <div className="proj-store-links">
+                <div className="proj-store-links-label">{ui ? ui.appStoreLinks : 'Ссылки на мобильное приложение'}</div>
+                <div className="proj-store-links-row">
+                  {p.storeLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      className="proj-store-link"
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             {slug === 'cardio-lonch' ? (
               <button
                 className="btn btn-primary"

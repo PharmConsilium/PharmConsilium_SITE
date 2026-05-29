@@ -52,7 +52,7 @@ window.PORTFOLIO_EN_PATCHES = {
     client: 'Pharma brand client',
     category: 'Content',
     sector: 'Pharmacology',
-    thumbAlt: 'IT-tabs — packaging line 15 · 30 · 60 tablets',
+    thumbAlt: 'Meditatio Night — dietary supplement packaging and brand identity',
     short: 'Building dietary supplement brand identity and integrating product benefits into packaging design.',
     hero: 'We built evening-use dietary supplement branding from scratch — Meditatio Night: naming, packaging, identity, and a brand book for pharmacy shelf and promo. The client received a memorable OTC brand with an evening-ritual territory, clear on-pack product messaging, and a ready visual system for launch — composition, format, the tagline “Dreams look better at night!”, and high-contrast yellow-on-night identity are documented in the brand book.',
     problem: 'Create a full dietary supplement image for evening use from scratch: naming, packaging, identity, brand book, and a visual system for further promotion. The goal was not just to design a pack, but to turn the product into a memorable pharmacy brand with a clear emotional territory: calm, evening ritual, gentle relaxation, and preparation for sleep.',
@@ -75,11 +75,12 @@ window.PORTFOLIO_EN_PATCHES = {
       'Advertising banners',
       'Visual system for pharmacy, digital, and promotional channels',
     ],
+    slideAspect: '1024 / 768',
     slides: [
-      { src: 'assets/uploads/aiti-tabs-slide-1.png', label: '3D line-up', alt: 'IT-tabs — 3D line-up' },
-      { src: 'assets/uploads/aiti-tabs-slide-2.png', label: '15 tablets', alt: 'IT-tabs — 15 tablets' },
-      { src: 'assets/uploads/aiti-tabs-slide-3.png', label: '30 tablets', alt: 'IT-tabs — 30 tablets' },
-      { src: 'assets/uploads/aiti-tabs-slide-4.png', label: '60 tablets', alt: 'IT-tabs — 60 tablets' },
+      { src: 'assets/uploads/meditatio-night-slide-1.png', label: 'Brand and pack', alt: 'Meditatio Night — logo, identity, and packaging mockup' },
+      { src: 'assets/uploads/meditatio-night-slide-2.png', label: 'Elements', alt: 'Meditatio Night — graphic elements, dimensions, and color palette' },
+      { src: 'assets/uploads/meditatio-night-slide-3.png', label: 'Typography', alt: 'Meditatio Night — logo, type, and brand colors' },
+      { src: 'assets/uploads/meditatio-night-slide-4.png', label: 'Dieline', alt: 'Meditatio Night — packaging dieline' },
     ],
   },
 
@@ -350,34 +351,38 @@ window.PORTFOLIO_EN_PATCHES = {
   },
 
   'portfolio-draft-1': {
-    name: 'New project',
+    name: 'Mobile app for CLM presentation demos by medical representatives',
     category: 'Coming soon',
     sector: '—',
-    short: 'Case study in progress — challenge, solution, and outcomes coming soon.',
-    hero: 'Case study in progress. Project overview, visuals, and Challenge / Solution / Deliverables blocks will appear here.',
-    problem: 'The project challenge will be published after final client approval.',
+    short: 'App Store and Google Play releases, with support for tablets and smartphones.',
+    hero: 'Mobile CLM app for medical representatives: presentation demos on tablets and smartphones, App Store and Google Play releases.',
+    problem: 'Build a mobile app for medical representatives to demo CLM presentations — stable, field-ready, and optimized for tablets and smartphones. The product must combine visit marketing logic, high-quality visual content, and reliable IT infrastructure.',
     approach: [
       { t: 'Solution',
-        d: 'Approach and key project highlights will be added in this section.' },
+        d: 'We delivered a full CLM app for medical representative teams. Our “3-in-1” approach: marketers design usage scenarios and HCP conversation logic, designers turn the product vision into a comfortable interface, engineers ensure stable iOS and Android performance. The app supports tablets and smartphones, CLM presentation playback, easy content navigation, fast access to materials, and a professional in-visit experience for reps.' },
     ],
     deliverables: [
-      'Client deliverables will be listed when the case goes live.',
+      'A production-ready mobile CLM app in two store versions — App Store and Google Play — with tablet and smartphone support, ready to scale across the field force.',
+    ],
+    storeLinks: [
+      { label: 'App Store', url: 'https://apps.apple.com/ru/app/clm-pharmconsilium/id6763232810' },
+      { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.clmviewer.app' },
     ],
   },
 
   'portfolio-draft-2': {
-    name: 'New project',
+    name: 'Building the «Stroke Exam» remote learning platform for healthcare professionals',
     category: 'Coming soon',
     sector: '—',
-    short: 'Case study in progress — challenge, solution, and outcomes coming soon.',
-    hero: 'Case study in progress. Project overview, visuals, and Challenge / Solution / Deliverables blocks will appear here.',
-    problem: 'The project challenge will be published after final client approval.',
+    short: 'A closed digital platform for video training on assessing neurological symptom severity in the acute phase of ischemic stroke (based on the NIHSS — National Institutes of Health Stroke Scale).',
+    hero: 'Stroke Exam for HCPs: remote NIHSS video training, clinical cases, and knowledge checks in a closed learning environment.',
+    problem: 'Build a closed Stroke Exam learning platform for HCPs where specialists can remotely practice assessing neurological deficit in ischemic stroke using the NIHSS scale — through video, clinical cases, and knowledge checks.',
     approach: [
       { t: 'Solution',
-        d: 'Approach and key project highlights will be added in this section.' },
+        d: 'We built a digital platform that turns a complex clinical skill into a guided learning path for physicians. The key feature: move beyond “watched a lecture and forgot” toward practical video training — the specialist sees a patient, assesses symptoms, makes decisions, and immediately validates knowledge in a video quiz. The platform is closed to professional audiences only, supports HCP registration, learning modules, knowledge checks, and mentor communication. The format scales easily — from diagnosis and patient routing to appropriate therapy, higher clinical vigilance, and sustained clinical behavior.' },
     ],
     deliverables: [
-      'Client deliverables will be listed when the case goes live.',
+      'A closed Stroke Exam HCP platform: NIHSS video training, video quizzes, mentor communication, and a ready model for physician education around the clinical challenge and product.',
     ],
   },
 

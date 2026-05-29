@@ -3506,6 +3506,41 @@ body.is-detail-slide-lightbox-open .robot-img {
 .card:hover .read .arrow { transform: translateX(4px); }
 .read .arrow { display: inline-block; transition: transform 200ms; }
 
+.proj-hero-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 10px 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.proj-store-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.proj-store-links-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.proj-store-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+.proj-store-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.proj-store-link:hover {
+  text-decoration: underline;
+}
+
 /* ─────────── project split: slider left + description right ─────────── */
 .proj-split {
   display: grid;
