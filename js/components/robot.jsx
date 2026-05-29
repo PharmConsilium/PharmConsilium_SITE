@@ -176,7 +176,7 @@ function RobotCompanion() {
     : 'assets/uploads/Robby_1.png';
   const outlineSrc = window.ROBBY_OUTLINE_SRC || 'assets/uploads/Robby_11.png?v=4';
 
-  return (
+  const robotNode = (
     <div ref={wrapRef} className="robot-img" aria-hidden="true">
       <div ref={bodyRef} className="robot-img-body">
         <img
@@ -204,6 +204,10 @@ function RobotCompanion() {
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined'
+    ? ReactDOM.createPortal(robotNode, document.body)
+    : robotNode;
 }
 
 window.RobotCompanion = RobotCompanion;

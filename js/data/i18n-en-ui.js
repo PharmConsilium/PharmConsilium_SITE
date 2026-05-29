@@ -491,7 +491,7 @@ window.I18N_EN = {
     portfolioRight: '8 launches, 3 AI products, 2 directories, 1 award win. Full portfolio on request.',
     portfolioCards: [
       { t: 'Digital banner for Bepanthen (Bayer)', d: 'Three digital banner concepts: different heroines, local scenarios, Bayer brand book.', art: 'ArtBanner', slug: 'cardio-lonch' },
-      { t: 'Packaging for IT-tabs', d: 'Three formats — one unified IT-tabs product line.', art: 'ArtAI', slug: 'ai-trener' },
+      { t: 'Dietary supplement brand book, naming, packaging', d: 'Building dietary supplement brand identity and integrating product benefits into packaging design.', art: 'ArtAI', slug: 'ai-trener' },
       { t: 'Packaging for Hydrobalance', d: 'Packaging design for the Hydrobalance product.', art: 'ArtVideo', slug: 'patient-series' },
       { t: 'PharmConsilium Conference 2025', d: '1,500 participants, event bot, AI assistant on the program.', art: 'ArtRadar', slug: 'conference-pk25' },
       { t: 'Patient support program', d: '24 months of support, +38% therapy retention.', art: 'ArtPulse', slug: 'psp-platform' },
@@ -551,6 +551,7 @@ window.I18N_EN = {
     lede: 'Eight representative projects from the PharmConsilium portfolio: from a cardio launch in 90 days to our own drug directory with a thousand daily active users. Full portfolio on request.',
     filterAll: 'All',
     openCase: 'Open case',
+    draftSoon: 'Coming soon',
     ctaH3: 'Don\'t see your case?',
     ctaP: 'We have 80+ launches and hundreds of NDA projects. Tell us what you need — we will send relevant materials.',
     downloadPdf: 'Download full portfolio · PDF',

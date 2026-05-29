@@ -56,6 +56,7 @@ function PortfolioPage({ navigate, lang }) {
 
         <div className="cards-grid cards-grid--portfolio">
           {visible.map((p, i) => {
+            const isDraft = Boolean(p.draft);
             const Art = window[p.art] || window.ArtConstellation;
             const thumb = p.thumb;
             const thumbWide = p.thumbLayout === 'wide';
@@ -66,11 +67,16 @@ function PortfolioPage({ navigate, lang }) {
               : thumb
                 ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
                 : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` };
-              const chips = Array.isArray(p.cardChips) && p.cardChips.length
-                ? p.cardChips
-                : [p.category, p.sector, p.year];
+              const chips = isDraft
+                ? (p.cardChips || ['Скоро'])
+                : Array.isArray(p.cardChips) && p.cardChips.length
+                  ? p.cardChips
+                  : [p.category, p.sector, p.year];
+            const openLabel = isDraft
+              ? (ui ? ui.draftSoon : 'Скоро')
+              : (ui ? ui.openCase : 'Открыть кейс');
             return (
-              <div key={p.slug} className="card"
+              <div key={p.slug} className={`card${isDraft ? ' card--draft' : ''}`}
                    onClick={() => navigate(`portfolio/${p.slug}`)}>
                 <div
                   className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}${thumbPack ? ' card-art--photo-pack' : ''}`}
@@ -92,7 +98,7 @@ function PortfolioPage({ navigate, lang }) {
                     </span>
                   ))}
                 </div>
-                <span className="read">{ui ? ui.openCase : 'Открыть кейс'} <span className="arrow">→</span></span>
+                <span className="read">{openLabel}{isDraft ? '' : <span className="arrow"> →</span>}</span>
               </div>);
 
           })}
@@ -318,6 +324,7 @@ function ProjectPage({ slug, navigate, lang }) {
             <span className="sep">/</span>
             <span style={{ color: 'var(--ink)' }}>{p.name}</span>
           </div>
+          {p.draft ? <div className="eyebrow" style={{ marginTop: 18 }}>{ui ? ui.draftSoon : 'Скоро'}</div> : null}
           {HeroH1
             ? <HeroH1 line1={titleParts.line1} accent={titleParts.accent} accent2={titleParts.accent2} />
             : <h1><span className="h1-primary">{titleParts.line1}</span></h1>}

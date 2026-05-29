@@ -1581,6 +1581,22 @@ button { font-family: inherit; }
   transition: transform 220ms cubic-bezier(.2,.7,.3,1), box-shadow 220ms;
 }
 .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.card--draft {
+  border: 1.5px dashed color-mix(in srgb, var(--muted-2) 50%, transparent);
+  background: color-mix(in srgb, var(--surface) 90%, var(--bg-2));
+}
+.card--draft:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.card--draft h3,
+.card--draft p {
+  color: var(--muted);
+}
+.card--draft .read {
+  color: var(--muted-2);
+  font-weight: 500;
+}
 .card.wide { grid-column: span 4; }
 .card.huge { grid-column: span 4; }
 
@@ -2350,8 +2366,8 @@ button { font-family: inherit; }
   left: 50%; top: 50%;
   width: 190px; height: 190px;
   pointer-events: none;
-  /* поверх карточек и секций; ниже шапки (50) и модалок (200+) */
-  z-index: 49;
+  /* поверх страницы и шапки; ниже модалок (200+) и лайтбокса (300) */
+  z-index: 90;
   will-change: transform;
   filter: none;
   transition: opacity 0.35s ease;
