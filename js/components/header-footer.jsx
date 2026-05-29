@@ -13,6 +13,13 @@ const NAV_ITEMS = [
 const DIRECTORY_SCROLL_KEY = 'pharmconsilium-directory-scroll';
 const TEAM_SCROLL_KEY = 'pharmconsilium-team-scroll';
 
+const FOOTER_YANDEX_ORG_ID = '179045107477';
+const FOOTER_YANDEX_ORG_SLUG = 'farmkonsilium';
+const FOOTER_OFFICE_LON = 23.830682;
+const FOOTER_OFFICE_LAT = 53.678705;
+const FOOTER_MAP_EMBED = `https://yandex.by/map-widget/v1/?ll=${FOOTER_OFFICE_LON}%2C${FOOTER_OFFICE_LAT}&z=17&ol=biz&oid=${FOOTER_YANDEX_ORG_ID}&l=map`;
+const FOOTER_MAP_LINK = `https://yandex.by/maps/org/${FOOTER_YANDEX_ORG_SLUG}/${FOOTER_YANDEX_ORG_ID}/?ll=${FOOTER_OFFICE_LON}%2C${FOOTER_OFFICE_LAT}&z=17`;
+
 function scrollToDirectoryCard(id) {
   if (!id) return;
   requestAnimationFrame(() => {
@@ -408,15 +415,6 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
             </div>);
         })}
 
-        <button
-          type="button"
-          className="mobile-nav-close mobile-nav-close--bottom"
-          onClick={closeMobileNav}
-          aria-label={lang === 'en' ? 'Close' : 'Закрыть'}
-        >
-          <span className="mobile-nav-close-label">{lang === 'en' ? 'Close' : 'Закрыть'}</span>
-          <span className="mobile-nav-close-arrow" aria-hidden="true">×</span>
-        </button>
       </nav>
     </header>);
 
@@ -470,7 +468,7 @@ function Footer({ navigate, lang }) {
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
-          <div className="footer-col">
+          <div className="footer-col footer-col--brand">
             <div className="brand" style={{ cursor: 'default' }}>
               <img src="assets/logo.svg" alt={t('brandAlt')} className="brand-logo" />
             </div>
@@ -481,31 +479,15 @@ function Footer({ navigate, lang }) {
             <div style={{ color: 'var(--muted)', fontSize: 13 }}>{isEn ? fc.copyright : '© 2026 ФармКонсилиум · РБ'}</div>
             <FooterSocialLinks lang={lang} />
           </div>
-          <div className="footer-col">
+          <div className="footer-col footer-col--sections">
             <h4>{isEn ? fc.sections : 'Разделы'}</h4>
             <ul>
-              {navItems.slice(0, 5).map((n) =>
+              {navItems.map((n) =>
               <li key={n.id} onClick={() => navigate(n.id)}>{n.label}</li>
               )}
             </ul>
           </div>
-          <div className="footer-col">
-            <h4>{isEn ? fc.company : 'Компания'}</h4>
-            <ul>
-              {isEn ?
-                fc.companyLinks.map((item, i) =>
-                  <li key={i} onClick={item.to ? () => navigate(item.to) : undefined} style={item.to ? undefined : { cursor: 'default' }}>{item.label}</li>
-                ) :
-                <>
-                  <li onClick={() => navigate('team')}>Команда</li>
-                  <li>Проекты</li>
-                  <li>События</li>
-                  <li>Карьера</li>
-                </>
-              }
-            </ul>
-          </div>
-          <div className="footer-col">
+          <div className="footer-col footer-col--contacts">
             <h4>{isEn ? fc.contacts : 'Контакты'}</h4>
             <ul>
               <li style={{ color: 'var(--ink)' }}>
@@ -523,6 +505,23 @@ function Footer({ navigate, lang }) {
               <li style={{ lineHeight: 1.45, cursor: 'default' }}>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</li>
               <li style={{ cursor: 'default' }}>{isEn ? fc.hours : 'пн - пт , 09:00 - 19:00'}</li>
             </ul>
+          </div>
+          <div className="footer-map" aria-label={isEn ? 'Office location on map' : 'Офис на карте'}>
+            <iframe
+              title={isEn ? 'PharmConsilium office — Grodno, Sovetskaya Square 2A' : 'Офис ФармКонсилиум — Гродно, площадь Советская 2А'}
+              src={FOOTER_MAP_EMBED}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a
+              className="footer-map-link"
+              href={FOOTER_MAP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {isEn ? 'Open in Yandex Maps' : 'Открыть в Яндекс Картах'}
+            </a>
           </div>
         </div>
         <div className="footer-meta">
