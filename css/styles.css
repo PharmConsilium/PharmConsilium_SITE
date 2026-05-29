@@ -3141,14 +3141,12 @@ body.is-detail-slide-lightbox-open .robot-img {
 .pf-filter {
   display: flex; gap: 6px; flex-wrap: wrap;
   margin-bottom: 36px;
-  padding: 6px;
-  background: var(--surface);
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
   border: none;
-  border-radius: 999px;
-  width: max-content;
+  border-radius: 20px;
+  width: 100%;
   max-width: 100%;
-  position: sticky; top: 80px; z-index: 20;
-  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
 }
 .pf-chip {
   display: inline-flex; align-items: center; gap: 6px;

@@ -15,14 +15,37 @@ function portfolioMetaChips(p) {
   return [p.category, p.sector, p.year].filter(Boolean);
 }
 
+function portfolioFilterChips(portfolio) {
+  const seen = new Set();
+  const chips = [];
+  portfolio.forEach((p) => {
+    portfolioMetaChips(p).forEach((chip) => {
+      if (chip && !seen.has(chip)) {
+        seen.add(chip);
+        chips.push(chip);
+      }
+    });
+  });
+  return chips;
+}
+
+function portfolioHasChip(p, chip) {
+  return portfolioMetaChips(p).includes(chip);
+}
+
 function PortfolioPage({ navigate, lang }) {
   const [filter, setFilter] = React.useState('all');
-  const cats = ['all', ...Array.from(new Set(window.PORTFOLIO.map((p) => p.category)))];
-  const visible = window.PORTFOLIO.filter((p) => filter === 'all' || p.category === filter);
+  const portfolio = window.PORTFOLIO || [];
+  const chips = ['all', ...portfolioFilterChips(portfolio)];
+  const visible = portfolio.filter((p) => filter === 'all' || portfolioHasChip(p, filter));
   const MidContactStrip = window.MidContactStrip;
   const ui = lang === 'en' && window.getPortfolioUi ? window.getPortfolioUi(lang) : null;
   const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
   const PageHeroH1 = window.PageHeroH1;
+
+  React.useEffect(() => {
+    setFilter('all');
+  }, [lang]);
 
   return (
     <main className="page-route">
@@ -48,13 +71,13 @@ function PortfolioPage({ navigate, lang }) {
 
       <section className="container" style={{ padding: '40px 0 80px' }}>
         <div className="pf-filter">
-          {cats.map((c) =>
+          {chips.map((c) =>
           <button key={c}
           className={`pf-chip ${filter === c ? 'on' : ''}`}
           onClick={() => setFilter(c)}>
               {c === 'all' ? (ui ? ui.filterAll : 'Все') : c}
               {c !== 'all' && <span className="pf-chip-count">
-                {window.PORTFOLIO.filter((p) => p.category === c).length}
+                {portfolio.filter((p) => portfolioHasChip(p, c)).length}
               </span>}
             </button>
           )}
