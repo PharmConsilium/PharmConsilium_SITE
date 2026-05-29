@@ -122,6 +122,12 @@ window.PORTFOLIO_EN_PATCHES = {
       { src: 'assets/uploads/patient-series-slide-1.png', label: 'Box', alt: 'Hydrobalance — box design' },
       { src: 'assets/uploads/patient-series-slide-2.png', label: 'Dieline', alt: 'Hydrobalance — label dieline' },
       { src: 'assets/uploads/patient-series-slide-3.png', label: 'Tube', alt: 'Hydrobalance — tube of 20 tablets' },
+      {
+        src: 'assets/uploads/patient-series-slide-4.png',
+        label: 'Registration',
+        alt: 'Hydrobalance — EAEU state registration certificate for the dietary supplement',
+        aspect: '1024 / 720',
+      },
     ],
     thumbAlt: 'Hydrobalance — tube of 20 effervescent tablets',
   },
@@ -228,6 +234,34 @@ window.PORTFOLIO_EN_PATCHES = {
       { phase: '3–6 mo.', t: 'Platform and content' },
       { phase: '6–9 mo.', t: 'Pilot with 200 patients' },
       { phase: '9+ mo.', t: 'Scale-up and support' },
+    ],
+    slideAspect: '1024 / 768',
+    slides: [
+      {
+        src: 'assets/uploads/psp-platform-slide-1.png',
+        label: 'Navigation',
+        alt: 'CLM — specialty selection: therapist and cardiologist',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-2.png',
+        label: 'β1 selectivity',
+        alt: 'CLM — bisoprolol cardioselectivity vs other beta-blockers',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-3.png',
+        label: 'Concor®',
+        alt: 'CLM — original bisoprolol Concor®, cohort study data',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-4.png',
+        label: 'Mechanism',
+        alt: 'CLM — sympathetic hyperactivation markers and mechanism',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-5.png',
+        label: 'Patients',
+        alt: 'CLM — patient profiles with hypertension and sympathetic hyperactivation',
+      },
     ],
   },
 

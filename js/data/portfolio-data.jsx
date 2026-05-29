@@ -151,6 +151,12 @@ const PORTFOLIO = [
       { src: 'assets/uploads/patient-series-slide-1.png', label: 'Коробка', alt: 'Гидробаланс — дизайн коробки' },
       { src: 'assets/uploads/patient-series-slide-2.png', label: 'Развёртка', alt: 'Гидробаланс — развёртка этикетки' },
       { src: 'assets/uploads/patient-series-slide-3.png', label: 'Туба', alt: 'Гидробаланс — туба 20 таблеток' },
+      {
+        src: 'assets/uploads/patient-series-slide-4.png',
+        label: 'Регистрация',
+        alt: 'ГидроБаланс — свидетельство о государственной регистрации БАД в ЕАЭС',
+        aspect: '1024 / 720',
+      },
     ],
     thumb: 'assets/uploads/patient-series-card-thumb.png',
     thumbLayout: 'wide',
@@ -313,6 +319,34 @@ const PORTFOLIO = [
       { phase: '3–6 мес.', t: 'Платформа и контент' },
       { phase: '6–9 мес.', t: 'Пилот с 200 пациентами' },
       { phase: '9+ мес.',   t: 'Масштабирование и сопровождение' },
+    ],
+    slideAspect: '1024 / 768',
+    slides: [
+      {
+        src: 'assets/uploads/psp-platform-slide-1.png',
+        label: 'Навигация',
+        alt: 'CLM — выбор специальности: терапевт и кардиолог',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-2.png',
+        label: 'β1-селективность',
+        alt: 'CLM — кардиоселективность бисопролола, сравнение с другими β-блокаторами',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-3.png',
+        label: 'Конкор®',
+        alt: 'CLM — оригинальный бисопролол Конкор®, данные когортного исследования',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-4.png',
+        label: 'Механизм',
+        alt: 'CLM — симпатическая гиперактивация, маркеры и механизм действия',
+      },
+      {
+        src: 'assets/uploads/psp-platform-slide-5.png',
+        label: 'Пациенты',
+        alt: 'CLM — профили пациентов с АГ и симпатической гиперактивностью',
+      },
     ],
     related: ['patient-series', 'omni-rebranding', 'ai-trener'],
   },

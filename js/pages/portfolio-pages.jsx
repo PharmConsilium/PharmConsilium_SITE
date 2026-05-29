@@ -397,22 +397,24 @@ function ProjectPage({ slug, navigate, lang }) {
                               loading={i === 0 ? 'eager' : 'lazy'}
                               decoding="async"
                             />
+                            {slides.length > 1 ? (
+                              <div className="proj-slider-meta">
+                                <span>{String(i + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}</span>
+                                <span>· {s.label}</span>
+                              </div>
+                            ) : null}
                           </button>
                         )
                         : A ? <A /> : null}
                   </div>);
 
               })}
-              {slides.length > 1 ?
+              {slides.length > 1 ? (
                 <>
-                  <div className="proj-slider-meta">
-                    <span>{String(slide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}</span>
-                    <span>· {slides[slide].label}</span>
-                  </div>
                   <button className="proj-slider-nav prev" onClick={prev} aria-label={ui ? ui.slidePrev : 'Назад'}>←</button>
                   <button className="proj-slider-nav next" onClick={next} aria-label={ui ? ui.slideNext : 'Вперёд'}>→</button>
-                </> :
-                null}
+                </>
+              ) : null}
             </div>
             {slides.length > 1 ?
               <div className="proj-slider-dots">
