@@ -52,27 +52,27 @@ window.SUBPAGES_EN_PATCHES = {
       { src: 'assets/uploads/clm-detail-slide-3.png?v=20260530', label: 'F2F visit analytics', alt: 'CLM-PharmConsilium: promo material analytics on rep F2F visits—geotag, time, reporting' },
     ],
     about: [
-      'CLM-PharmConsilium is a CLM system built for how medical representatives actually work: fast rollout, minimal content spend, managed analytics, and CRM export. We turn your PowerPoint/PDF decks and video into CLM presentations—without bespoke development or long production cycles.',
+      'CLM-PharmConsilium is a CLM system built for how medical representatives actually work: fast rollout, minimal content spend, managed analytics, and CRM export. We turn PowerPoint/PDF decks and video into CLM—without bespoke development or long production cycles.',
     ],
     featuresTitle: 'CLM-PharmConsilium:',
     deliverablesTitle: 'What you get',
     stepsTitle: 'You get valuable bonuses',
     features: [
       { t: 'Works on smartphone and tablet', d: 'Choose the device that suits your field team. We help format presentations and e-detailers for phones. Light design tweaks and decluttered slides create a tool reps actually want for HCP engagement.' },
-      { t: 'The CLM platform records every visit', d: 'Every medical representative visit with precise data on presentation time, geolocation, and show structure—which materials, sections, and slides were used with each HCP. Managers get a full view of visit effectiveness to spot what works, adjust HCP strategy, and justify content investment with engagement metrics.' },
-      { t: 'PowerPoint, PDF, or video adapted to CLM quickly', d: 'Without lengthy bespoke development—reuse existing materials and cut launch costs. Pilots can go live in days, test hypotheses in the field, then scale without extra layout cycles.' },
-      { t: 'Two clicks to the slide you need', d: 'Built for real field work: UI and menu design aligned with active SF teams. Reps can leave content comments for managers.' },
+      { t: 'The CLM platform records every visit', d: 'Every medical representative visit is recorded with precise data on presentation time, geolocation, and show structure—which materials, sections, and slides were used with each HCP. Managers get a full view of visit effectiveness to spot what works, adjust HCP strategy, and justify content investment with engagement metrics.' },
+      { t: 'PowerPoint, PDF, or video adapted to CLM quickly', d: 'Adaptation happens without lengthy bespoke development—reuse existing materials and cut launch costs. Pilots can go live in days, test hypotheses in the field, then scale without extra layout cycles.' },
+      { t: 'Two clicks to the slide you need', d: 'Built for real field work: UI and menu design aligned with active SF teams. Includes the ability for reps to leave content comments for managers.' },
     ],
     steps: [
       { n: '01', t: 'Bonus — budget savings', d: 'Skip costly bespoke content—use materials you already have effectively.' },
-      { n: '02', t: 'Bonus time for product managers', d: 'Faster approval cycles with experienced medical editors who understand pharmaceutical marketing.' },
+      { n: '02', t: 'Time savings for product managers', d: 'Faster approval cycles with experienced medical editors who understand pharmaceutical marketing.' },
       { n: '03', t: 'Fast rollout', d: 'Full-team training plus our digital toolkit for remote learning for medical representatives.' },
-      { n: '04', t: 'Use lecture video files in the field starting today', d: 'Zero adaptation—just upload files to the app cloud storage.' },
+      { n: '04', t: 'Lecture video files for work anytime', d: 'Zero adaptation—just upload files to the app cloud storage.' },
     ],
     deliverables: [
       'CLM-PharmConsilium app on reps\' tablets and smartphones. We provide a corporate activation key; reps download the app from the App Store or Google Play.',
       'Real-time dashboard for field SF activity: geolocation, timing, slide order. Filters for analysis and data export.',
-      'Smooth F2F visits: all materials on the device, instant access without links or external services. Offline demos; visit events sync when connectivity returns.',
+      'Smooth F2F visits: all materials on the device, instant access without links or external services. Offline demos; visit events sync when the internet becomes available.',
       'Corporate cloud hub for promo content—unlimited uploads; after sync, materials are available on rep devices.',
     ],
     detailCtaH3: 'Contact us and we will quickly deploy a demo for you',
@@ -105,12 +105,12 @@ window.SUBPAGES_EN_PATCHES = {
       { n: '01', t: 'The visit does not end when the rep leaves', d: 'A unique link triggers post-call digital content push—the HCP returns to materials on their own schedule. Actual brand contact time far exceeds the visit itself.' },
       { n: '02', t: 'One visit creates multiple touchpoints', d: 'Content links go via messenger, email, or SMS—each channel is another brand touchpoint without extra rep effort.' },
       { n: '03', t: 'Analytics make the next visit sharper', d: 'Views, CTR, and time on content feed closed-loop marketing. Reps and managers see what truly engaged the physician and adapt the next visit.' },
-      { n: '04', t: 'HCP studies content on their device—at their pace. No idle slide-flipping on rep tablets', d: 'Promo moves to the client\'s device. The HCP shifts from passive viewing to deliberate study—without clinic walls or corridor pressure. No false swipe-throughs by reps for reporting.' },
+      { n: '04', t: 'HCP studies content on their device at their own pace. No idle slide-flipping on rep tablets', d: 'Promo moves to the client\'s device. The HCP shifts from passive viewing to deliberate study—without clinic walls or corridor pressure.' },
     ],
     deliverables: [
       'Brand interaction time. Post-visit promo access—after the meeting, the HCP gets one-click seamless access and can review promo materials via a unique link anytime.',
       'Longer effective visit through content. Links via messengers, email, SMS, and social with no channel limits. Verified client base—materials only for identified HCPs with SMS identity confirmation.',
-      'Flexible engagement analytics—custom metrics (views, CTR, time on content) and dashboards for reps, managers, and company roll-ups. Role-based reporting: individual, team, and corporate.',
+      'Flexible engagement analytics—custom metrics (views, CTR, time on content), dashboards for reps and managers, company-wide roll-up analytics. Role-based access—three reporting levels: individual (rep), team (manager), and corporate (company roll-up).',
       'Corporate compliance—deployment aligned with regulatory requirements, disclaimers, consent and feedback forms. Training and support—low skill bar, remote onboarding and service included.',
     ],
   },
@@ -133,21 +133,21 @@ window.SUBPAGES_EN_PATCHES = {
     features: [
       { t: 'Conversational AI / Single entry point / Seamless UX', d: 'Users start with a simple bot message and can instantly open the full TeleApp UI without switching apps. One solution: the bot handles dialogue and broadcasts; TeleApp handles rich content navigation.' },
       { t: 'AI dialogue / Personalization / HCP decision support', d: 'The AI bot understands HCP context, adapts tone, and delivers clinically relevant information in real time—24/7, without canned delays. HCPs get answers at the point of care.' },
-      { t: 'Telegram Web App / TeleApp / Full mobile experience without install', d: 'TeleApp blends site and app inside Telegram: product catalogs, MoH protocols, ICD, event registration, clinical calculators and scales. No downloads—engagement from first touch.' },
+      { t: 'Telegram Web App / TeleApp / Full mobile experience without install', d: 'TeleApp blends site and app inside Telegram: product catalogs, MoH protocols, ICD, event registration, clinical calculators and scales. No downloads or extra steps—engagement from first touch.' },
       { t: 'Rich messaging / Adaptive content / Multi-format delivery', d: 'Content in any format—text, audio, video, graphics, interactive tests. The bot picks context and format; TeleApp delivers full viewing and interaction.' },
     ],
     stepsTitle: 'Why your clients will love it',
     steps: [
       { n: '01', t: 'Everything in one messenger—no extra apps', d: 'The bot answers, TeleApp shows: full brand functionality where HCPs already spend time—in Telegram.' },
       { n: '02', t: 'Smart search and a full app UI in one click', d: 'AI runs natural dialogue; TeleApp instantly opens the right service—registration, catalog, tracker, or consult—without breaking the experience.' },
-      { n: '03', t: 'Content that fits my lifestyle', d: 'Audio on the go, video at home, a quick test between appointments—information when and how it suits the user.' },
+      { n: '03', t: 'Content that fits my lifestyle', d: 'Audio on the go, video at home, a quick test between appointments—information anytime it suits the user.' },
       { n: '04', t: 'Communication format is part of brand image', d: 'The bot + TeleApp ecosystem strengthens your brand, signals innovation, and builds a comfortable long-term communication foundation.' },
     ],
     deliverables: [
       'Unified ecosystem: chatbot and TeleApp work as one solution inside Telegram—the user never leaves a familiar interface on the brand journey.',
-      'HCP decision support 24/7. AI answers physicians in real time—relevant, personalized, no waiting, no templates.',
+      'HCP decision support 24/7. AI answers physicians in real time—relevant, personalized, without long waits or templates.',
       'Instant access without installs. TeleApp opens from chat—full mobile functionality without App Store or Google Play downloads.',
-      'Multi-format content for any moment. Audio, video, text, interactive—the bot picks context and delivers the right format at the right time.',
+      'Multi-format content for any moment. Audio, video, text, interactive—the bot picks context and delivers the right format at any moment.',
       'Full-ecosystem analytics in one dashboard. Views, CTR, time on content, conversions, and behavior tracked for both bot and TeleApp in one reporting system.',
       'Budget savings vs. a standalone mobile app. TeleApp replaces costly app build and update cycles, freeing resources for content and experience.',
     ],
@@ -326,6 +326,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'for educational medical programs',
     lede: 'Webinars, online courses, training, and certification for physicians and pharmacists—on your own LMS platforms.',
     tags: ['CME', 'MedicalEducation', 'ePharma', 'HCPEducation', 'DigitalHealth'],
+    artSlides: [
+      { src: 'assets/uploads/hcp-learning-detail-slide-1.png?v=20260527', label: 'HCPEducation', alt: 'Digital medical education platform: physician with tablet and quiz on smartphone' },
+    ],
     aboutTitle: 'Continuous education for healthcare professionals',
     about: [
       'Digital education platforms let pharma and healthcare organizations build flexible, measurable CME/CPD for physicians and pharmacists. Webinars, courses, training, and certification are available anytime, on any device—without pulling specialists away from practice—so brands build long-term expert relationships and trust, not one-off information pushes.',
@@ -362,6 +365,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'programs',
     lede: 'LMS platforms for HCP and patients: webinars, online courses, certification, CME points, progress, and certificates—all in one digital environment.',
     tags: ['PatientSupport', 'PSP', 'CME', 'LMS', 'DigitalHealth', 'DTP'],
+    artSlides: [
+      { src: 'assets/uploads/hcp-psp-detail-slide-1.png?v=20260527', label: 'Patient support program', alt: 'Patient support programs: robot helping a patient with care and therapy adherence' },
+    ],
     aboutTitle: 'Digital education at the core of patient support programs',
     about: [
       'A modern patient support program (PSP) works on two levels: helping patients manage disease and treatment while building physician and pharmacist competencies for quality therapy support. A digital LMS with points, progress, and certificates turns education into a managed process—each specialist sees their learning path, and the brand gets measurable HCP engagement and readiness. That builds a durable ecosystem: the patient under a competent physician, the physician supported by up-to-date brand education.',
@@ -396,6 +402,9 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'Medical chatbots and AI assistants',
     lede: 'AI assistants for physicians, pharmacists, and patients: medical bots, therapy support, treatment Q&A navigation, pharmacovigilance—24/7 within regulatory boundaries.',
     tags: ['MedicalAI', 'HealthcareBot', 'AIassistant', 'PharmaBot', 'DigitalHealth'],
+    artSlides: [
+      { src: 'assets/uploads/hcp-med-chatbot-detail-slide-1.png?v=20260527', label: 'HealthcareBot', alt: 'Medical chatbots and AI assistants: robot at a desk with tablet and checklist' },
+    ],
     aboutTitle: 'Chatbots and AI assistants in healthcare',
     about: [
       'Medical chatbots and AI assistants solve one key task—delivering the right information here and now, without waiting for office hours. For physicians: fast clinical data and decision support; for pharmacists: first-line counseling; for patients: an always-on helper for reminders, explanations, and therapy support. All within regulatory bounds: MLR-verified content, HIPAA/GDPR-grade data protection, and human-in-the-loop clinical responsibility.',
@@ -463,6 +472,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'for scientific research',
     lede: 'Clinical data capture panels, physician AI assistant, ePRO bots, and AI analytics—we build digital tools for scientific research with your regulatory requirements in mind.',
     tags: ['ClinicalResearch', 'ClinicalData', 'AIinPharma', 'DigitalHealth', 'RealWorldEvidence'],
+    artSlides: [
+      { src: 'assets/uploads/hcp-research-detail-slide-1.png?v=20260527', label: 'Clinical research platform', alt: 'Digital platforms for scientific research: laboratory and clinical data analytics on screen' },
+    ],
     aboutTitle: 'Digital tools for scientific research',
     about: [
       'AI in healthcare is not about replacing the physician but a second pair of eyes: the assistant spots patterns in data the physician may not have time to review in routine care.',
@@ -500,6 +512,9 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'and processing systems',
     lede: 'Platforms for collecting and analyzing real-world clinical data for healthcare, drug manufacturers, and medical device makers: cohort analytics, AI-powered data processing, therapy effectiveness evidence, and outcomes-based contract models.',
     tags: ['RWE', 'RealWorldEvidence', 'ClinicalData', 'HealthcareAnalytics', 'PharmaStrategy'],
+    artSlides: [
+      { src: 'assets/uploads/hcp-rwe-detail-slide-1.png?v=20260527', label: 'Real-world evidence', alt: 'RWE data analysis systems: dashboards, cloud storage, and clinical data analytics' },
+    ],
     aboutTitle: 'Real-world clinical data as a strategic asset',
     about: [
       'Real-World Evidence (RWE) is clinical data on use, safety, and effectiveness collected outside controlled trials—from EHRs, registries, pharmacy data, mobile apps, and patient surveys. Regulators increasingly accept RWE as evidence for expanding the range of indications, faster registration, and pricing—turning real-world data systems from a trial add-on into strategic commercial infrastructure.',

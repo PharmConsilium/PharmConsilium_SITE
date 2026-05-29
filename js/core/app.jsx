@@ -275,7 +275,7 @@ function App() {
 
       {page}
 
-      {EndContactStrip && route !== 'directory' ? <EndContactStrip lang={lang} /> : null}
+      {EndContactStrip && route !== 'directory' && route !== 'team' ? <EndContactStrip lang={lang} /> : null}
 
       {t.robot !== false && <RobotCompanion/>}
 

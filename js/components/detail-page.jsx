@@ -4,10 +4,11 @@ function detailSlideIsImage(s, isSlideVideo) {
   return Boolean(s && s.src && !isSlideVideo(s));
 }
 
-function DetailArtSlides({ slides }) {
+function DetailArtSlides({ slides, lang }) {
   const items = slides || [];
   const isSlideVideo = window.isPortfolioSlideVideo || (() => false);
   const VideoPlayer = window.PortfolioVideoPlayer;
+  const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
   const [idx, setIdx] = React.useState(0);
   const [videoAspect, setVideoAspect] = React.useState(null);
   const [lightbox, setLightbox] = React.useState(null);
@@ -97,7 +98,7 @@ function DetailArtSlides({ slides }) {
                 type="button"
                 className="detail-art-lightbox-nav"
                 onClick={(e) => { e.stopPropagation(); lightboxPrev(); }}
-                aria-label="Предыдущий слайд"
+                aria-label={t('detailSlidePrev')}
               >
                 ←
               </button>
@@ -105,7 +106,7 @@ function DetailArtSlides({ slides }) {
                 type="button"
                 className="detail-art-lightbox-nav"
                 onClick={(e) => { e.stopPropagation(); lightboxNext(); }}
-                aria-label="Следующий слайд"
+                aria-label={t('detailSlideNext')}
               >
                 →
               </button>
@@ -115,7 +116,7 @@ function DetailArtSlides({ slides }) {
             type="button"
             className="detail-art-lightbox-close"
             onClick={closeLightbox}
-            aria-label="Закрыть"
+            aria-label={t('detailClose')}
           >
             ×
           </button>
@@ -124,7 +125,7 @@ function DetailArtSlides({ slides }) {
           className="detail-art-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={zoomed.alt || zoomed.label || 'Увеличенный слайд'}
+          aria-label={zoomed.alt || zoomed.label || t('detailSlideZoomed')}
         >
           {zoomed.label ? <div className="detail-art-lightbox-caption">{zoomed.label}</div> : null}
           <img
@@ -167,7 +168,7 @@ function DetailArtSlides({ slides }) {
               type="button"
               className="detail-art-slide-zoom"
               onClick={() => isActive && setLightbox(i)}
-              aria-label={s.alt ? `Увеличить: ${s.alt}` : 'Увеличить слайд'}
+              aria-label={s.alt ? `${t('detailSlideEnlarge')}: ${s.alt}` : t('detailSlideZoom')}
               tabIndex={isActive ? 0 : -1}
             >
               <img
@@ -185,8 +186,8 @@ function DetailArtSlides({ slides }) {
         })}
         {n > 1 ? (
           <>
-            <button type="button" className="proj-slider-nav prev" onClick={prev} aria-label="Предыдущий слайд">←</button>
-            <button type="button" className="proj-slider-nav next" onClick={next} aria-label="Следующий слайд">→</button>
+            <button type="button" className="proj-slider-nav prev" onClick={prev} aria-label={t('detailSlidePrev')}>←</button>
+            <button type="button" className="proj-slider-nav next" onClick={next} aria-label={t('detailSlideNext')}>→</button>
           </>
         ) : null}
       </div>
@@ -198,7 +199,7 @@ function DetailArtSlides({ slides }) {
               type="button"
               className={`dot ${i === idx ? 'on' : ''}`}
               onClick={() => setIdx(i)}
-              aria-label={`Слайд ${i + 1}`}
+              aria-label={`${t('detailSlide')} ${i + 1}`}
             />
           )}
         </div>
@@ -364,7 +365,7 @@ function DetailPage({ routeId, navigate, lang }) {
 
           <div className={`detail-art${data.artSlides?.length ? ' detail-art--slides' : ''}`}>
             {data.artSlides?.length
-              ? <DetailArtSlides slides={data.artSlides} />
+              ? <DetailArtSlides slides={data.artSlides} lang={lang} />
               : Art ? <Art /> : null}
           </div>
         </div>

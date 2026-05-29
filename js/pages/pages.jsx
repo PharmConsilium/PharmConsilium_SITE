@@ -905,17 +905,18 @@ function DirectoryPage({ navigate, lang }) {
 }
 
 const TEAM = [
-{ n: 'Робби', r: 'Цифровой ассистент', photo: 'assets/uploads/team-robbie.png', photoHover: 'assets/uploads/team-robbie-hover.png' },
-{ n: 'Дмитрий Качан', r: 'Head of AI' },
-{ n: 'Елена Грицук', r: 'Head of HCP-marketing' },
-{ n: 'Сергей Лазько', r: 'Head of Sales' },
-{ n: 'Мария Окулич', r: 'Head of Content' },
-{ n: 'Артём Гордей', r: 'Lead Engineer' },
-{ n: 'Наталья Ясько', r: 'Medical Director' },
-{ n: 'Виктор Климов', r: 'Creative Director' },
-{ n: 'Анастасия Коваль', r: 'Product Manager' },
-{ n: 'Игорь Волков', r: 'UX/UI Designer' },
-{ n: 'Ксения Романова', r: 'Data Analyst' }];
+{ n: 'Робби', r: 'Корпоративный искусственный интеллект', photo: 'assets/uploads/team-robbie.png', photoHover: 'assets/uploads/team-robbie-hover.png' },
+{ n: 'Катарина Невгень', r: 'Экономист, контент-мейкер' },
+{ n: 'Даниил Пашинский', r: 'Инженер-программист' },
+{ n: 'Вадим Апуневич', r: 'Инженер-программист' },
+{ n: 'Валерия Повшок', r: 'Менеджер медицинского маркетинга' },
+{ n: 'Николай Кузмицкий', r: 'Маркетолог цифровых экосистем' },
+{ n: 'Сергей Маланчук', r: 'Инженер-программист' },
+{ n: 'Илья Урбанович', r: 'Дизайн ИИ-видео, анимация' },
+{ n: 'Артём Оленик', r: 'Дизайн кросс-платформенных систем' },
+{ n: 'Владислав Зябочкин', r: 'Начальник отдела IT-разработки' },
+{ n: 'Оксана Невгень', r: 'Финансы' },
+{ n: 'Владимир Борисюк', r: 'Оптимист' }];
 
 
 function PortraitPlaceholder({ seed }) {
@@ -1053,14 +1054,14 @@ function TeamPage({ navigate, lang }) {
               <div className="eyebrow">{en ? en.portfolioEyebrow : 'Портфолио'}</div>
               <h2>{en ? en.portfolioH2 : <>Проекты ФармКонсилиум,<br />которые в этом месяце смотрели больше всего</>}</h2>
             </div>
-            <div className="right">{en ? en.portfolioRight : 'Кейсы, продуктовые решения use cases, solutions'}</div>
+            <div className="right">{en ? en.portfolioRight : 'Кейсы, продуктовые решения, use cases, solutions'}</div>
           </div>
           <div className="cards-grid cards-grid--portfolio">
             {(en ? en.portfolioCards : [
             { t: 'Рекламный баннер Бепантен крем', d: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.', art: 'ArtBanner', slug: 'cardio-lonch' },
             { t: 'Брендбук БАД, нейминг, упаковка', d: 'Формирование фирменной айдентики БАД, интеграция продуктовых преимуществ в дизайн упаковки.', art: 'ArtAI', slug: 'ai-trener' },
             { t: 'Упаковка для препарата ГидроБаланс', d: 'Разработка упаковки для препарата ГидроБаланс.', art: 'ArtVideo', slug: 'patient-series' },
-            { t: 'Конференция «ФармКонсилиум-2025»', d: '1 500 участников, эвент-бот, ИИ-помощник на программе.', art: 'ArtRadar', slug: 'conference-pk25' },
+            { t: 'Вертикальное видео (видеодетейлер) для HCP', d: 'Мы превратили сценарий лучшего визита МП в вертикальное видео 9:16, где сложная медицинская информация подаётся через анимацию или голос коллеги — а врач смотрит без усилия, как любимый сериал!', art: 'ArtRadar', slug: 'conference-pk25' },
             { t: 'Разработка и дизайн CLM-презентации для лекарственного препарата', d: 'От стратегии и сценарной архитектуры до интерактивного дизайна, технической вёрстки и комплаенс-согласования — полный цикл CLM-презентации.', art: 'ArtPulse', slug: 'psp-platform' },
             { t: 'Цифровая платформа для обучения медицинских специалистов', d: 'Создать закрытую веб-платформу с регистрацией для HCP, обеспечивающую доступ к видеолекциям, обучающим материалам и квизам для контроля знаний. Организовать полный цикл производства образовательного контента: создание, съемку и монтаж видеолекций, а также разработку интерактивных видео-квизов.', art: 'ArtLayers', slug: 'clm-veeva' },
             ]).map((p, i) => {
@@ -1098,8 +1099,8 @@ function TeamPage({ navigate, lang }) {
 
         <div className="team-contacts" data-contacts>
           <div className="team-contacts-copy" data-contacts-copy>
-            <div className="eyebrow">{en ? en.contactsEyebrow : 'Контакты'}</div>
-            <h2>{en ? en.contactsH2 : <>Напишите —<br />придумаем вместе.</>}</h2>
+            <div className="eyebrow">{en ? en.contactsEyebrow : 'Контактные данные ФармКонсилиум'}</div>
+            <h2>{en ? en.contactsH2 : 'Координаты: 53.678705, 23.830682'}</h2>
             <div className="team-contacts-list">
               <div className="team-contacts-item">
                 <div className="team-contacts-icon" aria-hidden="true">☎</div>

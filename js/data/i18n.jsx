@@ -31,6 +31,14 @@ const UI_RU = {
   moreInfo: 'Больше информации',
   midStripAria: 'Обсудить проект',
   endStripAria: 'Дополнительная информация',
+  detailSlidePrev: 'Предыдущий слайд',
+  detailSlideNext: 'Следующий слайд',
+  detailClose: 'Закрыть',
+  detailSlideZoomed: 'Увеличенный слайд',
+  detailSlideZoom: 'Увеличить слайд',
+  detailSlideEnlarge: 'Увеличить',
+  detailSlide: 'Слайд',
+  headerActionsAria: 'Действия',
 };
 
 const UI_EN = {
@@ -62,6 +70,14 @@ const UI_EN = {
   moreInfo: 'More information',
   midStripAria: 'Discuss your project',
   endStripAria: 'More information',
+  detailSlidePrev: 'Previous slide',
+  detailSlideNext: 'Next slide',
+  detailClose: 'Close',
+  detailSlideZoomed: 'Enlarged slide',
+  detailSlideZoom: 'Enlarge slide',
+  detailSlideEnlarge: 'Enlarge',
+  detailSlide: 'Slide',
+  headerActionsAria: 'Actions',
 };
 
 function deepClone(obj) {
