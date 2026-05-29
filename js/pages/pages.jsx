@@ -921,7 +921,10 @@ const TEAM = [
 { n: 'Мария Окулич', r: 'Head of Content' },
 { n: 'Артём Гордей', r: 'Lead Engineer' },
 { n: 'Наталья Ясько', r: 'Medical Director' },
-{ n: 'Виктор Климов', r: 'Creative Director' }];
+{ n: 'Виктор Климов', r: 'Creative Director' },
+{ draft: true, n: '—', r: 'Скоро' },
+{ draft: true, n: '—', r: 'Скоро' },
+{ draft: true, n: '—', r: 'Скоро' }];
 
 
 function PortraitPlaceholder({ seed }) {
@@ -1028,20 +1031,28 @@ function TeamPage({ navigate, lang }) {
       <section id="team-members" className="container team-members-section" style={{ scrollMarginTop: 96 }}>
         <h2 className="team-members-heading">{en ? en.teamHeading : 'Команда'}</h2>
         <div className="team-grid">
-          {team.map((m, i) =>
-          <div key={i} className="tm">
-              <div className={`tm-portrait${m.n === 'Робби' || m.n === 'Robbie' ? ' tm-portrait--robbie' : ''}`}>
-                <div className="tm-portrait-img tm-portrait-default">
-                  <TeamMemberPortrait member={m} seed={i + 1} layer="default" />
-                </div>
-                <div className="tm-portrait-img tm-portrait-hover">
-                  <TeamMemberPortrait member={m} seed={i + 1 + 97} layer="hover" />
-                </div>
+          {team.map((m, i) => {
+            const isDraft = Boolean(m.draft);
+            const isRobby = m.n === 'Робби' || m.n === 'Robbie';
+            return (
+          <div key={i} className={`tm${isDraft ? ' tm--draft' : ''}`}>
+              <div className={`tm-portrait${isRobby ? ' tm-portrait--robbie' : ''}${isDraft ? ' tm-portrait--empty' : ''}`}>
+                {isDraft ? null : (
+                  <>
+                    <div className="tm-portrait-img tm-portrait-default">
+                      <TeamMemberPortrait member={m} seed={i + 1} layer="default" />
+                    </div>
+                    <div className="tm-portrait-img tm-portrait-hover">
+                      <TeamMemberPortrait member={m} seed={i + 1 + 97} layer="hover" />
+                    </div>
+                  </>
+                )}
               </div>
               <div className="tm-name">{m.n}</div>
               <div className="tm-role">{m.r}</div>
             </div>
-          )}
+            );
+          })}
         </div>
 
         <div style={{ marginTop: 64 }}>

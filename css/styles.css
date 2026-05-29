@@ -2195,6 +2195,22 @@ button { font-family: inherit; }
   transition: transform 200ms, box-shadow 200ms;
 }
 .tm:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.tm--draft {
+  border: 1.5px dashed color-mix(in srgb, var(--muted-2) 50%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, var(--bg-2));
+}
+.tm--draft:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.tm--draft .tm-name,
+.tm--draft .tm-role {
+  color: var(--muted);
+}
+.tm-portrait--empty {
+  background: color-mix(in srgb, var(--bg-2) 88%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--muted-2) 42%, transparent);
+}
 .tm-portrait {
   aspect-ratio: 4/5; border-radius: var(--radius);
   background: linear-gradient(180deg, var(--bg-2), var(--accent-soft));
@@ -2203,7 +2219,14 @@ button { font-family: inherit; }
   display: flex; align-items: flex-end; justify-content: center;
 }
 .tm-portrait--robbie {
-  background: #0a0a0f;
+  background: linear-gradient(180deg, var(--bg-2), var(--accent-soft));
+  align-items: center;
+}
+.tm-portrait--robbie .tm-portrait-img img {
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.12);
+  transform-origin: center center;
 }
 /* Робби: MAGIC поверх базы (без затемнения от двойного crossfade), без zoom */
 .tm-portrait--robbie .tm-portrait-default {

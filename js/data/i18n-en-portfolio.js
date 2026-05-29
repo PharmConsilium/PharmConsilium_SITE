@@ -380,4 +380,36 @@ window.PORTFOLIO_EN_PATCHES = {
       'Client deliverables will be listed when the case goes live.',
     ],
   },
+
+  'portfolio-draft-3': {
+    name: 'New project',
+    category: 'Coming soon',
+    sector: '—',
+    short: 'Case study in progress — challenge, solution, and outcomes coming soon.',
+    hero: 'Case study in progress. Project overview, visuals, and Challenge / Solution / Deliverables blocks will appear here.',
+    problem: 'The project challenge will be published after final client approval.',
+    approach: [
+      { t: 'Solution',
+        d: 'Approach and key project highlights will be added in this section.' },
+    ],
+    deliverables: [
+      'Client deliverables will be listed when the case goes live.',
+    ],
+  },
+
+  'portfolio-draft-4': {
+    name: 'New project',
+    category: 'Coming soon',
+    sector: '—',
+    short: 'Case study in progress — challenge, solution, and outcomes coming soon.',
+    hero: 'Case study in progress. Project overview, visuals, and Challenge / Solution / Deliverables blocks will appear here.',
+    problem: 'The project challenge will be published after final client approval.',
+    approach: [
+      { t: 'Solution',
+        d: 'Approach and key project highlights will be added in this section.' },
+    ],
+    deliverables: [
+      'Client deliverables will be listed when the case goes live.',
+    ],
+  },
 };
