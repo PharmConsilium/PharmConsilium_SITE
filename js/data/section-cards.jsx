@@ -167,7 +167,11 @@ function mergeSectionCardsLang(ruCards, sectionId, lang) {
       title: patch.title != null ? patch.title : c.title,
       desc: patch.desc != null ? patch.desc : c.desc,
       tag: patch.tag != null ? patch.tag : c.tag,
-      cardArtAlt: patch.cardArtAlt || c.cardArtAlt,
+      cardArtAlt: patch.cardArtAlt != null ? patch.cardArtAlt : c.cardArtAlt,
+      cardArt: patch.cardArt != null ? patch.cardArt : c.cardArt,
+      cardArtPhoto: patch.cardArtPhoto != null ? patch.cardArtPhoto : c.cardArtPhoto,
+      size: patch.size != null ? patch.size : c.size,
+      art: patch.art != null ? patch.art : c.art,
     };
   });
 }
@@ -202,4 +206,5 @@ function getSectionRelatedCards(sectionId, routeId, lang) {
 }
 
 window.SECTION_CARDS = SECTION_CARDS;
+window.mergeSectionCardsLang = mergeSectionCardsLang;
 window.getSectionRelatedCards = getSectionRelatedCards;

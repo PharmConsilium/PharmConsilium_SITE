@@ -319,82 +319,64 @@ window.I18N_EN = {
     crumb: 'Drug directory',
     h1: 'Drug directory',
     h1Brand: 'PharmConsilium',
-    lede: 'A professional digital resource for physicians and pharmacists. More than 1,000 specialists use it daily for expert reference content. A residency-grade atmosphere — without promotional noise.',
-    benefitsEyebrow: 'Drug reference guide',
-    benefitsH2: 'Why physicians and pharmacists come back.',
-    benefitsRight: 'A residency-grade atmosphere: expert content only, no promotional noise, transparent sources.',
+    lede: 'A digital medical resource for physicians, pharmacists, and pharmaceutical specialists, built for professional work with drug information. Available in convenient formats: a desktop version for residency rooms, physicians\' offices, and pharmacies, and a mobile version for smartphones via Telegram bot and TeleApp.',
+    benefitsEyebrow: 'Official drug prescribing information',
+    benefitsH2: 'Trusted by professionals',
+    benefitsRight: 'Expert drug guides, drug knowledge base, proprietary methodologies, checklists, decision tables, and algorithms.',
     features: [
       {
-        t: 'Residency-grade architecture without promotional noise. Trusted by clinicians',
-        art: 'ArtDirectory',
+        t: 'PharmConsilium Drug Directory',
         dParagraphs: [
           [
-            { s: 'This is not just a database, but a modern digital ecosystem built to streamline daily work for medical and pharmacy professionals. The project officially launched on September 1, 2025 with a mission to create a single space for verified, structured, and clinically actionable medical information.' },
+            { s: 'A digital professional resource for physicians, pharmacists, and pharmaceutical specialists. It is designed as a practical daily tool for working with medicines: from fast search for official information to clinical calculators, medical scales, and digital decision-support services.' },
           ],
           [
-            { s: 'We combine foundational medical knowledge with advanced IT so clinical decision-making is faster and safer. Our core data unit is the official product label and summary of product characteristics (SmPC)—the documents specialists rely on for prescribing, dispensing, and counseling.' },
-          ],
-          [
-            { s: 'The directory integrates current clinical protocols, Latin prescription examples, pharmacology materials, and an extensive set of medical calculators.' },
-          ],
-          [
-            { s: 'Our flagship service is the AI pharmacologist: an intelligent assistant that instantly assesses drug–drug interaction risks using international databases, helping physicians avoid polypharmacy errors and saving time on information search.' },
+            { s: 'The project launched on September 1, 2025 with a mission to build a single space for verified, structured, and clinically actionable medical information. We combine foundational knowledge with IT so clinical decision-making is faster and safer. Our core data unit is the official product label (SmPC) — the document specialists rely on when prescribing, dispensing, and counseling. The Drug Directory integrates current prescription examples, pharmacology materials, and an extensive set of medical calculators. Our flagship service is AI Pharmacologist: an intelligent assistant that quickly assesses drug–drug interaction risks using international databases, helping physicians avoid polypharmacy errors and saving time on information search.' },
           ],
         ],
       },
       {
-        t: 'How drug information looks: the product card',
-        art: 'ArtDoc',
-        dIntroParts: [
-          { s: 'A product card in the ' },
-          { s: 'PharmConsilium', b: true },
-          { s: ' Drug Directory is a structured professional document—not SEO copy for lay readers. The card architecture includes:' },
-        ],
-        dTable: {
-          head: ['Card block', 'Content'],
-          rows: [
-            ['Official label (SmPC)', 'Full regulator-approved text with document version and update date'],
-            ['Sample prescription', 'Ready prescription template for the product—a unique feature for practicing physicians'],
-            ['INN / ATC / brand', 'All search identifiers present and indexed'],
-            ['Class analogues', 'Analogues selected by INN → ATC class logic, curated by a clinical pharmacologist'],
-            ['Labels from CIS countries', 'Multiple jurisdiction-specific label versions for one product where available'],
-            ['Core pharmacology', 'Mechanism of action and pharmacokinetics in a clinically oriented format'],
-            ['Update date', 'Recorded on every card; updated when new label versions are released'],
-            ['Source links', 'Transparent attribution—physicians see where data comes from'],
-          ],
-        },
-      },
-      {
-        t: 'Web and mobile versions',
-        art: 'ArtBooks',
+        t: 'We invite physicians to collaborate',
         dParagraphs: [
           [
-            { s: 'The ' },
-            { s: 'PharmConsilium', b: true },
-            { s: ' Drug Directory is available in two access formats—a desktop website and a smartphone “Bot + Telegram app” (TeleApp).' },
+            { s: 'We welcome collaboration with physicians who want to share professional experience and create useful digital tools for colleagues.' },
           ],
           [
-            { s: 'Desktop', b: true },
-            { s: ' — on a pharmacy computer, full access to the directory, pharmacology sections, and product ratings. The interface supports professional workflows: fast search by INN, brand, ATC, and indications, result filters, and section navigation.' },
+            { s: 'If you have ideas for publications, original materials, clinical case reviews, master classes, educational modules, or practical recommendations, we are ready to discuss placing them on the platform. We are interested in content that helps physicians navigate clinical situations quickly, make evidence-based decisions, and use medicines rationally.' },
           ],
           [
-            { s: 'Smartphone', b: true },
-            { s: ' — for CIS HCP audiences where Telegram is the main professional messenger. The directory works without a separate app install, inside the physician’s familiar environment. The project IT team maintains both interfaces in parallel, regularly updating code, databases, and UX.' },
+            { s: 'We invite authors of medical scales, clinical algorithms, calculation models, and developments created as part of scientific, dissertation, or practical work. Our IT team will turn such materials into convenient digital calculators or interactive tools with mandatory attribution of your authorship.' },
+          ],
+          [
+            { s: 'If you see which sections should be added, which calculators should be implemented, or what is missing in your specialty — write to us. We want the PharmConsilium Drug Directory to evolve together with the medical community and reflect the real needs of practicing physicians.' },
           ],
         ],
       },
       {
-        t: 'We invite pharmaceutical product managers to partner with us',
-        art: 'ArtPulse',
+        t: 'We invite pharmacists and pharmacy specialists to collaborate',
         dParagraphs: [
           [
-            { s: 'An expert platform where your portfolio is integrated into an interface tailored to the daily workflow of physicians, pharmacists, and pharmacy professionals. Our system prioritizes clinical value, data accuracy, and clear presentation at the moment of prescribing or dispensing—not advertising slogans.' },
+            { s: 'Pharmacists work daily with large volumes of drug information: they check labels, counsel pharmacy visitors, clarify dosing regimens, dispensing rules, contraindications, interactions, and possible therapy risks. That is why it is essential for us that the PharmConsilium Drug Directory is useful not only to physicians but also to front-line pharmacy professionals.' },
           ],
           [
-            { s: 'We offer partners deep data structuring—from SmPC placement and core pharmacology to correct medical prescription templates and more. For companies operating across multiple CIS markets, we provide a unique multi-market format: local label versions for different countries, accounting for regulatory differences and keeping the portfolio up to date in each region.' },
+            { s: 'Many pharmacists already use the Directory in daily practice. But making it truly convenient is possible only together with the professional community. We invite you to share suggestions for improving drug cards, section content, prescription formats, and other aspects important to your work.' },
           ],
           [
-            { s: 'All content undergoes strict verification by an editorial board of practicing physicians and clinical pharmacologists. Product cards can show the date of the last data update, ensuring transparency and building strong trust from the professional community in your brand. We invite manufacturers committed to responsible, high-quality presentation of their medicines in the digital environment.' },
+            { s: 'We are especially interested in topics relevant to pharmacy practice: patient counseling, frequent questions at the pharmacy counter, product substitution, use of OTC medicines, drug interactions, prescription dispensing, safety, and rational use of medicines.' },
+          ],
+          [
+            { s: 'If you have materials, professional comments, article ideas, or suggestions for improving the Drug Directory — we are open to dialogue. Our goal is to create a resource that helps pharmacists find accurate information quickly and apply it confidently in daily work.' },
+          ],
+        ],
+      },
+      {
+        t: 'We invite pharmaceutical manufacturers to collaborate',
+        dParagraphs: [
+          [
+            { s: 'For drug manufacturers, the PharmConsilium Drug Directory is an expert platform where your portfolio is integrated into an interface tailored to the daily workflow of physicians, pharmacists, and pharmacy specialists. Our system prioritizes clinical value, data accuracy, and clear presentation at the moment of prescribing or dispensing — not advertising slogans. We offer partners data structuring: from SmPC placement and core pharmacology to correct medical prescription templates.' },
+          ],
+          [
+            { s: 'For companies operating across multiple markets, we provide a unique multi-market format. It allows local label versions for different countries, accounting for regulatory differences and keeping the portfolio up to date in each region. All content is verified by an editorial board of physicians and clinical pharmacologists. Product cards can show the date of the last data update, ensuring transparency and building strong trust from the professional community in your brand. We invite manufacturers committed to responsible, high-quality presentation of their medicines in the digital environment.' },
           ],
         ],
       },
@@ -446,10 +428,10 @@ window.I18N_EN = {
     pubCount: '14 publications',
     protocolCount: '3 clinical protocols',
     stats: [
-      { n: '01', t: '1,000+ specialists', d: 'physicians and pharmacists use the directory daily' },
-      { n: '02', t: 'No promotional noise', d: 'Residency-grade atmosphere: expert content only' },
-      { n: '03', t: 'Evidence base', d: 'Every card links to publications and protocols' },
-      { n: '04', t: 'API for integrations', d: 'Connect the directory to your products and systems' },
+      { n: '01', t: '1,000+ specialists', d: 'physicians, pharmacists, and pharmacy specialists use it daily' },
+      { n: '02', t: 'No promotional noise', d: 'Residency-grade atmosphere and expert content' },
+      { n: '03', t: 'SmPC from multiple CIS countries', d: 'Official product labels only' },
+      { n: '04', t: 'API', d: 'Connect the directory to your products and systems' },
     ],
   },
 
