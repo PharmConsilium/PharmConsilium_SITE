@@ -8,6 +8,22 @@ function RobotCompanion() {
   const posRef = React.useRef(null);   // current actual position { x, y, ry, s }
   const targetRef = React.useRef(null); // target derived from scroll
   const hasInit = React.useRef(false);
+  const dockCopyRef = React.useRef(false);
+  const dockLatchRef = React.useRef(false);
+
+  const computeDock = React.useCallback(() => {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const isPhone = vw <= 720;
+    const inset = isPhone ? 52 : 68;
+    const half = isPhone ? 65 : 75;
+    return {
+      x: vw / 2 - inset - half,
+      y: -vh / 2 + inset + half,
+      ry: -8,
+      s: 0.88,
+    };
+  }, []);
 
   // Compute waypoints in pixels from the current viewport size.
   const buildWaypoints = React.useCallback(() => {
@@ -82,10 +98,11 @@ function RobotCompanion() {
 
       const p = posRef.current;
       const t = targetRef.current;
-      p.x  += (t.x  - p.x)  * alpha;
-      p.y  += (t.y  - p.y)  * alpha;
-      p.ry += (t.ry - p.ry) * alpha;
-      p.s  += (t.s  - p.s)  * alpha;
+      const goal = dockCopyRef.current ? computeDock() : t;
+      p.x  += (goal.x  - p.x)  * alpha;
+      p.y  += (goal.y  - p.y)  * alpha;
+      p.ry += (goal.ry - p.ry) * alpha;
+      p.s  += (goal.s  - p.s)  * alpha;
 
       const el = wrapRef.current;
       const body = bodyRef.current;
@@ -94,7 +111,7 @@ function RobotCompanion() {
           `translate(calc(-50% + ${p.x}px),` +
           ` calc(-50% + ${p.y}px))` +
           ` rotate(${p.ry}deg)`;
-        el.style.opacity = el.classList.contains('robot-img--hide-over-copy') ? '0' : '1';
+        el.style.opacity = '1';
       }
       if (body) body.style.transform = `scale(${p.s})`;
       raf = requestAnimationFrame(animate);
@@ -106,9 +123,9 @@ function RobotCompanion() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     };
-  }, [computeTarget]);
+  }, [computeTarget, computeDock]);
 
-  // На узком экране скрываем робота над блоком контактов (не перекрывает почту)
+  // На узком экране уводим робота в верхний угол над текстом контактов (не скрываем)
   React.useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
@@ -116,32 +133,49 @@ function RobotCompanion() {
     let io = null;
     let target = null;
 
-    const sync = (visible) => {
+    const syncFromEntry = (entry) => {
       const narrow = window.innerWidth <= 960;
-      wrap.classList.toggle('robot-img--hide-over-copy', narrow && visible);
+      if (!narrow) {
+        dockLatchRef.current = false;
+        dockCopyRef.current = false;
+        return;
+      }
+      const ratio = entry ? entry.intersectionRatio : 0;
+      const visible = entry ? entry.isIntersecting : false;
+      if (!dockLatchRef.current && visible && ratio >= 0.1) {
+        dockLatchRef.current = true;
+      } else if (dockLatchRef.current && (!visible || ratio <= 0.02)) {
+        dockLatchRef.current = false;
+      }
+      dockCopyRef.current = dockLatchRef.current;
     };
 
     const unbind = () => {
       if (io) io.disconnect();
       io = null;
       target = null;
-      wrap.classList.remove('robot-img--hide-over-copy');
+      dockLatchRef.current = false;
+      dockCopyRef.current = false;
     };
 
     const bind = () => {
-      const contacts = document.querySelector('[data-contacts]');
+      const contacts = document.querySelector('[data-contacts-copy]');
       if (contacts === target) return;
       unbind();
       if (!contacts) return;
       target = contacts;
       io = new IntersectionObserver(
-        ([entry]) => sync(entry.isIntersecting),
-        { threshold: 0.12, rootMargin: '-8% 0px -5% 0px' }
+        ([entry]) => syncFromEntry(entry),
+        { threshold: [0, 0.02, 0.06, 0.1, 0.18, 0.3] }
       );
       io.observe(contacts);
       const rect = contacts.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
-      sync(inView);
+      const vh = window.innerHeight;
+      const visible = rect.top < vh * 0.9 && rect.bottom > vh * 0.1;
+      const ratio = visible
+        ? Math.min(1, Math.max(0, (Math.min(rect.bottom, vh) - Math.max(rect.top, 0)) / Math.max(rect.height, 1)))
+        : 0;
+      syncFromEntry({ isIntersecting: visible, intersectionRatio: ratio });
     };
 
     bind();
@@ -152,8 +186,12 @@ function RobotCompanion() {
     const onResize = () => {
       if (!target) return;
       const rect = target.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
-      sync(inView);
+      const vh = window.innerHeight;
+      const visible = rect.top < vh * 0.9 && rect.bottom > vh * 0.1;
+      const ratio = visible
+        ? Math.min(1, Math.max(0, (Math.min(rect.bottom, vh) - Math.max(rect.top, 0)) / Math.max(rect.height, 1)))
+        : 0;
+      syncFromEntry({ isIntersecting: visible, intersectionRatio: ratio });
     };
     const onRoute = () => { window.setTimeout(bind, 0); };
 

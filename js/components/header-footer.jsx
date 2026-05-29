@@ -420,6 +420,63 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
 
 }
 
+function FooterMapEmbed({ isEn }) {
+  const hostRef = React.useRef(null);
+  const [showMap, setShowMap] = React.useState(false);
+
+  React.useEffect(() => {
+    const node = hostRef.current;
+    if (!node) return undefined;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setShowMap(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShowMap(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: '240px 0px', threshold: 0.01 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const mapLabel = isEn ? 'Office location on map' : 'Офис на карте';
+  const mapTitle = isEn ?
+  'PharmConsilium office — Grodno, Sovetskaya Square 2A' :
+  'Офис ФармКонсилиум — Гродно, площадь Советская 2А';
+
+  return (
+    <div className="footer-map" ref={hostRef} aria-label={mapLabel}>
+      {showMap ?
+      <iframe
+        title={mapTitle}
+        src={FOOTER_MAP_EMBED}
+        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen /> :
+
+      <div className="footer-map-skeleton" aria-hidden="true" />
+      }
+      <a
+        className="footer-map-link"
+        href={FOOTER_MAP_LINK}
+        target="_blank"
+        rel="noopener noreferrer">
+
+        {isEn ? 'Open in Yandex Maps' : 'Открыть в Яндекс Картах'}
+      </a>
+    </div>);
+
+}
+
 function FooterSocialLinks({ lang }) {
   const c = 'footer-social-link';
   const socialAria = window.tUI ? window.tUI('socialAria', lang) : 'Социальные сети ФармКонсилиума';
@@ -506,23 +563,7 @@ function Footer({ navigate, lang }) {
               <li style={{ cursor: 'default' }}>{isEn ? fc.hours : 'пн - пт , 09:00 - 19:00'}</li>
             </ul>
           </div>
-          <div className="footer-map" aria-label={isEn ? 'Office location on map' : 'Офис на карте'}>
-            <iframe
-              title={isEn ? 'PharmConsilium office — Grodno, Sovetskaya Square 2A' : 'Офис ФармКонсилиум — Гродно, площадь Советская 2А'}
-              src={FOOTER_MAP_EMBED}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-            <a
-              className="footer-map-link"
-              href={FOOTER_MAP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {isEn ? 'Open in Yandex Maps' : 'Открыть в Яндекс Картах'}
-            </a>
-          </div>
+          <FooterMapEmbed isEn={isEn} />
         </div>
         <div className="footer-meta">
           <div>{isEn ? fc.unp : 'УНП 591019395'}</div>
@@ -534,7 +575,7 @@ function Footer({ navigate, lang }) {
               onClick={() => navigate('privacy')}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('privacy'); } }}
             >
-              {isEn ? fc.privacy : 'Политика конфиденциальности'}
+              {isEn ? fc.privacy : 'Политика конфиденциальности при обработке персональных данных'}
             </span>
           </div>
         </div>
