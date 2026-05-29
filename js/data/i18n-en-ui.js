@@ -154,7 +154,7 @@ window.I18N_EN = {
     heroEyebrow: 'A team implementing digital technology in pharmaceuticals and healthcare. Operating since 2015.',
     heroH1Line1: 'IT solutions',
     heroH1Accent: 'for treating trust',
-    heroLede: 'See your brand forecast for the pharmaceutical market in the CIS — our AI assistant Robbie will outline key market metrics and growth opportunities. Enter your brand name and country; your forecast is ready in seconds.',
+    heroLede: 'See your brand forecast for the pharmaceutical market in the CIS. Our AI assistant Robbie will outline key market metrics and growth opportunities. Enter your brand name and country — your forecast is ready in seconds.',
     heroForecast: 'Forecast',
     heroPlaceholder: 'Enter brand name and CIS country',
     statFounded: 'year founded',
@@ -175,7 +175,7 @@ window.I18N_EN = {
       { id: 'marketing', num: '01', title: 'Pharmaceutical marketing', desc: 'Digital tools for medical representatives.' },
       { id: 'hcp', num: '02', title: 'Healthcare digital solutions', desc: 'Mobile apps, education platforms, websites, bots, and AI assistants.' },
       { id: 'sales', num: '03', title: 'Outsourcing', desc: 'Integrated digital promotion programs. Digital medical representative.' },
-      { id: 'content', num: '04', title: 'Design', desc: 'We turn medical science into CLM decks, e-detailers, video, games, and quizzes physicians and pharmacists actually use.', wide: true },
+      { id: 'content', num: '04', title: 'Design', desc: 'CLM decks, e-detailers, video, games, and quizzes — what physicians and pharmacists actually use.', wide: true },
       { id: 'directory', num: '05', title: 'PharmConsilium Drug Directory', desc: 'Prescribing guidance, sample prescriptions, and calculators.', wide: true },
     ],
     discussAria: 'Discuss your project',
@@ -187,10 +187,10 @@ window.I18N_EN = {
     insightsH2: 'Better to know now',
     insightsRight: '3 in 1: marketing expertise, digital product development, and content daylining studio.',
     insightCards: [
-      { n: '01', t: 'Portfolio and projects', d: 'Projects, portfolio, and events.', to: 'portfolio' },
-      { n: '02', t: 'Digital medical representative', d: 'A digital ecosystem with an HCP client base aligned to rep KPIs.', to: 'sales/digital-rep' },
+      { n: '01', t: 'Portfolio and projects', d: 'A portfolio of delivered projects we are proud of.', to: 'portfolio' },
+      { n: '02', t: 'Digital medical representative', d: 'Digital omnichannel promotion campaigns that take on the role of an outsourced medical representative team.', to: 'sales/digital-rep' },
       { n: '03', t: 'PharmConsilium Drug Directory', d: 'Our own professional resource for physicians, pharmacists, and pharmaceutical specialists.', href: 'https://farmconsilium.com/' },
-      { n: '04', t: 'Mobile app development', d: 'Turnkey iOS and Android applications.', to: 'marketing/mobile' },
+      { n: '04', t: 'Mobile app development', d: 'Turnkey mHealth apps for pharma brands — from idea and UX concept to design, development, and App Store and Google Play release.', to: 'marketing/mobile' },
     ],
   },
 
@@ -199,7 +199,7 @@ window.I18N_EN = {
       crumb: 'Pharmaceutical marketing',
       h1Line1: 'Digital tools',
       h1Accent: 'for pharmaceutical marketing',
-      lede: 'From CRM for medical representatives to an AI coach and an omnichannel HCP engagement platform. We own architecture and content end to end.',
+      lede: 'From CRM for medical representatives to an AI coach and an omnichannel HCP engagement platform. We take on architecture and content end to end.',
       cards: [
         { title: 'CRM-PharmConsilium for medical representatives', sub: 'crm', size: 'huge',
           cardArt: 'assets/uploads/marketing-crm-card.png?v=20260529',
@@ -223,7 +223,7 @@ window.I18N_EN = {
           cardArt: 'assets/uploads/marketing-chatbot-card.png?v=20260527',
           cardArtAlt: 'PharmConsilium chatbot and TeleApp: Telegram bot and mini-app for HCP',
           cardArtPhoto: 'contain',
-          desc: 'For long-term engagement with your clients, we build a unique digital architecture in Telegram—a bot in the user\'s chat list with built-in mobile-app capabilities.',
+          desc: 'A unique digital architecture in Telegram for long-term client engagement—a chatbot in the user\'s chat list with built-in mobile-app capabilities.',
           tag: 'TelegramBot, TeleApp, ChatBot' },
         { title: 'Web development: sites, landing pages, longreads, congress and webinar platforms', sub: 'web', art: 'ArtBrowser', size: 'wide',
           cardArt: 'assets/uploads/marketing-web-card.png?v=20260527',
@@ -235,7 +235,7 @@ window.I18N_EN = {
           cardArt: 'assets/uploads/marketing-mobile-card.png?v=20260527',
           cardArtAlt: 'PharmConsilium mobile app development: App Store, Google Play, and mHealth app mockup',
           cardArtPhoto: 'contain',
-          desc: 'We deliver turnkey mHealth apps for pharma brands—from concept and UX through design, development, and App Store and Google Play release.',
+          desc: 'Turnkey mHealth app development for pharma brands — from idea and UX concept to design, development, and App Store and Google Play release.',
           tag: 'iOS, Android, PharmaApp' },
         { title: 'Digital support for medical events', sub: 'events', art: 'ArtRadar',
           cardArtAlt: 'Digital event support: 3D conference hall illustration with smartphone interactives',
@@ -329,13 +329,16 @@ window.I18N_EN = {
         art: 'ArtDirectory',
         dParagraphs: [
           [
-            { s: 'PharmConsilium', b: true },
-            { s: ' is a professional environment for clinicians—not a promotional storefront. The interface follows an “information without distraction” principle: physicians, pharmacists, and nurses enter a space with no banners, no competitor ad blocks, and no pop-ups. It is a digital residency room—a place to work, not scroll ads.' },
+            { s: 'This is not just a database, but a modern digital ecosystem built to streamline daily work for medical and pharmacy professionals. The project officially launched on September 1, 2025 with a mission to create a single space for verified, structured, and clinically actionable medical information.' },
           ],
           [
-            { s: 'That environment builds trust in content on the platform. For drug manufacturers it matters: information about your product is perceived by physicians ' },
-            { s: 'in a neutral professional context', b: true },
-            { s: ', not against direct competitors’ promotion. The project is young—founded in 2025—yet already recognized: manufacturers cite directory materials on their own, and practicing physicians regularly use the instruction database. That is organically earned trust—not bought reach, but won through data accuracy.' },
+            { s: 'We combine foundational medical knowledge with advanced IT so clinical decision-making is faster and safer. Our core data unit is the official product label and summary of product characteristics (SmPC)—the documents specialists rely on for prescribing, dispensing, and counseling.' },
+          ],
+          [
+            { s: 'The directory integrates current clinical protocols, Latin prescription examples, pharmacology materials, and an extensive set of medical calculators.' },
+          ],
+          [
+            { s: 'Our flagship service is the AI pharmacologist: an intelligent assistant that instantly assesses drug–drug interaction risks using international databases, helping physicians avoid polypharmacy errors and saving time on information search.' },
           ],
         ],
       },
@@ -385,23 +388,13 @@ window.I18N_EN = {
         art: 'ArtPulse',
         dParagraphs: [
           [
-            { s: 'The ' },
-            { s: 'PharmConsilium', b: true },
-            { s: ' Drug Directory is a young but already authoritative professional resource, launched on 1 September 2025. In a short time it has built a reputation as an accurate source: manufacturers cite it, practicing physicians use it daily. The ' },
-            { s: 'PharmConsilium', b: true },
-            { s: ' directory team brings together physician editors, IT specialists, designers, and a clinical pharmacologist—you work with a partner who understands both medicine and digital technology.' },
+            { s: 'An expert platform where your portfolio is integrated into an interface tailored to the daily workflow of physicians, pharmacists, and pharmacy professionals. Our system prioritizes clinical value, data accuracy, and clear presentation at the moment of prescribing or dispensing—not advertising slogans.' },
           ],
           [
-            { s: 'What the project offers a pharmaceutical product manager:', b: true },
+            { s: 'We offer partners deep data structuring—from SmPC placement and core pharmacology to correct medical prescription templates and more. For companies operating across multiple CIS markets, we provide a unique multi-market format: local label versions for different countries, accounting for regulatory differences and keeping the portfolio up to date in each region.' },
           ],
           [
-            { s: 'Accurate data on your product in the right format—official labels, sample prescriptions, core pharmacology: content HCPs actually use in practice.' },
-          ],
-          [
-            { s: 'One resource for the CIS—one product, several label versions from different CIS countries: a tool for a multi-market portfolio.' },
-          ],
-          [
-            { s: 'Editorial verification—texts are reviewed by practicing physician editors and a clinical pharmacologist; the update date is recorded on every card.' },
+            { s: 'All content undergoes strict verification by an editorial board of practicing physicians and clinical pharmacologists. Product cards can show the date of the last data update, ensuring transparency and building strong trust from the professional community in your brand. We invite manufacturers committed to responsible, high-quality presentation of their medicines in the digital environment.' },
           ],
         ],
       },

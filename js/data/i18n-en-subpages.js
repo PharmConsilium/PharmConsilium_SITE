@@ -118,7 +118,7 @@ window.SUBPAGES_EN_PATCHES = {
   'marketing/chatbot': {
     section: 'Pharmaceutical marketing',
     title: 'Chatbot and TeleApp — digital ecosystem for HCP engagement',
-    lede: 'For long-term engagement with your clients, we build a unique digital architecture in Telegram—a bot in the user\'s chat list with built-in mobile-app capabilities.',
+    lede: 'A unique digital architecture in Telegram for long-term client engagement—a chatbot in the user\'s chat list with built-in mobile-app capabilities.',
     tags: ['TelegramBot', 'TeleApp', 'ChatBot', 'ConversationalAI', 'HCPEngagement', 'PharmaMarketing', 'DigitalHealth', 'WebApp'],
     artSlides: [
       { src: 'assets/uploads/chatbot-detail-slide-1.png?v=20260525', label: 'Unified digital ecosystem', alt: 'PharmConsilium chatbot and TeleApp: hybrid of Telegram chat and mobile app experience' },
@@ -198,7 +198,7 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'Mobile app development',
     h1Line1: 'Mobile app',
     h1Accent: 'development',
-    lede: 'We build turnkey mHealth apps for pharma brands—from idea and UX concept through design, development, and App Store and Google Play publication.',
+    lede: 'Turnkey mHealth app development for pharma brands — from idea and UX concept to design, development, and App Store and Google Play release.',
     tags: ['mHealth', 'PharmaApp', 'MobileApp', 'DigitalCompanion', 'PatientSupport', 'HCPEngagement', 'PharmaBrand', 'UXDesign', 'DigitalHealth', 'Adherence'],
     artSlides: [
       { src: 'assets/uploads/mobile-detail-slide-1.png?v=20260527', label: 'App Store and Google Play release', alt: 'PharmConsilium mobile app development: app mockup with App Store and Google Play badges' },

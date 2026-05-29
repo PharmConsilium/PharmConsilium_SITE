@@ -126,7 +126,7 @@ const SUBPAGES = {
   'marketing/chatbot': {
     section: 'Фармацевтический маркетинг', sectionId: 'marketing',
     title: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP',
-    lede: 'Для долгосрочной коммуникации с вашими клиентами создаем уникальную цифровую архитектуру в мессенджере Телеграм, где в списке личных чатов пользователя находится чат-бот с встроенными функциями мобильного приложения.',
+    lede: 'Создание уникальной цифровой архитектуры в мессенджере Телеграм для долгосрочной коммуникации с вашими клиентами, где в списке личных чатов пользователя находится чат-бот с встроенными функциями мобильного приложения.',
     tags: ['TelegramBot', 'TeleApp', 'ChatBot', 'ConversationalAI', 'HCPEngagement', 'PharmaMarketing', 'DigitalHealth', 'WebApp'],
     art: 'ArtChat',
     artSlides: [
@@ -210,7 +210,7 @@ const SUBPAGES = {
     title: 'Разработка мобильных приложений',
     h1Line1: 'Разработка мобильных',
     h1Accent: 'приложений',
-    lede: 'Мы создаём mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.',
+    lede: 'Создание mHealth-приложений для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.',
     tags: ['mHealth', 'PharmaApp', 'MobileApp', 'DigitalCompanion', 'PatientSupport', 'HCPEngagement', 'PharmaBrand', 'UXDesign', 'DigitalHealth', 'Adherence'],
     art: 'ArtPhone',
     artSlides: [
@@ -255,7 +255,7 @@ const SUBPAGES = {
     title: 'Цифровая поддержка мероприятий',
     h1Line1: 'Цифровая поддержка',
     h1Accent: 'мероприятий',
-    lede: 'Цифровое сопровождение медицинских эвентов: регистрационные лендинги, эвент-боты, ИИ-помощники, интерактивы и коммуникация с HCP до и после события.',
+    lede: 'Цифровое сопровождение медицинских ивентов: регистрационные лендинги, ивент-боты, ИИ-помощники, интерактивы и коммуникация с HCP до и после события.',
     tags: ['PharmaEvents', 'HCPengagement', 'OnlineCongress', 'WebinarPlatform', 'EventBot', 'AIAssistant', 'RegistrationLanding', 'PharmaMarketing', 'HybridEvents', 'DigitalHealth'],
     art: 'ArtRadar',
     artSlides: [
