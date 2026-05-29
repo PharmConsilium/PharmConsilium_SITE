@@ -1659,6 +1659,19 @@ button { font-family: inherit; }
   object-position: center center;
   display: block;
 }
+.card-art--photo-fit-contain img {
+  object-fit: contain;
+}
+.card-art--photo.card-art--photo-fit-contain {
+  display: block;
+  line-height: 0;
+}
+@media (max-width: 720px) {
+  .card-art--photo-fit-contain img {
+    object-fit: cover;
+    object-position: center center;
+  }
+}
 /* горизонтальные превью (баннер / туба) в card-art */
 .card-art--photo-wide img {
   object-fit: cover;
@@ -1951,6 +1964,15 @@ button { font-family: inherit; }
   .cards-grid--portfolio .card.split {
     grid-column: 1 / -1;
     min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .cards-grid--portfolio .card-art {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .cards-grid--portfolio .card-art--photo img {
+    max-width: 100%;
   }
 }
 @media (max-width: 960px) {

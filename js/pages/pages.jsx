@@ -1072,15 +1072,16 @@ function TeamPage({ navigate, lang }) {
               const thumbWide = pf?.thumbLayout === 'wide';
               const thumbPack = thumb && pf?.tag === 'упаковка';
               const thumbTone = pf?.thumbPalette || pf?.palette;
+              const thumbMix = pf?.thumbArtMix ?? (thumb ? 22 : 28);
               const cardArtStyle = thumbTone
-                ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${thumbTone} ${thumb ? 22 : 28}%, var(--accent-soft)))` }
+                ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${thumbTone} ${thumbMix}%, var(--accent-soft)))` }
                 : thumb
                   ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
                   : undefined;
               return (
                 <div key={i} className="card"
                 onClick={() => navigate(`portfolio/${p.slug}`)}>
-                  <div className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}${thumbPack ? ' card-art--photo-pack' : ''}`} style={cardArtStyle}>
+                  <div className={`card-art${thumb ? ' card-art--photo' : ''}${thumbWide ? ' card-art--photo-wide' : ''}${thumbPack ? ' card-art--photo-pack' : ''}${pf?.thumbFit === 'contain' ? ' card-art--photo-fit-contain' : ''}`} style={cardArtStyle}>
                     {thumb
                       ? <img src={thumb} alt={thumbAlt} loading="lazy" decoding="async" />
                       : A ? <A /> : null}
