@@ -497,7 +497,7 @@ window.I18N_EN = {
       { t: 'Dietary supplement brand book, naming, packaging', d: 'Building dietary supplement brand identity and integrating product benefits into packaging design.', art: 'ArtAI', slug: 'ai-trener' },
       { t: 'Packaging for Hydrobalance', d: 'Packaging design for the Hydrobalance product.', art: 'ArtVideo', slug: 'patient-series' },
       { t: 'PharmConsilium Conference 2025', d: '1,500 participants, event bot, AI assistant on the program.', art: 'ArtRadar', slug: 'conference-pk25' },
-      { t: 'Patient support program', d: '24 months of support, +38% therapy retention.', art: 'ArtPulse', slug: 'psp-platform' },
+      { t: 'CLM presentation design and development for a pharmaceutical product', d: 'From strategy and scenario architecture to interactive design, technical build, and compliance — full CLM presentation production.', art: 'ArtPulse', slug: 'psp-platform' },
       { t: 'CLM update for Veeva', d: '12 modules, migration to 2CLM, team training.', art: 'ArtLayers', slug: 'clm-veeva' },
     ],
     openCase: 'Open case',

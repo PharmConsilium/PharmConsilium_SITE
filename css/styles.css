@@ -3306,6 +3306,23 @@ body.is-detail-slide-lightbox-open .robot-img {
   max-width: 50ch;
 }
 
+.proj-meta-panel {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.proj-meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 4px;
+}
+.proj-meta-chip {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+}
 .proj-info {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 16px;
@@ -3313,7 +3330,7 @@ body.is-detail-slide-lightbox-open .robot-img {
   background: var(--surface);
   border: none;
   border-radius: var(--radius);
-  margin-top: 8px;
+  margin-top: 0;
 }
 @media (max-width: 600px) { .proj-info { grid-template-columns: 1fr 1fr; } }
 .proj-info-i { display: flex; flex-direction: column; gap: 3px; }

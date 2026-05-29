@@ -9,6 +9,12 @@ function projSlideImageSrc(s) {
   return s.srcFull || s.src;
 }
 
+function portfolioMetaChips(p) {
+  if (p.draft) return p.cardChips || ['Скоро'];
+  if (Array.isArray(p.cardChips) && p.cardChips.length) return p.cardChips;
+  return [p.category, p.sector, p.year].filter(Boolean);
+}
+
 function PortfolioPage({ navigate, lang }) {
   const [filter, setFilter] = React.useState('all');
   const cats = ['all', ...Array.from(new Set(window.PORTFOLIO.map((p) => p.category)))];
@@ -67,11 +73,7 @@ function PortfolioPage({ navigate, lang }) {
               : thumb
                 ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
                 : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` };
-              const chips = isDraft
-                ? (p.cardChips || ['Скоро'])
-                : Array.isArray(p.cardChips) && p.cardChips.length
-                  ? p.cardChips
-                  : [p.category, p.sector, p.year];
+              const chips = portfolioMetaChips(p);
             const openLabel = isDraft
               ? (ui ? ui.draftSoon : 'Скоро')
               : (ui ? ui.openCase : 'Открыть кейс');
@@ -476,14 +478,24 @@ function ProjectPage({ slug, navigate, lang }) {
                 !p.hideInfoYear ? { l: p.infoYearLabel || (ui ? ui.year : 'Год'), v: p.infoYear || p.year } : null,
               ].filter(Boolean);
               const cols = Math.min(4, infoItems.length || 1);
+              const metaChips = portfolioMetaChips(p);
               return (
-                <div className="proj-info" style={{ marginTop: 8, gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
-                  {infoItems.map((it) => (
-                    <div key={`${it.l}-${it.v}`} className="proj-info-i">
-                      <div className="proj-info-l">{it.l}</div>
-                      <div className="proj-info-v">{it.v}</div>
+                <div className="proj-meta-panel">
+                  <div className="proj-info" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+                    {infoItems.map((it) => (
+                      <div key={`${it.l}-${it.v}`} className="proj-info-i">
+                        <div className="proj-info-l">{it.l}</div>
+                        <div className="proj-info-v">{it.v}</div>
+                      </div>
+                    ))}
+                  </div>
+                  {metaChips.length > 0 && (
+                    <div className="proj-meta-chips">
+                      {metaChips.map((chip) => (
+                        <span key={chip} className="chip proj-meta-chip">{chip}</span>
+                      ))}
                     </div>
-                  ))}
+                  )}
                 </div>
               );
             })()}
