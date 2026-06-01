@@ -1,7 +1,7 @@
 # 301 со старого сайта pharmconsilium.com (PHP, /tool/, /training/, …)
 # Вставить в корень .htaccess ПЕРЕД правилами SPA (см. deploy/apache-spa.htaccess)
 
-Redirect 301 /index.php https://pharmconsilium.com/
+# index.php: см. корневой .htaccess (RewriteRule + THE_REQUEST), не Redirect 301
 Redirect 301 /contact.php https://pharmconsilium.com/team/contacts
 Redirect 301 /politics.php https://pharmconsilium.com/privacy
 Redirect 301 /trainings.php https://pharmconsilium.com/hcp/education

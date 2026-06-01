@@ -1,8 +1,9 @@
 # Production: 301 старый сайт + SPA (pharmconsilium.com)
-# Редиректы: deploy/redirects-old-site.htaccess · SPA: deploy/apache-spa.htaccess
+# Не использовать «Redirect 301 /index.php → /» — на PHP-хостинге / открывается как index.php и зацикливается.
+
+DirectoryIndex index.html
 
 # --- 301 со старого сайта (sitemap до 2024) ---
-Redirect 301 /index.php https://pharmconsilium.com/
 Redirect 301 /contact.php https://pharmconsilium.com/team/contacts
 Redirect 301 /politics.php https://pharmconsilium.com/privacy
 Redirect 301 /trainings.php https://pharmconsilium.com/hcp/education
@@ -37,10 +38,13 @@ Redirect 301 /stm/clinic-detective https://pharmconsilium.com/content/gamificati
 Redirect 301 /stm/digital-promo-content https://pharmconsilium.com/content/presentations
 Redirect 301 /stm/create-brand-book-drug https://pharmconsilium.com/content/presentations
 
-# --- SPA fallback ---
+# --- Rewrite: index.php (явный URL) + SPA fallback ---
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
+  RewriteRule ^index\.php$ / [R=301,L]
 
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
