@@ -11,8 +11,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const DATE = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-const CACHE_BUST = DATE;
-const ZIP_NAME = `pharmconsilium-site-${DATE}.zip`;
+const CACHE_BUST = process.env.PHARM_BUILD_ID || `${DATE}r2`;
+const ZIP_NAME = `pharmconsilium-site-${CACHE_BUST}.zip`;
 
 const ROOT_FILES = [
   'index.html',
@@ -99,11 +99,30 @@ function main() {
   });
 
   const zipMb = (fs.statSync(zipPath).size / (1024 * 1024)).toFixed(1);
+  const bundlePath = path.join(DIST, 'js', 'pharm-bundle.min.js');
+  const bundleJs = fs.readFileSync(bundlePath, 'utf8');
+  const checks = [
+    ['Robby_12.png in assets', fs.existsSync(path.join(DIST, 'assets/uploads/Robby_12.png'))],
+    ['Robby_13.png in assets', fs.existsSync(path.join(DIST, 'assets/uploads/Robby_13.png'))],
+    ['robot-surprise in CSS', fs.readFileSync(path.join(DIST, 'css/styles.css'), 'utf8').includes('robot-surprise')],
+    ['Robby_12 in bundle', bundleJs.includes('Robby_12')],
+    ['Robby_13 in bundle', bundleJs.includes('Robby_13')],
+    ['robot-surprise in bundle', bundleJs.includes('robot-surprise')],
+  ];
+  const failed = checks.filter((c) => !c[1]);
+  console.log('');
+  console.log('Verify:');
+  checks.forEach(([label, ok]) => console.log(' ', ok ? '✓' : '✗', label));
+  if (failed.length) {
+    console.error('Deploy verify failed:', failed.map((f) => f[0]).join(', '));
+    process.exit(1);
+  }
   console.log('');
   console.log('Done.');
   console.log('  dist/     →', DIST);
   console.log('  archive   →', zipPath, `(${zipMb} MB)`);
   console.log('  cache     →', CACHE_BUST);
+  console.log('  На хостинге загрузите весь архив; после деплоя: Ctrl+Shift+R или ?bundle&nocache');
 }
 
 main();

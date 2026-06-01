@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'js', 'pharm-bundle.min.js');
-const CACHE_BUST = '20260602';
+const CACHE_BUST = process.env.PHARM_BUILD_ID || '20260603r2';
 
 const SCRIPTS = [
   'js/components/tweaks-panel.jsx',
