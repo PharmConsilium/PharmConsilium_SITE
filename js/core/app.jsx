@@ -100,7 +100,10 @@ function App() {
   }, []);
 
   React.useLayoutEffect(() => {
-    window.openPharmContact = () => setContactOpen(true);
+    window.openPharmContact = () => {
+      if (window.pharmTrackEvent) window.pharmTrackEvent('contacts_click', { event_category: 'engagement' });
+      setContactOpen(true);
+    };
     return () => {
       delete window.openPharmContact;
     };
@@ -196,6 +199,7 @@ function App() {
     }
 
     if (window.updatePageSeo) window.updatePageSeo(route, lang);
+    if (routeChanged && window.pharmTrackPageView) window.pharmTrackPageView(route);
 
     return () => {
       if (tick) cancelAnimationFrame(tick);

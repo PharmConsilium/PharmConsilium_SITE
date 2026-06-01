@@ -12,3 +12,5 @@ desktop.ini
 
 # Build
 node_modules/
+dist/
+pharmconsilium-site-*.zip

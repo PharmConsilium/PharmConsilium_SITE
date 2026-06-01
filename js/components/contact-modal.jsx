@@ -148,6 +148,9 @@ function ContactFormModal({ open, onClose, lang }) {
       message.trim(),
     ].join('\n');
 
+    if (window.pharmTrackEvent) {
+      window.pharmTrackEvent('contact_form_submit', { event_category: 'engagement' });
+    }
     window.location.href = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
     onClose();
   }
