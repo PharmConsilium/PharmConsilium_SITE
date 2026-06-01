@@ -2466,8 +2466,8 @@ button { font-family: inherit; }
   will-change: transform;
   filter: none;
   transition: opacity 0.35s ease;
-  perspective: 920px;
-  perspective-origin: 50% 42%;
+  perspective: 580px;
+  perspective-origin: 50% 46%;
 }
 .robot-img.robot-img--hide-over-copy {
   opacity: 0;
@@ -2513,22 +2513,54 @@ button { font-family: inherit; }
   height: 100%;
   will-change: transform;
   transform-style: preserve-3d;
+  isolation: isolate;
 }
 .robot-img-float {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
+  transform-style: flat;
   animation: robot-bob 4.2s ease-in-out infinite;
+}
+.robot-img-stack {
+  position: absolute;
+  inset: 0;
+}
+.robot-img-stack--pose {
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.robot-img[data-robot-pose="held"] .robot-img-stack--default,
+.robot-img[data-robot-pose="angry"] .robot-img-stack--default {
+  opacity: 0;
+  visibility: hidden;
+}
+.robot-img[data-robot-pose="held"] .robot-img-stack--pose,
+.robot-img[data-robot-pose="angry"] .robot-img-stack--pose {
+  opacity: 1;
+  visibility: visible;
+}
+.robot-img-pose {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  pointer-events: none;
+  backface-visibility: hidden;
 }
 .robot-img-layer {
   position: absolute;
   inset: 0;
-  transform-style: preserve-3d;
+  transform-style: flat;
   pointer-events: none;
+  backface-visibility: hidden;
 }
 .robot-img-layer--base {
-  transform: translateZ(0);
   z-index: 0;
 }
 .robot-img-layer--face {
@@ -2536,8 +2568,7 @@ button { font-family: inherit; }
   will-change: transform;
 }
 .robot-img-layer--glow {
-  transform: translateZ(24px);
-  z-index: 2;
+  z-index: 6;
 }
 .robot-img-base {
   position: absolute;
@@ -2547,6 +2578,7 @@ button { font-family: inherit; }
   object-fit: contain;
   object-position: center center;
   pointer-events: none;
+  backface-visibility: hidden;
 }
 .robot-img .robot-face-cycle {
   position: absolute;
@@ -2565,6 +2597,7 @@ button { font-family: inherit; }
   object-position: center center;
   pointer-events: none;
   mix-blend-mode: screen;
+  backface-visibility: hidden;
   animation: robot-glow-pulse 2.8s ease-in-out infinite;
 }
 .robot-img img,
@@ -2584,7 +2617,7 @@ button { font-family: inherit; }
 }
 @keyframes robot-bob {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -6px, 10px); }
+  50% { transform: translate3d(0, -6px, 5px); }
 }
 @keyframes robot-glow-pulse {
   0%, 100% { opacity: 0.9; filter: brightness(1) saturate(1); }

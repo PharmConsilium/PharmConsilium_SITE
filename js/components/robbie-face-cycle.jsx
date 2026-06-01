@@ -1,6 +1,6 @@
 // Цикл «лица» Робби: 10 кадров, перед каждым лицом — Robby_1 (экран без лица)
 
-const ROBBY_ASSET_V = '4';
+const ROBBY_ASSET_V = '5';
 const ROBBY_FRAME_SRC = (n) => `assets/uploads/Robby_${n}.png?v=${ROBBY_ASSET_V}`;
 const ROBBY_BLANK_FRAME = 1;
 const ROBBY_FADE_MS = 750;
@@ -18,6 +18,9 @@ function buildRobbyFaceSequence() {
 const ROBBY_FACE_SEQUENCE = buildRobbyFaceSequence();
 /** Неоновая подсветка Robby_11 — отдельный слой, не в цикле */
 const ROBBY_OUTLINE_SRC = `assets/uploads/Robby_11.png?v=${ROBBY_ASSET_V}`;
+/** Полный спрайт: удержание / злость после броска */
+const ROBBY_HELD_SRC = `assets/uploads/Robby_12.png?v=${ROBBY_ASSET_V}`;
+const ROBBY_ANGRY_SRC = `assets/uploads/Robby_13.png?v=${ROBBY_ASSET_V}`;
 
 function preloadRobbyFrames() {
   for (let n = 1; n <= 10; n++) {
@@ -26,6 +29,10 @@ function preloadRobbyFrames() {
   }
   const outline = new Image();
   outline.src = ROBBY_OUTLINE_SRC;
+  const held = new Image();
+  held.src = ROBBY_HELD_SRC;
+  const angry = new Image();
+  angry.src = ROBBY_ANGRY_SRC;
 }
 
 function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
@@ -183,6 +190,8 @@ Object.assign(window, {
   ROBBY_FRAME_SRC,
   ROBBY_ASSET_V,
   ROBBY_OUTLINE_SRC,
+  ROBBY_HELD_SRC,
+  ROBBY_ANGRY_SRC,
   ROBBY_BLANK_FRAME,
   ROBBY_FADE_MS,
   pharmRobotFace,
