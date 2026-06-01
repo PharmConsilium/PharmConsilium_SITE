@@ -155,7 +155,10 @@ window.SUBPAGES_EN_PATCHES = {
 
   'marketing/web': {
     section: 'Pharmaceutical marketing',
-    title: 'Web development: sites, landing pages, longreads, congress and webinar platforms',
+    title: 'Web development, sites, landing pages, longreads, digital platforms',
+    crumb: 'Web development, sites, landing pages, longreads, digital platforms',
+    h1Line1: 'Web development,',
+    h1Accent: 'sites, landing pages, longreads, digital platforms',
     lede: 'PharmConsilium web solutions for pharma brands: HCP portals, product landing pages, longreads, and turnkey online congress platforms.',
     tags: ['WebDevelopment', 'PharmaWeb', 'HCPPortal', 'LandingPage', 'Longread', 'OnlineCongress', 'WebinarPlatform', 'PharmaMarketing', 'DigitalHealth', 'CME'],
     artSlides: [
