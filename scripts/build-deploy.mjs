@@ -71,6 +71,7 @@ function main() {
 =====================================
 
 1. На хостинге удалите файлы старого сайта (или очистите public_html).
+   Обязательно удалите index.php и папки tool/, training/, stm/, outsourcings/ если остались — иначе главная или старые URL могут вести себя непредсказуемо.
 2. Распакуйте этот архив в корень домена (рядом должны быть index.html и .htaccess).
 3. Apache: нужен mod_rewrite; .htaccess уже в архиве (301 со старого сайта + SPA).
 4. nginx: см. deploy/nginx-spa.conf и deploy/redirects-old-site.conf в репозитории.

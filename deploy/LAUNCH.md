@@ -25,7 +25,9 @@
 
 - [ ] `sitemap.xml` — 46 URL (генерация: `node scripts/generate-sitemap.js`)
 - [ ] `robots.txt`: `Sitemap: https://pharmconsilium.com/sitemap.xml`, `Disallow: /print.html`
-- [ ] `deploy/redirects-old-site.htaccess` (или `.htaccess` в корне) — 301 со старого PHP-сайта
+- [ ] `.htaccess` в корне — legacy 301 только через `mod_rewrite` + `THE_REQUEST` (без `Redirect /index.php`)
+- [ ] Удалён старый `index.php` и каталоги `tool/`, `training/`, `stm/`, `outsourcings/` с хостинга
+- [ ] `npm run check:redirects` — главная 200, старые URL — один 301
 - [ ] Отправить sitemap в **Яндекс.Вебмастер** и **Google Search Console**
 
 ### 4. Редиректы 301
