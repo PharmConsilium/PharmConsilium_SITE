@@ -3117,6 +3117,12 @@ body.is-detail-slide-lightbox-open .robot-img {
   color: var(--ink-2);
   line-height: 1.5;
 }
+@media (max-width: 720px) {
+  .deliver-list {
+    grid-template-columns: 1fr;
+    gap: 12px 0;
+  }
+}
 
 .detail-cta {
   position: relative;
