@@ -13,4 +13,5 @@ desktop.ini
 # Build
 node_modules/
 dist/
+js/pharm-bundle.min.js
 pharmconsilium-site-*.zip
