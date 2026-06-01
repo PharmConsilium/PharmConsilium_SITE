@@ -2285,6 +2285,10 @@ button { font-family: inherit; }
   transition: transform 200ms, box-shadow 200ms;
 }
 .tm:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.tm:has(.tm-portrait--photo):hover {
+  transform: none;
+  box-shadow: none;
+}
 .tm--draft {
   border: 1.5px dashed color-mix(in srgb, var(--muted-2) 50%, transparent);
   background: color-mix(in srgb, var(--surface) 92%, var(--bg-2));
@@ -2315,40 +2319,23 @@ button { font-family: inherit; }
 .tm-portrait--robbie .tm-portrait-img img {
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.12);
-  transform-origin: center center;
 }
-/* Робби: MAGIC поверх базы (без затемнения от двойного crossfade), без zoom */
-.tm-portrait--robbie .tm-portrait-default {
-  z-index: 0;
-  opacity: 1;
-  transform: none;
-  transition: none;
-}
-.tm-portrait--robbie .tm-portrait-hover {
-  z-index: 1;
-  opacity: 0;
-  transform: none;
-  transition: opacity 380ms ease-in-out;
-}
-.tm:hover .tm-portrait--robbie .tm-portrait-default {
-  opacity: 1;
-  transform: none;
-}
-.tm:hover .tm-portrait--robbie .tm-portrait-hover {
-  opacity: 1;
-  transform: none;
+.tm-portrait--photo .tm-portrait-img img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .tm-portrait-img {
   position: absolute; inset: 0;
   display: flex; align-items: flex-end; justify-content: center;
-  transition: opacity 320ms cubic-bezier(.2,.7,.3,1), transform 600ms cubic-bezier(.2,.7,.3,1);
-  will-change: opacity, transform;
 }
-.tm-portrait-default { opacity: 1; transform: scale(1); }
-.tm-portrait-hover   { opacity: 0; transform: scale(1.06); }
-.tm:hover .tm-portrait-default { opacity: 0; transform: scale(.96); }
-.tm:hover .tm-portrait-hover   { opacity: 1; transform: scale(1); }
+/* Плейсхолдер без фото: смена варианта при наведении */
+.tm-portrait--dual .tm-portrait-img {
+  transition: opacity 320ms cubic-bezier(.2,.7,.3,1), transform 600ms cubic-bezier(.2,.7,.3,1);
+}
+.tm-portrait--dual .tm-portrait-default { opacity: 1; transform: scale(1); }
+.tm-portrait--dual .tm-portrait-hover   { opacity: 0; transform: scale(1.06); }
+.tm-portrait--dual:hover .tm-portrait-default { opacity: 0; transform: scale(.96); }
+.tm-portrait--dual:hover .tm-portrait-hover   { opacity: 1; transform: scale(1); }
 .tm-portrait-img img {
   width: 100%; height: 100%;
   object-fit: cover;

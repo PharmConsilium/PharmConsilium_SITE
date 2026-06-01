@@ -524,8 +524,8 @@ function ContentPage({ navigate, lang }) {
   return <SectionPage id="content" navigate={navigate} lang={lang} ru={{
   crumb: 'Дизайн',
   h1Line1: 'HCP-контент на языке медицинской науки',
-  h1Accent: 'для врачей и фармацевтов',
-  lede: 'Сценарии, презентации, видео, статьи, игры и квизы. Делаем сложное понятным — для врача, провизора и пациента.',
+  h1Accent: 'для врачей, провизоров и фармацевтов',
+  lede: 'Создаем презентации лекарств, медицинские видео, квизы, викторины, клинические детективы, игры и геймификацию в медицине.',
   cards: window.SECTION_CARDS.content
   }} />;
 }
@@ -944,18 +944,18 @@ function DirectoryPage({ navigate, lang }) {
 }
 
 const TEAM = [
-{ n: 'Робби', r: 'Корпоративный искусственный интеллект', photo: 'assets/uploads/team-robbie.png', photoHover: 'assets/uploads/team-robbie-hover.png' },
-{ n: 'Катарина Невгень', r: 'Экономист, контент-мейкер' },
-{ n: 'Даниил Пашинский', r: 'Инженер-программист' },
-{ n: 'Вадим Апуневич', r: 'Инженер-программист' },
-{ n: 'Валерия Повшок', r: 'Менеджер медицинского маркетинга' },
-{ n: 'Николай Кузмицкий', r: 'Маркетолог цифровых экосистем' },
-{ n: 'Сергей Маланчук', r: 'Инженер-программист' },
-{ n: 'Илья Урбанович', r: 'Дизайн ИИ-видео, анимация' },
-{ n: 'Артём Оленик', r: 'Дизайн кросс-платформенных систем' },
-{ n: 'Владислав Зябочкин', r: 'Начальник отдела IT-разработки' },
-{ n: 'Оксана Невгень', r: 'Финансы' },
-{ n: 'Владимир Борисюк', r: 'Оптимист' }];
+{ n: 'Робби', r: 'Корпоративный искусственный интеллект', photo: 'assets/uploads/team-robbie-hover.png' },
+{ n: 'Катарина', r: 'Экономист, контент-мейкер', photo: 'assets/uploads/team-katarina.png' },
+{ n: 'Даниил', r: 'Инженер-программист', photo: 'assets/uploads/team-daniil.png' },
+{ n: 'Вадим', r: 'Инженер-программист', photo: 'assets/uploads/team-vadim.png' },
+{ n: 'Валерия', r: 'Менеджер медицинского маркетинга', photo: 'assets/uploads/team-valeria.png' },
+{ n: 'Николай', r: 'Маркетолог цифровых экосистем', photo: 'assets/uploads/team-nikolay.png' },
+{ n: 'Сергей', r: 'Инженер-программист', photo: 'assets/uploads/team-sergey.png' },
+{ n: 'Илья', r: 'Дизайн ИИ-видео, анимация', photo: 'assets/uploads/team-ilya.png' },
+{ n: 'Артём', r: 'Дизайн кросс-платформенных систем', photo: 'assets/uploads/team-artem.png' },
+{ n: 'Владислав', r: 'Начальник отдела IT-разработки', photo: 'assets/uploads/team-vladislav.png' },
+{ n: 'Оксана', r: 'Финансы', photo: 'assets/uploads/team-oksana.png' },
+{ n: 'Владимир', r: 'Оптимист', photo: 'assets/uploads/team-vladimir.png' }];
 
 
 function PortraitPlaceholder({ seed }) {
@@ -974,17 +974,15 @@ function PortraitPlaceholder({ seed }) {
 
 function teamRobbyPhotoSrc(path) {
   if (!path || !path.includes('team-robbie')) return path;
-  return `${path}?v=2`;
+  return `${path}?v=3`;
 }
 
-function TeamMemberPortrait({ member, seed, layer }) {
-  const isHover = layer === 'hover';
-
+function TeamMemberPortrait({ member, seed, eager }) {
   if (member.photo) {
-    const raw = isHover && member.photoHover ? member.photoHover : member.photo;
+    const raw = member.photo;
     const src = teamRobbyPhotoSrc(raw);
     return (
-      <img src={src} alt={member.n} decoding="async" loading="lazy" />);
+      <img src={src} alt={member.n} decoding="async" loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} />);
   }
   return <PortraitPlaceholder seed={seed} />;
 }
@@ -1012,10 +1010,8 @@ function TeamPage({ navigate, lang }) {
   const TeamContactsArt = window.ArtTeamContacts;
 
   React.useEffect(() => {
-    ['assets/uploads/team-robbie.png', 'assets/uploads/team-robbie-hover.png'].forEach((src) => {
-      const img = new Image();
-      img.src = `${src}?v=2`;
-    });
+    const img = new Image();
+    img.src = teamRobbyPhotoSrc('assets/uploads/team-robbie-hover.png');
   }, []);
 
   React.useEffect(() => {
@@ -1068,16 +1064,21 @@ function TeamPage({ navigate, lang }) {
           {team.map((m, i) => {
             const isDraft = Boolean(m.draft);
             const isRobby = m.n === 'Робби' || m.n === 'Robbie';
+            const hasPhoto = Boolean(m.photo);
             return (
           <div key={i} className={`tm${isDraft ? ' tm--draft' : ''}`}>
-              <div className={`tm-portrait${isRobby ? ' tm-portrait--robbie' : ''}${isDraft ? ' tm-portrait--empty' : ''}`}>
-                {isDraft ? null : (
+              <div className={`tm-portrait${isRobby ? ' tm-portrait--robbie' : ''}${hasPhoto ? ' tm-portrait--photo' : ' tm-portrait--dual'}${isDraft ? ' tm-portrait--empty' : ''}`}>
+                {isDraft ? null : hasPhoto ? (
+                  <div className="tm-portrait-img">
+                    <TeamMemberPortrait member={m} seed={i + 1} eager={isRobby} />
+                  </div>
+                ) : (
                   <>
                     <div className="tm-portrait-img tm-portrait-default">
-                      <TeamMemberPortrait member={m} seed={i + 1} layer="default" />
+                      <TeamMemberPortrait member={m} seed={i + 1} eager={isRobby} />
                     </div>
                     <div className="tm-portrait-img tm-portrait-hover">
-                      <TeamMemberPortrait member={m} seed={i + 1 + 97} layer="hover" />
+                      <TeamMemberPortrait member={m} seed={i + 1 + 97} />
                     </div>
                   </>
                 )}
