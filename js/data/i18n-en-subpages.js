@@ -81,7 +81,7 @@ window.SUBPAGES_EN_PATCHES = {
   'marketing/2clm': {
     section: 'Pharmaceutical marketing',
     title: '2CLM — software to improve SF visit effectiveness',
-    lede: 'One scenario, two modes: touch visit and remote engagement. Content adapts to the communication format without rebuilding.',
+    lede: 'The rep completed the visit and sent visit materials to the HCP via a link. 2CLM measures post-visit HCP engagement with content.',
     tags: ['Rep-Triggered Email', 'Post-Call Digital Content Push', 'Post-Call Follow-Up Materials Delivery', 'Post-Visit Promotional Content Distribution'],
     artSlides: [
       { src: 'assets/uploads/2clm-detail-slide-1.png?v=20260526', label: '2CLM — second-generation CLM', alt: '2CLM: digital promo materials HCPs view at a convenient time—measurable brand content interaction' },
@@ -205,7 +205,7 @@ window.SUBPAGES_EN_PATCHES = {
       { src: 'assets/uploads/mobile-detail-slide-2.png?v=20260527', label: 'PharmaApp — therapy tracker', alt: 'PharmaApp: mobile app screens for patient therapy support' },
       { src: 'assets/uploads/mobile-detail-video.mp4?v=20260527', type: 'video', label: 'Mobile app development', alt: 'Video: PharmConsilium mobile app development' },
     ],
-    aboutTitle: 'The mobile app idea',
+    aboutTitle: 'We have a mobile app idea that will strengthen your brand',
     about: [
       'We do more than code apps and publish to the App Store and Google Play—we build full growth accelerators around your brand. The app extends brand strategy: supporting patients and HCPs across the therapy journey, strengthening positioning, and improving treatment adherence. Turnkey from marketing concept and use cases through UX/UI, development, testing, compliance review, and store releases aligned with content requirements.',
     ],
@@ -253,7 +253,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
     featuresTitle: 'Digital support for pharmaceutical events',
     features: [
-      { t: 'Emotional engagement and HCP wow factor', d: 'Interactives, fast bot answers, and personalized AI recommendations make the event feel alive—not another congress. HCPs feel their time is respected and navigation is easy—and that carries over to brand perception.' },
+      { t: 'Emotional engagement and HCP wow factor', d: 'Interactives, fast bot answers, and personalized AI recommendations make the event feel alive—not another congress. HCPs feel their time is respected—and that carries over to brand perception.' },
       { t: 'Competitive edge in a crowded congress hall', d: 'A digital layer around the event (bot, mini landings, AR/3D interactives) visually and functionally sets your brand apart from similar booths—positioning you as an innovative partner, not just another manufacturer.' },
       { t: 'Before — during — after architecture', d: 'Pre-event: landings and email/messenger campaigns. During: bot, AI assistant, interactives. After: materials, recordings, and personalized follow-up. HCP contact continues beyond congress dates into a long-term dialogue.' },
       { t: 'Fit into omnichannel brand strategy', d: 'Event touchpoints plug into overall HCP strategy: participant, interest, and engagement data fuel rep visits, email, and portals—turning the event from a single activity spike into part of a systematic HCP path.' },
@@ -282,7 +282,7 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'Training for medical representatives',
     h1Line1: 'Training for',
     h1Accent: 'medical representatives',
-    lede: 'More than 30 training topics for medical representatives built over decades. PharmConsilium rep training since 2005: virtual video hall, quiz simulators, and 10 ready-made role-play games with client-branded gamification.',
+    lede: 'More than 30 training topics for medical representatives built over decades at PharmConsilium: virtual video hall, quiz simulators, and 10 ready-made role-play games with client-branded gamification.',
     tags: ['MedRepTraining', 'FieldForceTraining', 'Gamification', 'eLearning', 'RolePlay', 'PharmaSalesTraining', 'LMS', 'DistanceLearning', 'PharmaMarketing', 'SalesForce'],
     artSlides: [
       { src: 'assets/uploads/ai-detail-slide-1.png?v=20260528', label: 'Product presentation at training', alt: 'Medical representative training: trainer at screen with product promo materials' },
@@ -291,7 +291,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
     aboutTitle: 'Training',
     about: [
-      'PharmConsilium has trained medical representative teams since 2005—programs now reflect crystallized experience from successful projects with proven field results. We believe corporate learning lands best in a positive, game-based atmosphere. Our training drives lasting behavior change—not a one-off motivation spike: reps enjoy the work more and show measurable visit effectiveness gains. Every program builds three core competencies: communication, persuasion, and selling skills.',
+      'PharmConsilium has trained medical representative teams since 2005. Programs now reflect crystallized experience from successful projects with proven field results. We believe corporate learning lands best in a positive, game-based atmosphere. Our training drives lasting behavior change—not a one-off motivation spike: reps enjoy the work more and show measurable visit effectiveness gains. Every program builds three core competencies: communication, persuasion, and selling skills.',
     ],
     featuresTitle: 'Distance training and simulators for field force training',
     features: [
@@ -301,14 +301,14 @@ window.SUBPAGES_EN_PATCHES = {
       { t: 'Individual & corporate learning / adaptive training / brand personalization', d: 'Individual and corporate modes with access control, materials in any format, and role-play scenarios adapted to your brand and therapy area. Programs designed from the team\'s baseline competencies.' },
     ],
     deliverablesTitle: 'Cyclical training programs',
-    stepsTitle: 'Distance training—four clear client advantages',
+    stepsTitle: 'Distance training for medical representatives',
     steps: [
       { n: '01', t: 'Learning without leaving the field—anytime, any device', d: 'Reps can train between visits on their own schedule—no need to gather the whole team in one place.' },
       { n: '02', t: 'Role-play that mirrors real visit scenarios', d: 'Each of the ten business games is a specific physician objection reps will face—practice in a safe game environment builds confidence and real visit outcomes.' },
       { n: '03', t: 'Gamification makes training engaging', d: 'Points, rankings, timers, and rewards keep attention and deepen retention versus classic lecture formats.' },
       { n: '04', t: 'Objective, measurable outcomes', d: 'Platform analytics show real competency gains per employee—managers get data to lead the team, not just a general feel for how training went.' },
     ],
-    detailCtaH3: 'Contact us for a detailed program on any of our training topics (30 modules).',
+    detailCtaH3: 'Medical representative training topics—contact us',
     detailCtaP: '',
     detailCtaTopics: [],
     deliverables: [
@@ -363,7 +363,7 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'Patient support programs',
     h1Line1: 'Patient support',
     h1Accent: 'programs',
-    lede: 'LMS platforms for HCP and patients: webinars, online courses, certification, CME points, progress, and certificates—all in one digital environment.',
+    lede: 'Mobile companion app, HUB/access platform (patient support CRM), remote monitoring (RPM/IoT), telemedicine, EMR/EHR integrations, analytics/BI platform.',
     tags: ['PatientSupport', 'PSP', 'CME', 'LMS', 'DigitalHealth', 'DTP'],
     artSlides: [
       { src: 'assets/uploads/hcp-psp-detail-slide-1.png?v=20260527', label: 'Patient support program', alt: 'Patient support programs: robot helping a patient with care and therapy adherence' },
@@ -491,7 +491,7 @@ window.SUBPAGES_EN_PATCHES = {
     steps: [
       { n: '01', t: 'Post-marketing studies and Real-World Evidence (RWE)', d: 'Capturing real-world product use through traditional eCRF is slow and costly. Bots or mobile apps scale RWE from thousands of patients—evidence for label expansion, publications, and regulator dialogue.' },
       { n: '02', t: 'Multi-center trials with geographically distributed sites', d: 'When participants and investigators span cities or countries, one digital platform with central monitoring and AI dashboards give the sponsor full visibility per site in real time—without frequent on-site audits.' },
-      { n: '03', t: 'Studies with patient PRO data in chronic disease', d: 'In chronic conditions (diabetes, COPD, rheumatology), systematic patient data over months is critical. ePRO bots or mobile apps improve diary compliance, cut visits, and preserve data quality.' },
+      { n: '03', t: 'Studies with patient PRO data in chronic disease', d: 'In chronic conditions (diabetes, COPD, rheumatic diseases), systematic patient data over months is critical. ePRO bots or mobile apps improve diary compliance, cut visits, and preserve data quality.' },
       { n: '04', t: 'Pharma-led NIS/PASS programs to expand brand science', d: 'Non-interventional (NIS) and post-authorization safety (PASS) studies need structured, compliant real-world data capture. Digital platforms with AI assistants run these programs efficiently—broad physician reach, minimal investigator burden.' },
     ],
     deliverablesTitle: 'Faster, more accurate data capture—problems the digital approach solves',
@@ -530,7 +530,7 @@ window.SUBPAGES_EN_PATCHES = {
     steps: [
       { n: '01', t: 'Label expansion and regulatory dossier support', d: 'Regulators accept RWE as supporting evidence for label expansion—especially in oncology, in rare diseases, and in pediatrics, where RCTs are hard or impractical. An accumulated real-world cohort becomes ready evidence for submission.' },
       { n: '02', t: 'Payer negotiations and product pricing', d: 'At launch or reimbursement defense, own RWE on real effectiveness in defined cohorts is hard to refute. Manufacturers with RWE infrastructure secure better formulary terms.' },
-      { n: '03', t: 'Post-marketing surveillance and PASS obligations', d: 'Approval often requires PASS studies. A digital RWE platform fulfills obligations on larger cohorts, with higher data quality and shorter timelines than traditional approaches.' },
+      { n: '03', t: 'Post-marketing surveillance and PASS obligations', d: 'Approval often requires PASS studies. A digital RWE platform fulfills obligations on larger cohorts, with high data quality and shorter timelines than traditional approaches.' },
       { n: '04', t: 'Outcomes-based contracts with payers', d: 'In outcomes-based contracting, real clinical outcomes are the settlement asset. Whoever delivers verifiable RWE on agreed KPIs (hospitalizations, adherence, disease control) on time gains financial reward and long-term negotiating edge.' },
     ],
     stepsRegulatory: {
@@ -643,7 +643,7 @@ window.SUBPAGES_EN_PATCHES = {
     title: 'Launch outsourcing',
     h1Line1: 'Launch —',
     h1Accent: 'outsourcing',
-    lede: 'Launch outsourcing with PharmConsilium: from strategy and soft launch to digital launch and a full suite of services to bring your brand to the Belarus market.',
+    lede: 'Launch outsourcing with PharmConsilium: from strategy and soft launch to digital launch and a full suite of services to bring your brand to the Belarus market. Use our HCP database and digital promotion tools for a fast start on a new pharma market.',
     tags: ['PharmaLaunch', 'LaunchOutsourcing', 'SoftLaunch', 'DigitalLaunch', 'PharmaMarketing', 'HCPEngagement', 'Belarus', 'GoToMarket', 'Omnichannel', 'MedicalEvents'],
     artSlides: [
       { src: 'assets/uploads/launch-detail-slide-1.png?v=20260529', label: 'Launch outsourcing', alt: 'Launch outsourcing: 3D illustration of an expert with a medical outsourcing and strategy journal' },
@@ -723,7 +723,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
     featuresTitle: 'Choose your direction',
     features: [
-      { t: 'CLM presentation / Closed-Loop Marketing / Managed narrative with analytics', d: 'CLM is your field management tool: each screen fits a moment in the clinical conversation, the rep follows a guided structure, and show data flows back to your analytics. You stop guessing what happens on visits—and run the promo cycle on real HCP behavior data.' },
+      { t: 'CLM presentation / Closed-Loop Marketing / Managed narrative with analytics', d: 'CLM is your field management tool: each screen fits a moment in the clinical conversation, the rep follows a guided structure, and show data flows back to your analytics. You stop guessing what happens on visits, and run the promo cycle on real HCP behavior data.' },
       { t: 'Detailer / Visual Aid / eDetail for tablet and smartphone', d: 'Built for cognitive load: brand message in three seconds, trial data via infographics, MOA via accurate illustration or animation. Messages you aligned with medical for months actually reach the physician—not buried in overloaded slide text.' },
       { t: 'Slide box / Modular content / HCP segment personalization', d: 'One verified module set—endless visit scenarios: the rep adapts to primary care, skeptics, or loyal HCPs within compliance. You control messaging centrally across SF while giving each rep the flexibility field work requires.' },
       { t: 'Design with medical / Medical editor / Accuracy-first', d: 'Three parallel streams: medical shapes narrative and verifies data, copywriter translates for the busy physician, designer builds visual architecture for the rep’s device. One aligned process instead of endless agency–medical iterations.' },
@@ -732,7 +732,7 @@ window.SUBPAGES_EN_PATCHES = {
     steps: [
       { n: '01', t: 'Your key messages reach the physician exactly as you intended', d: 'Managed CLM structure and proven visual hierarchy ensure brand priorities are not lost between the brief and the rep visit.' },
       { n: '02', t: 'You see what content works in the field—and stop spending on what does not', d: 'CLM analytics turn subjective field reports into objective data. The next detailer version is built on facts, not assumptions.' },
-      { n: '03', t: 'Medical approves on the first round—because it was built right from day one', d: 'A synchronized process with a medical editor from the start avoids fundamental MLR rework. That saves weeks of approvals and team stress.' },
+      { n: '03', t: 'Medical approves on the first round, because it was built right from day one', d: 'A synchronized process with a medical editor from the start avoids fundamental MLR rework. That saves weeks of approvals and team stress.' },
       { n: '04', t: 'A fast production cycle keeps your competitive speed', d: 'Adapting existing PowerPoint/PDF into CLM format launches updated promo in days, not weeks—so the field gets current content when the market needs it.' },
     ],
     deliverablesTitle: 'What the product manager and the brand get',

@@ -1,6 +1,9 @@
 // Post-mount lazy scripts (forecast chart, robot). Used after bundle or pharm-boot core.
 (function () {
-  var CACHE_BUST = window.PHARM_CACHE_BUST || '20260531b';
+  var CACHE_BUST = window.PHARM_CACHE_BUST || '20260531c';
+  var isDevHost = /^(localhost|127\.0\.0\.1)$/i.test(location.hostname)
+    || location.protocol === 'file:'
+    || /(?:\?|&)nocache(?:=|&|$)/.test(location.search);
 
   var DEFERRED = [
     'js/components/forecast-chart.jsx',
@@ -25,7 +28,8 @@
   }
 
   function fetchOne(path) {
-    return fetch(scriptUrl(path)).then(function (res) {
+    var opts = isDevHost ? { cache: 'no-store' } : undefined;
+    return fetch(scriptUrl(path), opts).then(function (res) {
       if (!res.ok) throw new Error(path + ' HTTP ' + res.status);
       return res.text();
     });

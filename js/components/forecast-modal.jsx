@@ -8,7 +8,7 @@ function forecastStrings(lang) {
     return {
       close: 'Close',
       title: 'AI Robby will calculate your brand forecast in CIS pharma market',
-      note: 'An email draft will open in your mail app to',
+      note: 'Your message will be sent to',
       noteSuffix: '— review fields and press “Send” in your client.',
       errEmail: 'Please provide a valid e-mail.',
       errConsent: 'Consent is required to proceed.',
@@ -28,7 +28,7 @@ function forecastStrings(lang) {
   return {
     close: 'Закрыть',
     title: 'Искусственный интеллект Робби рассчитает прогноз вашего бренда на фармацевтическом рынке СНГ',
-    note: 'Письмо откроется в вашей почтовой программе на адрес',
+    note: 'Письмо отправится на адрес',
     noteSuffix: '— проверьте поля и нажмите «Отправить» в клиенте.',
     errEmail: 'Укажите e-mail — поле обязательно.',
     errConsent: 'Нужно согласие на обработку персональных данных.',

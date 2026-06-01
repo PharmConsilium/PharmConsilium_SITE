@@ -27,6 +27,14 @@ npm run build:js
 - `PHARM_HIDE_TWEAKS = true` на проде
 - Расширенный `<noscript>` со ссылками для SEO
 
+## Локально не видны правки в JSX
+
+1. **Кэш Babel** — на `localhost` / `127.0.0.1` кэш в `sessionStorage` отключён (с `pharm-boot.js` после обновления). Раньше ключи `pharm:jsx:…` отдавали старый скомпилированный код при том же `PHARM_CACHE_BUST`.
+2. **Один раз вручную** — DevTools → Application → Session Storage → удалить ключи `pharm:jsx:*`, затем Ctrl+F5.
+3. **Принудительно** — открыть `http://127.0.0.1:…/?nocache` (без кэша и на проде при проверке).
+4. Убедиться, что открыт **`index.html` из корня репозитория**, не старый `pharmconsilium.html`.
+5. На проде после правок: `npm run build:js` и залить новый `pharm-bundle.min.js`.
+
 ## Проверка
 
 - PageSpeed Insights (Mobile + Desktop)

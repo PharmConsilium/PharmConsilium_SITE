@@ -907,6 +907,24 @@ button { font-family: inherit; }
   max-width: 18ch;
   overflow-wrap: anywhere;
 }
+.section-head h2 .section-h2-link {
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+  max-width: inherit;
+}
+.section-head h2 .section-h2-link:hover {
+  color: var(--accent);
+}
 .section-head .right {
   color: var(--muted);
   flex: 1 1 36ch;
