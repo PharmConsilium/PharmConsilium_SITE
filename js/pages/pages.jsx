@@ -530,6 +530,24 @@ function ContentPage({ navigate, lang }) {
   }} />;
 }
 
+const DIRECTORY_SITE_URL = 'https://farmconsilium.com/';
+
+function openExternalLinkDeduped(href, e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) {
+      e.nativeEvent.stopImmediatePropagation();
+    }
+  }
+  const now = Date.now();
+  const key = `__pharm_last_ext_open_ms__:${href}`;
+  const last = Number(window[key] || 0);
+  if (now - last < 1200) return;
+  window[key] = String(now);
+  window.open(href, '_blank', 'noopener,noreferrer');
+}
+
 function DirectoryFeatureText({ item }) {
   const renderParts = (parts) =>
     parts.map((part, j) => (part.b ? <strong key={j}>{part.s}</strong> : part.s));
@@ -751,8 +769,22 @@ function DirectoryPage({ navigate, lang }) {
           <div className="cards-grid cards-grid--directory-benefits">
             {features.map((a, i) => {
               const A = window[a.art];
+              const benefitHref = a.href || DIRECTORY_SITE_URL;
+              const openBenefitSite = (e) => openExternalLinkDeduped(benefitHref, e);
               return (
-                <div key={i} id={`directory-benefit-${i}`} className="card directory-benefit-card">
+                <div
+                  key={i}
+                  id={`directory-benefit-${i}`}
+                  className="card directory-benefit-card"
+                  role="link"
+                  tabIndex={0}
+                  aria-label={`${a.t} — ${en ? 'open PharmConsilium Drug Directory' : 'открыть Справочник ЛС на farmconsilium.com'}`}
+                  onClick={openBenefitSite}
+                  onKeyDown={(e) => {
+                    if (e.key !== 'Enter' && e.key !== ' ') return;
+                    openBenefitSite(e);
+                  }}
+                >
                   {a.artImg ? (
                     <div className="card-art card-art--photo card-art--photo-contain directory-benefit-art">
                       <img src={a.artImg} alt={a.artImgAlt || a.t} decoding="async" loading="lazy" />
@@ -1043,7 +1075,7 @@ function TeamPage({ navigate, lang }) {
             {en ?
               en.lede.map((para, i) => teamLedePart(para, i, { accentBold: i === 0 })) :
               <>
-                <p>Каждое утро, перед началом работы мы говорим: <strong className="team-lede-accent">СДЕЛАЕМ МИР ЛУЧШЕ!</strong></p>
+                <p>Каждое утро перед началом работы мы говорим: <strong className="team-lede-accent">СДЕЛАЕМ МИР ЛУЧШЕ!</strong></p>
                 <p><strong>Мы объединяем</strong> фармацевтические компании, медицинских специалистов и людей, заботящихся о своём здоровье, в информационных пространствах.</p>
                 <p><strong>Мы работаем</strong>, чтобы содействовать скорейшей доступности самых инновационных и эффективных фармацевтических продуктов для врачей и их пациентов в Беларуси.</p>
                 <p><strong>Мы мечтаем</strong>, что у нас получится улучшить взаимодействие в области медицинских технологий и быть полезными людям с проблемами со здоровьем.</p>

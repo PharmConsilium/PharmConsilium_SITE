@@ -435,8 +435,8 @@ window.PORTFOLIO_EN_PATCHES = {
     slides: [
       {
         src: 'assets/uploads/portfolio-draft-2-slide-1.png',
-        label: 'Welcome',
-        alt: 'Stroke Exam — platform welcome screen introducing the project curator',
+        label: 'About the platform',
+        alt: 'Stroke Exam — platform overview screen with logo and Russian-language NIHSS video simulator description',
       },
       {
         src: 'assets/uploads/portfolio-draft-2-slide-2.png',

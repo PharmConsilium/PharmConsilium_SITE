@@ -1793,7 +1793,7 @@ button { font-family: inherit; }
 .directory-benefit-card {
   scroll-margin-top: 96px;
   grid-column: span 6;
-  cursor: default;
+  cursor: pointer;
   min-height: 280px;
 }
 .directory-benefit-card .card-art {

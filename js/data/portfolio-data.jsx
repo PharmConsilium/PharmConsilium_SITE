@@ -556,8 +556,8 @@ const PORTFOLIO = [
     slides: [
       {
         src: 'assets/uploads/portfolio-draft-2-slide-1.png',
-        label: 'Приветствие',
-        alt: 'Stroke Exam — приветственный экран платформы с представлением куратора проекта',
+        label: 'О платформе',
+        alt: 'Stroke Exam — экран представления платформы: логотип, описание русскоязычного видеосимулятора NIHSS',
       },
       {
         src: 'assets/uploads/portfolio-draft-2-slide-2.png',
