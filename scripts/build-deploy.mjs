@@ -78,7 +78,8 @@ function main() {
 5. Проверьте:
    - https://pharmconsilium.com/ (должен быть 200, не цикл редиректов)
    - https://pharmconsilium.com/marketing/crm
-   - https://pharmconsilium.com/contact.php → 301 на /team/contacts
+   - https://pharmconsilium.com/contact.php → 301 на /team
+   - https://pharmconsilium.com/team/contacts → 301 на /team (страница снята)
    - https://pharmconsilium.com/index.php → 301 на /
    - https://pharmconsilium.com/sitemap.xml
 6. Google Search Console: sitemap https://pharmconsilium.com/sitemap.xml

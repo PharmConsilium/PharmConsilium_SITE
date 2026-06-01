@@ -52,7 +52,7 @@ lines.push(
   '',
   '## Страницы без artSlides alt (SUBPAGES)',
   '',
-  'Проверить при необходимости: `sales/analytics`, `hcp/mobile`, `hcp/education`, `content/edetailing`, `content/patient`, `content/psp`, `team/events`, `team/career`, `team/contacts` — контент без слайдера; alt не критичен, если нет `<img>` в данных.',
+  'Проверить при необходимости: `sales/analytics`, `hcp/mobile`, `hcp/education`, `content/edetailing`, `content/patient`, `content/psp`, `team/events`, `team/career` — контент без слайдера; alt не критичен, если нет `<img>` в данных.',
   '',
   '## EN',
   '',

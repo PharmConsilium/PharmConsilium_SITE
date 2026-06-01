@@ -12,7 +12,10 @@ DirectoryIndex index.html
   RewriteRule ^index\.php$ / [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+contact\.php[\s?] [NC]
-  RewriteRule ^contact\.php$ /team/contacts [R=301,L]
+  RewriteRule ^contact\.php$ /team [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \s/+team/contacts/?[\s?] [NC]
+  RewriteRule ^team/contacts/?$ /team [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+politics\.php[\s?] [NC]
   RewriteRule ^politics\.php$ /privacy [R=301,L]

@@ -1069,35 +1069,4 @@ window.SUBPAGES_EN_PATCHES = {
       'Project-based growth path',
     ],
   },
-
-  'team/contacts': {
-    section: 'Team',
-    title: 'Contacts and address',
-    lede: 'Minsk, Independence Avenue. Email us or visit the office—we are near the metro. Send a brief in one message.',
-    tags: ['Minsk · Belarus', 'office', 'contacts'],
-    about: [
-      'PharmConsilium office is in Minsk on Independence Avenue. Easy access by metro or car, guest parking available. Meetings in office or online—your choice.',
-      'For urgent questions, direct lines to key managers. For new partnerships—email and brief form; we reply within one business day and propose an intro format.',
-    ],
-    features: [
-      { t: 'Phone', d: '+375 (29) 000 — 00 — 00. Weekdays 9:00–19:00.' },
-      { t: 'Email', d: 'pharmconsilium@gmail.com—for briefs and new projects.' },
-      { t: 'Address', d: 'Minsk, Independence Ave., 00. Five minutes from metro.' },
-      { t: 'Careers', d: 'pharmconsilium@gmail.com—for job applications.' },
-    ],
-    steps: [
-      { n: '01', t: 'Inquiry', d: 'Describe the task in one email—what you have and what you need.' },
-      { n: '02', t: 'Call', d: '30-minute intro. No slide decks required.' },
-      { n: '03', t: 'Brief', d: 'We formalize scope, boundaries, and timeline.' },
-      { n: '04', t: 'Kickoff', d: 'Project start within a week of signing.' },
-    ],
-    deliverables: [
-      'Direct manager phone line',
-      'Email for briefs',
-      'Directions and parking map',
-      'NDA template on request',
-      'Case list under NDA',
-      'Office visit scheduling',
-    ],
-  },
 };
