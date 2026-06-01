@@ -1,6 +1,8 @@
 // i18n core: RU snapshots, EN merge for SUBPAGES/PORTFOLIO, UI strings.
 
 const LANG_STORAGE_KEY = 'pharmconsilium-lang';
+/** Включить EN в UI и localStorage; пока false — только RU для пользователей и SEO */
+const SITE_EN_ENABLED = false;
 
 const UI_RU = {
   home: 'Главная',
@@ -11,6 +13,7 @@ const UI_RU = {
   navAria: 'Разделы сайта',
   themeLight: 'Светлая тема',
   themeDark: 'Тёмная тема',
+  langEnDisabled: 'Английская версия в разработке',
   socialAria: 'Социальные сети ФармКонсилиума',
   notFoundCrumb: 'Страница в разработке',
   notFoundH1: 'Страница в разработке.',
@@ -145,8 +148,12 @@ function applyPortfolioLang(lang) {
   }
 }
 
+function isSiteEnEnabled() {
+  return SITE_EN_ENABLED;
+}
+
 function applySiteLang(lang) {
-  const next = lang === 'en' ? 'en' : 'ru';
+  const next = SITE_EN_ENABLED && lang === 'en' ? 'en' : 'ru';
   currentLang = next;
   applySubpagesLang(next);
   applyPortfolioLang(next);
@@ -159,6 +166,10 @@ function applySiteLang(lang) {
 }
 
 function getSiteLang() {
+  if (!SITE_EN_ENABLED) {
+    try { localStorage.removeItem(LANG_STORAGE_KEY); } catch (e) { /* ignore */ }
+    return 'ru';
+  }
   try {
     if (localStorage.getItem(LANG_STORAGE_KEY) === 'en') return 'en';
   } catch (e) { /* ignore */ }
@@ -233,6 +244,8 @@ currentLang = 'ru';
 document.documentElement.lang = 'ru';
 
 Object.assign(window, {
+  SITE_EN_ENABLED,
+  isSiteEnEnabled,
   applySiteLang,
   getSiteLang,
   tUI,

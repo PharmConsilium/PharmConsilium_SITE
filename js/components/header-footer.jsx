@@ -229,11 +229,21 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
   const featured = openMenu && megaConfig[openMenu] ? megaConfig[openMenu].featured : null;
   const ArtTag = featured?.art && !featured.artImg ? window[featured.art] : null;
 
+  const enEnabled = window.isSiteEnEnabled ? window.isSiteEnEnabled() : false;
   const NavActions = (
     <>
       <div className="lang-toggle">
-        <button className={lang === 'ru' ? 'on' : ''} onClick={() => setLang('ru')}>RU</button>
-        <button className={lang === 'en' ? 'on' : ''} onClick={() => setLang('en')}>EN</button>
+        <button type="button" className={lang === 'ru' ? 'on' : ''} onClick={() => setLang('ru')}>RU</button>
+        <button
+          type="button"
+          className={lang === 'en' ? 'on' : ''}
+          disabled={!enEnabled}
+          aria-disabled={!enEnabled}
+          title={!enEnabled ? t('langEnDisabled') : undefined}
+          onClick={() => { if (enEnabled) setLang('en'); }}
+        >
+          EN
+        </button>
       </div>
       <button
         type="button"

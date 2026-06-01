@@ -450,7 +450,7 @@ window.I18N_EN = {
       'Our approach is built on digital technology and a deep understanding of healthcare market needs. We help establish effective communication with key audiences through personalized campaigns, integrated digital platforms, and AI-powered solutions.',
     ],
     members: [
-      { n: 'Robbie', r: 'Corporate artificial intelligence' },
+      { n: 'Robbie', r: 'Corporate artificial intelligence', photo: 'assets/uploads/team-robbie.png', photoHover: 'assets/uploads/team-robbie-hover.png' },
       { n: 'Katarina Nevgen', r: 'Economist, content maker' },
       { n: 'Daniil Pashinsky', r: 'Software engineer' },
       { n: 'Vadim Apunevich', r: 'Software engineer' },

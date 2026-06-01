@@ -148,7 +148,9 @@ function resolveSeo(route, lang) {
 }
 
 window.updatePageSeo = function updatePageSeo(route, lang) {
-  const l = lang || (window.getSiteLang ? window.getSiteLang() : 'ru');
+  const enOn = window.isSiteEnEnabled ? window.isSiteEnEnabled() : false;
+  const raw = lang || (window.getSiteLang ? window.getSiteLang() : 'ru');
+  const l = enOn && raw === 'en' ? 'en' : 'ru';
   const meta = resolveSeo(route, l);
   const brand = siteNameForLang(l);
   document.title = meta.title;

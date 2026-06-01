@@ -988,7 +988,9 @@ function teamLedePart(text, key, opts) {
 
 function TeamPage({ navigate, lang }) {
   const en = lang === 'en' && window.getTeamCopy ? window.getTeamCopy(lang) : null;
-  const team = en ? en.members : TEAM;
+  const team = en
+    ? en.members.map((m, i) => ({ ...TEAM[i], ...m }))
+    : TEAM;
   const MidContactStrip = window.MidContactStrip;
   const t = (key) => (window.tUI ? window.tUI(key, lang) : key);
   const TeamContactsArt = window.ArtTeamContacts;
