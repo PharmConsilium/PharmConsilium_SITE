@@ -10,7 +10,7 @@ const { summary, rows } = JSON.parse(
 const lines = [
   '# SEO-аудит страниц · ФармКонсилиум',
   '',
-  'Дата сборки: 2026-05-29. Канон: `https://pharmconsilium.by`. **EN в UI выключен** (`SITE_EN_ENABLED = false`) — в индексе один URL на страницу, язык **RU**.',
+  'Дата сборки: 2026-06-01. Канон: `https://pharmconsilium.com`. **EN в UI выключен** (`SITE_EN_ENABLED = false`) — в индексе один URL на страницу, язык **RU**.',
   '',
   '## Сводка',
   '',
@@ -39,7 +39,7 @@ const lines = [
 for (const r of rows) {
   const descNote = r.descLen > 160 ? `${r.descLen} ⚠` : String(r.descLen);
   const titleNote = r.titleLen > 60 ? `${r.titleLen} ⚠` : String(r.titleLen);
-  const shortUrl = r.url.replace('https://pharmconsilium.by', '');
+  const shortUrl = r.url.replace('https://pharmconsilium.com', '');
   const h1 = (r.h1 || '').replace(/\|/g, '\\|').slice(0, 80);
   const title = (r.title || '').replace(/\|/g, '\\|').slice(0, 70);
   const desc = (r.description || '').replace(/\|/g, '\\|').replace(/\n/g, ' ').slice(0, 90);

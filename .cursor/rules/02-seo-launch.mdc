@@ -9,7 +9,7 @@ Reference: [Seologic pre-launch SEO checklist](https://www.seologic.by/blog/chek
 
 ## Critical for this project
 1. **Clean URLs** — currently hash (`#marketing/crm`). Before production: History API + server rewrites (`/marketing/crm`), update `sitemap.xml`, canonical in `seo-meta.jsx`.
-2. **Domain** — replace `https://pharmconsilium.by` in `index.html`, `robots.txt`, `sitemap.xml`, `js/data/seo-meta.jsx` (`SITE.baseUrl`).
+2. **Domain** — canonical `https://pharmconsilium.com` in `index.html`, `robots.txt`, `sitemap.xml`, `js/data/seo-meta.jsx` (`SITE.baseUrl`); `.by` → 301 on `.com` if used.
 3. **Meta per page** — `SEO_STATIC` + auto from `SUBPAGES`/`PORTFOLIO` via `updatePageSeo`. New route = SEO entry.
 4. **One H1** per screen; H2/H3 hierarchy; keywords in title/description naturally, no stuffing.
 

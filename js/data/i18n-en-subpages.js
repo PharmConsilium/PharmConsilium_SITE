@@ -1055,7 +1055,7 @@ window.SUBPAGES_EN_PATCHES = {
       { t: 'Project manager', d: 'Turnkey launch projects, 90-day cycles, pharma industry.' },
     ],
     steps: [
-      { n: '01', t: 'Apply', d: 'CV and a short note—career@pharmconsilium.by.' },
+      { n: '01', t: 'Apply', d: 'CV and a short note—pharmconsilium@gmail.com.' },
       { n: '02', t: 'Intro call', d: '30 minutes: you about you, we about near-term projects.' },
       { n: '03', t: 'Test task', d: 'Small—2–4 hours on a real case. Paid.' },
       { n: '04', t: 'Offer', d: 'Final meeting with the team, terms, start date.' },
@@ -1081,9 +1081,9 @@ window.SUBPAGES_EN_PATCHES = {
     ],
     features: [
       { t: 'Phone', d: '+375 (29) 000 — 00 — 00. Weekdays 9:00–19:00.' },
-      { t: 'Email', d: 'hello@pharmconsilium.by—for briefs and new projects.' },
+      { t: 'Email', d: 'pharmconsilium@gmail.com—for briefs and new projects.' },
       { t: 'Address', d: 'Minsk, Independence Ave., 00. Five minutes from metro.' },
-      { t: 'Careers', d: 'career@pharmconsilium.by—separate inbox for applications.' },
+      { t: 'Careers', d: 'pharmconsilium@gmail.com—for job applications.' },
     ],
     steps: [
       { n: '01', t: 'Inquiry', d: 'Describe the task in one email—what you have and what you need.' },

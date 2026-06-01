@@ -1,4 +1,4 @@
-# Корень сайта (Apache 2.4 + mod_rewrite)
+# Корень сайта: скопируйте корневой .htaccess (301 + SPA) или вставьте deploy/redirects-old-site.htaccess выше этого блока.
 
 <IfModule mod_rewrite.c>
   RewriteEngine On

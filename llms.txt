@@ -2,33 +2,33 @@
 
 > IT-команда для фарм-маркетинга в Беларуси: CRM и CLM для медпредставителей, цифровой медпред, HCP-платформы, контент, справочник ЛС, портфолио кейсов.
 
-Сайт: https://pharmconsilium.by/
+Сайт: https://pharmconsilium.com/
 Язык интерфейса для посетителей: русский (EN временно отключён в UI).
 Контакты: +375 (29) 322-00-18, pharmconsilium@gmail.com
 Адрес: Беларусь, 230025, г. Гродно, площадь Советская 2А, офис 26
 
 ## Основные разделы
 
-- Главная: https://pharmconsilium.by/
-- Фармацевтический маркетинг (CRM, CLM, 2CLM, чат-боты, веб, мобильные приложения): https://pharmconsilium.by/marketing
-- Здравоохранение (образование HCP, ИИ, PSP, RWE): https://pharmconsilium.by/hcp
-- Аутсорсинг (цифровой медпред, омниканал, лонч): https://pharmconsilium.by/sales
-- Контент и дизайн: https://pharmconsilium.by/content
-- Справочник ЛС: https://pharmconsilium.by/directory
-- Команда и контакты: https://pharmconsilium.by/team
-- Портфолио: https://pharmconsilium.by/portfolio
+- Главная: https://pharmconsilium.com/
+- Фармацевтический маркетинг (CRM, CLM, 2CLM, чат-боты, веб, мобильные приложения): https://pharmconsilium.com/marketing
+- Здравоохранение (образование HCP, ИИ, PSP, RWE): https://pharmconsilium.com/hcp
+- Аутсорсинг (цифровой медпред, омниканал, лонч): https://pharmconsilium.com/sales
+- Контент и дизайн: https://pharmconsilium.com/content
+- Справочник ЛС: https://pharmconsilium.com/directory
+- Команда и контакты: https://pharmconsilium.com/team
+- Портфолио: https://pharmconsilium.com/portfolio
 
 ## Услуги (примеры URL)
 
-- CRM для медицинских представителей: https://pharmconsilium.by/marketing/crm
-- CLM: https://pharmconsilium.by/marketing/clm
-- Цифровой медицинский представитель: https://pharmconsilium.by/sales/digital-rep
-- eDetailing: https://pharmconsilium.by/content/edetailing
+- CRM для медицинских представителей: https://pharmconsilium.com/marketing/crm
+- CLM: https://pharmconsilium.com/marketing/clm
+- Цифровой медицинский представитель: https://pharmconsilium.com/sales/digital-rep
+- eDetailing: https://pharmconsilium.com/content/edetailing
 
 ## Для краулеров
 
-- Карта сайта: https://pharmconsilium.by/sitemap.xml
-- Политика конфиденциальности: https://pharmconsilium.by/privacy
+- Карта сайта: https://pharmconsilium.com/sitemap.xml
+- Политика конфиденциальности: https://pharmconsilium.com/privacy
 - Печатная версия (noindex): /print.html
 
 Подробнее о видимости для ИИ: deploy/AI-VISIBILITY.md

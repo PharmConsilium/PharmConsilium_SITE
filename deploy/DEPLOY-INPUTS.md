@@ -2,9 +2,9 @@
 
 | Параметр | Значение |
 |----------|----------|
-| **Канон** | `https://pharmconsilium.by` |
-| **Домен .com** | _______ |
-| **Второй домен → 301 на .by** | да / нет |
+| **Канон** | `https://pharmconsilium.com` |
+| **Домен .by** | при наличии → **301 на .com** |
+| **www → apex** | да / нет |
 | **Хостинг** | nginx / Apache / Cloudflare |
 | **Яндекс.Метрика** | ID: `109560584` (в `index.html`) |
 | **Google Analytics 4** | ID: `G-LR38CVM2DJ` (в `index.html`) |

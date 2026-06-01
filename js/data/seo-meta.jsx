@@ -2,9 +2,9 @@
 // Перед продакшеном: заменить SITE.baseUrl и перейти на чистые URL (см. .cursor/rules).
 
 const SITE = {
-  baseUrl: 'https://pharmconsilium.by', // TODO: финальный домен перед запуском
+  baseUrl: 'https://pharmconsilium.com',
   /** 1200×630 JPG/PNG — заменить на финальный og-default перед запуском */
-  ogImage: 'https://pharmconsilium.by/assets/uploads/mega-marketing.png',
+  ogImage: 'https://pharmconsilium.com/assets/uploads/mega-marketing.png',
   siteName: 'ФармКонсилиум',
   siteNameEn: 'PharmConsilium',
   defaultDescription:

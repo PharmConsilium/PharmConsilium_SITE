@@ -1,4 +1,4 @@
-# Чеклист запуска · pharmconsilium.by
+# Чеклист запуска · pharmconsilium.com
 
 См. также: `DEPLOY-INPUTS.md`, `SEO-PAGES-AUDIT.md`, `WORDSTAT.md`, `AI-VISIBILITY.md`.
 
@@ -24,7 +24,8 @@
 ### 3. Sitemap и robots
 
 - [ ] `sitemap.xml` — 46 URL (генерация: `node scripts/generate-sitemap.js`)
-- [ ] `robots.txt`: `Sitemap: https://pharmconsilium.by/sitemap.xml`, `Disallow: /print.html`
+- [ ] `robots.txt`: `Sitemap: https://pharmconsilium.com/sitemap.xml`, `Disallow: /print.html`
+- [ ] `deploy/redirects-old-site.htaccess` (или `.htaccess` в корне) — 301 со старого PHP-сайта
 - [ ] Отправить sitemap в **Яндекс.Вебмастер** и **Google Search Console**
 
 ### 4. Редиректы 301
@@ -63,7 +64,7 @@
 
 ### 8. llms.txt и Schema
 
-- [ ] `https://pharmconsilium.by/llms.txt` доступен
+- [ ] `https://pharmconsilium.com/llms.txt` доступен
 - [ ] JSON-LD Organization + LocalBusiness в `index.html` (NAP = футер)
 
 ### 9. EN

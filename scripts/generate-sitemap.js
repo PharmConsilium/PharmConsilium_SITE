@@ -9,7 +9,7 @@ const { rows } = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'deploy/seo-audit-data.json'), 'utf8')
 );
 
-const BASE = 'https://pharmconsilium.by';
+const BASE = 'https://pharmconsilium.com';
 const priority = (route) => {
   if (route === 'home') return '1.0';
   if (['marketing', 'hcp', 'sales', 'content'].includes(route)) return '0.9';

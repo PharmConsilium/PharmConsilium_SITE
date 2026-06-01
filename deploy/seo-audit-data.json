@@ -6,98 +6,98 @@
     "portfolioDraft": 4,
     "titleDuplicates": [],
     "descOver160": [
-      "https://pharmconsilium.by/marketing/clm",
-      "https://pharmconsilium.by/marketing/chatbot",
-      "https://pharmconsilium.by/marketing/ai",
-      "https://pharmconsilium.by/hcp/chatbot",
-      "https://pharmconsilium.by/hcp/ai-healthcare",
-      "https://pharmconsilium.by/hcp/psp",
-      "https://pharmconsilium.by/sales/digital-rep",
-      "https://pharmconsilium.by/sales/omnichannel",
-      "https://pharmconsilium.by/content/medical",
-      "https://pharmconsilium.by/content/video",
-      "https://pharmconsilium.by/content/presentations",
-      "https://pharmconsilium.by/content/advertising",
-      "https://pharmconsilium.by/content/gamification",
-      "https://pharmconsilium.by/portfolio/conference-pk25",
-      "https://pharmconsilium.by/portfolio/psp-platform",
-      "https://pharmconsilium.by/portfolio/clm-veeva"
+      "https://pharmconsilium.com/marketing/clm",
+      "https://pharmconsilium.com/marketing/chatbot",
+      "https://pharmconsilium.com/marketing/ai",
+      "https://pharmconsilium.com/hcp/chatbot",
+      "https://pharmconsilium.com/hcp/ai-healthcare",
+      "https://pharmconsilium.com/hcp/psp",
+      "https://pharmconsilium.com/sales/digital-rep",
+      "https://pharmconsilium.com/sales/omnichannel",
+      "https://pharmconsilium.com/content/medical",
+      "https://pharmconsilium.com/content/video",
+      "https://pharmconsilium.com/content/presentations",
+      "https://pharmconsilium.com/content/advertising",
+      "https://pharmconsilium.com/content/gamification",
+      "https://pharmconsilium.com/portfolio/conference-pk25",
+      "https://pharmconsilium.com/portfolio/psp-platform",
+      "https://pharmconsilium.com/portfolio/clm-veeva"
     ],
     "descUnder50": [
-      "https://pharmconsilium.by/",
-      "https://pharmconsilium.by/marketing",
-      "https://pharmconsilium.by/hcp",
-      "https://pharmconsilium.by/sales",
-      "https://pharmconsilium.by/content",
-      "https://pharmconsilium.by/team",
-      "https://pharmconsilium.by/portfolio"
+      "https://pharmconsilium.com/",
+      "https://pharmconsilium.com/marketing",
+      "https://pharmconsilium.com/hcp",
+      "https://pharmconsilium.com/sales",
+      "https://pharmconsilium.com/content",
+      "https://pharmconsilium.com/team",
+      "https://pharmconsilium.com/portfolio"
     ],
     "titleOver60": [
       {
-        "url": "https://pharmconsilium.by/marketing/2clm",
+        "url": "https://pharmconsilium.com/marketing/2clm",
         "len": 65
       },
       {
-        "url": "https://pharmconsilium.by/marketing/chatbot",
+        "url": "https://pharmconsilium.com/marketing/chatbot",
         "len": 78
       },
       {
-        "url": "https://pharmconsilium.by/marketing/web",
+        "url": "https://pharmconsilium.com/marketing/web",
         "len": 102
       },
       {
-        "url": "https://pharmconsilium.by/hcp/ai-recom",
+        "url": "https://pharmconsilium.com/hcp/ai-recom",
         "len": 75
       },
       {
-        "url": "https://pharmconsilium.by/hcp/psp",
+        "url": "https://pharmconsilium.com/hcp/psp",
         "len": 62
       },
       {
-        "url": "https://pharmconsilium.by/sales/omnichannel",
+        "url": "https://pharmconsilium.com/sales/omnichannel",
         "len": 86
       },
       {
-        "url": "https://pharmconsilium.by/content/medical",
+        "url": "https://pharmconsilium.com/content/medical",
         "len": 85
       },
       {
-        "url": "https://pharmconsilium.by/content/video",
+        "url": "https://pharmconsilium.com/content/video",
         "len": 72
       },
       {
-        "url": "https://pharmconsilium.by/content/presentations",
+        "url": "https://pharmconsilium.com/content/presentations",
         "len": 77
       },
       {
-        "url": "https://pharmconsilium.by/content/advertising",
+        "url": "https://pharmconsilium.com/content/advertising",
         "len": 76
       },
       {
-        "url": "https://pharmconsilium.by/portfolio/patient-series",
+        "url": "https://pharmconsilium.com/portfolio/patient-series",
         "len": 63
       },
       {
-        "url": "https://pharmconsilium.by/portfolio/omni-rebranding",
+        "url": "https://pharmconsilium.com/portfolio/omni-rebranding",
         "len": 64
       },
       {
-        "url": "https://pharmconsilium.by/portfolio/psp-platform",
+        "url": "https://pharmconsilium.com/portfolio/psp-platform",
         "len": 80
       },
       {
-        "url": "https://pharmconsilium.by/portfolio/clm-veeva",
+        "url": "https://pharmconsilium.com/portfolio/clm-veeva",
         "len": 72
       },
       {
-        "url": "https://pharmconsilium.by/portfolio/directory-launch",
+        "url": "https://pharmconsilium.com/portfolio/directory-launch",
         "len": 90
       }
     ]
   },
   "rows": [
     {
-      "url": "https://pharmconsilium.by/",
+      "url": "https://pharmconsilium.com/",
       "route": "home",
       "h1": "home",
       "title": "ФармКонсилиум · IT-решения для фарм-маркетинга в Беларуси",
@@ -110,7 +110,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing",
+      "url": "https://pharmconsilium.com/marketing",
       "route": "marketing",
       "h1": "marketing",
       "title": "Фармацевтический маркетинг · ФармКонсилиум",
@@ -123,7 +123,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/hcp",
+      "url": "https://pharmconsilium.com/hcp",
       "route": "hcp",
       "h1": "hcp",
       "title": "Здравоохранение · ФармКонсилиум",
@@ -136,7 +136,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/sales",
+      "url": "https://pharmconsilium.com/sales",
       "route": "sales",
       "h1": "sales",
       "title": "Аутсорсинг · ФармКонсилиум",
@@ -149,7 +149,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content",
+      "url": "https://pharmconsilium.com/content",
       "route": "content",
       "h1": "content",
       "title": "Дизайн · ФармКонсилиум",
@@ -162,7 +162,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/directory",
+      "url": "https://pharmconsilium.com/directory",
       "route": "directory",
       "h1": "directory",
       "title": "Справочник лекарственных средств · ФармКонсилиум",
@@ -175,7 +175,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/team",
+      "url": "https://pharmconsilium.com/team",
       "route": "team",
       "h1": "team",
       "title": "Команда и контакты · ФармКонсилиум",
@@ -188,7 +188,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/privacy",
+      "url": "https://pharmconsilium.com/privacy",
       "route": "privacy",
       "h1": "privacy",
       "title": "Политика конфиденциальности · ФармКонсилиум",
@@ -201,7 +201,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio",
+      "url": "https://pharmconsilium.com/portfolio",
       "route": "portfolio",
       "h1": "portfolio",
       "title": "Портфолио, проекты и фичи · ФармКонсилиум",
@@ -214,7 +214,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/crm",
+      "url": "https://pharmconsilium.com/marketing/crm",
       "route": "marketing/crm",
       "h1": "CRM для медицинских представителей",
       "title": "CRM для медицинских представителей · ФармКонсилиум",
@@ -227,7 +227,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/clm",
+      "url": "https://pharmconsilium.com/marketing/clm",
       "route": "marketing/clm",
       "h1": "CLM — ПО для работы МП F2F с промоконтентом",
       "title": "CLM — ПО для работы МП F2F с промоконтентом · ФармКонсилиум",
@@ -240,7 +240,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/2clm",
+      "url": "https://pharmconsilium.com/marketing/2clm",
       "route": "marketing/2clm",
       "h1": "2CLM — ПО для увеличения эффективности визитов SF",
       "title": "2CLM — ПО для увеличения эффективности визитов SF · ФармКонсилиум",
@@ -253,7 +253,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/chatbot",
+      "url": "https://pharmconsilium.com/marketing/chatbot",
       "route": "marketing/chatbot",
       "h1": "Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP",
       "title": "Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP · ФармКонсилиум",
@@ -266,7 +266,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/web",
+      "url": "https://pharmconsilium.com/marketing/web",
       "route": "marketing/web",
       "h1": "Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров",
       "title": "Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров · ФармКонсилиум",
@@ -279,7 +279,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/mobile",
+      "url": "https://pharmconsilium.com/marketing/mobile",
       "route": "marketing/mobile",
       "h1": "Разработка мобильных приложений",
       "title": "Разработка мобильных приложений · ФармКонсилиум",
@@ -292,7 +292,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/events",
+      "url": "https://pharmconsilium.com/marketing/events",
       "route": "marketing/events",
       "h1": "Цифровая поддержка мероприятий",
       "title": "Цифровая поддержка мероприятий · ФармКонсилиум",
@@ -305,7 +305,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/marketing/ai",
+      "url": "https://pharmconsilium.com/marketing/ai",
       "route": "marketing/ai",
       "h1": "Тренинги для медицинских представителей",
       "title": "Тренинги для медицинских представителей · ФармКонсилиум",
@@ -318,7 +318,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/hcp/ai-recom",
+      "url": "https://pharmconsilium.com/hcp/ai-recom",
       "route": "hcp/ai-recom",
       "h1": "Цифровые платформы для образовательных медицинских программ",
       "title": "Цифровые платформы для образовательных медицинских программ · ФармКонсилиум",
@@ -331,7 +331,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/hcp/education",
+      "url": "https://pharmconsilium.com/hcp/education",
       "route": "hcp/education",
       "h1": "Программы поддержки пациентов",
       "title": "Программы поддержки пациентов · ФармКонсилиум",
@@ -344,7 +344,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/hcp/chatbot",
+      "url": "https://pharmconsilium.com/hcp/chatbot",
       "route": "hcp/chatbot",
       "h1": "Чат-боты и ИИ-ассистенты для медицины",
       "title": "Чат-боты и ИИ-ассистенты для медицины · ФармКонсилиум",
@@ -357,7 +357,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/hcp/mobile",
+      "url": "https://pharmconsilium.com/hcp/mobile",
       "route": "hcp/mobile",
       "h1": "Мобильные приложения",
       "title": "Мобильные приложения · ФармКонсилиум",
@@ -370,7 +370,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/hcp/ai-healthcare",
+      "url": "https://pharmconsilium.com/hcp/ai-healthcare",
       "route": "hcp/ai-healthcare",
       "h1": "Цифровые платформы для научных исследований",
       "title": "Цифровые платформы для научных исследований · ФармКонсилиум",
@@ -383,7 +383,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/hcp/psp",
+      "url": "https://pharmconsilium.com/hcp/psp",
       "route": "hcp/psp",
       "h1": "Создание систем анализа и обработки данных RWE",
       "title": "Создание систем анализа и обработки данных RWE · ФармКонсилиум",
@@ -396,7 +396,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/sales/digital-rep",
+      "url": "https://pharmconsilium.com/sales/digital-rep",
       "route": "sales/digital-rep",
       "h1": "Цифровой медицинский представитель",
       "title": "Цифровой медицинский представитель · ФармКонсилиум",
@@ -409,7 +409,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/sales/omnichannel",
+      "url": "https://pharmconsilium.com/sales/omnichannel",
       "route": "sales/omnichannel",
       "h1": "Цифровой медицинский представитель в гибридном продвижении фармбрендов",
       "title": "Цифровой медицинский представитель в гибридном продвижении фармбрендов · ФармКонсилиум",
@@ -422,7 +422,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/sales/launch",
+      "url": "https://pharmconsilium.com/sales/launch",
       "route": "sales/launch",
       "h1": "Лонч - аутсорсинг",
       "title": "Лонч - аутсорсинг · ФармКонсилиум",
@@ -435,7 +435,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/sales/analytics",
+      "url": "https://pharmconsilium.com/sales/analytics",
       "route": "sales/analytics",
       "h1": "Аналитика продаж и доли голоса",
       "title": "Аналитика продаж и доли голоса · ФармКонсилиум",
@@ -448,7 +448,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/medical",
+      "url": "https://pharmconsilium.com/content/medical",
       "route": "content/medical",
       "h1": "CLM-презентации, детейлеры, слайдбоксы для медицинского представителя",
       "title": "CLM-презентации, детейлеры, слайдбоксы для медицинского представителя · ФармКонсилиум",
@@ -461,7 +461,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/edetailing",
+      "url": "https://pharmconsilium.com/content/edetailing",
       "route": "content/edetailing",
       "h1": "CLM и eDetailing",
       "title": "CLM и eDetailing · ФармКонсилиум",
@@ -474,7 +474,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/patient",
+      "url": "https://pharmconsilium.com/content/patient",
       "route": "content/patient",
       "h1": "Пациентский образовательный контент",
       "title": "Пациентский образовательный контент · ФармКонсилиум",
@@ -487,7 +487,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/video",
+      "url": "https://pharmconsilium.com/content/video",
       "route": "content/video",
       "h1": "Видео HCP - от сценария до спецэффектов в выступлении OL",
       "title": "Видео HCP - от сценария до спецэффектов в выступлении OL · ФармКонсилиум",
@@ -500,7 +500,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/presentations",
+      "url": "https://pharmconsilium.com/content/presentations",
       "route": "content/presentations",
       "h1": "Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС",
       "title": "Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС · ФармКонсилиум",
@@ -513,7 +513,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/advertising",
+      "url": "https://pharmconsilium.com/content/advertising",
       "route": "content/advertising",
       "h1": "ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг",
       "title": "ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг · ФармКонсилиум",
@@ -526,7 +526,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/gamification",
+      "url": "https://pharmconsilium.com/content/gamification",
       "route": "content/gamification",
       "h1": "Игры, квизы и клинические детективы для HCP",
       "title": "Игры, квизы и клинические детективы для HCP · ФармКонсилиум",
@@ -539,7 +539,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/content/psp",
+      "url": "https://pharmconsilium.com/content/psp",
       "route": "content/psp",
       "h1": "Программы поддержки пациентов · контент",
       "title": "Программы поддержки пациентов · контент · ФармКонсилиум",
@@ -552,7 +552,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/team/events",
+      "url": "https://pharmconsilium.com/team/events",
       "route": "team/events",
       "h1": "События и публикации",
       "title": "События и публикации · ФармКонсилиум",
@@ -565,7 +565,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/team/career",
+      "url": "https://pharmconsilium.com/team/career",
       "route": "team/career",
       "h1": "Карьера в ФармКонсилиуме",
       "title": "Карьера в ФармКонсилиуме · ФармКонсилиум",
@@ -578,7 +578,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/team/contacts",
+      "url": "https://pharmconsilium.com/team/contacts",
       "route": "team/contacts",
       "h1": "Контакты и адрес",
       "title": "Контакты и адрес · ФармКонсилиум",
@@ -591,7 +591,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/cardio-lonch",
+      "url": "https://pharmconsilium.com/portfolio/cardio-lonch",
       "route": "portfolio/cardio-lonch",
       "h1": "Рекламный баннер Бепантен крем",
       "title": "Рекламный баннер Бепантен крем · ФармКонсилиум",
@@ -604,7 +604,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/ai-trener",
+      "url": "https://pharmconsilium.com/portfolio/ai-trener",
       "route": "portfolio/ai-trener",
       "h1": "Брендбук БАД, нейминг, упаковка",
       "title": "Брендбук БАД, нейминг, упаковка · ФармКонсилиум",
@@ -617,7 +617,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/patient-series",
+      "url": "https://pharmconsilium.com/portfolio/patient-series",
       "route": "portfolio/patient-series",
       "h1": "Нейминг и создание упаковки БАД для регистрации",
       "title": "Нейминг и создание упаковки БАД для регистрации · ФармКонсилиум",
@@ -630,7 +630,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/conference-pk25",
+      "url": "https://pharmconsilium.com/portfolio/conference-pk25",
       "route": "portfolio/conference-pk25",
       "h1": "Вертикальное видео (видеодетейлер) для HCP",
       "title": "Вертикальное видео (видеодетейлер) для HCP · ФармКонсилиум",
@@ -643,7 +643,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/omni-rebranding",
+      "url": "https://pharmconsilium.com/portfolio/omni-rebranding",
       "route": "portfolio/omni-rebranding",
       "h1": "Создание сценария и видеолекции с лидером мнения",
       "title": "Создание сценария и видеолекции с лидером мнения · ФармКонсилиум",
@@ -656,7 +656,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/psp-platform",
+      "url": "https://pharmconsilium.com/portfolio/psp-platform",
       "route": "portfolio/psp-platform",
       "h1": "Разработка и дизайн CLM-презентации для лекарственного препарата",
       "title": "Разработка и дизайн CLM-презентации для лекарственного препарата · ФармКонсилиум",
@@ -669,7 +669,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/clm-veeva",
+      "url": "https://pharmconsilium.com/portfolio/clm-veeva",
       "route": "portfolio/clm-veeva",
       "h1": "Цифровая платформа для обучения медицинских специалистов",
       "title": "Цифровая платформа для обучения медицинских специалистов · ФармКонсилиум",
@@ -682,7 +682,7 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.by/portfolio/directory-launch",
+      "url": "https://pharmconsilium.com/portfolio/directory-launch",
       "route": "portfolio/directory-launch",
       "h1": "Медицинская инфографика титрации лекарственного препарата для лечения боли",
       "title": "Медицинская инфографика титрации лекарственного препарата для лечения боли · ФармКонсилиум",

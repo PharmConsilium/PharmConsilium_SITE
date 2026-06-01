@@ -8,7 +8,7 @@ const port = fs.readFileSync(path.join(ROOT, 'js/data/portfolio-data.jsx'), 'utf
 const seo = fs.readFileSync(path.join(ROOT, 'js/data/seo-meta.jsx'), 'utf8');
 
 const BRAND = 'ФармКонсилиум';
-const BASE = 'https://pharmconsilium.by';
+const BASE = 'https://pharmconsilium.com';
 
 function parseSubpages() {
   const keys = [...sub.matchAll(/'([^']+)':\s*\{/g)].map((m) => m[1]);

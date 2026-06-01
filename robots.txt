@@ -1,8 +1,8 @@
-# ФармКонсилиум — https://pharmconsilium.by
+# ФармКонсилиум — https://pharmconsilium.com
 # Решение по AI-ботам: deploy/LAUNCH.md (по умолчанию Allow для всех)
 User-agent: *
 Allow: /
 Disallow: /print.html
 Disallow: /pharmconsilium-print.html
 
-Sitemap: https://pharmconsilium.by/sitemap.xml
+Sitemap: https://pharmconsilium.com/sitemap.xml

@@ -1,0 +1,37 @@
+# 301 со старого сайта pharmconsilium.com (PHP, /tool/, /training/, …)
+# Вставить в корень .htaccess ПЕРЕД правилами SPA (см. deploy/apache-spa.htaccess)
+
+Redirect 301 /index.php https://pharmconsilium.com/
+Redirect 301 /contact.php https://pharmconsilium.com/team/contacts
+Redirect 301 /politics.php https://pharmconsilium.com/privacy
+Redirect 301 /trainings.php https://pharmconsilium.com/hcp/education
+Redirect 301 /outsourcing.php https://pharmconsilium.com/sales
+Redirect 301 /create-stm.php https://pharmconsilium.com/content
+Redirect 301 /tools.php https://pharmconsilium.com/marketing
+
+Redirect 301 /tool/DigitalMedRep-promotion-in-RX https://pharmconsilium.com/sales/digital-rep
+Redirect 301 /tool/room-training-pharmacists-doctor https://pharmconsilium.com/hcp/education
+Redirect 301 /tool/medpred-videovizit-digital-to-face-d2f https://pharmconsilium.com/sales/digital-rep
+Redirect 301 /tool/robotcoach-pharmacy-gametraining-simulator-obuchayushchiy-igrovoy-simulyator-dlya-aptek https://pharmconsilium.com/content/gamification
+Redirect 301 /tool/Marketingovye-issledovaniya-farmacevticheskogo-rynka-Belarus https://pharmconsilium.com/sales/analytics
+Redirect 301 /tool/PharmInfo https://pharmconsilium.com/directory
+Redirect 301 /tool/quiz-simulator-game-tests-online https://pharmconsilium.com/content/gamification
+Redirect 301 /tool/razrabotka-Telegram-bot-GPT-dlya-prodvizheniya https://pharmconsilium.com/marketing/chatbot
+
+Redirect 301 /outsourcings/med-pharm-content-outsourcing https://pharmconsilium.com/content/medical
+Redirect 301 /outsourcings/autsorsing-meditsinskikh-predstaviteley-belarus https://pharmconsilium.com/sales/digital-rep
+Redirect 301 /outsourcings/Digitalrep-bigfarma-rx-marleting-promotia-lekarstv https://pharmconsilium.com/sales/digital-rep
+Redirect 301 /outsourcings/launch-outsourcing-of-a-pharmaceutical-brand-Belarus https://pharmconsilium.com/sales/launch
+Redirect 301 /outsourcings/meditcinskiy-kopirayting-i-medkontent https://pharmconsilium.com/content/medical
+
+Redirect 301 /training/struktura-vizita-meditsiskogo-predstavitelya-k-vrachu https://pharmconsilium.com/hcp/education
+Redirect 301 /training/etapy-vizita-meditsinskogo-predstavitelya-v-apteku https://pharmconsilium.com/hcp/education
+Redirect 301 /training/medrep-vizit-ogranichennyy-po-vremeni https://pharmconsilium.com/sales/digital-rep
+Redirect 301 /training/presentation-skills https://pharmconsilium.com/hcp/education
+Redirect 301 /training/online-trening-medpredov https://pharmconsilium.com/hcp/education
+
+Redirect 301 /stm/promo-reels-tik-tok-shorts https://pharmconsilium.com/content/video
+Redirect 301 /stm/digital-avatar https://pharmconsilium.com/content/video
+Redirect 301 /stm/clinic-detective https://pharmconsilium.com/content/gamification
+Redirect 301 /stm/digital-promo-content https://pharmconsilium.com/content/presentations
+Redirect 301 /stm/create-brand-book-drug https://pharmconsilium.com/content/presentations
