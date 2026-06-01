@@ -38,7 +38,7 @@ function copyRecursive(src, dest) {
 function patchIndexCacheBust(file) {
   let html = fs.readFileSync(file, 'utf8');
   html = html.replace(/window\.PHARM_CACHE_BUST\s*=\s*'[^']*'/, `window.PHARM_CACHE_BUST = '${CACHE_BUST}'`);
-  html = html.replace(/(\?v=)\d{8}[a-z]?/g, `$1${CACHE_BUST}`);
+  html = html.replace(/(\?v=)[^"'&\s]+/g, `$1${CACHE_BUST}`);
   fs.writeFileSync(file, html);
 }
 
