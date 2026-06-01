@@ -294,7 +294,7 @@ window.I18N_EN = {
       crumb: 'Design',
       h1Line1: 'HCP content in the language of medical science',
       h1Accent: 'for physicians, pharmacists, and pharmaceutical specialists',
-      lede: 'We create drug presentations, medical videos, quizzes, trivia, clinical detective stories, games, and gamification in medicine.',
+      lede: 'We create drug presentations, medical videos, quizzes, trivia, and clinical detective stories. Games and gamification in medicine.',
       cards: [
         { title: 'CLM presentations, e-detailers, and slide boxes for medical representatives', sub: 'medical', size: 'huge', art: 'ArtDoc',
           desc: 'CLM detailers and visual aids for rep F2F visits: clinically accurate narrative, evidence-based design, compliance, and per-visit analytics—all under product manager control.',
