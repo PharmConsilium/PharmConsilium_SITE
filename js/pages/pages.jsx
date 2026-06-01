@@ -83,11 +83,25 @@ const MARQUEE_TICKERS = [
 
 function HomePage({ navigate, scenario, setScenario, lang }) {
   const [heroQuery, setHeroQuery] = React.useState('');
+  const [chartReady, setChartReady] = React.useState(() => Boolean(window.ForecastChart));
   const insightsGridRef = React.useRef(null);
   const MidContactStrip = window.MidContactStrip;
   const en = lang === 'en' && window.getHomeCopy ? window.getHomeCopy('en') : null;
+  const ForecastChart = chartReady ? window.ForecastChart : null;
 
   const heroQueryReady = heroQuery.trim().length > 0;
+
+  React.useEffect(() => {
+    if (window.ForecastChart) {
+      setChartReady(true);
+      return undefined;
+    }
+    function onDeferred(ev) {
+      if (ev.detail && ev.detail.name === 'forecast-chart') setChartReady(true);
+    }
+    window.addEventListener('pharm:deferred-ready', onDeferred);
+    return () => window.removeEventListener('pharm:deferred-ready', onDeferred);
+  }, []);
 
   const insightCards = en ? en.insightCards : [
   { n: '01', t: 'Портфолио, проекты и фичи ФармКонсилиум', d: 'Портфолио реализованных проектов, которыми мы гордимся.', to: 'portfolio' },
@@ -244,7 +258,9 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
                 onClick={() => setScenario(k)}>{l}</button>
                 )}
               </div>
-              <ForecastChart scenario={scenario} key={scenario} />
+              {ForecastChart
+                ? <ForecastChart scenario={scenario} key={scenario} />
+                : <div className="fc-chart-skeleton" aria-hidden="true" />}
             </div>
 
             <div className="fc-legend">

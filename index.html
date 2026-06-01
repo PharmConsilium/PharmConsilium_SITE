@@ -14,25 +14,82 @@
 <meta property="og:site_name" content="ФармКонсилиум"/>
 <meta property="og:title" content="ФармКонсилиум · IT-решения для фарм-маркетинга в Беларуси"/>
 <meta property="og:description" content="IT-решения для фарм-маркетинга в Беларуси: CRM, CLM, AI для медпредов, контент, справочник ЛС."/>
-<!-- TODO: og:image после финального домена и превью-картинки -->
+<meta property="og:url" content="https://pharmconsilium.by/"/>
+<meta property="og:image" content="https://pharmconsilium.by/assets/uploads/mega-marketing.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://pharmconsilium.by/assets/uploads/mega-marketing.png"/>
 
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml"/>
+<link rel="icon" href="assets/favicon.png" type="image/png" sizes="32x32"/>
+<link rel="icon" href="assets/favicon.png" type="image/png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="assets/favicon.png"/>
 
+<link rel="dns-prefetch" href="https://unpkg.com"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/styles.css?v=20260530j"/>
+<link rel="stylesheet" href="css/styles.css?v=20260531perf"/>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.26.9/babel.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://pharmconsilium.by/#organization",
+      "name": "ФармКонсилиум",
+      "alternateName": "PharmConsilium",
+      "url": "https://pharmconsilium.by/",
+      "logo": "https://pharmconsilium.by/assets/logo.svg",
+      "email": "pharmconsilium@gmail.com",
+      "telephone": "+375293220018",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "площадь Советская 2А, офис 26",
+        "addressLocality": "Гродно",
+        "postalCode": "230025",
+        "addressCountry": "BY"
+      },
+      "areaServed": { "@type": "Country", "name": "Belarus" },
+      "description": "IT-решения для фарм-маркетинга в Беларуси: CRM, CLM, цифровой медпред, контент и справочник ЛС."
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://pharmconsilium.by/#localbusiness",
+      "name": "ФармКонсилиум",
+      "image": "https://pharmconsilium.by/assets/uploads/mega-marketing.png",
+      "url": "https://pharmconsilium.by/",
+      "telephone": "+375293220018",
+      "email": "pharmconsilium@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "площадь Советская 2А, офис 26",
+        "addressLocality": "Гродно",
+        "postalCode": "230025",
+        "addressCountry": "BY"
+      },
+      "openingHours": "Mo-Fr 09:00-19:00",
+      "priceRange": "$$",
+      "parentOrganization": { "@id": "https://pharmconsilium.by/#organization" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="root"></div>
 <noscript>
-  <p>Для работы сайта ФармКонсилиум включите JavaScript. Разделы: фармацевтический маркетинг, здравоохранение, аутсорсинг, контент, справочник ЛС, команда.</p>
+  <p>Для работы сайта ФармКонсилиум включите JavaScript.</p>
+  <ul>
+    <li><a href="/">Главная</a></li>
+    <li><a href="/marketing">Фармацевтический маркетинг</a></li>
+    <li><a href="/hcp">Здравоохранение</a></li>
+    <li><a href="/sales">Аутсорсинг</a></li>
+    <li><a href="/content">Контент и дизайн</a></li>
+    <li><a href="/directory">Справочник ЛС</a></li>
+    <li><a href="/portfolio">Портфолио</a></li>
+    <li><a href="/team">Команда и контакты</a></li>
+  </ul>
 </noscript>
 
 <script src="js/data/privacy-policy-ru.js"></script>
@@ -40,7 +97,94 @@
 <script src="js/data/i18n-en-subpages.js"></script>
 <script src="js/data/i18n-en-portfolio.js"></script>
 <script src="js/data/i18n-en-ui.js"></script>
-<script src="js/pharm-boot.js?v=20260526c"></script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+
+<script>
+window.PHARM_CACHE_BUST = '20260531perf';
+window.PHARM_HIDE_TWEAKS = !/localhost|127\.0\.0\.1/i.test(location.hostname)
+  && location.search.indexOf('tweaks') < 0;
+
+(function pharmLoader() {
+  var v = window.PHARM_CACHE_BUST;
+  var host = location.hostname || '';
+  var devJsx = /(?:\?|&)devjsx(?:=|&|$)/.test(location.search);
+  var forceBundle = /(?:\?|&)bundle(?:=|&|$)/.test(location.search);
+  var isLocal = /^(localhost|127\.0\.0\.1)$/i.test(host) || location.protocol === 'file:';
+  var useBundle = forceBundle || (!isLocal && !devJsx);
+
+  function showBootError(msg) {
+    var root = document.getElementById('root');
+    if (!root || root.childNodes.length) return;
+    root.innerHTML = '<div style="max-width:520px;margin:48px auto;padding:24px;font-family:system-ui,sans-serif">'
+      + '<p style="font-weight:600;margin:0 0 8px">Не удалось загрузить сайт</p>'
+      + '<p style="margin:0 0 12px;color:#5a6273;font-size:14px;line-height:1.5">' + msg + '</p>'
+      + '<p style="margin:0;font-size:13px"><a href="?devjsx">Перезагрузить в режиме разработки</a></p></div>';
+  }
+
+  function append(src, onload, onerror) {
+    var s = document.createElement('script');
+    s.src = src;
+    if (onload) s.onload = onload;
+    if (onerror) s.onerror = onerror;
+    document.body.appendChild(s);
+  }
+
+  function loadDeferredHelper(next) {
+    append('js/pharm-deferred.js?v=' + v, next, function () {
+      console.error('[pharm] pharm-deferred.js failed');
+      if (next) next();
+    });
+  }
+
+  function loadBabelBoot() {
+    if (!window.React || !window.ReactDOM) {
+      showBootError('Не загрузился React с CDN (unpkg.com). Проверьте интернет или откройте сайт через локальный сервер, не file://');
+      return;
+    }
+    append('https://unpkg.com/@babel/standalone@7.26.9/babel.min.js', function () {
+      loadDeferredHelper(function () {
+        append('js/pharm-boot.js?v=' + v, null, function () {
+          showBootError('Не найден js/pharm-boot.js. Запустите сайт из корня проекта через Live Server или scripts/serve.ps1');
+        });
+      });
+    }, function () {
+      showBootError('Не загрузился Babel с CDN. Добавьте ?devjsx или выполните npm run build:js для production-бандла.');
+    });
+  }
+
+  function tryBundle() {
+    fetch('js/pharm-bundle.min.js?v=' + v, { method: 'HEAD' })
+      .then(function (res) {
+        var ok = res.ok && (res.headers.get('content-type') || '').indexOf('javascript') >= 0;
+        if (!ok) {
+          loadBabelBoot();
+          return;
+        }
+        append('js/pharm-bundle.min.js?v=' + v, null, function () {
+          loadBabelBoot();
+        });
+      })
+      .catch(function () { loadBabelBoot(); });
+  }
+
+  setTimeout(function () {
+    var root = document.getElementById('root');
+    if (root && !root.childNodes.length && !window.__pharmReactRoot) {
+      showBootError('Загрузка занимает слишком долго. Откройте консоль (F12) или попробуйте <a href="?devjsx">?devjsx</a>.');
+    }
+  }, 12000);
+
+  if (!window.React || !window.ReactDOM) {
+    showBootError('React не загрузился. Проверьте доступ к unpkg.com.');
+    return;
+  }
+
+  if (useBundle) tryBundle();
+  else loadBabelBoot();
+})();
+</script>
 
 </body>
 </html>

@@ -1,0 +1,10 @@
+{
+  "name": "pharmconsilium-site",
+  "private": true,
+  "scripts": {
+    "build:js": "node scripts/build-pharm-bundle.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

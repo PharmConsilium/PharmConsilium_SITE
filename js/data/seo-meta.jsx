@@ -3,6 +3,8 @@
 
 const SITE = {
   baseUrl: 'https://pharmconsilium.by', // TODO: финальный домен перед запуском
+  /** 1200×630 JPG/PNG — заменить на финальный og-default перед запуском */
+  ogImage: 'https://pharmconsilium.by/assets/uploads/mega-marketing.png',
   siteName: 'ФармКонсилиум',
   siteNameEn: 'PharmConsilium',
   defaultDescription:
@@ -164,4 +166,9 @@ window.updatePageSeo = function updatePageSeo(route, lang) {
   const r = String(route || 'home').replace(/^\/+/, '').replace(/\/+$/, '');
   const canonical = r === 'home' ? `${base}/` : `${base}/${r}`;
   ensureCanonical(canonical);
+  ensureMeta('og:url', 'property', canonical);
+  if (SITE.ogImage) {
+    ensureMeta('og:image', 'property', SITE.ogImage);
+    ensureMeta('twitter:image', 'name', SITE.ogImage);
+  }
 };

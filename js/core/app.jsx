@@ -66,6 +66,20 @@ function App() {
   const ContactFormModal = window.ContactFormModal;
   const ForecastRequestModal = window.ForecastRequestModal;
   const EndContactStrip = window.EndContactStrip;
+  const hideTweaks = Boolean(window.PHARM_HIDE_TWEAKS);
+  const [robotReady, setRobotReady] = React.useState(() => Boolean(window.RobotCompanion));
+
+  React.useEffect(() => {
+    if (window.RobotCompanion) {
+      setRobotReady(true);
+      return undefined;
+    }
+    function onDeferred(ev) {
+      if (ev.detail && ev.detail.name === 'robot') setRobotReady(true);
+    }
+    window.addEventListener('pharm:deferred-ready', onDeferred);
+    return () => window.removeEventListener('pharm:deferred-ready', onDeferred);
+  }, []);
   const scrollByRoute = React.useRef({});
   const navKind = React.useRef('push');
   const routeRef = React.useRef(route);
@@ -277,11 +291,11 @@ function App() {
 
       {EndContactStrip && route !== 'directory' && route !== 'team' ? <EndContactStrip lang={lang} /> : null}
 
-      {t.robot !== false && <RobotCompanion/>}
+      {t.robot !== false && robotReady && window.RobotCompanion ? <RobotCompanion/> : null}
 
       <Footer navigate={navigate} lang={lang}/>
 
-      <TweaksPanel title="Tweaks · ФармКонсилиум">
+      {!hideTweaks ? <TweaksPanel title="Tweaks · ФармКонсилиум">
         <TweakSection label="Тема"/>
         <TweakToggle  label="Тёмная тема" value={t.dark} onChange={(v)=>setTweak('dark', v)}/>
         <TweakColor   label="Акцент"      value={t.accent}
@@ -306,7 +320,7 @@ function App() {
                       onChange={(v)=>setScenario(v)}/>
         <TweakSection label="Компаньон"/>
         <TweakToggle  label="3D-робот" value={t.robot !== false} onChange={(v)=>setTweak('robot', v)}/>
-      </TweaksPanel>
+      </TweaksPanel> : null}
     </div>
   );
 }

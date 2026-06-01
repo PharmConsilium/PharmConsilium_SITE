@@ -46,10 +46,19 @@ powershell -ExecutionPolicy Bypass -File scripts/serve.ps1
 
 Legacy aliases `pharmconsilium.html` and `pharmconsilium-print.html` redirect to `index.html` and `print.html`.
 
+## Скорость загрузки
+
+1. **Продакшен (максимально быстро):** установите Node.js, затем `npm install` и `npm run build:js` — появится `js/pharm-bundle.min.js` (без Babel в браузере).
+2. **Без сборки:** сайт сам перейдёт на оптимизированный `pharm-boot.js` (параллельная загрузка, кэш JSX, отложенный робот).
+3. **Разработка JSX:** откройте `http://127.0.0.1:3000/?devjsx` — принудительно режим Babel.
+4. Панель Tweaks на localhost или с `?tweaks` в URL; на проде скрыта.
+
+Подробнее: `deploy/PERFORMANCE.md`.
+
 ## SEO перед продакшеном
 
 1. Указать реальный домен в `js/data/seo-meta.jsx`, `robots.txt`, `sitemap.xml`, `index.html`.
-2. Перейти с hash-URL на обычные пути (рекомендация в `.cursor/rules/02-seo-launch.mdc`).
+2. Чистые пути `/marketing/crm` — на сервере нужен SPA fallback (`deploy/nginx-spa.conf`).
 3. Подключить Метрику, Вебмастер, GA4, Search Console.
 
 Чек-лист: [Seologic — SEO перед запуском](https://www.seologic.by/blog/chek-list-po-seo-chto-nuzhno-proverit-pered-zapuskom-novogo-sajta).

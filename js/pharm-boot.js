@@ -1,26 +1,12 @@
-// Sequential Babel loader — scripts run in order (fixes portfolio ProjectPage).
+// Boot: parallel fetch + optional Babel cache; core scripts then mount; deferred via pharm-deferred.js
 (function () {
-  var scrollLockCount = 0;
+  window.PHARM_CACHE_BUST = '20260531perf';
+  var CACHE_BUST = window.PHARM_CACHE_BUST;
+  var CACHE_PREFIX = 'pharm:jsx:' + CACHE_BUST + ':';
 
-  window.lockPageScroll = function lockPageScroll() {
-    scrollLockCount += 1;
-    if (scrollLockCount > 1) return;
-    document.body.classList.add('is-scroll-locked');
-  };
-
-  window.unlockPageScroll = function unlockPageScroll() {
-    if (scrollLockCount <= 0) return;
-    scrollLockCount -= 1;
-    if (scrollLockCount > 0) return;
-    document.body.classList.remove('is-scroll-locked');
-  };
-
-  var CACHE_BUST = '20260526c';
-
-  var BABEL_SCRIPTS = [
+  var CORE_SCRIPTS = [
     'js/components/tweaks-panel.jsx',
     'js/components/illustrations.jsx',
-    'js/components/forecast-chart.jsx',
     'js/components/header-footer.jsx',
     'js/pages/pages.jsx',
     'js/pages/privacy-page.jsx',
@@ -34,7 +20,6 @@
     'js/components/detail-page.jsx',
     'js/pages/portfolio-pages.jsx',
     'js/components/robbie-face-cycle.jsx',
-    'js/components/robot.jsx',
     'js/components/contact-modal.jsx',
     'js/components/forecast-modal.jsx',
     'js/components/contact-strip.jsx',
@@ -45,46 +30,78 @@
     return path + (path.indexOf('?') >= 0 ? '&' : '?') + 'v=' + CACHE_BUST;
   }
 
-  function runScript(url) {
-    return fetch(scriptUrl(url)).then(function (res) {
-      if (!res.ok) throw new Error(url + ' HTTP ' + res.status);
+  function readCache(path) {
+    try {
+      return sessionStorage.getItem(CACHE_PREFIX + path);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeCache(path, code) {
+    try {
+      sessionStorage.setItem(CACHE_PREFIX + path, code);
+    } catch (e) { /* quota */ }
+  }
+
+  function compile(path, source) {
+    if (!path.endsWith('.jsx')) return source;
+    var cached = readCache(path);
+    if (cached) return cached;
+    if (!window.Babel) throw new Error('Babel missing');
+    var out = window.Babel.transform(source, {
+      presets: ['env', 'react'],
+      filename: path,
+    }).code;
+    writeCache(path, out);
+    return out;
+  }
+
+  function runCode(code) {
+    var tag = document.createElement('script');
+    tag.text = code;
+    document.body.appendChild(tag);
+  }
+
+  function fetchOne(path) {
+    return fetch(scriptUrl(path)).then(function (res) {
+      if (!res.ok) throw new Error(path + ' HTTP ' + res.status);
       return res.text();
-    }).then(function (code) {
-      var out = Babel.transform(code, {
-        presets: ['env', 'react'],
-        filename: url,
-      }).code;
-      var tag = document.createElement('script');
-      tag.text = out;
-      document.body.appendChild(tag);
     });
   }
 
-  function runAll(i, done) {
-    if (i >= BABEL_SCRIPTS.length) {
-      done();
-      return;
+  function loadCore() {
+    return Promise.all(CORE_SCRIPTS.map(fetchOne)).then(function (sources) {
+      for (var i = 0; i < CORE_SCRIPTS.length; i++) {
+        runCode(compile(CORE_SCRIPTS[i], sources[i]));
+      }
+    });
+  }
+
+  function afterMount() {
+    if (window.pharmBootDeferred) {
+      window.pharmBootDeferred({ robotIdle: true });
     }
-    runScript(BABEL_SCRIPTS[i])
-      .then(function () { runAll(i + 1, done); })
-      .catch(function (err) {
-        console.error('[pharm-boot]', BABEL_SCRIPTS[i], err);
-        runAll(i + 1, done);
-      });
   }
 
   function start() {
-    if (!window.Babel || !window.React || !window.ReactDOM) {
-      console.error('[pharm-boot] React or Babel missing');
+    if (!window.React || !window.ReactDOM) {
+      console.error('[pharm-boot] React missing');
       return;
     }
-    runAll(0, function () {
-      if (window.mountPharmApp) {
-        window.mountPharmApp();
-      } else {
-        console.error('[pharm-boot] mountPharmApp not found');
-      }
-    });
+    if (!window.Babel) {
+      console.error('[pharm-boot] Babel missing (use bundle or load babel standalone)');
+      return;
+    }
+    loadCore()
+      .then(function () {
+        if (window.mountPharmApp) window.mountPharmApp();
+        else console.error('[pharm-boot] mountPharmApp not found');
+        afterMount();
+      })
+      .catch(function (err) {
+        console.error('[pharm-boot]', err);
+      });
   }
 
   if (document.readyState === 'loading') {
