@@ -8,14 +8,14 @@ const SITE = {
   siteName: 'ФармКонсилиум',
   siteNameEn: 'PharmConsilium',
   defaultDescription:
-    'IT-решения для фарм-маркетинга в Беларуси: CRM, CLM, AI для медпредов, контент, справочник ЛС. Команда внедрения цифровых технологий.',
+    'IT-решения для фармацевтического маркетинга в Беларуси: CRM, CLM, AI для медпредов, контент, справочник ЛС. Команда внедрения цифровых технологий.',
   defaultDescriptionEn:
     'IT solutions for pharmaceutical marketing in Belarus: CRM, CLM, AI for medical reps, content, and drug directory. Digital implementation team.',
 };
 
 const SEO_STATIC = {
   home: {
-    title: 'ФармКонсилиум · IT-решения для фарм-маркетинга в Беларуси',
+    title: 'ФармКонсилиум · IT-решения для фармацевтического маркетинга в Беларуси',
     description: SITE.defaultDescription,
   },
   marketing: {
@@ -144,7 +144,7 @@ function resolveSeo(route, lang) {
   }
 
   return {
-    title: l === 'en' ? `${brand} · IT for pharmaceutical marketing` : `${SITE.siteName} · IT для фарм-маркетинга`,
+    title: l === 'en' ? `${brand} · IT for pharmaceutical marketing` : `${SITE.siteName} · IT для фармацевтического маркетинга`,
     description: fallbackDesc,
   };
 }
