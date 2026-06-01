@@ -2472,6 +2472,49 @@ button { font-family: inherit; }
 .robot-img.robot-img--hide-over-copy {
   opacity: 0;
 }
+.robot-surprise {
+  position: absolute;
+  left: 50%;
+  top: 2%;
+  z-index: 25;
+  pointer-events: none;
+  animation: robot-surprise-pop 0.68s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.robot-surprise__text {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.15rem, 4.2vw, 1.55rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent-2);
+  text-shadow:
+    0 0 14px rgba(138, 107, 255, 0.95),
+    0 0 28px rgba(110, 75, 255, 0.55),
+    0 2px 8px rgba(18, 12, 42, 0.35);
+  filter: drop-shadow(0 0 6px rgba(110, 75, 255, 0.65));
+}
+@keyframes robot-surprise-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20%) scale(0.25) rotate(-8deg);
+  }
+  22% {
+    opacity: 1;
+    transform: translate(-50%, -88%) scale(1.14) rotate(4deg);
+  }
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -108%) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -150%) scale(0.72) rotate(6deg);
+  }
+}
+.robot-img.robot-img--reduced-motion .robot-surprise {
+  display: none;
+}
 .robot-img-hit {
   position: absolute;
   left: 50%;

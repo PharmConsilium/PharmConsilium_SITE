@@ -36,6 +36,10 @@
     ],
     "titleOver60": [
       {
+        "url": "https://pharmconsilium.com/",
+        "len": 70
+      },
+      {
         "url": "https://pharmconsilium.com/marketing/2clm",
         "len": 65
       },
@@ -102,8 +106,8 @@
       "url": "https://pharmconsilium.com/",
       "route": "home",
       "h1": "home",
-      "title": "ФармКонсилиум · IT-решения для фарм-маркетинга в Беларуси",
-      "titleLen": 57,
+      "title": "ФармКонсилиум · IT-решения для фармацевтического маркетинга в Беларуси",
+      "titleLen": 70,
       "description": "(defaultDescription)",
       "descLen": 20,
       "alt": "—",

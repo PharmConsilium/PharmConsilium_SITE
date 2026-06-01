@@ -105,6 +105,8 @@ function RobotCompanion() {
   const poseRef = React.useRef('normal');
   const angryUntilRef = React.useRef(0);
   const [pose, setPose] = React.useState('normal');
+  const [surprisePop, setSurprisePop] = React.useState(null);
+  const surpriseTimerRef = React.useRef(null);
   const [facePaused, setFacePaused] = React.useState(false);
   const reducedMotionRef = React.useRef(
     typeof window !== 'undefined' &&
@@ -371,6 +373,21 @@ function RobotCompanion() {
     return !reducedMotionRef.current && !busyRef.current && !dockCopyRef.current;
   }, []);
 
+  const spawnSurprisePop = React.useCallback(() => {
+    if (reducedMotionRef.current) return;
+    const id = performance.now();
+    setSurprisePop(id);
+    if (surpriseTimerRef.current) window.clearTimeout(surpriseTimerRef.current);
+    surpriseTimerRef.current = window.setTimeout(() => {
+      setSurprisePop(null);
+      surpriseTimerRef.current = null;
+    }, 720);
+  }, []);
+
+  React.useEffect(() => () => {
+    if (surpriseTimerRef.current) window.clearTimeout(surpriseTimerRef.current);
+  }, []);
+
   const onHitPointerDown = React.useCallback((e) => {
     if (!canInteract()) return;
     if (e.button !== 0 && e.pointerType !== 'touch') return;
@@ -393,11 +410,12 @@ function RobotCompanion() {
     ix.bounces = 0;
     lookRef.current = { x: 0, y: 0 };
     setRobotPose('held');
+    spawnSurprisePop();
     wrapRef.current?.classList.add('robot-img--dragging');
     try {
       e.currentTarget.setPointerCapture(e.pointerId);
     } catch (err) { /* ignore */ }
-  }, [canInteract, setRobotPose]);
+  }, [canInteract, setRobotPose, spawnSurprisePop]);
 
   const onHitPointerMove = React.useCallback((e) => {
     const ix = interactRef.current;
@@ -646,6 +664,11 @@ function RobotCompanion() {
       data-robot-pose={pose}
       aria-hidden="true"
     >
+      {surprisePop != null ?
+        <div key={surprisePop} className="robot-surprise" aria-hidden="true">
+          <span className="robot-surprise__text">!?</span>
+        </div> :
+        null}
       <div
         className="robot-img-hit"
         aria-hidden="true"
