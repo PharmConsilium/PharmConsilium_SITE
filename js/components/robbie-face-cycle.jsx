@@ -36,10 +36,15 @@ function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
   const stepIndexRef = React.useRef(0);
   const frameRef = React.useRef(ROBBY_BLANK_FRAME);
   const timerRef = React.useRef(null);
+  const overrideTimerRef = React.useRef(null);
+  const overrideActiveRef = React.useRef(false);
+  const pausedRef = React.useRef(!!paused);
   const reducedRef = React.useRef(
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   );
+
+  pausedRef.current = !!paused;
 
   const crossfadeTo = React.useCallback((nextFrame, onDone) => {
     if (nextFrame === frameRef.current) {
@@ -66,12 +71,19 @@ function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
     }, ROBBY_FADE_MS);
   }, []);
 
+  const clearOverride = React.useCallback(() => {
+    if (overrideTimerRef.current) window.clearTimeout(overrideTimerRef.current);
+    overrideTimerRef.current = null;
+    overrideActiveRef.current = false;
+  }, []);
+
   const scheduleNext = React.useCallback(() => {
     if (timerRef.current) window.clearTimeout(timerRef.current);
-    if (reducedRef.current || paused) return;
+    if (reducedRef.current || pausedRef.current || overrideActiveRef.current) return;
 
     const step = ROBBY_FACE_SEQUENCE[stepIndexRef.current];
     timerRef.current = window.setTimeout(() => {
+      if (overrideActiveRef.current) return;
       const nextIdx = (stepIndexRef.current + 1) % ROBBY_FACE_SEQUENCE.length;
       const target = ROBBY_FACE_SEQUENCE[nextIdx].frame;
       crossfadeTo(target, () => {
@@ -79,7 +91,20 @@ function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
         setStepIndex(nextIdx);
       });
     }, step.duration);
-  }, [paused, crossfadeTo]);
+  }, [crossfadeTo]);
+
+  const showFaceOverride = React.useCallback((nextFrame, duration) => {
+    const ms = Math.max(80, Number(duration) || 2000);
+    clearOverride();
+    overrideActiveRef.current = true;
+    if (timerRef.current) window.clearTimeout(timerRef.current);
+    crossfadeTo(nextFrame, () => {
+      overrideTimerRef.current = window.setTimeout(() => {
+        clearOverride();
+        scheduleNext();
+      }, ms);
+    });
+  }, [clearOverride, crossfadeTo, scheduleNext]);
 
   React.useEffect(() => {
     preloadRobbyFrames();
@@ -89,8 +114,33 @@ function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
     scheduleNext();
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
+      clearOverride();
     };
-  }, [stepIndex, paused, scheduleNext]);
+  }, [stepIndex, paused, scheduleNext, clearOverride]);
+
+  React.useEffect(() => {
+    const onFace = (e) => {
+      const d = e.detail || {};
+      const f = Number(d.frame);
+      if (!f || f < 1 || f > 10) return;
+      if (reducedRef.current) return;
+      showFaceOverride(f, d.duration);
+    };
+    window.addEventListener('pharm:robot-face', onFace);
+    return () => window.removeEventListener('pharm:robot-face', onFace);
+  }, [showFaceOverride]);
+
+  React.useEffect(() => {
+    const onVis = () => {
+      if (document.hidden) {
+        if (timerRef.current) window.clearTimeout(timerRef.current);
+      } else {
+        scheduleNext();
+      }
+    };
+    document.addEventListener('visibilitychange', onVis);
+    return () => document.removeEventListener('visibilitychange', onVis);
+  }, [scheduleNext]);
 
   const rootClass = ['robbie-face-cycle', className].filter(Boolean).join(' ');
 
@@ -117,6 +167,16 @@ function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
   );
 }
 
+function pharmRobotFace(frame, duration) {
+  window.dispatchEvent(new CustomEvent('pharm:robot-face', {
+    detail: { frame: Number(frame), duration: duration != null ? Number(duration) : 2200 },
+  }));
+}
+
+function pharmRobotBlink() {
+  pharmRobotFace(ROBBY_BLANK_FRAME, 130);
+}
+
 Object.assign(window, {
   RobbieFaceCycle,
   ROBBY_FACE_SEQUENCE,
@@ -125,4 +185,6 @@ Object.assign(window, {
   ROBBY_OUTLINE_SRC,
   ROBBY_BLANK_FRAME,
   ROBBY_FADE_MS,
+  pharmRobotFace,
+  pharmRobotBlink,
 });

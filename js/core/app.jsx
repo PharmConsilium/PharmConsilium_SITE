@@ -109,6 +109,9 @@ function App() {
   React.useLayoutEffect(() => {
     window.openPharmContact = () => {
       if (window.pharmTrackEvent) window.pharmTrackEvent('contacts_click', { event_category: 'engagement' });
+      try {
+        window.dispatchEvent(new CustomEvent('pharm:robot-contact'));
+      } catch (e) { /* ignore */ }
       setContactOpen(true);
     };
     return () => {

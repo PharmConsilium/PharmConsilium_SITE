@@ -2,14 +2,137 @@
 // the viewport in response to scroll. Position is held in a ref so it
 // persists across page navigation — no jumping.
 
+function clamp(n, lo, hi) {
+  return Math.max(lo, Math.min(hi, n));
+}
+
+/** Настроение по разделу: data-robot-mood + кадр лица при смене route */
+const ROBOT_MOODS = {
+  home: { mood: 'home', face: 2 },
+  marketing: { mood: 'marketing', face: 4 },
+  hcp: { mood: 'hcp', face: 6 },
+  sales: { mood: 'sales', face: 8 },
+  content: { mood: 'content', face: 3 },
+  directory: { mood: 'directory', face: 9 },
+  team: { mood: 'team', face: 5 },
+  portfolio: { mood: 'portfolio', face: 7 },
+  privacy: { mood: 'default', face: 2 },
+};
+
+function robotSectionFromRoute(route) {
+  const r = String(route || 'home').split('/')[0] || 'home';
+  return ROBOT_MOODS[r] ? r : 'home';
+}
+
+function fireRobotFace(frame, duration) {
+  if (window.pharmRobotFace) window.pharmRobotFace(frame, duration);
+  else {
+    window.dispatchEvent(new CustomEvent('pharm:robot-face', {
+      detail: { frame, duration },
+    }));
+  }
+}
+
+function robotRadiusPx() {
+  const vw = window.innerWidth;
+  if (vw <= 720) return 52;
+  if (vw <= 1024) return 60;
+  return 72;
+}
+
+function robotBounds(radius) {
+  const pad = 10;
+  const maxX = Math.max(40, window.innerWidth / 2 - radius - pad);
+  const maxY = Math.max(40, window.innerHeight / 2 - radius - pad);
+  return { minX: -maxX, maxX, minY: -maxY, maxY };
+}
+
+function clientToOffset(clientX, clientY, radius) {
+  const b = robotBounds(radius);
+  return {
+    x: clamp(clientX - window.innerWidth / 2, b.minX, b.maxX),
+    y: clamp(clientY - window.innerHeight / 2, b.minY, b.maxY),
+  };
+}
+
+function bounceVelocity(vx, vy, nx, ny, restitution) {
+  const dot = vx * nx + vy * ny;
+  if (dot >= 0) return { vx, vy };
+  const e = restitution;
+  return {
+    vx: vx - (1 + e) * dot * nx,
+    vy: vy - (1 + e) * dot * ny,
+  };
+}
+
+function resolveCircleRect(cx, cy, radius, rect) {
+  const closestX = clamp(cx, rect.left, rect.right);
+  const closestY = clamp(cy, rect.top, rect.bottom);
+  let nx = cx - closestX;
+  let ny = cy - closestY;
+  const distSq = nx * nx + ny * ny;
+  if (distSq >= radius * radius) return null;
+  const dist = Math.sqrt(distSq) || 0.0001;
+  nx /= dist;
+  ny /= dist;
+  return { nx, ny, overlap: radius - dist };
+}
+
+function refreshRobotObstacles(store) {
+  const now = performance.now();
+  if (now - store.obstaclesAt < 450) return store.obstacles;
+  store.obstaclesAt = now;
+  const pad = 6;
+  const sel = 'a[href], button, .btn, input:not([type="hidden"]), textarea, select, [role="button"]';
+  const out = [];
+  document.querySelectorAll(sel).forEach((el) => {
+    if (el.closest('.robot-img, .contact-modal-backdrop, .twk-panel')) return;
+    const st = window.getComputedStyle(el);
+    if (st.display === 'none' || st.visibility === 'hidden' || Number(st.opacity) < 0.05) return;
+    if (st.pointerEvents === 'none') return;
+    const r = el.getBoundingClientRect();
+    if (r.width < 28 || r.height < 18) return;
+    if (r.bottom < -24 || r.top > window.innerHeight + 24) return;
+    out.push({
+      left: r.left - pad,
+      right: r.right + pad,
+      top: r.top - pad,
+      bottom: r.bottom + pad,
+    });
+  });
+  store.obstacles = out;
+  return out;
+}
+
 function RobotCompanion() {
   const wrapRef = React.useRef(null);
+  const stageRef = React.useRef(null);
   const bodyRef = React.useRef(null);
+  const faceRef = React.useRef(null);
   const posRef = React.useRef(null);   // current actual position { x, y, ry, s }
   const targetRef = React.useRef(null); // target derived from scroll
+  const velRef = React.useRef({ vx: 0, vy: 0 });
+  const lookRef = React.useRef({ x: 0, y: 0 });
+  const busyRef = React.useRef(false);
   const hasInit = React.useRef(false);
   const dockCopyRef = React.useRef(false);
   const dockLatchRef = React.useRef(false);
+  const interactRef = React.useRef({
+    mode: 'scroll',
+    vx: 0,
+    vy: 0,
+    still: 0,
+    lastClientX: 0,
+    lastClientY: 0,
+    lastT: 0,
+    obstacles: [],
+    obstaclesAt: 0,
+  });
+  const [facePaused, setFacePaused] = React.useState(false);
+  const reducedMotionRef = React.useRef(
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
 
   const computeDock = React.useCallback(() => {
     const vw = window.innerWidth;
@@ -92,28 +215,128 @@ function RobotCompanion() {
     const animate = (now) => {
       const dt = Math.min(0.05, (now - t0) / 1000);
       t0 = now;
-      // Very slow exponential approach — half-life ~1.2s for buttery drift.
-      const k = 0.55;
-      const alpha = 1 - Math.exp(-k * dt);
+      // Позиция — плавно; scale — ещё медленнее, без дёрганья при скролле.
+      const alpha = 1 - Math.exp(-0.55 * dt);
+      const alphaScale = 1 - Math.exp(-0.12 * dt);
 
       const p = posRef.current;
       const t = targetRef.current;
-      const goal = dockCopyRef.current ? computeDock() : t;
-      p.x  += (goal.x  - p.x)  * alpha;
-      p.y  += (goal.y  - p.y)  * alpha;
-      p.ry += (goal.ry - p.ry) * alpha;
-      p.s  += (goal.s  - p.s)  * alpha;
+      const ix = interactRef.current;
+      const radius = robotRadiusPx();
+      const prevX = p.x;
+      const prevY = p.y;
+
+      if (ix.mode === 'free') {
+        p.x += ix.vx * dt;
+        p.y += ix.vy * dt;
+        const damp = Math.exp(-1.15 * dt);
+        ix.vx *= damp;
+        ix.vy *= damp;
+
+        const b = robotBounds(radius);
+        const rest = 0.74;
+        if (p.x < b.minX) {
+          p.x = b.minX;
+          const bounced = bounceVelocity(ix.vx, ix.vy, 1, 0, rest);
+          ix.vx = bounced.vx;
+          ix.vy = bounced.vy;
+        } else if (p.x > b.maxX) {
+          p.x = b.maxX;
+          const bounced = bounceVelocity(ix.vx, ix.vy, -1, 0, rest);
+          ix.vx = bounced.vx;
+          ix.vy = bounced.vy;
+        }
+        if (p.y < b.minY) {
+          p.y = b.minY;
+          const bounced = bounceVelocity(ix.vx, ix.vy, 0, 1, rest);
+          ix.vx = bounced.vx;
+          ix.vy = bounced.vy;
+        } else if (p.y > b.maxY) {
+          p.y = b.maxY;
+          const bounced = bounceVelocity(ix.vx, ix.vy, 0, -1, rest);
+          ix.vx = bounced.vx;
+          ix.vy = bounced.vy;
+        }
+
+        const cx = window.innerWidth / 2 + p.x;
+        const cy = window.innerHeight / 2 + p.y;
+        const obstacles = refreshRobotObstacles(ix);
+        for (let n = 0; n < 3; n++) {
+          let hit = false;
+          for (let i = 0; i < obstacles.length; i++) {
+            const res = resolveCircleRect(cx, cy, radius, obstacles[i]);
+            if (!res) continue;
+            hit = true;
+            p.x += res.nx * res.overlap;
+            p.y += res.ny * res.overlap;
+            const bounced = bounceVelocity(ix.vx, ix.vy, res.nx, res.ny, 0.68);
+            ix.vx = bounced.vx;
+            ix.vy = bounced.vy;
+          }
+          if (!hit) break;
+        }
+
+        const speed = Math.hypot(ix.vx, ix.vy);
+        if (speed < 55) ix.still += dt;
+        else ix.still = 0;
+        if (ix.still > 1.4) {
+          ix.mode = 'scroll';
+          ix.still = 0;
+          ix.vx = 0;
+          ix.vy = 0;
+        }
+      } else if (ix.mode !== 'drag') {
+        const goal = dockCopyRef.current ? computeDock() : t;
+        p.x  += (goal.x  - p.x)  * alpha;
+        p.y  += (goal.y  - p.y)  * alpha;
+        p.ry += (goal.ry - p.ry) * alpha;
+        p.s  += (goal.s  - p.s)  * alphaScale;
+      }
+
+      const v = velRef.current;
+      const invDt = dt > 0.0001 ? 1 / dt : 0;
+      const rawVx = ix.mode === 'free' ? ix.vx : (p.x - prevX) * invDt;
+      const rawVy = ix.mode === 'free' ? ix.vy : (p.y - prevY) * invDt;
+      const vAlpha = 1 - Math.exp(-10 * dt);
+      v.vx += (rawVx - v.vx) * vAlpha;
+      v.vy += (rawVy - v.vy) * vAlpha;
+
+      const reduced = reducedMotionRef.current;
+      const bankY = reduced ? 0 : clamp(v.vx * 0.045, -14, 14);
+      const bankX = reduced ? 0 : clamp(-v.vy * 0.032, -10, 10);
+      const look = lookRef.current;
+      const lookAlpha = reduced ? 0 : 1 - Math.exp(-6 * dt);
+      const lookX = reduced ? 0 : look.x * lookAlpha;
+      const lookY = reduced ? 0 : look.y * lookAlpha;
+      const tiltY = p.ry + bankY + lookX;
+      const tiltX = bankX + lookY;
+      const faceShiftX = reduced ? 0 : clamp(v.vx * 0.018, -5, 5);
+      const faceShiftY = reduced ? 0 : clamp(v.vy * 0.014, -4, 4);
+      const displayScale = reduced ? p.s : clamp(p.s, 0.9, 1.2);
+      const busy = busyRef.current;
+      const busyX = busy ? (window.innerWidth <= 720 ? 88 : 128) : 0;
+      const busyY = busy ? (window.innerWidth <= 720 ? -72 : -108) : 0;
+      const busyOpacity = busy ? 0.36 : 1;
+      const busyScale = busy ? 0.84 : 1;
 
       const el = wrapRef.current;
+      const stage = stageRef.current;
       const body = bodyRef.current;
+      const face = faceRef.current;
       if (el) {
         el.style.transform =
-          `translate(calc(-50% + ${p.x}px),` +
-          ` calc(-50% + ${p.y}px))` +
-          ` rotate(${p.ry}deg)`;
-        el.style.opacity = '1';
+          `translate3d(calc(-50% + ${p.x + busyX}px), calc(-50% + ${p.y + busyY}px), 0)`;
+        el.style.opacity = String(busyOpacity);
       }
-      if (body) body.style.transform = `scale(${p.s})`;
+      if (stage) {
+        stage.style.transform =
+          `rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+      }
+      if (body) body.style.transform = `scale(${(displayScale * busyScale).toFixed(4)})`;
+      if (face) {
+        face.style.transform =
+          `translate3d(${faceShiftX.toFixed(2)}px, ${faceShiftY.toFixed(2)}px, 16px)`;
+      }
       raf = requestAnimationFrame(animate);
     };
     raf = requestAnimationFrame(animate);
@@ -124,6 +347,186 @@ function RobotCompanion() {
       window.removeEventListener('resize', onResize);
     };
   }, [computeTarget, computeDock]);
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => {
+      reducedMotionRef.current = mq.matches;
+      wrapRef.current?.classList.toggle('robot-img--reduced-motion', mq.matches);
+    };
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+
+  const canInteract = React.useCallback(() => {
+    return !reducedMotionRef.current && !busyRef.current && !dockCopyRef.current;
+  }, []);
+
+  const onHitPointerDown = React.useCallback((e) => {
+    if (!canInteract()) return;
+    if (e.button !== 0 && e.pointerType !== 'touch') return;
+    e.preventDefault();
+    e.stopPropagation();
+    const p = posRef.current;
+    const ix = interactRef.current;
+    const off = clientToOffset(e.clientX, e.clientY, robotRadiusPx());
+    p.x = off.x;
+    p.y = off.y;
+    ix.mode = 'drag';
+    ix.vx = 0;
+    ix.vy = 0;
+    ix.still = 0;
+    ix.lastClientX = e.clientX;
+    ix.lastClientY = e.clientY;
+    ix.lastT = performance.now();
+    lookRef.current = { x: 0, y: 0 };
+    wrapRef.current?.classList.add('robot-img--dragging');
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch (err) { /* ignore */ }
+  }, [canInteract]);
+
+  const onHitPointerMove = React.useCallback((e) => {
+    const ix = interactRef.current;
+    if (ix.mode !== 'drag') return;
+    e.preventDefault();
+    const p = posRef.current;
+    const now = performance.now();
+    const dt = Math.max(0.001, (now - ix.lastT) / 1000);
+    const off = clientToOffset(e.clientX, e.clientY, robotRadiusPx());
+    const dx = off.x - p.x;
+    const dy = off.y - p.y;
+    ix.vx = dx / dt;
+    ix.vy = dy / dt;
+    p.x = off.x;
+    p.y = off.y;
+    ix.lastClientX = e.clientX;
+    ix.lastClientY = e.clientY;
+    ix.lastT = now;
+  }, []);
+
+  const onHitPointerUp = React.useCallback((e) => {
+    const ix = interactRef.current;
+    if (ix.mode !== 'drag') return;
+    wrapRef.current?.classList.remove('robot-img--dragging');
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch (err) { /* ignore */ }
+    const speed = Math.hypot(ix.vx, ix.vy);
+    const max = 2400;
+    if (speed > max) {
+      ix.vx = (ix.vx / speed) * max;
+      ix.vy = (ix.vy / speed) * max;
+    }
+    if (speed > 180) fireRobotFace(3, 900);
+    ix.mode = speed > 35 ? 'free' : 'scroll';
+    ix.still = 0;
+  }, []);
+
+  // Лёгкий поворот «к курсору» на десктопе
+  React.useEffect(() => {
+    const onMove = (e) => {
+      if (window.innerWidth <= 960 || reducedMotionRef.current || interactRef.current.mode !== 'scroll') {
+        lookRef.current = { x: 0, y: 0 };
+        return;
+      }
+      const wrap = wrapRef.current;
+      if (!wrap) return;
+      const rect = wrap.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / Math.max(rect.width, 1);
+      const dy = (e.clientY - cy) / Math.max(rect.height, 1);
+      const dist = Math.hypot(dx, dy);
+      if (dist > 1.65) {
+        lookRef.current = { x: 0, y: 0 };
+        return;
+      }
+      const falloff = 1 - dist / 1.65;
+      lookRef.current = {
+        x: clamp(dx * 14 * falloff, -14, 14),
+        y: clamp(dy * 9 * falloff, -9, 9),
+      };
+    };
+    const onLeave = () => { lookRef.current = { x: 0, y: 0 }; };
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseleave', onLeave);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseleave', onLeave);
+    };
+  }, []);
+
+  const applyRouteMood = React.useCallback((route) => {
+    const section = robotSectionFromRoute(route);
+    const cfg = ROBOT_MOODS[section] || ROBOT_MOODS.home;
+    const wrap = wrapRef.current;
+    if (wrap) wrap.setAttribute('data-robot-mood', cfg.mood);
+    fireRobotFace(cfg.face, section === 'team' ? 4800 : 2600);
+  }, []);
+
+  React.useEffect(() => {
+    const onRoute = (e) => {
+      const route = e.detail?.route || 'home';
+      applyRouteMood(route);
+    };
+    window.addEventListener('pharm:routechange', onRoute);
+    applyRouteMood(window.location.pathname.replace(/^\//, '') || 'home');
+    return () => window.removeEventListener('pharm:routechange', onRoute);
+  }, [applyRouteMood]);
+
+  React.useEffect(() => {
+    if (reducedMotionRef.current) return undefined;
+    let blinkTimer;
+    const scheduleBlink = () => {
+      const wait = 9000 + Math.random() * 11000;
+      blinkTimer = window.setTimeout(() => {
+        if (!busyRef.current && !document.hidden) {
+          if (window.pharmRobotBlink) window.pharmRobotBlink();
+          else fireRobotFace(1, 130);
+        }
+        scheduleBlink();
+      }, wait);
+    };
+    scheduleBlink();
+    return () => { if (blinkTimer) window.clearTimeout(blinkTimer); };
+  }, []);
+
+  React.useEffect(() => {
+    const syncBusy = () => {
+      const busy =
+        document.body.classList.contains('is-detail-slide-lightbox-open') ||
+        !!document.querySelector('.contact-modal-backdrop');
+      busyRef.current = busy;
+      const hidden = document.hidden;
+      setFacePaused(busy || hidden);
+      wrapRef.current?.classList.toggle('robot-img--busy', busy);
+    };
+    syncBusy();
+    const mo = new MutationObserver(syncBusy);
+    mo.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class'],
+      subtree: true,
+      childList: true,
+    });
+    const onVis = () => syncBusy();
+    document.addEventListener('visibilitychange', onVis);
+    return () => {
+      mo.disconnect();
+      document.removeEventListener('visibilitychange', onVis);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const onContact = () => {
+      if (reducedMotionRef.current) return;
+      fireRobotFace(7, 2800);
+    };
+    window.addEventListener('pharm:robot-contact', onContact);
+    return () => window.removeEventListener('pharm:robot-contact', onContact);
+  }, []);
 
   // На узком экране уводим робота в верхний угол над текстом контактов (не скрываем)
   React.useEffect(() => {
@@ -215,30 +618,49 @@ function RobotCompanion() {
   const outlineSrc = window.ROBBY_OUTLINE_SRC || 'assets/uploads/Robby_11.png?v=4';
 
   const robotNode = (
-    <div ref={wrapRef} className="robot-img" aria-hidden="true">
-      <div ref={bodyRef} className="robot-img-body">
-        <img
-          className="robot-img-base"
-          src={baseSrc}
-          alt=""
-          aria-hidden="true"
-          draggable="false"
-          decoding="async"
-        />
-        {RobbieFaceCycle ?
-          <RobbieFaceCycle
-            alt=""
-            className="robot-face-cycle robot-face-cycle--lighten"
-          /> :
-          null}
-        <img
-          className="robot-img-glow"
-          src={outlineSrc}
-          alt=""
-          aria-hidden="true"
-          draggable="false"
-          decoding="async"
-        />
+    <div ref={wrapRef} className="robot-img" data-robot-mood="home" aria-hidden="true">
+      <div
+        className="robot-img-hit"
+        aria-hidden="true"
+        onPointerDown={onHitPointerDown}
+        onPointerMove={onHitPointerMove}
+        onPointerUp={onHitPointerUp}
+        onPointerCancel={onHitPointerUp}
+      />
+      <div ref={stageRef} className="robot-img-stage">
+        <div ref={bodyRef} className="robot-img-body">
+          <div className="robot-img-float">
+            <div className="robot-img-layer robot-img-layer--base">
+              <img
+                className="robot-img-base"
+                src={baseSrc}
+                alt=""
+                aria-hidden="true"
+                draggable="false"
+                decoding="async"
+              />
+            </div>
+            <div ref={faceRef} className="robot-img-layer robot-img-layer--face">
+              {RobbieFaceCycle ?
+                <RobbieFaceCycle
+                  alt=""
+                  className="robot-face-cycle robot-face-cycle--lighten"
+                  paused={facePaused}
+                /> :
+                null}
+            </div>
+            <div className="robot-img-layer robot-img-layer--glow">
+              <img
+                className="robot-img-glow"
+                src={outlineSrc}
+                alt=""
+                aria-hidden="true"
+                draggable="false"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

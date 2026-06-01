@@ -15,8 +15,6 @@
   --accent-2: #8A6BFF;
   --accent-soft: #EEE9FF;
   --accent-glow: rgba(110, 75, 255, 0.18);
-  --robbie-aura: rgba(124, 92, 255, 0.58);
-  --robbie-aura-outer: rgba(124, 92, 255, 0.26);
   --danger: #E5484D;
   --good: #2BA471;
   --shadow-sm: 0 1px 2px rgba(11, 15, 25, 0.04), 0 2px 6px rgba(11, 15, 25, 0.04);
@@ -46,8 +44,6 @@
   --accent-2: #A48AFF;
   --accent-soft: rgba(138, 107, 255, 0.14);
   --accent-glow: rgba(138, 107, 255, 0.28);
-  --robbie-aura: rgba(124, 92, 255, 0.58);
-  --robbie-aura-outer: rgba(124, 92, 255, 0.26);
   --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
   --shadow-md: 0 6px 24px rgba(0,0,0,.4);
   --shadow-lg: 0 20px 50px rgba(0,0,0,.55);
@@ -2466,53 +2462,110 @@ button { font-family: inherit; }
   left: 50%; top: 50%;
   width: 190px; height: 190px;
   pointer-events: none;
-  /* поверх страницы и шапки; ниже модалок (200+) и лайтбокса (300) */
   z-index: 90;
   will-change: transform;
   filter: none;
   transition: opacity 0.35s ease;
+  perspective: 920px;
+  perspective-origin: 50% 42%;
 }
 .robot-img.robot-img--hide-over-copy {
   opacity: 0;
 }
-.robot-img-body {
+.robot-img-hit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 30;
+  width: 58%;
+  height: 58%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  background: transparent;
+}
+.robot-img--dragging .robot-img-hit {
+  cursor: grabbing;
+}
+.robot-img--dragging .robot-img-float {
+  animation-play-state: paused;
+}
+.robot-img.robot-img--busy .robot-img-hit {
+  pointer-events: none;
+  cursor: default;
+}
+.robot-img.robot-img--busy {
+  transition: opacity 0.45s ease;
+}
+.robot-img-stage {
   position: relative;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
   will-change: transform;
-  isolation: isolate;
 }
-/* Постоянный кадр Robby_1: тело + неоновая обводка как в макете */
+.robot-img-body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+.robot-img-float {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: robot-bob 4.2s ease-in-out infinite;
+}
+.robot-img-layer {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.robot-img-layer--base {
+  transform: translateZ(0);
+  z-index: 0;
+}
+.robot-img-layer--face {
+  z-index: 1;
+  will-change: transform;
+}
+.robot-img-layer--glow {
+  transform: translateZ(24px);
+  z-index: 2;
+}
 .robot-img-base {
   position: absolute;
   inset: 0;
-  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center center;
   pointer-events: none;
 }
-/* Цикл 1…10 поверх: lighten — меняется только экран/лицо */
 .robot-img .robot-face-cycle {
   position: absolute;
   inset: 0;
-  z-index: 1;
 }
 .robot-face-cycle--lighten .robbie-face-layer {
   mix-blend-mode: lighten;
 }
-/* Robby_11 — постоянная фиолетовая неоновая подсветка */
+/* Robby_11 — неоновая обводка */
 .robot-img-glow {
   position: absolute;
   inset: 0;
-  z-index: 2;
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center center;
   pointer-events: none;
   mix-blend-mode: screen;
+  animation: robot-glow-pulse 2.8s ease-in-out infinite;
 }
 .robot-img img,
 .robot-img .robbie-face-cycle {
@@ -2529,11 +2582,33 @@ button { font-family: inherit; }
   object-fit: contain;
   object-position: center center;
 }
+@keyframes robot-bob {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 10px); }
+}
+@keyframes robot-glow-pulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1) saturate(1); }
+  50% { opacity: 1; filter: brightness(1.14) saturate(1.08); }
+}
+.robot-img.robot-img--reduced-motion .robot-img-float,
+.robot-img.robot-img--reduced-motion .robot-img-glow {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .robot-img-float,
+  .robot-img-glow {
+    animation: none !important;
+  }
+  .robot-img-stage {
+    transform: none !important;
+  }
+}
 @media (max-width: 1024px) {
   .robot-img {
     width: 150px;
     height: 150px;
     opacity: 0.92;
+    perspective: 760px;
   }
 }
 @media (max-width: 720px) {
