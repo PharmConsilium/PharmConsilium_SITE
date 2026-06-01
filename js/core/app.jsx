@@ -53,6 +53,13 @@ function portfolioSlugFromRoute(route) {
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [themeMode, setThemeMode] = React.useState(() => (
+    window.pharmTheme ? window.pharmTheme.getMode() : 'system'
+  ));
+  const [systemDark, setSystemDark] = React.useState(() => (
+    window.pharmTheme ? window.pharmTheme.getSystemDark() : false
+  ));
+  const isDark = themeMode === 'system' ? systemDark : themeMode === 'dark';
   const [route, setRoute] = React.useState(() => {
     const h = getHashRoute();
     return h || routeFromPathname(window.location.pathname);
@@ -119,10 +126,20 @@ function App() {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (!window.pharmTheme || !window.pharmTheme.subscribeSystem) return undefined;
+    return window.pharmTheme.subscribeSystem(setSystemDark);
+  }, []);
+
+  const applyThemeMode = React.useCallback((mode) => {
+    setThemeMode(mode);
+    if (window.pharmTheme) window.pharmTheme.setMode(mode);
+  }, []);
+
   // Apply theme + tweaks to :root
   React.useEffect(() => {
     const root = document.documentElement;
-    root.dataset.theme = t.dark ? 'dark' : 'light';
+    root.dataset.theme = isDark ? 'dark' : 'light';
     root.style.setProperty('--accent', t.accent);
     const soft = `${t.accent}26`;
     root.style.setProperty('--accent-soft', soft);
@@ -130,7 +147,7 @@ function App() {
     const fp = FONT_PAIRS[t.fontPair] || FONT_PAIRS['unbounded-manrope'];
     root.style.setProperty('--font-display', fp.display);
     root.style.setProperty('--font-body', fp.body);
-  }, [t]);
+  }, [t, isDark]);
 
   React.useLayoutEffect(() => {
     const h = getHashRoute();
@@ -277,8 +294,10 @@ function App() {
         navigate={navigate}
         lang={lang}
         setLang={setLang}
-        theme={t.dark ? 'dark' : 'light'}
-        setTheme={(v) => setTweak('dark', v === 'dark')}
+        theme={isDark ? 'dark' : 'light'}
+        themeMode={themeMode}
+        setTheme={(v) => applyThemeMode(v === 'dark' ? 'dark' : 'light')}
+        onThemeFollowSystem={() => applyThemeMode('system')}
       />
 
       {ContactFormModal && <ContactFormModal open={contactOpen} onClose={() => setContactOpen(false)} lang={lang} />}
@@ -301,7 +320,13 @@ function App() {
 
       {!hideTweaks ? <TweaksPanel title="Tweaks · ФармКонсилиум">
         <TweakSection label="Тема"/>
-        <TweakToggle  label="Тёмная тема" value={t.dark} onChange={(v)=>setTweak('dark', v)}/>
+        <TweakSelect  label="Режим темы" value={themeMode}
+                      options={[
+                        { value: 'system', label: 'Как в системе' },
+                        { value: 'light', label: 'Светлая' },
+                        { value: 'dark', label: 'Тёмная' },
+                      ]}
+                      onChange={(v) => applyThemeMode(v)}/>
         <TweakColor   label="Акцент"      value={t.accent}
                       options={['#6E4BFF', '#00B4D8', '#2A4FE3', '#0A6CFF', '#1F8A5B']}
                       onChange={(v)=>setTweak('accent', v)}/>

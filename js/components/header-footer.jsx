@@ -174,11 +174,30 @@ const MEGA = {
   }
 };
 
-function Header({ route, navigate, lang, setLang, theme, setTheme }) {
+function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, onThemeFollowSystem }) {
   const [openMenu, setOpenMenu] = React.useState(null);
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
   const [mobileExpanded, setMobileExpanded] = React.useState(null);
   const closeTimer = React.useRef(null);
+  const themePressTimer = React.useRef(null);
+  const themeSkipClick = React.useRef(false);
+
+  function clearThemePress() {
+    if (themePressTimer.current) {
+      clearTimeout(themePressTimer.current);
+      themePressTimer.current = null;
+    }
+  }
+
+  function themeTitle() {
+    var base = themeMode === 'system'
+      ? (theme === 'dark' ? t('themeLightSystem') : t('themeDarkSystem'))
+      : (theme === 'dark' ? t('themeLight') : t('themeDark'));
+    if (themeMode !== 'system' && onThemeFollowSystem) {
+      return base + ' · ' + t('themeHoldSystem');
+    }
+    return base;
+  }
 
   function closeMobileNav() {
     setMobileNavOpen(false);
@@ -248,9 +267,27 @@ function Header({ route, navigate, lang, setLang, theme, setTheme }) {
       <button
         type="button"
         className="btn-icon"
-        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        title={theme === 'dark' ? t('themeLight') : t('themeDark')}
-        aria-label={theme === 'dark' ? t('themeLight') : t('themeDark')}
+        onPointerDown={() => {
+          if (!onThemeFollowSystem) return;
+          clearThemePress();
+          themePressTimer.current = window.setTimeout(function () {
+            themePressTimer.current = null;
+            themeSkipClick.current = true;
+            onThemeFollowSystem();
+          }, 800);
+        }}
+        onPointerUp={clearThemePress}
+        onPointerLeave={clearThemePress}
+        onPointerCancel={clearThemePress}
+        onClick={() => {
+          if (themeSkipClick.current) {
+            themeSkipClick.current = false;
+            return;
+          }
+          setTheme(theme === 'dark' ? 'light' : 'dark');
+        }}
+        title={themeTitle()}
+        aria-label={themeTitle()}
       >
         {theme === 'dark' ?
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg> :

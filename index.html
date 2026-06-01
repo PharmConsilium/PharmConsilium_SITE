@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="color-scheme" content="light dark"/>
 <base href="/"/>
+<script>
+(function () {
+  var KEY = 'pharm.themeMode', m;
+  try { m = localStorage.getItem(KEY); } catch (e) { m = null; }
+  var dark = m === 'dark' || (m !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+})();
+</script>
 <title>ФармКонсилиум · IT-решения для фарм-маркетинга в Беларуси</title>
 <meta name="description" content="IT-решения для фарм-маркетинга в Беларуси: CRM, CLM, AI для медпредов, контент, справочник ЛС. Команда внедрения цифровых технологий."/>
 <meta name="robots" content="index, follow"/>
@@ -121,6 +130,7 @@ ym(109560584, 'init', {
 </noscript>
 <noscript><div><img src="https://mc.yandex.ru/watch/109560584" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
 
+<script src="js/pharm-theme.js?v=20260602"></script>
 <script src="js/pharm-analytics.js?v=20260602"></script>
 <script src="js/data/privacy-policy-ru.js"></script>
 <script src="js/data/training-cta-topics.js"></script>
