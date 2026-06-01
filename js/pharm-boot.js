@@ -1,8 +1,11 @@
 // Boot: parallel fetch + optional Babel cache; core scripts then mount; deferred via pharm-deferred.js
 (function () {
-  window.PHARM_CACHE_BUST = '20260531b';
+  window.PHARM_CACHE_BUST = '20260531c';
   var CACHE_BUST = window.PHARM_CACHE_BUST;
   var CACHE_PREFIX = 'pharm:jsx:' + CACHE_BUST + ':';
+  var isDevHost = /^(localhost|127\.0\.0\.1)$/i.test(location.hostname)
+    || location.protocol === 'file:'
+    || /(?:\?|&)nocache(?:=|&|$)/.test(location.search);
 
   var CORE_SCRIPTS = [
     'js/components/tweaks-panel.jsx',
@@ -31,6 +34,7 @@
   }
 
   function readCache(path) {
+    if (isDevHost) return null;
     try {
       return sessionStorage.getItem(CACHE_PREFIX + path);
     } catch (e) {
@@ -39,6 +43,7 @@
   }
 
   function writeCache(path, code) {
+    if (isDevHost) return;
     try {
       sessionStorage.setItem(CACHE_PREFIX + path, code);
     } catch (e) { /* quota */ }
@@ -64,7 +69,8 @@
   }
 
   function fetchOne(path) {
-    return fetch(scriptUrl(path)).then(function (res) {
+    var opts = isDevHost ? { cache: 'no-store' } : undefined;
+    return fetch(scriptUrl(path), opts).then(function (res) {
       if (!res.ok) throw new Error(path + ' HTTP ' + res.status);
       return res.text();
     });

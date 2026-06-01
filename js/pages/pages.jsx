@@ -291,7 +291,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
         <div className="container">
           <div className="section-head">
             <div>
-              <div className="eyebrow">{en ? en.tilesEyebrow : 'Что мы делаем'}</div>
+              <div className="eyebrow">{en ? en.tilesEyebrow : 'IT-решения'}</div>
               <h2>{en ? <>5 digital<br />directions</> : <>5 цифровых<br />направлений</>}</h2>
             </div>
             <div className="right">
@@ -515,7 +515,7 @@ function SalesPage({ navigate, lang }) {
   crumb: 'Аутсорсинг',
   h1Line1: 'Комплексное продвижение',
   h1Accent: 'и аутсорсинг продаж',
-  lede: 'Если у вас нет своего отдела продаж в РБ — соберём его за вас. Если есть — добавим цифровой слой и омниканальный охват.',
+  lede: 'Усилим вашу команду продаж, добавим цифровые инструменты',
   cards: window.SECTION_CARDS.sales
   }} />;
 }
@@ -707,7 +707,7 @@ function DirectoryPage({ navigate, lang }) {
     },
     {
       name: 'Примеры выписки медицинских рецептов',
-      desc: 'Готовые образцы рецептов по льготам с корректным заполнением для конкретных препаратов.',
+      desc: 'Готовые образцы льготных рецептов с корректным заполнением для конкретных препаратов.',
       href: 'https://farmconsilium.com/ls/medicines/1645-mirena',
       hashTags: ['Рецепт на лекарство', 'Медицинский рецепт', 'Пример оформления медицинского рецепта'],
     },
@@ -732,7 +732,7 @@ function DirectoryPage({ navigate, lang }) {
             accent={en ? en.h1Brand : 'ФармКонсилиум'}
           />
           <p className="lede">
-            {en ? en.lede : 'Цифровой медицинский ресурс для врачей, провизоров и фармацевтов, созданный для профессиональной работы с информацией о лекарственных препаратах. Ресурс доступен в удобных форматах: десктопная версия для использования в ординаторских, кабинетах врачей и аптеках, а также мобильная версия для смартфонов через Telegram-бот и TeleApp.'}
+            {en ? en.lede : 'Цифровой медицинский портал для врачей, провизоров и фармацевтов, созданный для профессиональной работы с информацией о лекарственных препаратах. Ресурс доступен в удобных форматах: десктопная версия для использования в ординаторских, кабинетах врачей и аптеках, а также мобильная версия для смартфонов через Telegram-бот и TeleApp.'}
           </p>
         </div>
       </section>
@@ -1093,7 +1093,16 @@ function TeamPage({ navigate, lang }) {
           <div className="section-head">
             <div>
               <div className="eyebrow">{en ? en.portfolioEyebrow : 'Портфолио'}</div>
-              <h2>{en ? en.portfolioH2 : <>Проекты ФармКонсилиум,<br />которые в этом месяце смотрели больше всего</>}</h2>
+              <h2>
+                <button
+                  type="button"
+                  className="section-h2-link"
+                  onClick={() => navigate('portfolio')}
+                  aria-label={en ? 'Go to portfolio' : 'Перейти в портфолио'}
+                >
+                  {en ? en.portfolioH2 : <>Проекты ФармКонсилиум,<br />которые в этом месяце смотрели больше всего</>}
+                </button>
+              </h2>
             </div>
             <div className="right">{en ? en.portfolioRight : 'Кейсы, продуктовые решения, use cases, solutions'}</div>
           </div>
