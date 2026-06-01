@@ -1,6 +1,6 @@
 // Post-mount lazy scripts (forecast chart, robot). Used after bundle or pharm-boot core.
 (function () {
-  var CACHE_BUST = window.PHARM_CACHE_BUST || '20260531perf';
+  var CACHE_BUST = window.PHARM_CACHE_BUST || '20260531b';
 
   var DEFERRED = [
     'js/components/forecast-chart.jsx',

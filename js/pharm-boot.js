@@ -1,6 +1,6 @@
 // Boot: parallel fetch + optional Babel cache; core scripts then mount; deferred via pharm-deferred.js
 (function () {
-  window.PHARM_CACHE_BUST = '20260531perf';
+  window.PHARM_CACHE_BUST = '20260531b';
   var CACHE_BUST = window.PHARM_CACHE_BUST;
   var CACHE_PREFIX = 'pharm:jsx:' + CACHE_BUST + ':';
 

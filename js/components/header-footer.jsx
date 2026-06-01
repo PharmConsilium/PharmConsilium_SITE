@@ -570,7 +570,7 @@ function Footer({ navigate, lang }) {
                 <a href="mailto:pharmconsilium.office@gmail.com" style={{ color: 'inherit' }}>pharmconsilium.office@gmail.com</a>
               </li>
               <li style={{ lineHeight: 1.45, cursor: 'default' }}>Беларусь, 230025, г. Гродно,<br />площадь Советская 2А, офис 26</li>
-              <li style={{ cursor: 'default' }}>{isEn ? fc.hours : 'пн - пт , 09:00 - 19:00'}</li>
+              <li style={{ cursor: 'default' }}>{isEn ? fc.hours : 'пн-пт, 09:00 - 18:00'}</li>
             </ul>
           </div>
           <FooterMapEmbed isEn={isEn} />

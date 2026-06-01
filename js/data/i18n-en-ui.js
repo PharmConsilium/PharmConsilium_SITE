@@ -142,7 +142,7 @@ window.I18N_EN = {
       { label: 'Events', to: null },
       { label: 'Careers', to: null },
     ],
-    hours: 'Mon - Fri, 09:00 - 19:00',
+    hours: 'Mon-Fri, 09:00 - 18:00',
     unp: 'UNP 591019395',
     privacy: 'Privacy policy for personal data processing',
     terms: 'Terms of use',
