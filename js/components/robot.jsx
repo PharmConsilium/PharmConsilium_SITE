@@ -57,7 +57,9 @@ function pointerToRobotPos(clientX, clientY, grabDx, grabDy, radius) {
 }
 
 const ROBOT_ANGRY_MS = 3000;
+const ROBOT_BLANK_AFTER_ANGRY_MS = 950;
 const ROBOT_HELD_SCALE = 1.09;
+const ROBOT_THROW_MIN_SPEED = 35;
 const ROBOT_THROW_ANGRY_MIN_SPEED = 120;
 
 function robbieAssetSrc(file) {
@@ -104,6 +106,7 @@ function RobotCompanion() {
   });
   const poseRef = React.useRef('normal');
   const angryUntilRef = React.useRef(0);
+  const blankUntilRef = React.useRef(0);
   const [pose, setPose] = React.useState('normal');
   const [surprisePop, setSurprisePop] = React.useState(null);
   const surpriseTimerRef = React.useRef(null);
@@ -119,12 +122,20 @@ function RobotCompanion() {
     setPose(next);
     const wrap = wrapRef.current;
     if (wrap) wrap.setAttribute('data-robot-pose', next);
-    const pauseFace = next === 'held' || next === 'angry';
+    const pauseFace = next === 'held' || next === 'angry' || next === 'blank';
     setFacePaused(pauseFace || busyRef.current || document.hidden);
   }, []);
 
+  const startBlankAfterAngry = React.useCallback(() => {
+    angryUntilRef.current = 0;
+    blankUntilRef.current = performance.now() + ROBOT_BLANK_AFTER_ANGRY_MS;
+    setRobotPose('blank');
+    fireRobotFace(window.ROBBY_BLANK_FRAME || 1, ROBOT_BLANK_AFTER_ANGRY_MS + 120);
+  }, [setRobotPose]);
+
   const triggerAngry = React.useCallback(() => {
-    if (poseRef.current === 'held') return;
+    if (poseRef.current !== 'held') return;
+    blankUntilRef.current = 0;
     angryUntilRef.current = performance.now() + ROBOT_ANGRY_MS;
     setRobotPose('angry');
   }, [setRobotPose]);
@@ -278,6 +289,7 @@ function RobotCompanion() {
           ix.vx = 0;
           ix.vy = 0;
           ix.pendingAngry = false;
+          if (poseRef.current === 'held') setRobotPose('normal');
         }
       } else if (ix.mode !== 'drag') {
         const goal = dockCopyRef.current ? computeDock() : t;
@@ -297,21 +309,15 @@ function RobotCompanion() {
 
       const reduced = reducedMotionRef.current;
       const moveSpeed = Math.hypot(v.vx, v.vy);
-      const moveLean = reduced ? 0 : clamp(moveSpeed / 180, 0, 1);
-      const bankY = moveLean * clamp(v.vx * 0.082, -22, 22);
-      const bankX = moveLean * clamp(-v.vy * 0.058, -16, 16);
-      const leanZ = moveLean * clamp(v.vx * 0.105, -15, 15);
+      const moveLean = reduced ? 0 : clamp(moveSpeed / 200, 0, 1);
+      const isMoving = !reduced && moveSpeed > 65;
+      const leanZ = moveLean * clamp(v.vx * 0.055, -12, 12);
       const look = lookRef.current;
-      const lookAlpha = reduced ? 0 : 1 - Math.exp(-6 * dt);
-      const lookX = reduced ? 0 : look.x * lookAlpha;
-      const lookY = reduced ? 0 : look.y * lookAlpha;
-      const tiltY = p.ry + bankY + lookX;
-      const tiltX = bankX + lookY;
-      const tiltMag = moveLean * (Math.abs(bankY) + Math.abs(bankX) * 0.9 + Math.abs(leanZ) * 0.5);
-      const depthZ = reduced ? 0 : clamp(tiltMag * 0.62, 0, 20);
-      const volScale = reduced ? 1 : 1 + clamp(tiltMag * 0.0024, 0, 0.07);
-      const faceShiftX = reduced ? 0 : clamp(v.vx * 0.018, -5, 5);
-      const faceShiftY = reduced ? 0 : clamp(v.vy * 0.014, -4, 4);
+      const lookAlpha = reduced || isMoving ? 0 : 1 - Math.exp(-6 * dt);
+      const lookX = reduced || isMoving ? 0 : look.x * lookAlpha;
+      const lookY = reduced || isMoving ? 0 : look.y * lookAlpha;
+      const tiltY = p.ry + lookX;
+      const tiltX = lookY;
       const displayScale = reduced ? p.s : clamp(p.s, 0.9, 1.2);
       const busy = busyRef.current;
       const busyX = busy ? (window.innerWidth <= 720 ? 88 : 128) : 0;
@@ -320,7 +326,11 @@ function RobotCompanion() {
       const busyScale = busy ? 0.84 : 1;
       const holdScale = ix.mode === 'drag' ? ROBOT_HELD_SCALE : 1;
 
-      if (poseRef.current === 'angry' && performance.now() >= angryUntilRef.current) {
+      const nowMs = performance.now();
+      if (poseRef.current === 'angry' && angryUntilRef.current > 0 && nowMs >= angryUntilRef.current) {
+        startBlankAfterAngry();
+      } else if (poseRef.current === 'blank' && blankUntilRef.current > 0 && nowMs >= blankUntilRef.current) {
+        blankUntilRef.current = 0;
         setRobotPose('normal');
       }
 
@@ -332,21 +342,20 @@ function RobotCompanion() {
         el.style.transform =
           `translate3d(calc(-50% + ${p.x + busyX}px), calc(-50% + ${p.y + busyY}px), 0)`;
         el.style.opacity = String(busyOpacity);
+        el.classList.toggle('robot-img--moving', isMoving);
       }
       if (stage) {
-        stage.style.transform =
-          `rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) rotateZ(${leanZ.toFixed(2)}deg)`;
+        const ry = tiltY.toFixed(2);
+        const rz = leanZ.toFixed(2);
+        stage.style.transform = isMoving
+          ? `rotateY(${ry}deg) rotateZ(${rz}deg)`
+          : `rotateX(${tiltX.toFixed(2)}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
       }
       if (body) {
-        const s = (displayScale * busyScale * volScale * holdScale).toFixed(4);
-        body.style.transform = depthZ > 0.01
-          ? `translateZ(${depthZ.toFixed(2)}px) scale(${s})`
-          : `scale(${s})`;
+        const s = (displayScale * busyScale * holdScale).toFixed(4);
+        body.style.transform = `scale(${s})`;
       }
-      if (face) {
-        face.style.transform =
-          `translate(${faceShiftX.toFixed(2)}px, ${faceShiftY.toFixed(2)}px)`;
-      }
+      if (face) face.style.transform = '';
       raf = requestAnimationFrame(animate);
     };
     raf = requestAnimationFrame(animate);
@@ -356,7 +365,7 @@ function RobotCompanion() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     };
-  }, [computeTarget, computeDock, setRobotPose, registerWallBounce]);
+  }, [computeTarget, computeDock, setRobotPose, registerWallBounce, startBlankAfterAngry]);
 
   React.useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -451,13 +460,18 @@ function RobotCompanion() {
       ix.vx = (ix.vx / speed) * max;
       ix.vy = (ix.vy / speed) * max;
     }
-    ix.pendingAngry = speed >= ROBOT_THROW_ANGRY_MIN_SPEED;
+    const isThrow = speed > ROBOT_THROW_MIN_SPEED;
+    ix.mode = isThrow ? 'free' : 'scroll';
     ix.bounces = 0;
     ix.bounceCooldown = 0;
-    ix.mode = speed > 35 ? 'free' : 'scroll';
     ix.still = 0;
-    if (ix.mode !== 'free') ix.pendingAngry = false;
-    setRobotPose('normal');
+    ix.pendingAngry = isThrow && speed >= ROBOT_THROW_ANGRY_MIN_SPEED;
+    if (isThrow && ix.pendingAngry) {
+      setRobotPose('held');
+    } else {
+      ix.pendingAngry = false;
+      setRobotPose('normal');
+    }
   }, [setRobotPose]);
 
   // Лёгкий поворот «к курсору» на десктопе
@@ -495,6 +509,7 @@ function RobotCompanion() {
   }, []);
 
   const applyRouteMood = React.useCallback((route) => {
+    if (poseRef.current !== 'normal') return;
     const section = robotSectionFromRoute(route);
     const cfg = ROBOT_MOODS[section] || ROBOT_MOODS.home;
     const wrap = wrapRef.current;
@@ -536,7 +551,12 @@ function RobotCompanion() {
         !!document.querySelector('.contact-modal-backdrop');
       busyRef.current = busy;
       const hidden = document.hidden;
-      setFacePaused(busy || hidden || poseRef.current === 'held' || poseRef.current === 'angry');
+      setFacePaused(
+        busy || hidden ||
+        poseRef.current === 'held' ||
+        poseRef.current === 'angry' ||
+        poseRef.current === 'blank'
+      );
       wrapRef.current?.classList.toggle('robot-img--busy', busy);
     };
     syncBusy();

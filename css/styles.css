@@ -2466,8 +2466,11 @@ button { font-family: inherit; }
   will-change: transform;
   filter: none;
   transition: opacity 0.35s ease;
-  perspective: 580px;
-  perspective-origin: 50% 46%;
+  perspective: 1100px;
+  perspective-origin: 50% 50%;
+}
+.robot-img.robot-img--moving {
+  perspective: none;
 }
 .robot-img.robot-img--hide-over-copy {
   opacity: 0;
@@ -2555,7 +2558,7 @@ button { font-family: inherit; }
   width: 100%;
   height: 100%;
   will-change: transform;
-  transform-style: preserve-3d;
+  transform-style: flat;
   isolation: isolate;
 }
 .robot-img-float {
@@ -2586,6 +2589,14 @@ button { font-family: inherit; }
   opacity: 1;
   visibility: visible;
 }
+.robot-img[data-robot-pose="blank"] .robot-img-stack--pose {
+  opacity: 0;
+  visibility: hidden;
+}
+.robot-img[data-robot-pose="blank"] .robot-img-stack--default {
+  opacity: 1;
+  visibility: visible;
+}
 .robot-img-pose {
   position: absolute;
   inset: 0;
@@ -2608,7 +2619,6 @@ button { font-family: inherit; }
 }
 .robot-img-layer--face {
   z-index: 1;
-  will-change: transform;
 }
 .robot-img-layer--glow {
   z-index: 6;
@@ -2629,6 +2639,17 @@ button { font-family: inherit; }
 }
 .robot-face-cycle--lighten .robbie-face-layer {
   mix-blend-mode: lighten;
+}
+.robot-img--moving .robot-face-cycle--lighten .robbie-face-layer {
+  mix-blend-mode: normal;
+}
+.robot-img--moving .robot-img-glow {
+  mix-blend-mode: normal;
+  opacity: 0.92;
+  animation-play-state: paused;
+}
+.robot-img--moving .robot-img-float {
+  animation-play-state: paused;
 }
 /* Robby_11 — неоновая обводка */
 .robot-img-glow {
@@ -2660,7 +2681,7 @@ button { font-family: inherit; }
 }
 @keyframes robot-bob {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -6px, 5px); }
+  50% { transform: translate3d(0, -6px, 0); }
 }
 @keyframes robot-glow-pulse {
   0%, 100% { opacity: 0.9; filter: brightness(1) saturate(1); }
