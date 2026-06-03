@@ -669,6 +669,24 @@ const PORTFOLIO = [
     ],
     related: ['portfolio-draft-3', 'psp-platform', 'omni-rebranding'],
   },
+
+  ...[5, 6, 7].map((n) => ({
+    slug: `portfolio-draft-${n}`,
+    draft: true,
+    name: `Скоро — кейс ${n - 4}`,
+    short: 'Материалы проекта готовятся к публикации.',
+    hero: 'Материалы проекта готовятся к публикации.',
+    category: '—',
+    sector: '—',
+    cardChips: ['Скоро'],
+    art: 'ArtConstellation',
+    palette: '#9AA3B2',
+    hideInfoDuration: true,
+    hideInfoYear: true,
+    metrics: [],
+    slides: [],
+    related: ['portfolio-draft-4'],
+  })),
 ];
 
 window.PORTFOLIO = PORTFOLIO;

@@ -506,4 +506,29 @@ window.PORTFOLIO_EN_PATCHES = {
       'The product team gets clean data on physicians’ real educational needs.',
     ],
   },
+
+  'portfolio-draft-5': {
+    name: 'Coming soon — case 1',
+    short: 'Case materials are being prepared for publication.',
+    hero: 'Case materials are being prepared for publication.',
+    category: '—',
+    sector: '—',
+    cardChips: ['Coming soon'],
+  },
+  'portfolio-draft-6': {
+    name: 'Coming soon — case 2',
+    short: 'Case materials are being prepared for publication.',
+    hero: 'Case materials are being prepared for publication.',
+    category: '—',
+    sector: '—',
+    cardChips: ['Coming soon'],
+  },
+  'portfolio-draft-7': {
+    name: 'Coming soon — case 3',
+    short: 'Case materials are being prepared for publication.',
+    hero: 'Case materials are being prepared for publication.',
+    category: '—',
+    sector: '—',
+    cardChips: ['Coming soon'],
+  },
 };
