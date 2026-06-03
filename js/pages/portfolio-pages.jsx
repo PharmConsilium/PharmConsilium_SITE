@@ -9,6 +9,15 @@ function projSlideImageSrc(s) {
   return s.srcFull || s.src;
 }
 
+function projAspectIsPortrait(ratio) {
+  if (!ratio) return false;
+  const m = String(ratio).match(/^(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)$/);
+  if (!m) return false;
+  const w = Number(m[1]);
+  const h = Number(m[2]);
+  return h > w;
+}
+
 function portfolioMetaChips(p) {
   if (p.draft) return p.cardChips || ['Скоро'];
   if (Array.isArray(p.cardChips) && p.cardChips.length) return p.cardChips;
@@ -267,9 +276,10 @@ function ProjectPage({ slug, navigate, lang }) {
   const stageIsVideo = isSlideVideo(activeSlide);
   const stageAspect = (stageIsVideo && videoAspect)
     || activeSlide?.aspect
-    || (stageIsVideo ? '9 / 16' : null)
     || p.slideAspect
+    || (stageIsVideo ? '16 / 9' : null)
     || '950 / 1024';
+  const stageVideoPortrait = stageIsVideo && projAspectIsPortrait(stageAspect);
 
   const goSlide = (index) => {
     pauseVideos();
@@ -407,7 +417,7 @@ function ProjectPage({ slug, navigate, lang }) {
           <div className="proj-slider">
             <div
               ref={sliderRef}
-              className={`proj-slider-stage${slideUsesMedia ? ' proj-slider-stage--image' : ''}${stageIsVideo ? ' proj-slider-stage--video' : ''}`}
+              className={`proj-slider-stage${slideUsesMedia ? ' proj-slider-stage--image' : ''}${stageVideoPortrait ? ' proj-slider-stage--video proj-slider-stage--video-portrait' : ''}`}
               style={slideUsesMedia
                 ? { aspectRatio: stageAspect, background: 'var(--bg-2)' }
                 : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
@@ -421,6 +431,7 @@ function ProjectPage({ slug, navigate, lang }) {
                       ? <VideoPlayer
                           src={videoSrc}
                           poster={s.poster}
+                          posterFromVideo={s.posterFromVideo}
                           alt={s.alt || s.label}
                           active={isActive}
                           onAspect={isActive ? setVideoAspect : undefined}
