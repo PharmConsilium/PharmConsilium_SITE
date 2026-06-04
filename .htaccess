@@ -7,6 +7,10 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
+  # SEO-spam URLs from hack (?p=12345) — 410 Gone (Google drops from index faster than 404)
+  RewriteCond %{QUERY_STRING} (^|&)p= [NC]
+  RewriteRule ^ - [G,L]
+
   # --- Старый PHP-сайт (явный запрос в браузере) ---
   RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
   RewriteRule ^index\.php$ / [R=301,L]
@@ -104,6 +108,19 @@ DirectoryIndex index.html
 
   RewriteCond %{THE_REQUEST} \s/+stm/create-brand-book-drug[\s?] [NC]
   RewriteRule ^stm/create-brand-book-drug$ /content/presentations [R=301,L]
+
+  # --- Catch-all: spam / unknown legacy paths (indexed by hack, not in list above) ---
+  RewriteCond %{THE_REQUEST} \s/+tool/ [NC]
+  RewriteRule ^tool/ /marketing [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \s/+outsourcings/ [NC]
+  RewriteRule ^outsourcings/ /sales [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \s/+training/ [NC]
+  RewriteRule ^training/ /hcp/education [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \s/+stm/ [NC]
+  RewriteRule ^stm/ /content [R=301,L]
 
   # --- SPA (после legacy; не трогать существующие файлы и каталоги) ---
   RewriteCond %{REQUEST_FILENAME} -f [OR]
