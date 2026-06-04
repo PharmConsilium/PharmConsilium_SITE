@@ -3,7 +3,7 @@
 
 const PORTFOLIO = [
   {
-    slug: 'cardio-lonch',
+    slug: 'bepanten-banner',
     name: 'Рекламный баннер Бепантен крем',
     client: 'Bayer',
     infoClientLabel: 'Target',
@@ -53,11 +53,11 @@ const PORTFOLIO = [
       { src: 'assets/uploads/bepanten-banner-2.png', label: 'Баннер 2', alt: 'Цифровой баннер Бепантен крем — баннер 2' },
       { src: 'assets/uploads/bepanten-banner-3.png', label: 'Баннер 3', alt: 'Цифровой баннер Бепантен крем — баннер 3' },
     ],
-    related: ['ai-trener', 'omni-rebranding', 'conference-pk25'],
+    related: ['meditatio-night-brand', 'omni-rebranding', 'conference-pk25'],
   },
 
   {
-    slug: 'ai-trener',
+    slug: 'meditatio-night-brand',
     name: 'Брендбук БАД, нейминг, упаковка',
     client: 'Заказчик · фарм-бренд',
     infoClientLabel: 'Target',
@@ -105,11 +105,11 @@ const PORTFOLIO = [
       { src: 'assets/uploads/meditatio-night-slide-3.png', label: 'Типографика', alt: 'Медитацио-найт — логотип, шрифты и фирменные цвета' },
       { src: 'assets/uploads/meditatio-night-slide-4.png', label: 'Развёртка', alt: 'Медитацио-найт — развёртка упаковки' },
     ],
-    related: ['cardio-lonch', 'patient-series', 'omni-rebranding'],
+    related: ['bepanten-banner', 'supplement-packaging', 'omni-rebranding'],
   },
 
   {
-    slug: 'patient-series',
+    slug: 'supplement-packaging',
     name: 'Нейминг и создание упаковки БАД для регистрации',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -167,7 +167,7 @@ const PORTFOLIO = [
     thumb: 'assets/uploads/patient-series-card-thumb.png',
     thumbLayout: 'wide',
     thumbAlt: 'Гидробаланс — туба 20 шипучих таблеток',
-    related: ['ai-trener', 'omni-rebranding', 'conference-pk25'],
+    related: ['meditatio-night-brand', 'omni-rebranding', 'conference-pk25'],
   },
 
   {
@@ -224,7 +224,7 @@ const PORTFOLIO = [
         alt: 'ФармКонсилиум-2025 — демонстрация цифрового визита',
       },
     ],
-    related: ['cardio-lonch', 'patient-series', 'ai-trener'],
+    related: ['bepanten-banner', 'supplement-packaging', 'meditatio-night-brand'],
   },
 
   {
@@ -286,7 +286,7 @@ const PORTFOLIO = [
       { phase: '16–28 нед.', t: 'Запуск первой волны' },
       { phase: '28+ нед.',   t: 'Сопровождение и оптимизация' },
     ],
-    related: ['cardio-lonch', 'ai-trener', 'psp-platform'],
+    related: ['bepanten-banner', 'meditatio-night-brand', 'psp-platform'],
   },
 
   {
@@ -365,7 +365,7 @@ const PORTFOLIO = [
         alt: 'CLM — профили пациентов с АГ и симпатической гиперактивностью',
       },
     ],
-    related: ['patient-series', 'omni-rebranding', 'ai-trener'],
+    related: ['supplement-packaging', 'omni-rebranding', 'meditatio-night-brand'],
   },
 
   {
@@ -422,11 +422,11 @@ const PORTFOLIO = [
       { phase: '8–10 нед.', t: 'Загрузка в Veeva, тестирование' },
       { phase: '10–12 нед.', t: 'Тренинг команды, релиз' },
     ],
-    related: ['cardio-lonch', 'omni-rebranding', 'ai-trener'],
+    related: ['bepanten-banner', 'omni-rebranding', 'meditatio-night-brand'],
   },
 
   {
-    slug: 'directory-launch',
+    slug: 'drug-directory-launch',
     name: 'Медицинская инфографика титрации лекарственного препарата для лечения боли',
     client: 'Собственный продукт',
     infoClientLabel: 'Target',
@@ -476,11 +476,11 @@ const PORTFOLIO = [
       { phase: '12–18 мес.', t: 'Маркетинг и сообщество' },
       { phase: '18+ мес.',    t: 'API и партнёрства' },
     ],
-    related: ['omni-rebranding', 'cardio-lonch', 'psp-platform'],
+    related: ['omni-rebranding', 'bepanten-banner', 'psp-platform'],
   },
 
   {
-    slug: 'portfolio-draft-1',
+    slug: 'clm-mobile-app',
     name: 'Мобильное приложение для демонстрации CLM-презентаций медицинскими представителями',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -520,11 +520,11 @@ const PORTFOLIO = [
         alt: 'CLM PharmConsilium — App Store, материалы и демонстрация CLM-презентации на планшете и смартфонах',
       },
     ],
-    related: ['psp-platform', 'clm-veeva', 'portfolio-draft-2'],
+    related: ['psp-platform', 'clm-veeva', 'stroke-exam'],
   },
 
   {
-    slug: 'portfolio-draft-2',
+    slug: 'stroke-exam',
     name: 'Создание платформы для дистанционного обучения медицинских специалистов «Stroke Exam»',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -565,11 +565,11 @@ const PORTFOLIO = [
         alt: 'Stroke Exam — видеотренинг по шкале NIHSS и интерактивная оценка уровня сознания пациента',
       },
     ],
-    related: ['clm-veeva', 'psp-platform', 'portfolio-draft-1'],
+    related: ['clm-veeva', 'psp-platform', 'clm-mobile-app'],
   },
 
   {
-    slug: 'portfolio-draft-3',
+    slug: 'hcp-tic-tac-toe',
     name: 'Медицинская игра в формате «крестики-нолики»',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -617,11 +617,11 @@ const PORTFOLIO = [
         alt: 'Медицинская игра в формате «крестики-нолики» — демонстрация на планшете',
       },
     ],
-    related: ['portfolio-draft-2', 'portfolio-draft-4', 'clm-veeva'],
+    related: ['stroke-exam', 'hcp-videovisit', 'clm-veeva'],
   },
 
   {
-    slug: 'portfolio-draft-4',
+    slug: 'hcp-videovisit',
     name: 'Видеовизит для HCP. Цифровой аватар в интерактивном видео',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -667,11 +667,11 @@ const PORTFOLIO = [
         alt: 'Видеовизит для HCP — цифровой аватар в интерактивном видео',
       },
     ],
-    related: ['portfolio-draft-3', 'psp-platform', 'omni-rebranding'],
+    related: ['hcp-tic-tac-toe', 'psp-platform', 'omni-rebranding'],
   },
 
   {
-    slug: 'portfolio-draft-5',
+    slug: 'bepanten-ad-layouts',
     name: 'Серия рекламных макетов Бепантен',
     client: 'Bayer',
     infoClientLabel: 'Target',
@@ -720,12 +720,12 @@ const PORTFOLIO = [
         alt: 'Предложенные варианты дизайна — три концепции кампании Бепантен',
       },
     ],
-    related: ['cardio-lonch', 'portfolio-draft-4', 'portfolio-draft-6'],
+    related: ['bepanten-banner', 'hcp-videovisit', 'bayer-club-teleapp'],
   },
 
   {
-    slug: 'portfolio-draft-6',
-    name: 'Кейс 2',
+    slug: 'bayer-club-teleapp',
+    name: 'Клуб Байер — чат-бот и TeleApp',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
     infoClient: 'HCP',
@@ -762,12 +762,12 @@ const PORTFOLIO = [
         alt: 'Клуб Байер — демонстрация чат-бота и TeleApp для специалистов здравоохранения',
       },
     ],
-    related: ['portfolio-draft-5', 'portfolio-draft-7', 'clm-veeva'],
+    related: ['bepanten-ad-layouts', 'grandaxin-game', 'clm-veeva'],
   },
 
   {
-    slug: 'portfolio-draft-7',
-    name: 'Кейс 3',
+    slug: 'grandaxin-game',
+    name: 'Грандаксин — игра для HCP',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
     infoClient: 'HCP',
@@ -820,7 +820,7 @@ const PORTFOLIO = [
         alt: 'Игра Грандаксин — демонстрация 3',
       },
     ],
-    related: ['portfolio-draft-6', 'portfolio-draft-5', 'portfolio-draft-4'],
+    related: ['bayer-club-teleapp', 'bepanten-ad-layouts', 'hcp-videovisit'],
   },
 ];
 

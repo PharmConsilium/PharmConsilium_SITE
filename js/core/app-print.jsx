@@ -16,12 +16,12 @@ function PrintApp() {
   const noop = () => {};
   const pages = [
     { id: 'home',      el: <HomePage navigate={noop} scenario="comms" setScenario={noop}/> },
-    { id: 'marketing', el: <MarketingPage navigate={noop}/> },
-    { id: 'hcp',       el: <HcpPage navigate={noop}/> },
-    { id: 'sales',     el: <SalesPage navigate={noop}/> },
-    { id: 'content',   el: <ContentPage navigate={noop}/> },
-    { id: 'directory', el: <DirectoryPage navigate={noop}/> },
-    { id: 'team',      el: <TeamPage navigate={noop}/> },
+    { id: 'pharma-marketing', el: <MarketingPage navigate={noop}/> },
+    { id: 'healthcare',       el: <HcpPage navigate={noop}/> },
+    { id: 'outsourcing',     el: <SalesPage navigate={noop}/> },
+    { id: 'design',   el: <ContentPage navigate={noop}/> },
+    { id: 'drug-directory', el: <DirectoryPage navigate={noop}/> },
+    { id: 'about',      el: <TeamPage navigate={noop}/> },
   ];
 
   const subIds = Object.keys(window.SUBPAGES || {});

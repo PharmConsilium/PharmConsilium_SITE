@@ -387,10 +387,10 @@ function ProjectPage({ slug, navigate, lang }) {
                 </div>
               </div>
             ) : null}
-            {slug === 'cardio-lonch' ? (
+            {slug === 'bepanten-banner' ? (
               <button
                 className="btn btn-primary"
-                onClick={() => navigate('content/presentations')}
+                onClick={() => navigate('design/brand-packaging')}
               >
                 Узнать больше об этой услуге <span className="arrow">→</span>
               </button>
@@ -399,7 +399,7 @@ function ProjectPage({ slug, navigate, lang }) {
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'cardio-lonch'} /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'bepanten-banner'} /> : null}
 
       <section className="container">
         {Array.isArray(p.metrics) && p.metrics.length > 0 ? (

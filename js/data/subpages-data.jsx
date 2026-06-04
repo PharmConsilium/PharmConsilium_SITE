@@ -1,10 +1,10 @@
 // SUBPAGES — content for every clickable card.
-// Routing format: "section/sub" e.g. "marketing/crm".
+// Routing format: "section/sub" e.g. "pharma-marketing/crm".
 
 const SUBPAGES = {
   /* ========== MARKETING ========== */
-  'marketing/crm': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/crm': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: 'CRM для медицинских представителей',
     h1Line1: 'CRM-PharmConsilium',
     h1Accent: 'для медицинских представителей',
@@ -41,11 +41,11 @@ const SUBPAGES = {
       'Модуль «2CLM / eDetailing»: поствизитное взаимодействие с контентом, отправка промо после визита. Бесшовный доступ для HCP, дашборд аналитики для менеджеров.',
       'Модуль «Digital Communication»: цифровые коммуникации в одном контуре с полевой командой — Telegram-бот, SMS, WhatsApp/Viber и Email формируют единую историю взаимодействия с HCP.',
     ],
-    related: ['marketing/clm', 'marketing/chatbot', 'sales/digital-rep'],
+    related: ['pharma-marketing/clm', 'pharma-marketing/chatbot-teleapp', 'outsourcing/digital-rep'],
   },
 
-  'marketing/clm': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/clm': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: 'CLM — ПО для работы МП F2F с промоконтентом',
     lede: 'Программное обеспечение для демонстрации CLM-презентаций медицинским представителем на F2F-визитах. Интерактивные сценарии, метрики взаимодействия, экспорт данных.',
     tags: ['CLM', 'CLM-презентации', 'Detailing CLM — ФармКонсилиум'],
@@ -81,11 +81,11 @@ const SUBPAGES = {
       'Корпоративный облачный хаб для хранения промоконтента. Загружайте материалы в облако без ограничений по количеству — после синхронизации они доступны на устройствах медицинских представителей.',
     ],
     detailCtaH3: 'Напишите нам, и мы быстро развёрнем демоверсию для вас',
-    related: ['marketing/2clm', 'content/edetailing', 'marketing/crm'],
+    related: ['pharma-marketing/2clm', 'design/edetailing', 'pharma-marketing/crm'],
   },
 
-  'marketing/2clm': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/2clm': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: '2CLM — ПО для увеличения эффективности визитов SF',
     lede: 'МП сделал визит, материалы визита отправил ссылкой клиенту. 2CLM — оценивает поствизитное взаимодействие HCP с контентом.',
     tags: ['Rep-Triggered Email', 'Post-Call Digital Content Push', 'Post-Call Follow-Up Materials Delivery', 'Post-Visit Promotional Content Distribution'],
@@ -120,11 +120,11 @@ const SUBPAGES = {
       'Гибкая аналитика взаимодействий — настраиваемые метрики (просмотры, CTR, время контакта), дашборды для сотрудников и менеджеров, сводная аналитика по компании. Ролевая система доступа — три уровня отчётности: индивидуальный (сотрудник), групповой (менеджер) и корпоративный (сводная аналитика).',
       'Соблюдение корпоративного комплаенса — система разворачивается с учётом регуляторных требований, включает дисклеймеры, формы согласия и обратной связи. Обучение и техническая поддержка — минимальные требования к навыкам пользователей, удалённое обучение персонала и сервисная поддержка включены в поставку.',
     ],
-    related: ['marketing/clm', 'sales/digital-rep', 'content/edetailing'],
+    related: ['pharma-marketing/clm', 'outsourcing/digital-rep', 'design/edetailing'],
   },
 
-  'marketing/chatbot': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/chatbot-teleapp': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP',
     lede: 'Создание уникальной цифровой архитектуры в мессенджере Телеграм для долгосрочной коммуникации с вашими клиентами, где в списке личных чатов пользователя находится чат-бот с встроенными функциями мобильного приложения.',
     tags: ['TelegramBot', 'TeleApp', 'ChatBot', 'ConversationalAI', 'HCPEngagement', 'PharmaMarketing', 'DigitalHealth', 'WebApp'],
@@ -160,11 +160,11 @@ const SUBPAGES = {
       'Аналитика всей экосистемы в одном дашборде. Просмотры, CTR, время контакта, конверсии и поведение пользователей фиксируются по обоим уровням — боту и ТелеАпп — в единой системе отчётности.',
       'Экономия бюджета vs. отдельное мобильное приложение. ТелеАпп заменяет дорогостоящую разработку и поддержку обновлений приложения, высвобождая ресурсы для контента и клиентского опыта.',
     ],
-    related: ['marketing/crm', 'hcp/ai-recom', 'hcp/psp'],
+    related: ['pharma-marketing/crm', 'healthcare/education-platforms', 'healthcare/rwe-analytics'],
   },
 
-  'marketing/web': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/web-development': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: 'Веб-разработка, сайты, лендинги, лонгриды, цифровые платформы',
     crumb: 'Веб-разработка, сайты, лендинги, лонгриды, цифровые платформы',
     h1Line1: 'Веб-разработка,',
@@ -205,11 +205,11 @@ const SUBPAGES = {
       'Аналитика и трекинг поведения аудитории. Встроенные инструменты аналитики фиксируют поведение пользователей, источники трафика и конверсии — данные сразу готовы для оптимизации стратегии.',
       'Адаптивный дизайн для всех устройств. Все веб-решения корректно отображаются на десктопе, планшете и смартфоне — критично для HCP, работающего на разных устройствах в разных контекстах.',
     ],
-    related: ['marketing/mobile', 'marketing/events', 'content/presentations'],
+    related: ['pharma-marketing/mobile-apps', 'pharma-marketing/event-support', 'design/brand-packaging'],
   },
 
-  'marketing/mobile': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/mobile-apps': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: 'Разработка мобильных приложений',
     h1Line1: 'Разработка мобильных',
     h1Accent: 'приложений',
@@ -250,11 +250,11 @@ const SUBPAGES = {
       { t:'Аналитика поведения пользователей и сценариев использования', d:'Мы закладываем систему событийной аналитики: какие экраны посещают, какие функции востребованы, где пользователи «отваливаются». Это позволяет эволюционно развивать продукт, а также использовать инсайты в маркетинговой и медицинской стратегии.'},
       { t:'Техподдержка, обновления и развитие продукта', d:'После релиза мы сопровождаем приложение: обновляем SDK, адаптируем под новые требования стора и законодательства, добавляем функционал по результатам аналитики и запросам бренда.'},
     ],
-    related: ['marketing/web', 'hcp/psp', 'hcp/mobile'],
+    related: ['pharma-marketing/web-development', 'healthcare/rwe-analytics', 'healthcare/mobile-apps'],
   },
 
-  'marketing/events': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/event-support': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: 'Цифровая поддержка мероприятий',
     h1Line1: 'Цифровая поддержка',
     h1Accent: 'мероприятий',
@@ -293,11 +293,11 @@ const SUBPAGES = {
       { t:'Инструменты коммуникации до и после события', d:'Серии e-mail и мессенджер-сообщений с анонсами, напоминаниями, ссылками на материалы и конгресс-дайджестами поддерживают контакт с HCP на всех этапах. Это усиливает эмоциональную связь с брендом и повышает вероятность последующих назначений и взаимодействий.'},
       { t:'Аналитика вовлечённости и конкурентной позиции', d:'Система фиксирует регистрации, посещаемость сессий, активность в боте и интерактивах, интерес к темам и динамику по спикерам. На основе этих данных вы видите, какие форматы дают максимум эмоциональной вовлечённости и где уже сейчас выигрываете (или проигрываете) конкурентам в восприятии HCP.'},
     ],
-    related: ['marketing/web', 'content/gamification', 'marketing/ai'],
+    related: ['pharma-marketing/web-development', 'design/games-quizzes', 'pharma-marketing/rep-training'],
   },
 
-  'marketing/ai': {
-    section: 'Фармацевтический маркетинг', sectionId: 'marketing',
+  'pharma-marketing/rep-training': {
+    section: 'Фармацевтический маркетинг', sectionId: 'pharma-marketing',
     title: 'Тренинги для медицинских представителей',
     h1Line1: 'Тренинги для',
     h1Accent: 'медицинских представителей',
@@ -337,12 +337,12 @@ const SUBPAGES = {
     detailCtaH3: 'Темы тренингов медицинских представителей, напишите нам',
     detailCtaTopics: window.TRAINING_CTA_TOPICS_RU,
     detailCtaP: '',
-    related: ['marketing/crm', 'hcp/ai-healthcare', 'sales/analytics'],
+    related: ['pharma-marketing/crm', 'healthcare/research-platforms', 'outsourcing/share-of-voice'],
   },
 
   /* ========== HCP ========== */
-  'hcp/ai-recom': {
-    section: 'Здравоохранение', sectionId: 'hcp',
+  'healthcare/education-platforms': {
+    section: 'Здравоохранение', sectionId: 'healthcare',
     title: 'Цифровые платформы для образовательных медицинских программ',
     h1Line1: 'Цифровые платформы',
     h1Accent: 'для образовательных медицинских программ',
@@ -379,11 +379,11 @@ const SUBPAGES = {
       { t:'Низкая вовлечённость в стандартные форматы обучения', d:'Линейные лекции и PDF-инструкции не удерживают внимание современного HCP. Интерактивные форматы — квизы, кейсы, дозированные уроки в боте, живые Q&A с экспертом — повышают завершаемость курсов и глубину усвоения материала.'},
       { t:'Отсутствие обратной связи и аналитики по обучению', d:'Традиционные образовательные мероприятия не дают данных о том, что реально усвоили участники. Цифровые платформы фиксируют каждое взаимодействие: время просмотра, ответы на тесты, выбранные темы — это позволяет адаптировать программу и принимать решения на основе данных, а не ощущений.'},
     ],
-    related: ['hcp/education', 'marketing/chatbot', 'hcp/ai-healthcare'],
+    related: ['healthcare/patient-support', 'pharma-marketing/chatbot-teleapp', 'healthcare/research-platforms'],
   },
 
-  'hcp/education': {
-    section: 'Здравоохранение', sectionId: 'hcp',
+  'healthcare/patient-support': {
+    section: 'Здравоохранение', sectionId: 'healthcare',
     title: 'Программы поддержки пациентов',
     h1Line1: 'Программы поддержки',
     h1Accent: 'пациентов',
@@ -420,11 +420,11 @@ const SUBPAGES = {
       { t:'Неравный доступ к образованию по регионам', d:'Специалисты в небольших городах и районных клиниках лишены доступа к конференциям и семинарам ведущих экспертов. Вебинарная платформа и мобильное обучение выравнивают этот доступ — курс от KOL становится доступен любому врачу в любой точке страны.'},
       { t:'Сложность подтверждения компетентности и аккредитации', d:'Традиционная система аттестации требует физического присутствия и бумажного документооборота. Цифровая аттестация с верифицированными сертификатами и историей баллов упрощает процедуру для специалиста и даёт компании прозрачные доказательства качества образовательной программы.'},
     ],
-    related: ['content/medical', 'hcp/ai-recom', 'marketing/events'],
+    related: ['design/clm-presentations', 'healthcare/education-platforms', 'pharma-marketing/event-support'],
   },
 
-  'hcp/chatbot': {
-    section: 'Здравоохранение', sectionId: 'hcp',
+  'healthcare/medical-chatbots': {
+    section: 'Здравоохранение', sectionId: 'healthcare',
     title: 'Чат-боты и ИИ-ассистенты для медицины',
     lede: 'ИИ-ассистенты для врачей, провизоров и пациентов: медицинские боты, поддержка терапии, навигация по вопросам терапии, фармаконадзор — 24/7 в регуляторных рамках.',
     tags: ['MedicalAI', 'HealthcareBot', 'AIassistant', 'PharmaBot', 'DigitalHealth'],
@@ -459,11 +459,11 @@ const SUBPAGES = {
       { t:'Неравенство доступа к качественной медицинской консультации', d:'Пациент в небольшом городе не всегда имеет доступ к специалисту нужного профиля. Симптом-чекер и триаж-бот помогают правильно оценить ситуацию: определить, требуется ли срочная медицинская помощь, плановый визит или наблюдение на дому.'},
       { t:'Недостаточная подготовка аптечного персонала к нестандартным вопросам', d:'Провизор не всегда владеет полным актуальным знанием по широкому портфелю препаратов. Бот у первого стола — это «умная шпаргалка», которая мгновенно предоставляет нужную информацию, повышая качество консультирования и снижая репутационные и клинические риски.'},
     ],
-    related: ['marketing/chatbot', 'hcp/ai-recom', 'hcp/psp'],
+    related: ['pharma-marketing/chatbot-teleapp', 'healthcare/education-platforms', 'healthcare/rwe-analytics'],
   },
 
-  'hcp/mobile': {
-    section: 'Здравоохранение', sectionId: 'hcp',
+  'healthcare/mobile-apps': {
+    section: 'Здравоохранение', sectionId: 'healthcare',
     title: 'Мобильные приложения',
     lede: 'iOS и Android для врачей, провизоров и программ поддержки пациентов. Оффлайн-доступ, push, аналитика, развёртывание в App Store и Google Play.',
     tags: ['iOS', 'Android', 'HCP-app', 'PSP-app'],
@@ -492,11 +492,11 @@ const SUBPAGES = {
       'Дашборд аналитики',
       'Поддержка после запуска',
     ],
-    related: ['hcp/chatbot', 'hcp/psp', 'marketing/mobile'],
+    related: ['healthcare/medical-chatbots', 'healthcare/rwe-analytics', 'pharma-marketing/mobile-apps'],
   },
 
-  'hcp/ai-healthcare': {
-    section: 'Здравоохранение', sectionId: 'hcp',
+  'healthcare/research-platforms': {
+    section: 'Здравоохранение', sectionId: 'healthcare',
     title: 'Цифровые платформы для научных исследований',
     h1Line1: 'Цифровые платформы',
     h1Accent: 'для научных исследований',
@@ -534,11 +534,11 @@ const SUBPAGES = {
       { t:'Задержки при обработке и анализе накопленных данных', d:'Традиционный процесс верификации и очистки данных занимает месяцы. ИИ-системы выполняют автоматизированный Data Quality Check в реальном времени, детектируют аномалии по всему массиву и генерируют отчёты для мониторов, сокращая cycle time по базе на десятки процентов.'},
       { t:'Регуляторные риски при подготовке отчётности', d:'Подготовка CSR и SDTM-пакетов для регуляторных органов — трудоёмкая задача с высоким риском несоответствий. Генеративный ИИ автоматизирует трансформацию данных в регуляторные форматы, а «человек в контуре» (human-in-the-loop) обеспечивает финальную верификацию.'},
     ],
-    related: ['hcp/ai-recom', 'marketing/ai', 'hcp/psp'],
+    related: ['healthcare/education-platforms', 'pharma-marketing/rep-training', 'healthcare/rwe-analytics'],
   },
 
-  'hcp/psp': {
-    section: 'Здравоохранение', sectionId: 'hcp',
+  'healthcare/rwe-analytics': {
+    section: 'Здравоохранение', sectionId: 'healthcare',
     title: 'Создание систем анализа и обработки данных RWE',
     h1Line1: 'Создание систем анализа',
     h1Accent: 'и обработки данных RWE',
@@ -585,12 +585,12 @@ const SUBPAGES = {
       { t:'Неструктурированность накопленных клинических данных', d:'Медицинские записи, заключения, лабораторные результаты и пациентские опросы существуют в разрозненных форматах и системах. NLP-инструменты и ИИ-бэкенд автоматически извлекают структурированные данные из неструктурированных источников и приводят их к аналитически пригодному виду.'},
       { t:'Запаздывающий сигнал по безопасности после регистрации препарата', d:'Традиционный фармаконадзор опирается на добровольную отчётность, которая хронически неполна. RWE-платформа с непрерывным мониторингом когорты позволяет выявлять сигналы нежелательных явлений в реальном времени — задолго до того, как они проявятся в системах традиционной фармаконадзорной отчётности.'},
     ],
-    related: ['content/patient', 'hcp/chatbot', 'marketing/mobile'],
+    related: ['design/patient-content', 'healthcare/medical-chatbots', 'pharma-marketing/mobile-apps'],
   },
 
   /* ========== SALES ========== */
-  'sales/digital-rep': {
-    section: 'Аутсорсинг', sectionId: 'sales',
+  'outsourcing/digital-rep': {
+    section: 'Аутсорсинг', sectionId: 'outsourcing',
     eyebrow: 'Цифровой медицинский представитель',
     eyebrowOneLine: true,
     title: 'Цифровой медицинский представитель',
@@ -631,11 +631,11 @@ const SUBPAGES = {
     detailLongform: true,
     detailCtaH3: 'Оцените выгоду, напишите нам',
     detailCtaP: 'Если вы хотите рассчитать сценарий замены части команды медпредставителей цифровой омниканальной программой по вашей целевой аудитории, мы подготовим для вас индивидуальную архитектуру кампании, объём контактов и прогнозируемые показатели вовлечённости.',
-    related: ['sales/omnichannel', 'sales/launch', 'marketing/crm'],
+    related: ['outsourcing/omnichannel', 'outsourcing/launch-outsourcing', 'pharma-marketing/crm'],
   },
 
-  'sales/omnichannel': {
-    section: 'Аутсорсинг', sectionId: 'sales',
+  'outsourcing/omnichannel': {
+    section: 'Аутсорсинг', sectionId: 'outsourcing',
     title: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов',
     h1Line1: 'Цифровой медицинский представитель',
     h1Accent: 'в гибридном продвижении фармбрендов',
@@ -674,11 +674,11 @@ const SUBPAGES = {
       { t:'Готовую архитектуру интеграции в существующий CRM/CLM и каналы', d:'Цифровые аватары и видеовизиты встраиваются в уже используемые каналы: rep‑triggered email, HCP‑портал, вебинарные платформы, мессенджеры — без радикальной перестройки инфраструктуры.'},
       { t:'Масштабирование лучших практик визита на всю команду', d:'Лучшие скрипты и сценарии, которые показывают высокий отклик у HCP, оцифровываются и реализуются через цифровые аватары, чтобы весь рынок получал «лучший визит», независимо от конкретного МП.'},
     ],
-    related: ['sales/digital-rep', 'marketing/crm', 'marketing/clm'],
+    related: ['outsourcing/digital-rep', 'pharma-marketing/crm', 'pharma-marketing/clm'],
   },
 
-  'sales/launch': {
-    section: 'Аутсорсинг', sectionId: 'sales',
+  'outsourcing/launch-outsourcing': {
+    section: 'Аутсорсинг', sectionId: 'outsourcing',
     title: 'Лонч - аутсорсинг',
     h1Line1: 'Лонч -',
     h1Accent: 'аутсорсинг',
@@ -716,11 +716,11 @@ const SUBPAGES = {
       { t:'Цифровые платформы для видеоконтента', d:'Разрабатываем видеозалы и веб-платформы для демонстрации презентаций, лекций и обучающих роликов с гибкой сегментацией аудитории и возможностью отслеживать вовлечённость.'},
       { t:'Комплексная работа с базой медицинских специалистов Беларуси', d:'Настраиваем адресные рассылки, приглашения и сегментацию по специальности, уровню интереса и вовлечённости, обеспечивая точный выход на нужные группы HCP и аптечных работников.'},
     ],
-    related: ['sales/digital-rep', 'sales/omnichannel', 'marketing/ai'],
+    related: ['outsourcing/digital-rep', 'outsourcing/omnichannel', 'pharma-marketing/rep-training'],
   },
 
-  'sales/analytics': {
-    section: 'Аутсорсинг', sectionId: 'sales',
+  'outsourcing/share-of-voice': {
+    section: 'Аутсорсинг', sectionId: 'outsourcing',
     title: 'Аналитика продаж и доли голоса',
     lede: 'Дашборд: визиты, контакты, отклик, метрики кампании. Связка с IQVIA и закупочными данными.',
     tags: ['IQVIA', 'SoV', 'дашборд'],
@@ -749,12 +749,12 @@ const SUBPAGES = {
       'Сопровождение',
       'Ежемесячный отчёт',
     ],
-    related: ['marketing/ai', 'sales/omnichannel', 'sales/digital-rep'],
+    related: ['pharma-marketing/rep-training', 'outsourcing/omnichannel', 'outsourcing/digital-rep'],
   },
 
   /* ========== CONTENT ========== */
-  'content/medical': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/clm-presentations': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'CLM-презентации, детейлеры, слайдбоксы для медицинского представителя',
     lede: 'CLM-детейлеры и визуальные материалы для F2F-визитов МП: клинически точный нарратив, доказательный дизайн, compliance и аналитика каждого визита — всё под контролем продакт-менеджера.',
     tags: ['CLM', 'eDetailing', 'VisualAid', 'FieldForce', 'PharmaBrand'],
@@ -791,11 +791,11 @@ const SUBPAGES = {
       { t:'CLM-аналитику: вы знаете, что реально происходит на каждом визите', d:'Время на каждом экране, частота использования модулей, реакция HCP на разные разделы — эти данные возвращаются к вам и становятся основой для следующего промоцикла. Бюджет на контент перестаёт быть «верой» и становится инвестицией с измеримым ROI.'},
       { t:'Весь цикл производства в одном синхронном процессе', d:'Медицинский редактор, копирайтер, дизайнер и юридический эксперт работают параллельно — без долгих итераций между агентством и вашим медицинским отделом. Вы получаете готовый материал быстрее и с предсказуемым качеством.'},
     ],
-    related: ['content/edetailing', 'content/patient', 'hcp/education'],
+    related: ['design/edetailing', 'design/patient-content', 'healthcare/patient-support'],
   },
 
-  'content/edetailing': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/edetailing': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'CLM и eDetailing',
     lede: 'Интерактивные CLM-презентации, сценарии визитов, материалы для face-to-face eDetailing, remote eDetailing, surveys, геймификация.',
     tags: ['Veeva', 'Pitcher', 'Agnitio', 'eDetailing'],
@@ -824,11 +824,11 @@ const SUBPAGES = {
       'Версии для tablet / web',
       'Регуляторное согласование',
     ],
-    related: ['marketing/clm', 'marketing/2clm', 'content/video'],
+    related: ['pharma-marketing/clm', 'pharma-marketing/2clm', 'design/hcp-video'],
   },
 
-  'content/patient': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/patient-content': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'Пациентский образовательный контент',
     lede: 'Расскажем и нарисуем сложное так, что поймёт ребёнок: статьи, видео, анимация, памятки, объяснение заболеваний, терапии, приверженности и образа жизни.',
     tags: ['пациенты', 'просвещение', 'видео'],
@@ -857,11 +857,11 @@ const SUBPAGES = {
       'Каналы распространения',
       'Аналитика просмотров',
     ],
-    related: ['hcp/psp', 'content/video', 'content/medical'],
+    related: ['healthcare/rwe-analytics', 'design/hcp-video', 'design/clm-presentations'],
   },
 
-  'content/video': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/hcp-video': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'Видео HCP - от сценария до спецэффектов в выступлении OL',
     lede: 'Видеовизиты, интерактивные видео и вертикальные форматы для смартфонов. От линейного текинга до сложной архитектуры с клинической точностью и продакшн уровнем топ студии.',
     tags: ['PharmaVideo', 'eDetailing', 'KOLvideo', 'VideoMarketing', 'HCPengagement'],
@@ -903,11 +903,11 @@ const SUBPAGES = {
       { t:'Одобрение медотдела и комплаенс-менеджера', d:'Сценарий проходит медицинскую редактуру до начала продакшна. Это исключает дорогостоящие переделки после съёмки и ускоряет прохождение MLR-цикла.'},
       { t:'Аналитику взаимодействия с видео клиенту', d:'Время просмотра, точки выхода, интерактивные выборы, переходы — данные о поведении врача при просмотре возвращаются в аналитику и дают продакт-менеджеру инструмент оценки ROI видеоконтента.'},
     ],
-    related: ['content/edetailing', 'content/patient', 'content/presentations'],
+    related: ['design/edetailing', 'design/patient-content', 'design/brand-packaging'],
   },
 
-  'content/presentations': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/brand-packaging': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС',
     h1Line1: 'Визуальные концепты,',
     h1Accent: 'упаковка, рекламные',
@@ -947,11 +947,11 @@ const SUBPAGES = {
       { t:'Централизованный Digital Asset Management (DAM) для команды', d:'Все финальные файлы упакованы в структурированную библиотеку: актуальные версии логотипов, упаковок, шаблонов и баннеров всегда доступны команде МП, регуляторному отделу и подрядчикам — в правильном формате и с правильными разрешениями.'},
       { t:'Compliance-аудит всех визуальных материалов', d:'Каждый элемент дизайна — от баннера до упаковки — проверяется на соответствие регуляторным требованиям рынка: размещение дисклеймеров, обязательные элементы маркировки, ограничения по визуальным образам в рецептурном сегменте.'},
     ],
-    related: ['content/medical', 'content/edetailing', 'content/video'],
+    related: ['design/clm-presentations', 'design/edetailing', 'design/hcp-video'],
   },
 
-  'content/advertising': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/ai-content': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг',
     h1Line1: 'ИИ-контент:',
     h1Accent: 'аватары, аудио-подкасты, медицинский копирайтинг',
@@ -990,11 +990,11 @@ const SUBPAGES = {
       { t:'Один производственный цикл — множество форматов контента', d:'Из одного мастер-сценария видеовизита получаются вертикальные ролики, фрагменты для мессенджеров, аудиодорожка для подкаста, текст для статьи и тезисы для e-mail-рассылки. Коэффициент использования бюджета на производство возрастает в разы.'},
       { t:'Аналитику вовлечённости по каждому типу контента', d:'Просмотры и глубина досмотра видео, дослушивание подкастов, клики в интерактивных элементах, ответы в квизах — все данные собираются и используются для оптимизации следующих волн контента и точной настройки сегментации.'},
     ],
-    related: ['content/video', 'marketing/web', 'content/medical'],
+    related: ['design/hcp-video', 'pharma-marketing/web-development', 'design/clm-presentations'],
   },
 
-  'content/gamification': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/games-quizzes': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'Игры, квизы и клинические детективы для HCP',
     h1Line1: 'Игры, квизы и',
     h1Accent: 'клинические детективы',
@@ -1032,11 +1032,11 @@ const SUBPAGES = {
       { t:'Сложность оценки реального уровня компетенций HCP', d:'Традиционные тесты показывают «знание правильного ответа», а не способность применять знания в клинических ситуациях. Ветвящиеся кейсы и симуляции оценивают клиническое мышление в действии — это принципиально другой уровень диагностики компетентности, значимый как для самого врача, так и для организатора программы.'},
       { t:'Сложность удержания аудитории на многодневных конференциях и вебинарах', d:'Участники конгрессов быстро устают от пассивного слушания. Квизы между сессиями, живые конкурсы знаний, рейтинги за активность у стендов и командные игры мгновенно возвращают внимание аудитории и создают позитивную эмоциональную связь с мероприятием и брендом-организатором.'},
     ],
-    related: ['hcp/education', 'marketing/events', 'content/edetailing'],
+    related: ['healthcare/patient-support', 'pharma-marketing/event-support', 'design/edetailing'],
   },
 
-  'content/psp': {
-    section: 'Дизайн', sectionId: 'content',
+  'design/psp-content': {
+    section: 'Дизайн', sectionId: 'design',
     title: 'Программы поддержки пациентов · контент',
     lede: 'Цифровые платформы и материалы: напоминания, мотивационные материалы, навигация по терапии, персонализированные рекомендации.',
     tags: ['PSP', 'adherence'],
@@ -1065,12 +1065,12 @@ const SUBPAGES = {
       'Сценарии мотивации',
       'Аналитика просмотров',
     ],
-    related: ['hcp/psp', 'content/patient', 'content/video'],
+    related: ['healthcare/rwe-analytics', 'design/patient-content', 'design/hcp-video'],
   },
 
   /* ========== TEAM ========== */
-  'team/events': {
-    section: 'Команда', sectionId: 'team',
+  'about/events': {
+    section: 'Команда', sectionId: 'about',
     title: 'События и публикации',
     lede: 'Конференции, эфиры, экспертные публикации, выступления и собственные исследования. Где можно встретиться и что почитать.',
     tags: ['конференции', 'эфиры', 'публикации'],
@@ -1098,11 +1098,11 @@ const SUBPAGES = {
       'Колонки экспертов команды',
       'Рассылка анонсов событий',
     ],
-    related: ['marketing/events', 'content/medical', 'hcp/education'],
+    related: ['pharma-marketing/event-support', 'design/clm-presentations', 'healthcare/patient-support'],
   },
 
-  'team/career': {
-    section: 'Команда', sectionId: 'team',
+  'about/careers': {
+    section: 'Команда', sectionId: 'about',
     title: 'Карьера в ФармКонсилиуме',
     lede: 'Восемь человек в ядре команды и десятки контракторов в проектной обвязке. Растём проектами, не штатным расписанием — ищем тех, кому это резонирует.',
     tags: ['вакансии', 'удалённо · РБ', 'фарм-маркетинг'],
@@ -1130,7 +1130,7 @@ const SUBPAGES = {
       'Доступ ко всей внутренней библиотеке',
       'Работа с международными фармкомпаниями',
     ],
-    related: ['team/events', 'marketing/events'],
+    related: ['about/events', 'pharma-marketing/event-support'],
   },
 };
 

@@ -18,27 +18,27 @@ const SEO_STATIC = {
     title: 'ФармКонсилиум · IT-решения для фармацевтического маркетинга в Беларуси',
     description: SITE.defaultDescription,
   },
-  marketing: {
+  pharma-marketing: {
     title: 'Фармацевтический маркетинг · ФармКонсилиум',
     description: 'CRM, CLM, чат-боты, веб и мобильные продукты, ИИ для медпредставителей. Омниканальная работа с HCP в РБ.',
   },
-  hcp: {
+  healthcare: {
     title: 'Здравоохранение · ФармКонсилиум',
     description: 'ИИ-ассистенты, образовательные платформы, рекомендательные системы и программы поддержки пациентов.',
   },
-  sales: {
+  outsourcing: {
     title: 'Аутсорсинг · ФармКонсилиум',
     description: 'Цифровой медпред, омниканальные кампании, лонч-аутсорсинг и аналитика продаж на рынке РБ.',
   },
-  content: {
+  design: {
     title: 'Дизайн · ФармКонсилиум',
     description: 'Медицинские презентации, видео, eDetailing, геймификация и квизы для фарм-брендов.',
   },
-  directory: {
+  drug-directory: {
     title: 'Справочник лекарственных средств · ФармКонсилиум',
     description: 'Доверительная ординаторская: справочник ЛС для врачей и провизоров Беларуси.',
   },
-  team: {
+  about: {
     title: 'Команда и контакты · ФармКонсилиум',
     description: 'Связаться с командой ФармКонсилиум: 80+ запусков, 15 лет в фарм-маркетинге, внедрение под ключ.',
   },
@@ -57,29 +57,29 @@ const SEO_STATIC_EN = {
     title: 'PharmConsilium · IT solutions for pharmaceutical marketing in Belarus',
     description: SITE.defaultDescriptionEn,
   },
-  marketing: {
+  pharma-marketing: {
     title: 'Pharmaceutical marketing · PharmConsilium',
     description: 'CRM, CLM, chatbots, web and mobile products, AI for medical representatives. Omnichannel HCP engagement in Belarus.',
   },
-  hcp: {
+  healthcare: {
     title: 'Healthcare · PharmConsilium',
     description: 'AI assistants, education platforms, recommender systems, and patient support programs.',
   },
-  sales: {
+  outsourcing: {
     title: 'Outsourcing · PharmConsilium',
     description: 'Digital medical representative, omnichannel campaigns, launch outsourcing, and sales analytics in Belarus.',
   },
-  content: {
+  design: {
     title: 'Design · PharmConsilium',
     description: 'Medical presentations, video, eDetailing, gamification, and quizzes for pharma brands.',
   },
-  directory: {
+  drug-directory: {
     title: 'Drug directory · PharmConsilium',
     description: 'Trusted professional drug directory for physicians and pharmacists in Belarus.',
   },
-  team: {
+  about: {
     title: 'About us · PharmConsilium',
-    description: 'Contact the PharmConsilium team: 80+ launches, 15 years in pharma marketing, turnkey implementation.',
+    description: 'Contact the PharmConsilium about: 80+ launches, 15 years in pharma marketing, turnkey implementation.',
   },
   privacy: {
     title: 'Privacy policy · PharmConsilium',
@@ -102,7 +102,7 @@ function ensureMeta(name, attr, value) {
     el.setAttribute(attr, name);
     document.head.appendChild(el);
   }
-  el.setAttribute('content', value);
+  el.setAttribute('design', value);
 }
 
 function ensureCanonical(href) {

@@ -53,7 +53,7 @@ function parseStatic() {
   const block = seo.match(/const SEO_STATIC = \{([\s\S]*?)\};\s*const SEO_STATIC_EN/);
   if (!block) return [];
   const b = block[1];
-  const keys = [...b.matchAll(/^\s+(\w+):\s*\{/gm)].map((x) => x[1]);
+  const keys = [...b.matchAll(/^\s+([\w-]+):\s*\{/gm)].map((x) => x[1]);
   return keys.map((k) => {
     const chunk = b.match(new RegExp(`${k}:\\s*\\{([\\s\\S]*?)\\n\\s+\\},`));
     const title = chunk ? (chunk[1].match(/title:\s*'([^']*)'/) || [])[1] : '';

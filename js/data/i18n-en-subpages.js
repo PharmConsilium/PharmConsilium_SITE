@@ -1,7 +1,7 @@
 // English SUBPAGES patches
 
 window.SUBPAGES_EN_PATCHES = {
-  'marketing/crm': {
+  'pharma-marketing/crm': {
     section: 'Pharmaceutical marketing',
     title: 'CRM for medical representatives',
     h1Line1: 'CRM-PharmConsilium',
@@ -40,7 +40,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'marketing/clm': {
+  'pharma-marketing/clm': {
     section: 'Pharmaceutical marketing',
     title: 'CLM — F2F detailing software with promo content',
     lede: 'Software for medical representatives to deliver CLM presentations on face-to-face visits. Interactive scenarios, engagement metrics, and data export.',
@@ -78,7 +78,7 @@ window.SUBPAGES_EN_PATCHES = {
     detailCtaH3: 'Contact us and we will quickly deploy a demo for you',
   },
 
-  'marketing/2clm': {
+  'pharma-marketing/2clm': {
     section: 'Pharmaceutical marketing',
     title: '2CLM — software to improve SF visit effectiveness',
     lede: 'The rep completed the visit and sent visit materials to the HCP via a link. 2CLM measures post-visit HCP engagement with content.',
@@ -115,7 +115,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'marketing/chatbot': {
+  'pharma-marketing/chatbot-teleapp': {
     section: 'Pharmaceutical marketing',
     title: 'Chatbot and TeleApp — digital ecosystem for HCP engagement',
     lede: 'A unique digital architecture in Telegram for long-term client engagement—a chatbot in the user\'s chat list with built-in mobile-app capabilities.',
@@ -153,7 +153,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'marketing/web': {
+  'pharma-marketing/web-development': {
     section: 'Pharmaceutical marketing',
     title: 'Web development, sites, landing pages, longreads, digital platforms',
     crumb: 'Web development, sites, landing pages, longreads, digital platforms',
@@ -196,7 +196,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'marketing/mobile': {
+  'pharma-marketing/mobile-apps': {
     section: 'Pharmaceutical marketing',
     title: 'Mobile app development',
     h1Line1: 'Mobile app',
@@ -239,7 +239,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'marketing/events': {
+  'pharma-marketing/event-support': {
     section: 'Pharmaceutical marketing',
     title: 'Digital event support',
     h1Line1: 'Digital event',
@@ -280,7 +280,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'marketing/ai': {
+  'pharma-marketing/rep-training': {
     section: 'Pharmaceutical marketing',
     title: 'Training for medical representatives',
     h1Line1: 'Training for',
@@ -322,7 +322,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'hcp/ai-recom': {
+  'healthcare/education-platforms': {
     section: 'Healthcare',
     title: 'Digital platforms for educational medical programs',
     h1Line1: 'Digital platforms',
@@ -361,7 +361,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'hcp/education': {
+  'healthcare/patient-support': {
     section: 'Healthcare',
     title: 'Patient support programs',
     h1Line1: 'Patient support',
@@ -400,7 +400,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'hcp/chatbot': {
+  'healthcare/medical-chatbots': {
     section: 'Healthcare',
     title: 'Medical chatbots and AI assistants',
     lede: 'AI assistants for physicians, pharmacists, and patients: medical bots, therapy support, treatment Q&A navigation, pharmacovigilance—24/7 within regulatory boundaries.',
@@ -437,7 +437,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'hcp/mobile': {
+  'healthcare/mobile-apps': {
     section: 'Healthcare',
     title: 'Mobile applications',
     lede: 'iOS and Android for physicians, pharmacists, and patient support programs. Offline access, push, analytics, App Store and Google Play deployment.',
@@ -468,7 +468,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'hcp/ai-healthcare': {
+  'healthcare/research-platforms': {
     section: 'Healthcare',
     title: 'Digital platforms for scientific research',
     h1Line1: 'Digital platforms',
@@ -508,7 +508,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'hcp/psp': {
+  'healthcare/rwe-analytics': {
     section: 'Healthcare',
     title: 'RWE data analysis and processing systems',
     h1Line1: 'RWE data analysis',
@@ -557,7 +557,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'sales/digital-rep': {
+  'outsourcing/digital-rep': {
     section: 'Outsourcing',
     eyebrow: 'Digital medical representative',
     eyebrowOneLine: true,
@@ -566,7 +566,7 @@ window.SUBPAGES_EN_PATCHES = {
     h1Line1: 'Outsourcing of medical representatives',
     h1Accent: 'and a digital alternative for pharma companies',
     h1Wide: true,
-    lede: 'We build digital omnichannel promotion campaigns that take on the role of an outsourced medical representative team: personalized communication architecture for physicians, pharmacists, and pharmacy professionals—on PharmConsilium’s own platform and technology stack.',
+    lede: 'We build digital omnichannel promotion campaigns that take on the role of an outsourced medical representative about: personalized communication architecture for physicians, pharmacists, and pharmacy professionals—on PharmConsilium’s own platform and technology stack.',
     tags: ['remote eDetail', 'Belarus coverage', 'outsourcing'],
     artSlides: [
       { src: 'assets/uploads/digital-rep-detail-slide-1.png?v=20260528', label: 'MedRep vs Digital MedRep', alt: 'Medical representative outsourcing: 3D illustration of MedRep vs Digital MedRep — human and robot' },
@@ -600,7 +600,7 @@ window.SUBPAGES_EN_PATCHES = {
     detailCtaP: 'If you want to model replacing part of your rep team with a digital omnichannel program for your target audience, we will prepare a custom campaign architecture, contact volume, and projected engagement metrics.',
   },
 
-  'sales/omnichannel': {
+  'outsourcing/omnichannel': {
     section: 'Outsourcing',
     title: 'Digital medical representative in hybrid pharma brand promotion',
     h1Line1: 'Digital medical representative',
@@ -617,7 +617,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
     featuresTitle: 'Choose your direction',
     features: [
-      { t: 'Rep digital twin / AI avatar / Personalized brand speaker', d: 'We create a visual and voice “twin” of the real medical representative the physician knows from visits. The avatar becomes the face of the brand across digital content: video visits, training clips, infographic walkthroughs—HCPs see and hear a familiar rep even on screen.' },
+      { t: 'Rep digital twin / AI avatar / Personalized brand speaker', d: 'We create a visual and voice “twin” of the real medical representative the physician knows from visits. The avatar becomes the face of the brand across digital design: video visits, training clips, infographic walkthroughs—HCPs see and hear a familiar rep even on screen.' },
       { t: 'Post-visit video visit / Vertical 9:16 video / Avatar content commentary', d: 'Scenario: the rep completes an F2F meeting, logs it in CRM, then triggers a digital follow-up. The physician gets a vertical video visit link: the same rep’s digital avatar in 9:16 on a smartphone walks through key detailer slides, comments on study data, and reinforces meeting agreements—embedded in CLM or email.' },
       { t: 'Digital rep in omnichannel flow / Email, portal, messengers', d: 'The same digital representative accompanies HCPs across channels: avatar video in email, an interactive portal module with the same speaker, short FAQ clips in messengers. Activity stays in sync: the system knows the video visit was watched and offers the next step—webinar, case, or quiz.' },
       { t: 'AI assistant for the live rep / Prep and training / Scripts and analytics', d: 'The digital layer works inward too: AI tools help reps practice dialogue safely, handle objections with virtual physician profiles, and get next-step prompts. That improves live visits; the digital avatar then reinforces best practices in video content.' },
@@ -641,7 +641,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'sales/launch': {
+  'outsourcing/launch-outsourcing': {
     section: 'Outsourcing',
     title: 'Launch outsourcing',
     h1Line1: 'Launch —',
@@ -681,7 +681,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'sales/analytics': {
+  'outsourcing/share-of-voice': {
     section: 'Outsourcing',
     title: 'Sales and share-of-voice analytics',
     lede: 'Dashboard: visits, contacts, response, campaign metrics. Linked to IQVIA and procurement data.',
@@ -712,7 +712,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/medical': {
+  'design/clm-presentations': {
     section: 'Design',
     title: 'CLM presentations, e-detailers, and slide boxes for medical representatives',
     lede: 'CLM detailers and visual aids for rep F2F visits: clinically accurate narrative, evidence-based design, compliance, and per-visit analytics—all under product manager control.',
@@ -751,7 +751,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/edetailing': {
+  'design/edetailing': {
     section: 'Design',
     title: 'CLM and eDetailing',
     lede: 'Interactive CLM decks, visit scenarios, face-to-face and remote eDetailing materials, surveys, and gamification.',
@@ -782,7 +782,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/patient': {
+  'design/patient-content': {
     section: 'Design',
     title: 'Patient education content',
     lede: 'We explain complex topics so they stay clear: articles, video, animation, leaflets—disease, therapy, adherence, and lifestyle.',
@@ -813,7 +813,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/video': {
+  'design/hcp-video': {
     section: 'Design',
     title: 'HCP video — from script to stage effects in online presentations',
     lede: 'Video visits, interactive video, and vertical formats for smartphones. From linear shoots to complex architecture with clinical accuracy and top-studio production quality.',
@@ -857,7 +857,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/presentations': {
+  'design/brand-packaging': {
     section: 'Design',
     title: 'Visual concepts, packaging, ad banners, and brand books',
     h1Line1: 'Visual concepts,',
@@ -899,15 +899,15 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/advertising': {
+  'design/ai-content': {
     section: 'Design',
-    title: 'AI content: avatars, audio podcasts, medical copywriting',
-    h1Line1: 'AI content:',
+    title: 'AI design: avatars, audio podcasts, medical copywriting',
+    h1Line1: 'AI design:',
     h1Accent: 'avatars, audio podcasts, medical copywriting',
     lede: 'AI avatars, HCP audio podcasts, and AI copywriting—a next-generation content factory: vertical video visits, brand voice, and copy for every channel from one brief.',
     tags: ['AIcontent', 'DigitalAvatar', 'MedPodcast', 'MedicalCopywriting', 'HCPengagement'],
     artSlides: [
-      { src: 'assets/uploads/content-ai-detail.png?v=20260528', label: 'AI content', alt: 'AI content: avatars, podcasts, and medical copywriting illustration' },
+      { src: 'assets/uploads/content-ai-detail.png?v=20260528', label: 'AI content', alt: 'AI design: avatars, podcasts, and medical copywriting illustration' },
     ],
     aboutTitle: 'A next-generation content engine for product managers',
     about: [
@@ -940,7 +940,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/gamification': {
+  'design/games-quizzes': {
     section: 'Design',
     title: 'Games, quizzes, and clinical detective stories for HCP',
     h1Line1: 'Games, quizzes, and',
@@ -980,7 +980,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'content/psp': {
+  'design/psp-content': {
     section: 'Design',
     title: 'Patient support programs · content',
     lede: 'Digital platforms and materials: reminders, motivational content, therapy navigation, personalized recommendations.',
@@ -1011,7 +1011,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'team/events': {
+  'about/events': {
     section: 'Team',
     title: 'Events and publications',
     lede: 'Conferences, live streams, expert publications, speaking engagements, and in-house research—where to meet us and what to read.',
@@ -1042,7 +1042,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'team/career': {
+  'about/careers': {
     section: 'Team',
     title: 'Team',
     lede: 'Eight people in the core team and dozens of contractors on projects. We grow by projects, not headcount—we look for people who resonate with that model.',

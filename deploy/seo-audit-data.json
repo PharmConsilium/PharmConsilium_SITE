@@ -3,35 +3,35 @@
     "total": 45,
     "subpages": 28,
     "portfolioPublic": 8,
-    "portfolioDraft": 4,
+    "portfolioDraft": 7,
     "titleDuplicates": [],
     "descOver160": [
-      "https://pharmconsilium.com/marketing/clm",
-      "https://pharmconsilium.com/marketing/chatbot",
-      "https://pharmconsilium.com/marketing/ai",
-      "https://pharmconsilium.com/hcp/education",
-      "https://pharmconsilium.com/hcp/chatbot",
-      "https://pharmconsilium.com/hcp/ai-healthcare",
-      "https://pharmconsilium.com/hcp/psp",
-      "https://pharmconsilium.com/sales/digital-rep",
-      "https://pharmconsilium.com/sales/omnichannel",
-      "https://pharmconsilium.com/sales/launch",
-      "https://pharmconsilium.com/content/medical",
-      "https://pharmconsilium.com/content/video",
-      "https://pharmconsilium.com/content/presentations",
-      "https://pharmconsilium.com/content/advertising",
-      "https://pharmconsilium.com/content/gamification",
+      "https://pharmconsilium.com/pharma-marketing/clm",
+      "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp",
+      "https://pharmconsilium.com/pharma-marketing/rep-training",
+      "https://pharmconsilium.com/healthcare/patient-support",
+      "https://pharmconsilium.com/healthcare/medical-chatbots",
+      "https://pharmconsilium.com/healthcare/research-platforms",
+      "https://pharmconsilium.com/healthcare/rwe-analytics",
+      "https://pharmconsilium.com/outsourcing/digital-rep",
+      "https://pharmconsilium.com/outsourcing/omnichannel",
+      "https://pharmconsilium.com/outsourcing/launch-outsourcing",
+      "https://pharmconsilium.com/design/clm-presentations",
+      "https://pharmconsilium.com/design/hcp-video",
+      "https://pharmconsilium.com/design/brand-packaging",
+      "https://pharmconsilium.com/design/ai-content",
+      "https://pharmconsilium.com/design/games-quizzes",
       "https://pharmconsilium.com/portfolio/conference-pk25",
       "https://pharmconsilium.com/portfolio/psp-platform",
       "https://pharmconsilium.com/portfolio/clm-veeva"
     ],
     "descUnder50": [
       "https://pharmconsilium.com/",
-      "https://pharmconsilium.com/marketing",
-      "https://pharmconsilium.com/hcp",
-      "https://pharmconsilium.com/sales",
-      "https://pharmconsilium.com/content",
-      "https://pharmconsilium.com/team",
+      "https://pharmconsilium.com/pharma-marketing",
+      "https://pharmconsilium.com/healthcare",
+      "https://pharmconsilium.com/outsourcing",
+      "https://pharmconsilium.com/design",
+      "https://pharmconsilium.com/about",
       "https://pharmconsilium.com/portfolio"
     ],
     "titleOver60": [
@@ -40,47 +40,47 @@
         "len": 70
       },
       {
-        "url": "https://pharmconsilium.com/marketing/2clm",
+        "url": "https://pharmconsilium.com/pharma-marketing/2clm",
         "len": 65
       },
       {
-        "url": "https://pharmconsilium.com/marketing/chatbot",
+        "url": "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp",
         "len": 78
       },
       {
-        "url": "https://pharmconsilium.com/marketing/web",
-        "len": 102
-      },
-      {
-        "url": "https://pharmconsilium.com/hcp/ai-recom",
-        "len": 75
-      },
-      {
-        "url": "https://pharmconsilium.com/hcp/psp",
-        "len": 62
-      },
-      {
-        "url": "https://pharmconsilium.com/sales/omnichannel",
-        "len": 86
-      },
-      {
-        "url": "https://pharmconsilium.com/content/medical",
-        "len": 85
-      },
-      {
-        "url": "https://pharmconsilium.com/content/video",
-        "len": 72
-      },
-      {
-        "url": "https://pharmconsilium.com/content/presentations",
+        "url": "https://pharmconsilium.com/pharma-marketing/web-development",
         "len": 77
       },
       {
-        "url": "https://pharmconsilium.com/content/advertising",
+        "url": "https://pharmconsilium.com/healthcare/education-platforms",
+        "len": 75
+      },
+      {
+        "url": "https://pharmconsilium.com/healthcare/rwe-analytics",
+        "len": 62
+      },
+      {
+        "url": "https://pharmconsilium.com/outsourcing/omnichannel",
+        "len": 86
+      },
+      {
+        "url": "https://pharmconsilium.com/design/clm-presentations",
+        "len": 85
+      },
+      {
+        "url": "https://pharmconsilium.com/design/hcp-video",
+        "len": 72
+      },
+      {
+        "url": "https://pharmconsilium.com/design/brand-packaging",
+        "len": 77
+      },
+      {
+        "url": "https://pharmconsilium.com/design/ai-content",
         "len": 76
       },
       {
-        "url": "https://pharmconsilium.com/portfolio/patient-series",
+        "url": "https://pharmconsilium.com/portfolio/supplement-packaging",
         "len": 63
       },
       {
@@ -96,7 +96,7 @@
         "len": 72
       },
       {
-        "url": "https://pharmconsilium.com/portfolio/directory-launch",
+        "url": "https://pharmconsilium.com/portfolio/drug-directory-launch",
         "len": 90
       }
     ]
@@ -116,9 +116,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing",
-      "route": "marketing",
-      "h1": "marketing",
+      "url": "https://pharmconsilium.com/pharma-marketing",
+      "route": "pharma-marketing",
+      "h1": "pharma-marketing",
       "title": "Фармацевтический маркетинг · ФармКонсилиум",
       "titleLen": 42,
       "description": "CRM",
@@ -129,9 +129,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/hcp",
-      "route": "hcp",
-      "h1": "hcp",
+      "url": "https://pharmconsilium.com/healthcare",
+      "route": "healthcare",
+      "h1": "healthcare",
       "title": "Здравоохранение · ФармКонсилиум",
       "titleLen": 31,
       "description": "ИИ-ассистенты",
@@ -142,9 +142,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/sales",
-      "route": "sales",
-      "h1": "sales",
+      "url": "https://pharmconsilium.com/outsourcing",
+      "route": "outsourcing",
+      "h1": "outsourcing",
       "title": "Аутсорсинг · ФармКонсилиум",
       "titleLen": 26,
       "description": "Цифровой медпред",
@@ -155,9 +155,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content",
-      "route": "content",
-      "h1": "content",
+      "url": "https://pharmconsilium.com/design",
+      "route": "design",
+      "h1": "design",
       "title": "Дизайн · ФармКонсилиум",
       "titleLen": 22,
       "description": "Медицинские презентации",
@@ -168,9 +168,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/directory",
-      "route": "directory",
-      "h1": "directory",
+      "url": "https://pharmconsilium.com/drug-directory",
+      "route": "drug-directory",
+      "h1": "drug-directory",
       "title": "Справочник лекарственных средств · ФармКонсилиум",
       "titleLen": 48,
       "description": "Доверительная ординаторская: справочник ЛС для врачей и провизоров Беларуси.",
@@ -181,9 +181,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/team",
-      "route": "team",
-      "h1": "team",
+      "url": "https://pharmconsilium.com/about",
+      "route": "about",
+      "h1": "about",
       "title": "Команда и контакты · ФармКонсилиум",
       "titleLen": 34,
       "description": "Связаться с командой ФармКонсилиум: 80+ запусков",
@@ -220,8 +220,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/crm",
-      "route": "marketing/crm",
+      "url": "https://pharmconsilium.com/pharma-marketing/crm",
+      "route": "pharma-marketing/crm",
       "h1": "CRM для медицинских представителей",
       "title": "CRM для медицинских представителей · ФармКонсилиум",
       "titleLen": 50,
@@ -233,8 +233,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/clm",
-      "route": "marketing/clm",
+      "url": "https://pharmconsilium.com/pharma-marketing/clm",
+      "route": "pharma-marketing/clm",
       "h1": "CLM — ПО для работы МП F2F с промоконтентом",
       "title": "CLM — ПО для работы МП F2F с промоконтентом · ФармКонсилиум",
       "titleLen": 59,
@@ -246,8 +246,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/2clm",
-      "route": "marketing/2clm",
+      "url": "https://pharmconsilium.com/pharma-marketing/2clm",
+      "route": "pharma-marketing/2clm",
       "h1": "2CLM — ПО для увеличения эффективности визитов SF",
       "title": "2CLM — ПО для увеличения эффективности визитов SF · ФармКонсилиум",
       "titleLen": 65,
@@ -259,8 +259,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/chatbot",
-      "route": "marketing/chatbot",
+      "url": "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp",
+      "route": "pharma-marketing/chatbot-teleapp",
       "h1": "Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP",
       "title": "Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP · ФармКонсилиум",
       "titleLen": 78,
@@ -272,11 +272,11 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/web",
-      "route": "marketing/web",
-      "h1": "Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров",
-      "title": "Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров · ФармКонсилиум",
-      "titleLen": 102,
+      "url": "https://pharmconsilium.com/pharma-marketing/web-development",
+      "route": "pharma-marketing/web-development",
+      "h1": "Веб-разработка, сайты, лендинги, лонгриды, цифровые платформы",
+      "title": "Веб-разработка, сайты, лендинги, лонгриды, цифровые платформы · ФармКонсилиум",
+      "titleLen": 77,
       "description": "Веб-решения ФармКонсилиум для фармацевтических брендов: HCP-порталы, лендинги препаратов, лонгриды и платформы онлайн-конгрессов под ключ.",
       "descLen": 138,
       "alt": "да",
@@ -285,8 +285,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/mobile",
-      "route": "marketing/mobile",
+      "url": "https://pharmconsilium.com/pharma-marketing/mobile-apps",
+      "route": "pharma-marketing/mobile-apps",
       "h1": "Разработка мобильных приложений",
       "title": "Разработка мобильных приложений · ФармКонсилиум",
       "titleLen": 47,
@@ -298,8 +298,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/events",
-      "route": "marketing/events",
+      "url": "https://pharmconsilium.com/pharma-marketing/event-support",
+      "route": "pharma-marketing/event-support",
       "h1": "Цифровая поддержка мероприятий",
       "title": "Цифровая поддержка мероприятий · ФармКонсилиум",
       "titleLen": 46,
@@ -311,8 +311,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/marketing/ai",
-      "route": "marketing/ai",
+      "url": "https://pharmconsilium.com/pharma-marketing/rep-training",
+      "route": "pharma-marketing/rep-training",
       "h1": "Тренинги для медицинских представителей",
       "title": "Тренинги для медицинских представителей · ФармКонсилиум",
       "titleLen": 55,
@@ -324,8 +324,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/hcp/ai-recom",
-      "route": "hcp/ai-recom",
+      "url": "https://pharmconsilium.com/healthcare/education-platforms",
+      "route": "healthcare/education-platforms",
       "h1": "Цифровые платформы для образовательных медицинских программ",
       "title": "Цифровые платформы для образовательных медицинских программ · ФармКонсилиум",
       "titleLen": 75,
@@ -337,8 +337,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/hcp/education",
-      "route": "hcp/education",
+      "url": "https://pharmconsilium.com/healthcare/patient-support",
+      "route": "healthcare/patient-support",
       "h1": "Программы поддержки пациентов",
       "title": "Программы поддержки пациентов · ФармКонсилиум",
       "titleLen": 45,
@@ -350,8 +350,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/hcp/chatbot",
-      "route": "hcp/chatbot",
+      "url": "https://pharmconsilium.com/healthcare/medical-chatbots",
+      "route": "healthcare/medical-chatbots",
       "h1": "Чат-боты и ИИ-ассистенты для медицины",
       "title": "Чат-боты и ИИ-ассистенты для медицины · ФармКонсилиум",
       "titleLen": 53,
@@ -363,8 +363,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/hcp/mobile",
-      "route": "hcp/mobile",
+      "url": "https://pharmconsilium.com/healthcare/mobile-apps",
+      "route": "healthcare/mobile-apps",
       "h1": "Мобильные приложения",
       "title": "Мобильные приложения · ФармКонсилиум",
       "titleLen": 36,
@@ -376,8 +376,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/hcp/ai-healthcare",
-      "route": "hcp/ai-healthcare",
+      "url": "https://pharmconsilium.com/healthcare/research-platforms",
+      "route": "healthcare/research-platforms",
       "h1": "Цифровые платформы для научных исследований",
       "title": "Цифровые платформы для научных исследований · ФармКонсилиум",
       "titleLen": 59,
@@ -389,8 +389,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/hcp/psp",
-      "route": "hcp/psp",
+      "url": "https://pharmconsilium.com/healthcare/rwe-analytics",
+      "route": "healthcare/rwe-analytics",
       "h1": "Создание систем анализа и обработки данных RWE",
       "title": "Создание систем анализа и обработки данных RWE · ФармКонсилиум",
       "titleLen": 62,
@@ -402,8 +402,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/sales/digital-rep",
-      "route": "sales/digital-rep",
+      "url": "https://pharmconsilium.com/outsourcing/digital-rep",
+      "route": "outsourcing/digital-rep",
       "h1": "Цифровой медицинский представитель",
       "title": "Цифровой медицинский представитель · ФармКонсилиум",
       "titleLen": 50,
@@ -415,8 +415,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/sales/omnichannel",
-      "route": "sales/omnichannel",
+      "url": "https://pharmconsilium.com/outsourcing/omnichannel",
+      "route": "outsourcing/omnichannel",
       "h1": "Цифровой медицинский представитель в гибридном продвижении фармбрендов",
       "title": "Цифровой медицинский представитель в гибридном продвижении фармбрендов · ФармКонсилиум",
       "titleLen": 86,
@@ -428,8 +428,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/sales/launch",
-      "route": "sales/launch",
+      "url": "https://pharmconsilium.com/outsourcing/launch-outsourcing",
+      "route": "outsourcing/launch-outsourcing",
       "h1": "Лонч - аутсорсинг",
       "title": "Лонч - аутсорсинг · ФармКонсилиум",
       "titleLen": 33,
@@ -441,8 +441,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/sales/analytics",
-      "route": "sales/analytics",
+      "url": "https://pharmconsilium.com/outsourcing/share-of-voice",
+      "route": "outsourcing/share-of-voice",
       "h1": "Аналитика продаж и доли голоса",
       "title": "Аналитика продаж и доли голоса · ФармКонсилиум",
       "titleLen": 46,
@@ -454,8 +454,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/medical",
-      "route": "content/medical",
+      "url": "https://pharmconsilium.com/design/clm-presentations",
+      "route": "design/clm-presentations",
       "h1": "CLM-презентации, детейлеры, слайдбоксы для медицинского представителя",
       "title": "CLM-презентации, детейлеры, слайдбоксы для медицинского представителя · ФармКонсилиум",
       "titleLen": 85,
@@ -467,8 +467,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/edetailing",
-      "route": "content/edetailing",
+      "url": "https://pharmconsilium.com/design/edetailing",
+      "route": "design/edetailing",
       "h1": "CLM и eDetailing",
       "title": "CLM и eDetailing · ФармКонсилиум",
       "titleLen": 32,
@@ -480,8 +480,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/patient",
-      "route": "content/patient",
+      "url": "https://pharmconsilium.com/design/patient-content",
+      "route": "design/patient-content",
       "h1": "Пациентский образовательный контент",
       "title": "Пациентский образовательный контент · ФармКонсилиум",
       "titleLen": 51,
@@ -493,8 +493,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/video",
-      "route": "content/video",
+      "url": "https://pharmconsilium.com/design/hcp-video",
+      "route": "design/hcp-video",
       "h1": "Видео HCP - от сценария до спецэффектов в выступлении OL",
       "title": "Видео HCP - от сценария до спецэффектов в выступлении OL · ФармКонсилиум",
       "titleLen": 72,
@@ -506,8 +506,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/presentations",
-      "route": "content/presentations",
+      "url": "https://pharmconsilium.com/design/brand-packaging",
+      "route": "design/brand-packaging",
       "h1": "Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС",
       "title": "Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС · ФармКонсилиум",
       "titleLen": 77,
@@ -519,8 +519,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/advertising",
-      "route": "content/advertising",
+      "url": "https://pharmconsilium.com/design/ai-content",
+      "route": "design/ai-content",
       "h1": "ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг",
       "title": "ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг · ФармКонсилиум",
       "titleLen": 76,
@@ -532,8 +532,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/gamification",
-      "route": "content/gamification",
+      "url": "https://pharmconsilium.com/design/games-quizzes",
+      "route": "design/games-quizzes",
       "h1": "Игры, квизы и клинические детективы для HCP",
       "title": "Игры, квизы и клинические детективы для HCP · ФармКонсилиум",
       "titleLen": 59,
@@ -545,8 +545,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/content/psp",
-      "route": "content/psp",
+      "url": "https://pharmconsilium.com/design/psp-content",
+      "route": "design/psp-content",
       "h1": "Программы поддержки пациентов · контент",
       "title": "Программы поддержки пациентов · контент · ФармКонсилиум",
       "titleLen": 55,
@@ -558,8 +558,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/team/events",
-      "route": "team/events",
+      "url": "https://pharmconsilium.com/about/events",
+      "route": "about/events",
       "h1": "События и публикации",
       "title": "События и публикации · ФармКонсилиум",
       "titleLen": 36,
@@ -571,8 +571,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/team/career",
-      "route": "team/career",
+      "url": "https://pharmconsilium.com/about/careers",
+      "route": "about/careers",
       "h1": "Карьера в ФармКонсилиуме",
       "title": "Карьера в ФармКонсилиуме · ФармКонсилиум",
       "titleLen": 40,
@@ -584,8 +584,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/cardio-lonch",
-      "route": "portfolio/cardio-lonch",
+      "url": "https://pharmconsilium.com/portfolio/bepanten-banner",
+      "route": "portfolio/bepanten-banner",
       "h1": "Рекламный баннер Бепантен крем",
       "title": "Рекламный баннер Бепантен крем · ФармКонсилиум",
       "titleLen": 46,
@@ -597,8 +597,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/ai-trener",
-      "route": "portfolio/ai-trener",
+      "url": "https://pharmconsilium.com/portfolio/meditatio-night-brand",
+      "route": "portfolio/meditatio-night-brand",
       "h1": "Брендбук БАД, нейминг, упаковка",
       "title": "Брендбук БАД, нейминг, упаковка · ФармКонсилиум",
       "titleLen": 47,
@@ -610,8 +610,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/patient-series",
-      "route": "portfolio/patient-series",
+      "url": "https://pharmconsilium.com/portfolio/supplement-packaging",
+      "route": "portfolio/supplement-packaging",
       "h1": "Нейминг и создание упаковки БАД для регистрации",
       "title": "Нейминг и создание упаковки БАД для регистрации · ФармКонсилиум",
       "titleLen": 63,
@@ -675,8 +675,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/directory-launch",
-      "route": "portfolio/directory-launch",
+      "url": "https://pharmconsilium.com/portfolio/drug-directory-launch",
+      "route": "portfolio/drug-directory-launch",
       "h1": "Медицинская инфографика титрации лекарственного препарата для лечения боли",
       "title": "Медицинская инфографика титрации лекарственного препарата для лечения боли · ФармКонсилиум",
       "titleLen": 90,

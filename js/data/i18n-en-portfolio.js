@@ -1,7 +1,7 @@
 // English PORTFOLIO patches
 
 window.PORTFOLIO_EN_PATCHES = {
-  'cardio-lonch': {
+  'bepanten-banner': {
     name: 'Digital banner for Bepanthen (Bayer)',
     client: 'Bayer',
     year: '2026',
@@ -48,7 +48,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'ai-trener': {
+  'meditatio-night-brand': {
     name: 'Dietary supplement brand book, naming, packaging',
     client: 'Pharma brand client',
     infoClientLabel: 'Target',
@@ -90,7 +90,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'patient-series': {
+  'supplement-packaging': {
     name: 'Packaging for Hydrobalance',
     client: 'PharmConsilium',
     category: 'Content',
@@ -332,7 +332,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'directory-launch': {
+  'drug-directory-launch': {
     name: 'Drug reference launch',
     client: 'Owned product',
     category: 'Product',
@@ -375,7 +375,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-1': {
+  'clm-mobile-app': {
     name: 'Mobile app for CLM presentation demos by medical representatives',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -410,7 +410,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-2': {
+  'stroke-exam': {
     name: 'Building the «Stroke Exam» remote learning platform for healthcare professionals',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -446,7 +446,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-3': {
+  'hcp-tic-tac-toe': {
     name: 'Medical tic-tac-toe game',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -477,7 +477,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-4': {
+  'hcp-videovisit': {
     name: 'Video visit for HCP. Digital avatar in interactive video',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -507,7 +507,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-5': {
+  'bepanten-ad-layouts': {
     name: 'Bepanthen advertising layout series',
     client: 'Bayer',
     infoClient: 'Consumer',
@@ -545,8 +545,8 @@ window.PORTFOLIO_EN_PATCHES = {
       },
     ],
   },
-  'portfolio-draft-6': {
-    name: 'Case 2',
+  'bayer-club-teleapp': {
+    name: 'Bayer Club — chatbot and TeleApp',
     client: 'PharmConsilium',
     infoClient: 'HCP',
     infoSector: 'Rx',
@@ -573,8 +573,8 @@ window.PORTFOLIO_EN_PATCHES = {
       },
     ],
   },
-  'portfolio-draft-7': {
-    name: 'Case 3',
+  'grandaxin-game': {
+    name: 'Grandaxin — HCP game',
     client: 'PharmConsilium',
     infoClient: 'HCP',
     infoSector: 'Rx',

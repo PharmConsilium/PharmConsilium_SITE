@@ -1,12 +1,12 @@
 // Header with Apple-style mega-menu drawer, brand, lang toggle, theme switch.
 
 const NAV_ITEMS = [
-{ id: 'marketing', label: 'Фармацевтический маркетинг' },
-{ id: 'hcp', label: 'Здравоохранение' },
-{ id: 'sales', label: 'Аутсорсинг' },
-{ id: 'content', label: 'Дизайн' },
-{ id: 'directory', label: 'Справочник ЛС' },
-{ id: 'team', label: 'О нас' }];
+{ id: 'pharma-marketing', label: 'Фармацевтический маркетинг' },
+{ id: 'healthcare', label: 'Здравоохранение' },
+{ id: 'outsourcing', label: 'Аутсорсинг' },
+{ id: 'design', label: 'Дизайн' },
+{ id: 'drug-directory', label: 'Справочник ЛС' },
+{ id: 'about', label: 'О нас' }];
 
 
 // per-page mega-menu config: sublinks + featured tile
@@ -35,16 +35,16 @@ function scrollToDirectoryCard(id) {
 function goNavLink(navigate, currentRoute, sectionId, link, onClose) {
   const to = typeof link === 'string' ? sectionId : (link.to || sectionId);
   const scrollTo = typeof link === 'string' ? null : link.scrollTo;
-  if (scrollTo && to === 'directory') {
-    if (currentRoute === 'directory') {
+  if (scrollTo && to === 'drug-directory') {
+    if (currentRoute === 'drug-directory') {
       scrollToDirectoryCard(scrollTo);
       onClose?.();
       return;
     }
     try { sessionStorage.setItem(DIRECTORY_SCROLL_KEY, scrollTo); } catch (e) { /* ignore */ }
   }
-  if (scrollTo && to === 'team') {
-    if (currentRoute === 'team') {
+  if (scrollTo && to === 'about') {
+    if (currentRoute === 'about') {
       scrollToDirectoryCard(scrollTo);
       onClose?.();
       return;
@@ -56,17 +56,17 @@ function goNavLink(navigate, currentRoute, sectionId, link, onClose) {
 }
 
 const MEGA = {
-  marketing: {
+  pharma-marketing: {
     title: 'Цифровые инструменты фармацевтического маркетинга',
     links: [
-    { label: 'CRM для медицинских представителей', to: 'marketing/crm' },
-    { label: 'CLM — ПО для работы МП F2F с промоконтентом', to: 'marketing/clm' },
-    { label: '2CLM — ПО для увеличения эффективности визитов SF', to: 'marketing/2clm' },
-    { label: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', to: 'marketing/chatbot' },
-    { label: 'Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров', to: 'marketing/web' },
-    { label: 'Разработка мобильных приложений', to: 'marketing/mobile' },
-    { label: 'Цифровая поддержка мероприятий', to: 'marketing/events' },
-    { label: 'Тренинги для медицинских представителей', to: 'marketing/ai' }],
+    { label: 'CRM для медицинских представителей', to: 'pharma-marketing/crm' },
+    { label: 'CLM — ПО для работы МП F2F с промоконтентом', to: 'pharma-marketing/clm' },
+    { label: '2CLM — ПО для увеличения эффективности визитов SF', to: 'pharma-marketing/2clm' },
+    { label: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', to: 'pharma-marketing/chatbot-teleapp' },
+    { label: 'Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров', to: 'pharma-marketing/web-development' },
+    { label: 'Разработка мобильных приложений', to: 'pharma-marketing/mobile-apps' },
+    { label: 'Цифровая поддержка мероприятий', to: 'pharma-marketing/event-support' },
+    { label: 'Тренинги для медицинских представителей', to: 'pharma-marketing/rep-training' }],
 
     featured: {
       tag: 'Closed-Loop Marketing',
@@ -76,14 +76,14 @@ const MEGA = {
       artAlt: 'Фармацевтический маркетинг — CRM и аналитика',
     }
   },
-  hcp: {
+  healthcare: {
     title: 'Цифровые решения для здравоохранения',
     links: [
-    { label: 'Цифровые платформы для образовательных медицинских программ', to: 'hcp/ai-recom' },
-    { label: 'Программы поддержки пациентов', to: 'hcp/education' },
-    { label: 'Чат-боты и ИИ-ассистенты для медицины', to: 'hcp/chatbot' },
-    { label: 'Цифровые платформы для научных исследований', to: 'hcp/ai-healthcare' },
-    { label: 'Создание систем анализа и обработки данных RWE', to: 'hcp/psp' }],
+    { label: 'Цифровые платформы для образовательных медицинских программ', to: 'healthcare/education-platforms' },
+    { label: 'Программы поддержки пациентов', to: 'healthcare/patient-support' },
+    { label: 'Чат-боты и ИИ-ассистенты для медицины', to: 'healthcare/medical-chatbots' },
+    { label: 'Цифровые платформы для научных исследований', to: 'healthcare/research-platforms' },
+    { label: 'Создание систем анализа и обработки данных RWE', to: 'healthcare/rwe-analytics' }],
 
     featured: {
       tag: 'Online learning platform',
@@ -93,12 +93,12 @@ const MEGA = {
       artAlt: 'Здравоохранение — видеотренинги для HCP',
     }
   },
-  sales: {
+  outsourcing: {
     title: 'Комплексное продвижение, аутсорсинг продаж',
     links: [
-    { label: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', to: 'sales/digital-rep' },
-    { label: 'Лонч - аутсорсинг', to: 'sales/launch' },
-    { label: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов', to: 'sales/omnichannel' }],
+    { label: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', to: 'outsourcing/digital-rep' },
+    { label: 'Лонч - аутсорсинг', to: 'outsourcing/launch-outsourcing' },
+    { label: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов', to: 'outsourcing/omnichannel' }],
 
     featured: {
       tag: 'D2F, Digital to Face',
@@ -108,14 +108,14 @@ const MEGA = {
       artAlt: 'Аутсорсинг — цифровой медицинский представитель',
     }
   },
-  content: {
+  design: {
     title: 'HCP-контент на языке медицинской науки для врачей, провизоров и фармацевтов в формате Experience Design',
     links: [
-    { label: 'CLM-презентации, детейлеры, слайдбоксы для медицинского представителя', to: 'content/medical' },
-    { label: 'Видео HCP - от сценария до спецэффектов в выступлении OL', to: 'content/video' },
-    { label: 'Игры, квизы и клинические детективы для HCP', to: 'content/gamification' },
-    { label: 'ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг', to: 'content/advertising' },
-    { label: 'Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС', to: 'content/presentations' }],
+    { label: 'CLM-презентации, детейлеры, слайдбоксы для медицинского представителя', to: 'design/clm-presentations' },
+    { label: 'Видео HCP - от сценария до спецэффектов в выступлении OL', to: 'design/hcp-video' },
+    { label: 'Игры, квизы и клинические детективы для HCP', to: 'design/games-quizzes' },
+    { label: 'ИИ-контент: аватары, аудио-подкасты, медицинский копирайтинг', to: 'design/ai-content' },
+    { label: 'Визуальные концепты, упаковка, рекламные баннера, брендбук ЛС', to: 'design/brand-packaging' }],
 
     featured: {
       tag: 'Experience Design',
@@ -125,13 +125,13 @@ const MEGA = {
       artAlt: 'Контент — цифровые интерфейсы и AI',
     }
   },
-  directory: {
+  drug-directory: {
     title: 'Профессиональный цифровой ресурс для врачей, провизоров и фармацевтов',
     links: [
-    { label: 'Архитектура ординаторской без рекламного шума. Нам доверяют', to: 'directory', scrollTo: 'directory-benefit-0' },
-    { label: 'Как выглядит информация о ЛС, описание карточки препарата', to: 'directory', scrollTo: 'directory-benefit-1' },
-    { label: 'Веб-версия и мобильная версия', to: 'directory', scrollTo: 'directory-benefit-2' },
-    { label: 'Приглашаем продакт-менеджеров фармкомпаний к сотрудничеству', to: 'directory', scrollTo: 'directory-benefit-3' }],
+    { label: 'Архитектура ординаторской без рекламного шума. Нам доверяют', to: 'drug-directory', scrollTo: 'directory-benefit-0' },
+    { label: 'Как выглядит информация о ЛС, описание карточки препарата', to: 'drug-directory', scrollTo: 'directory-benefit-1' },
+    { label: 'Веб-версия и мобильная версия', to: 'drug-directory', scrollTo: 'directory-benefit-2' },
+    { label: 'Приглашаем продакт-менеджеров фармкомпаний к сотрудничеству', to: 'drug-directory', scrollTo: 'directory-benefit-3' }],
 
     featured: {
       tag: 'Drug reference guide ',
@@ -141,11 +141,11 @@ const MEGA = {
       artAlt: 'Справочник лекарственных средств',
     }
   },
-  team: {
+  about: {
     title: 'Сделаем мир лучше!',
     links: [
-    { label: 'Миссия ФармКонсилиум в этой Вселенной', to: 'team', scrollTo: 'team-mission' },
-    { label: 'Команда ФармКонсилиум', to: 'team', scrollTo: 'team-members' },
+    { label: 'Миссия ФармКонсилиум в этой Вселенной', to: 'about', scrollTo: 'team-mission' },
+    { label: 'Команда ФармКонсилиум', to: 'about', scrollTo: 'team-members' },
     { label: 'Портфолио, проекты и фичи ФармКонсилиум', to: 'portfolio' }],
 
     featured: {
@@ -160,10 +160,10 @@ const MEGA = {
     title: 'Портфолио, проекты, и фичи ФармКонсилиум',
     links: [
     { label: 'Все проекты',              to: 'portfolio' },
-    { label: 'Лончи и кампании',           to: 'portfolio/cardio-lonch' },
-    { label: 'AI и продукты',              to: 'portfolio/ai-trener' },
+    { label: 'Лончи и кампании',           to: 'portfolio/bepanten-banner' },
+    { label: 'AI и продукты',              to: 'portfolio/meditatio-night-brand' },
     { label: 'CLM и eDetailing',            to: 'portfolio/clm-veeva' },
-    { label: 'Справочники и платформы',  to: 'portfolio/directory-launch' }],
+    { label: 'Справочники и платформы',  to: 'portfolio/drug-directory-launch' }],
 
     featured: {
       tag: '80+ запусков',
@@ -212,7 +212,7 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
 
   const open = (id) => {
     // Directory page already contains all sub-sections; no mega-panel needed.
-    if (id === 'directory') {
+    if (id === 'drug-directory') {
       setOpenMenu(null);
       return;
     }
@@ -415,7 +415,7 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
         aria-label={t('navAria')}>
         {navItems.map((item) => {
           // Keep "Directory" mobile nav clean: everything is inside the page itself.
-          const mega = item.id === 'directory' ? null : megaConfig[item.id];
+          const mega = item.id === 'drug-directory' ? null : megaConfig[item.id];
           const expanded = mobileExpanded === item.id;
           return (
             <div key={item.id} className={`mobile-nav-group${expanded ? ' is-expanded' : ''}`}>

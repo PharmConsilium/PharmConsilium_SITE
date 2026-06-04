@@ -9,12 +9,12 @@ function clamp(n, lo, hi) {
 /** Настроение по разделу: data-robot-mood + кадр лица при смене route */
 const ROBOT_MOODS = {
   home: { mood: 'home', face: 2 },
-  marketing: { mood: 'marketing', face: 4 },
-  hcp: { mood: 'hcp', face: 6 },
-  sales: { mood: 'sales', face: 8 },
-  content: { mood: 'content', face: 3 },
-  directory: { mood: 'directory', face: 9 },
-  team: { mood: 'team', face: 5 },
+  pharma-marketing: { mood: 'pharma-marketing', face: 4 },
+  healthcare: { mood: 'healthcare', face: 6 },
+  outsourcing: { mood: 'outsourcing', face: 8 },
+  design: { mood: 'design', face: 3 },
+  drug-directory: { mood: 'drug-directory', face: 9 },
+  about: { mood: 'about', face: 5 },
   portfolio: { mood: 'portfolio', face: 7 },
   privacy: { mood: 'default', face: 2 },
 };
@@ -514,7 +514,7 @@ function RobotCompanion() {
     const cfg = ROBOT_MOODS[section] || ROBOT_MOODS.home;
     const wrap = wrapRef.current;
     if (wrap) wrap.setAttribute('data-robot-mood', cfg.mood);
-    fireRobotFace(cfg.face, section === 'team' ? 4800 : 2600);
+    fireRobotFace(cfg.face, section === 'about' ? 4800 : 2600);
   }, []);
 
   React.useEffect(() => {
