@@ -7,6 +7,10 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
+  # SEO-spam URLs from hack (?p=12345) — 410 Gone (Google drops from index faster than 404)
+  RewriteCond %{QUERY_STRING} (^|&)p= [NC]
+  RewriteRule ^ - [G,L]
+
   # --- Старый PHP-сайт (явный запрос в браузере) ---
   RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
   RewriteRule ^index\.php$ / [R=301,L]
