@@ -387,19 +387,20 @@ function ProjectPage({ slug, navigate, lang }) {
                 </div>
               </div>
             ) : null}
-            {slug === 'OTCadvertising-banner' ? (
+            {p.serviceRoute ? (
               <button
+                type="button"
                 className="btn btn-primary"
-                onClick={() => navigate('design/brand-packaging')}
+                onClick={() => navigate(p.serviceRoute)}
               >
-                Узнать больше об этой услуге <span className="arrow">→</span>
+                {ui ? ui.learnService : 'Узнать больше об этой услуге'} <span className="arrow">→</span>
               </button>
             ) : null}
           </div>
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'OTCadvertising-banner'} /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} hide={Boolean(p.serviceRoute)} /> : null}
 
       <section className="container">
         {Array.isArray(p.metrics) && p.metrics.length > 0 ? (

@@ -1,5 +1,6 @@
 // PORTFOLIO — projects dataset.
 // Route: portfolio/<slug>
+// serviceRoute — canonical site route for hero CTA «Узнать больше об этой услуге» (section/sub or top-level).
 
 const PORTFOLIO = [
   {
@@ -54,6 +55,7 @@ const PORTFOLIO = [
       { src: 'assets/uploads/bepanten-banner-3.png', label: 'Баннер 3', alt: 'Цифровой баннер Бепантен крем — баннер 3' },
     ],
     related: ['brandbook-pharma', 'OL-medical-video', 'HCP-videoreels'],
+    serviceRoute: 'design/brand-packaging',
   },
 
   {
@@ -106,6 +108,7 @@ const PORTFOLIO = [
       { src: 'assets/uploads/meditatio-night-slide-4.png', label: 'Развёртка', alt: 'Медитацио-найт — развёртка упаковки' },
     ],
     related: ['OTCadvertising-banner', 'supplement-packaging', 'OL-medical-video'],
+    serviceRoute: 'design/brand-packaging',
   },
 
   {
@@ -168,6 +171,7 @@ const PORTFOLIO = [
     thumbLayout: 'wide',
     thumbAlt: 'Гидробаланс — туба 20 шипучих таблеток',
     related: ['brandbook-pharma', 'OL-medical-video', 'HCP-videoreels'],
+    serviceRoute: 'design/brand-packaging',
   },
 
   {
@@ -225,6 +229,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['OTCadvertising-banner', 'supplement-packaging', 'brandbook-pharma'],
+    serviceRoute: 'design/hcp-video',
   },
 
   {
@@ -287,6 +292,7 @@ const PORTFOLIO = [
       { phase: '28+ нед.',   t: 'Сопровождение и оптимизация' },
     ],
     related: ['OTCadvertising-banner', 'brandbook-pharma', 'CLM-presentacii-eto'],
+    serviceRoute: 'healthcare/hcp-education-platforms',
   },
 
   {
@@ -366,6 +372,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['supplement-packaging', 'OL-medical-video', 'brandbook-pharma'],
+    serviceRoute: 'design/clm-presentations',
   },
 
   {
@@ -423,6 +430,7 @@ const PORTFOLIO = [
       { phase: '10–12 нед.', t: 'Тренинг команды, релиз' },
     ],
     related: ['OTCadvertising-banner', 'OL-medical-video', 'brandbook-pharma'],
+    serviceRoute: 'healthcare/hcp-education-platforms',
   },
 
   {
@@ -477,6 +485,7 @@ const PORTFOLIO = [
       { phase: '18+ мес.',    t: 'API и партнёрства' },
     ],
     related: ['OL-medical-video', 'OTCadvertising-banner', 'CLM-presentacii-eto'],
+    serviceRoute: 'healthcare/hcp-education-platforms',
   },
 
   {
@@ -521,6 +530,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['CLM-presentacii-eto', 'clinical-training-HCP', 'clinical-training-neurology'],
+    serviceRoute: 'pharma-marketing/clm',
   },
 
   {
@@ -566,6 +576,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['clinical-training-HCP', 'CLM-presentacii-eto', 'CLMpresentations-for-medreps'],
+    serviceRoute: 'healthcare/hcp-education-platforms',
   },
 
   {
@@ -618,6 +629,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['clinical-training-neurology', 'hcp-reels-avatar', 'clinical-training-HCP'],
+    serviceRoute: 'design/games-quizzes',
   },
 
   {
@@ -668,6 +680,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['gamification-education-HCP', 'CLM-presentacii-eto', 'OL-medical-video'],
+    serviceRoute: 'design/ai-content',
   },
 
   {
@@ -724,6 +737,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['OTCadvertising-banner', 'hcp-reels-avatar', 'bot-pharma-digitalmarketing'],
+    serviceRoute: 'design/brand-packaging',
   },
 
   {
@@ -784,6 +798,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['OTCadvertising-banner-How-to-make', 'How-to-make-a-game-for-HCP', 'clinical-training-HCP'],
+    serviceRoute: 'pharma-marketing/chatbot-teleapp-Telegram',
   },
 
   {
@@ -845,6 +860,7 @@ const PORTFOLIO = [
       },
     ],
     related: ['bot-pharma-digitalmarketing', 'OTCadvertising-banner-How-to-make', 'hcp-reels-avatar'],
+    serviceRoute: 'design/games-quizzes',
   },
 ];
 

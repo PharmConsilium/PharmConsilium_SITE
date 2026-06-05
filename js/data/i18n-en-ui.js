@@ -530,6 +530,7 @@ window.I18N_EN = {
     notFoundH1: 'Project not found.',
     backToPortfolio: '← Back to portfolio',
     backAll: '← All projects',
+    learnService: 'Learn more about this service',
     appStoreLinks: 'Mobile app links',
     slidePreview: 'Project preview',
     slideArch: 'Architecture',
