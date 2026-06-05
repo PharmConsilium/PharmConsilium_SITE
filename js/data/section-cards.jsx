@@ -2,7 +2,7 @@
 // Shared by SectionPage grids and DetailPage «Вам могут понравиться» via getSectionRelatedCards.
 
 const SECTION_CARDS = {
-  pharma-marketing: [
+  'pharma-marketing': [
     { title: 'CRM-PharmConsilium для медицинских представителей', sub: 'crm', size: 'huge',
       cardArt: 'assets/uploads/marketing-crm-card.png?v=20260529',
       cardArtAlt: 'CRM-PharmConsilium: база организаций и аптек',
@@ -21,7 +21,7 @@ const SECTION_CARDS = {
       cardArtPhoto: 'contain',
       desc: 'МП сделал визит, материалы визита отправил ссылкой клиенту. 2CLM — оценивает поствизитное взаимодействие HCP с контентом.',
       tag: 'Rep-Triggered Email, Post-Call Digital Content Push, Post-Call Follow-Up Materials Delivery' },
-    { title: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', sub: 'chatbot-teleapp', art: 'ArtChat',
+    { title: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', sub: 'chatbot-teleapp-Telegram', art: 'ArtChat',
       cardArt: 'assets/uploads/marketing-chatbot-card.png?v=20260527',
       cardArtAlt: 'Чат-бот и ТелеАпп ФармКонсилиум: Telegram-бот и мини-приложение для HCP',
       cardArtPhoto: 'contain',
@@ -33,7 +33,7 @@ const SECTION_CARDS = {
       cardArtPhoto: 'contain',
       desc: 'Веб-решения ФармКонсилиум для фармацевтических брендов: HCP-порталы, лендинги препаратов, лонгриды и платформы онлайн-конгрессов под ключ.',
       tag: 'WebDevelopment, PharmaWeb, Landingpage' },
-    { title: 'Разработка мобильных приложений', sub: 'mobile-apps', art: 'ArtPhone', size: 'wide',
+    { title: 'Разработка мобильных приложений', sub: 'mobileapps-development', art: 'ArtPhone', size: 'wide',
       cardArt: 'assets/uploads/marketing-mobile-card.png?v=20260527',
       cardArtAlt: 'Разработка мобильных приложений ФармКонсилиум: App Store, Google Play и макет mHealth-приложения',
       cardArtPhoto: 'contain',
@@ -45,7 +45,7 @@ const SECTION_CARDS = {
       cardArtPhoto: 'contain',
       desc: 'Цифровое сопровождение медицинских ивентов: регистрационные лендинги, ивент-боты, ИИ-помощники, интерактивы и коммуникация с HCP до и после события.',
       tag: 'PharmaEvents, OnlineCongress, WebinarPlatform' },
-    { title: 'Тренинги для медицинских представителей', sub: 'rep-training', art: 'ArtAI',
+    { title: 'Тренинги для медицинских представителей', sub: 'temy-treningov-dlya-medpredov', art: 'ArtAI',
       cardArt: 'assets/uploads/marketing-ai-card.png?v=20260527',
       cardArtAlt: 'Тренинги для медицинских представителей: 3D-иллюстрация занятия по продукту и комплаенсу',
       cardArtPhoto: 'contain',
@@ -53,7 +53,7 @@ const SECTION_CARDS = {
       tag: 'FieldForceTraining, Training MedReps, DistanceLearning' },
   ],
   healthcare: [
-    { title: 'Цифровые платформы для образовательных медицинских программ', sub: 'education-platforms', size: 'huge', art: 'ArtAI',
+    { title: 'Цифровые платформы для образовательных медицинских программ', sub: 'hcp-education-platforms', size: 'huge', art: 'ArtAI',
       cardArt: 'assets/uploads/hcp-learning-card.png?v=20260527',
       cardArtAlt: 'Платформа медицинского обучения: врач за планшетом и тест на смартфоне',
       cardArtPhoto: 'cover',
@@ -85,13 +85,13 @@ const SECTION_CARDS = {
       tag: 'RWE, RealWorldEvidence, PharmaStrategy' },
   ],
   outsourcing: [
-    { title: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', sub: 'digital-rep', size: 'huge', art: 'ArtTablet',
+    { title: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', sub: 'digitalmedrep', size: 'huge', art: 'ArtTablet',
       cardArt: 'assets/uploads/sales-digital-rep-card.png?v=20260528',
       cardArtAlt: 'Аутсорсинг медицинских представителей: 3D-иллюстрация человека и робота — цифровая альтернатива field force',
       cardArtPhoto: 'contain',
       desc: 'Создаем цифровые омниканальные кампании продвижения, которые берут на себя функции аутсорсинговой команды медицинских представителей: персональная архитектура коммуникации с врачами, провизорами и фармацевтами на базе собственной платформы и технологического стека ФармКонсилиум.',
       tag: 'DigitalMedRep, RentReps, Outsourcing of medical representatives' },
-    { title: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов', sub: 'omnichannel', art: 'ArtNodes',
+    { title: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов', sub: 'medrep-omnichannel', art: 'ArtNodes',
       cardArt: 'assets/uploads/sales-omnichannel-card.png?v=20260528',
       cardArtAlt: 'Цифровой медицинский представитель: 3D-иллюстрация гибридного промо с цифровым двойником и голограммой',
       cardArtPhoto: 'contain',
@@ -139,7 +139,7 @@ const SECTION_CARDS = {
 };
 
 const SECTION_CRUMBS = {
-  pharma-marketing: 'Фармацевтический маркетинг',
+  'pharma-marketing': 'Фармацевтический маркетинг',
   healthcare: 'Здравоохранение',
   outsourcing: 'Аутсорсинг',
   design: 'Дизайн',

@@ -6,22 +6,22 @@ window.I18N_EN = {
     { id: 'healthcare', label: 'Healthcare' },
     { id: 'outsourcing', label: 'Outsourcing' },
     { id: 'design', label: 'Design' },
-    { id: 'drug-directory', label: 'Drug directory' },
+    { id: 'FarmConsilium-drug-reference-book', label: 'Drug directory' },
     { id: 'about', label: 'About us' },
   ],
 
   mega: {
-    pharma-marketing: {
+    'pharma-marketing': {
       title: 'Digital tools for pharmaceutical marketing',
       links: [
         { label: 'CRM for medical representatives', to: 'pharma-marketing/crm' },
         { label: 'CLM — F2F detailing software with promo content', to: 'pharma-marketing/clm' },
         { label: '2CLM — software to improve SF visit effectiveness', to: 'pharma-marketing/2clm' },
-        { label: 'Chatbot and TeleApp — digital ecosystem for HCP engagement', to: 'pharma-marketing/chatbot-teleapp' },
+        { label: 'Chatbot and TeleApp — digital ecosystem for HCP engagement', to: 'pharma-marketing/chatbot-teleapp-Telegram' },
         { label: 'Web development: sites, landing pages, longreads, congress and webinar platforms', to: 'pharma-marketing/web-development' },
-        { label: 'Mobile app development', to: 'pharma-marketing/mobile-apps' },
+        { label: 'Mobile app development', to: 'pharma-marketing/mobileapps-development' },
         { label: 'Digital event support', to: 'pharma-marketing/event-support' },
-        { label: 'Training for medical representatives', to: 'pharma-marketing/rep-training' },
+        { label: 'Training for medical representatives', to: 'pharma-marketing/temy-treningov-dlya-medpredov' },
       ],
       featured: {
         tag: 'Closed-Loop Marketing',
@@ -34,7 +34,7 @@ window.I18N_EN = {
     healthcare: {
       title: 'Digital solutions for healthcare',
       links: [
-        { label: 'Digital platforms for educational medical programs', to: 'healthcare/education-platforms' },
+        { label: 'Digital platforms for educational medical programs', to: 'healthcare/hcp-education-platforms' },
         { label: 'Patient support programs', to: 'healthcare/patient-support' },
         { label: 'Medical chatbots and AI assistants', to: 'healthcare/medical-chatbots' },
         { label: 'Digital platforms for scientific research', to: 'healthcare/research-platforms' },
@@ -51,9 +51,9 @@ window.I18N_EN = {
     outsourcing: {
       title: 'Integrated promotion and sales outsourcing',
       links: [
-        { label: 'Outsourcing of medical representatives and a digital alternative for pharma companies', to: 'outsourcing/digital-rep' },
+        { label: 'Outsourcing of medical representatives and a digital alternative for pharma companies', to: 'outsourcing/digitalmedrep' },
         { label: 'Launch outsourcing', to: 'outsourcing/launch-outsourcing' },
-        { label: 'Digital medical representative in hybrid pharma brand promotion', to: 'outsourcing/omnichannel' },
+        { label: 'Digital medical representative in hybrid pharma brand promotion', to: 'outsourcing/medrep-omnichannel' },
       ],
       featured: {
         tag: 'D2F, Digital to Face',
@@ -80,14 +80,9 @@ window.I18N_EN = {
         artAlt: 'Content — digital interfaces and AI',
       },
     },
-    drug-directory: {
+    'FarmConsilium-drug-reference-book': {
       title: 'Professional digital resource for physicians, pharmacists, and pharmaceutical specialists',
-      links: [
-        { label: 'Residency-grade architecture without promotional noise. Trusted by clinicians', to: 'drug-directory', scrollTo: 'directory-benefit-0' },
-        { label: 'How drug information looks: the product card', to: 'drug-directory', scrollTo: 'directory-benefit-1' },
-        { label: 'Web and mobile versions', to: 'drug-directory', scrollTo: 'directory-benefit-2' },
-        { label: 'We invite pharmaceutical product managers to partner with us', to: 'drug-directory', scrollTo: 'directory-benefit-3' },
-      ],
+      links: [],
       featured: {
         tag: 'Drug reference guide',
         title: 'Residency-grade architecture without promotional noise',
@@ -115,9 +110,9 @@ window.I18N_EN = {
       title: 'Portfolio, projects, and PharmConsilium features',
       links: [
         { label: 'All projects', to: 'portfolio' },
-        { label: 'Launches and campaigns', to: 'portfolio/bepanten-banner' },
-        { label: 'AI and products', to: 'portfolio/meditatio-night-brand' },
-        { label: 'CLM and eDetailing', to: 'portfolio/clm-veeva' },
+        { label: 'Launches and campaigns', to: 'portfolio/OTCadvertising-banner' },
+        { label: 'AI and products', to: 'portfolio/brandbook-pharma' },
+        { label: 'CLM and eDetailing', to: 'portfolio/clinical-training-HCP' },
         { label: 'Directories and platforms', to: 'portfolio/drug-directory-launch' },
       ],
       featured: {
@@ -176,7 +171,7 @@ window.I18N_EN = {
       { id: 'healthcare', num: '02', title: 'Healthcare digital solutions', desc: 'Mobile apps, education platforms, websites, bots, and AI assistants.' },
       { id: 'outsourcing', num: '03', title: 'Outsourcing', desc: 'Integrated digital promotion programs. Digital medical representative.' },
       { id: 'design', num: '04', title: 'Design', desc: 'CLM decks, e-detailers, video, games, and quizzes — what physicians and pharmacists actually use.', wide: true },
-      { id: 'drug-directory', num: '05', title: 'PharmConsilium Drug Directory', desc: 'Prescribing guidance, sample prescriptions, and calculators.', wide: true },
+      { id: 'FarmConsilium-drug-reference-book', num: '05', title: 'PharmConsilium Drug Directory', desc: 'Prescribing guidance, sample prescriptions, and calculators.', wide: true },
     ],
     discussAria: 'Discuss your project',
     featureChip: 'Best seller 2026',
@@ -188,14 +183,14 @@ window.I18N_EN = {
     insightsRight: '3 in 1: marketing expertise, digital product development, and content daylining studio.',
     insightCards: [
       { n: '01', t: 'Portfolio and projects', d: 'A portfolio of delivered projects we are proud of.', to: 'portfolio' },
-      { n: '02', t: 'Digital medical representative', d: 'Digital omnichannel promotion campaigns that take on the role of an outsourced medical representative team.', to: 'outsourcing/digital-rep' },
+      { n: '02', t: 'Digital medical representative', d: 'Digital omnichannel promotion campaigns that take on the role of an outsourced medical representative team.', to: 'outsourcing/digitalmedrep' },
       { n: '03', t: 'PharmConsilium Drug Directory', d: 'Our own professional resource for physicians, pharmacists, and pharmaceutical specialists.', href: 'https://farmconsilium.com/' },
-      { n: '04', t: 'Mobile app development', d: 'Turnkey mHealth apps for pharma brands — from idea and UX concept to design, development, and App Store and Google Play release.', to: 'pharma-marketing/mobile-apps' },
+      { n: '04', t: 'Mobile app development', d: 'Turnkey mHealth apps for pharma brands — from idea and UX concept to design, development, and App Store and Google Play release.', to: 'pharma-marketing/mobileapps-development' },
     ],
   },
 
   sections: {
-    pharma-marketing: {
+    'pharma-marketing': {
       crumb: 'Pharmaceutical marketing',
       h1Line1: 'Digital tools',
       h1Accent: 'for pharmaceutical marketing',
@@ -315,7 +310,7 @@ window.I18N_EN = {
     },
   },
 
-  drug-directory: {
+  'FarmConsilium-drug-reference-book': {
     crumb: 'Drug directory',
     h1: 'Drug directory',
     h1Brand: 'PharmConsilium',
@@ -450,29 +445,28 @@ window.I18N_EN = {
       'Our approach is built on digital technology and a deep understanding of healthcare market needs. We help establish effective communication with key audiences through personalized campaigns, integrated digital platforms, and AI-powered solutions.',
     ],
     members: [
-      { n: 'Robbie', r: 'Corporate artificial intelligence', photo: 'assets/uploads/about-robbie-hover.png', photoHover: 'assets/uploads/about-robbie-hover.png' },
-      { n: 'Katarina', r: 'Economist, content maker', photo: 'assets/uploads/about-katarina.png' },
-      { n: 'Daniil', r: 'Software engineer', photo: 'assets/uploads/about-daniil.png' },
-      { n: 'Vadim', r: 'Software engineer', photo: 'assets/uploads/about-vadim.png' },
-      { n: 'Valeria', r: 'Medical marketing manager', photo: 'assets/uploads/about-valeria.png' },
-      { n: 'Nikolay', r: 'Digital ecosystem marketer', photo: 'assets/uploads/about-nikolay.png' },
-      { n: 'Sergey', r: 'Software engineer', photo: 'assets/uploads/about-sergey.png' },
-      { n: 'Ilya', r: 'AI video design, animation', photo: 'assets/uploads/about-ilya.png' },
-      { n: 'Artyom', r: 'Cross-platform systems design', photo: 'assets/uploads/about-artem.png' },
-      { n: 'Vladislav', r: 'Head of IT development', photo: 'assets/uploads/about-vladislav.png' },
-      { n: 'Oksana', r: 'Finance', photo: 'assets/uploads/about-oksana.png' },
-      { n: 'Vladimir', r: 'Optimist', photo: 'assets/uploads/about-vladimir.png' },
+      { n: 'Robbie', r: 'Corporate artificial intelligence', photo: 'assets/uploads/team-robbie-hover.png', photoHover: 'assets/uploads/team-robbie-hover.png' },
+      { n: 'Katarina', r: 'Economist, content maker', photo: 'assets/uploads/team-katarina.png' },
+      { n: 'Daniil', r: 'Software engineer', photo: 'assets/uploads/team-daniil.png' },
+      { n: 'Valeria', r: 'Medical marketing manager', photo: 'assets/uploads/team-valeria.png' },
+      { n: 'Nikolay', r: 'Digital ecosystem marketer', photo: 'assets/uploads/team-nikolay.png' },
+      { n: 'Sergey', r: 'Software engineer', photo: 'assets/uploads/team-sergey.png' },
+      { n: 'Ilya', r: 'AI video design, animation', photo: 'assets/uploads/team-ilya.png' },
+      { n: 'Artyom', r: 'Cross-platform systems design', photo: 'assets/uploads/team-artem.png' },
+      { n: 'Vladislav', r: 'Head of IT development', photo: 'assets/uploads/team-vladislav.png' },
+      { n: 'Oksana', r: 'Finance', photo: 'assets/uploads/team-oksana.png' },
+      { n: 'Vladimir', r: 'Optimist', photo: 'assets/uploads/team-vladimir.png' },
     ],
     portfolioEyebrow: 'Portfolio',
     portfolioH2: 'PharmConsilium projects viewers opened most this month',
     portfolioRight: 'Cases, product solutions, use cases, solutions',
     portfolioCards: [
-      { t: 'Bepanthen cream digital banner', d: 'Digital banner for OTC drug advertising and regulatory approval.', art: 'ArtBanner', slug: 'bepanten-banner' },
-      { t: 'Dietary supplement brand book, naming, packaging', d: 'Building dietary supplement brand identity and integrating product benefits into packaging design.', art: 'ArtAI', slug: 'meditatio-night-brand' },
+      { t: 'Bepanthen cream digital banner', d: 'Digital banner for OTC drug advertising and regulatory approval.', art: 'ArtBanner', slug: 'OTCadvertising-banner' },
+      { t: 'Dietary supplement brand book, naming, packaging', d: 'Building dietary supplement brand identity and integrating product benefits into packaging design.', art: 'ArtAI', slug: 'brandbook-pharma' },
       { t: 'Hydrobalance product packaging', d: 'Packaging design for the Hydrobalance product.', art: 'ArtVideo', slug: 'supplement-packaging' },
-      { t: 'Vertical video (e-detailing) for HCP', d: 'We turned a top rep visit script into 9:16 vertical video where complex medical information is delivered through animation or a colleague’s voice — so physicians watch with ease, like a favorite series.', art: 'ArtRadar', slug: 'conference-pk25' },
-      { t: 'CLM presentation design and development for a pharmaceutical product', d: 'From strategy and scenario architecture to interactive design, technical build, and compliance — full CLM presentation production.', art: 'ArtPulse', slug: 'psp-platform' },
-      { t: 'Digital platform for healthcare professional education', d: 'Build a closed web platform with HCP registration for video lectures, learning materials, and knowledge quizzes. Full educational content cycle: creation, filming, and editing of video lectures, plus interactive video quizzes.', art: 'ArtLayers', slug: 'clm-veeva' },
+      { t: 'Vertical video (e-detailing) for HCP', d: 'We turned a top rep visit script into 9:16 vertical video where complex medical information is delivered through animation or a colleague’s voice — so physicians watch with ease, like a favorite series.', art: 'ArtRadar', slug: 'HCP-videoreels' },
+      { t: 'CLM presentation design and development for a pharmaceutical product', d: 'From strategy and scenario architecture to interactive design, technical build, and compliance — full CLM presentation production.', art: 'ArtPulse', slug: 'CLM-presentacii-eto' },
+      { t: 'Digital platform for healthcare professional education', d: 'Build a closed web platform with HCP registration for video lectures, learning materials, and knowledge quizzes. Full educational content cycle: creation, filming, and editing of video lectures, plus interactive video quizzes.', art: 'ArtLayers', slug: 'clinical-training-HCP' },
     ],
     openCase: 'Open case',
     contactsEyebrow: 'PharmConsilium contact details',

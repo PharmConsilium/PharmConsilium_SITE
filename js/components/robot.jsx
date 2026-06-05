@@ -9,11 +9,11 @@ function clamp(n, lo, hi) {
 /** Настроение по разделу: data-robot-mood + кадр лица при смене route */
 const ROBOT_MOODS = {
   home: { mood: 'home', face: 2 },
-  pharma-marketing: { mood: 'pharma-marketing', face: 4 },
+  'pharma-marketing': { mood: 'pharma-marketing', face: 4 },
   healthcare: { mood: 'healthcare', face: 6 },
   outsourcing: { mood: 'outsourcing', face: 8 },
   design: { mood: 'design', face: 3 },
-  drug-directory: { mood: 'drug-directory', face: 9 },
+  'drug-directory': { mood: 'drug-directory', face: 9 },
   about: { mood: 'about', face: 5 },
   portfolio: { mood: 'portfolio', face: 7 },
   privacy: { mood: 'default', face: 2 },

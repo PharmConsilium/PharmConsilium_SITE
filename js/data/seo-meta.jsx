@@ -18,7 +18,7 @@ const SEO_STATIC = {
     title: 'ФармКонсилиум · IT-решения для фармацевтического маркетинга в Беларуси',
     description: SITE.defaultDescription,
   },
-  pharma-marketing: {
+  'pharma-marketing': {
     title: 'Фармацевтический маркетинг · ФармКонсилиум',
     description: 'CRM, CLM, чат-боты, веб и мобильные продукты, ИИ для медпредставителей. Омниканальная работа с HCP в РБ.',
   },
@@ -26,7 +26,7 @@ const SEO_STATIC = {
     title: 'Здравоохранение · ФармКонсилиум',
     description: 'ИИ-ассистенты, образовательные платформы, рекомендательные системы и программы поддержки пациентов.',
   },
-  outsourcing: {
+  'outsourcing-medpredov': {
     title: 'Аутсорсинг · ФармКонсилиум',
     description: 'Цифровой медпред, омниканальные кампании, лонч-аутсорсинг и аналитика продаж на рынке РБ.',
   },
@@ -34,7 +34,7 @@ const SEO_STATIC = {
     title: 'Дизайн · ФармКонсилиум',
     description: 'Медицинские презентации, видео, eDetailing, геймификация и квизы для фарм-брендов.',
   },
-  drug-directory: {
+  'FarmConsilium-drug-reference-book': {
     title: 'Справочник лекарственных средств · ФармКонсилиум',
     description: 'Доверительная ординаторская: справочник ЛС для врачей и провизоров Беларуси.',
   },
@@ -57,7 +57,7 @@ const SEO_STATIC_EN = {
     title: 'PharmConsilium · IT solutions for pharmaceutical marketing in Belarus',
     description: SITE.defaultDescriptionEn,
   },
-  pharma-marketing: {
+  'pharma-marketing': {
     title: 'Pharmaceutical marketing · PharmConsilium',
     description: 'CRM, CLM, chatbots, web and mobile products, AI for medical representatives. Omnichannel HCP engagement in Belarus.',
   },
@@ -65,7 +65,7 @@ const SEO_STATIC_EN = {
     title: 'Healthcare · PharmConsilium',
     description: 'AI assistants, education platforms, recommender systems, and patient support programs.',
   },
-  outsourcing: {
+  'outsourcing-medpredov': {
     title: 'Outsourcing · PharmConsilium',
     description: 'Digital medical representative, omnichannel campaigns, launch outsourcing, and sales analytics in Belarus.',
   },
@@ -73,7 +73,7 @@ const SEO_STATIC_EN = {
     title: 'Design · PharmConsilium',
     description: 'Medical presentations, video, eDetailing, gamification, and quizzes for pharma brands.',
   },
-  drug-directory: {
+  'FarmConsilium-drug-reference-book': {
     title: 'Drug directory · PharmConsilium',
     description: 'Trusted professional drug directory for physicians and pharmacists in Belarus.',
   },

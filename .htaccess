@@ -64,7 +64,7 @@ DirectoryIndex index.html
   RewriteRule ^tool/robotcoach-pharmacy-gametraining-simulator-obuchayushchiy-igrovoy-simulyator-dlya-aptek$ /design/games-quizzes [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/Marketingovye-issledovaniya-farmacevticheskogo-rynka-Belarus[\s?] [NC]
-  RewriteRule ^tool/Marketingovye-issledovaniya-farmacevticheskogo-rynka-Belarus$ /outsourcing/share-of-voice [R=301,L]
+  RewriteRule ^tool/Marketingovye-issledovaniya-farmacevticheskogo-rynka-Belarus$ /outsourcing/omnichannel [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/PharmInfo[\s?] [NC]
   RewriteRule ^tool/PharmInfo$ /drug-directory [R=301,L]

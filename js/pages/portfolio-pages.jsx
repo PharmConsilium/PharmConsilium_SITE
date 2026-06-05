@@ -387,7 +387,7 @@ function ProjectPage({ slug, navigate, lang }) {
                 </div>
               </div>
             ) : null}
-            {slug === 'bepanten-banner' ? (
+            {slug === 'OTCadvertising-banner' ? (
               <button
                 className="btn btn-primary"
                 onClick={() => navigate('design/brand-packaging')}
@@ -399,7 +399,7 @@ function ProjectPage({ slug, navigate, lang }) {
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'bepanten-banner'} /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'OTCadvertising-banner'} /> : null}
 
       <section className="container">
         {Array.isArray(p.metrics) && p.metrics.length > 0 ? (
@@ -505,6 +505,15 @@ function ProjectPage({ slug, navigate, lang }) {
               </ul>
             </div>
 
+            {Array.isArray(p.extraBlocks) && p.extraBlocks.map((block, i) => (
+              <div key={i} className="proj-desc-block">
+                {block.title ? <h3 className="proj-extra-title">{block.title}</h3> : null}
+                {(block.paragraphs || []).map((para, j) => (
+                  <p key={j} className="proj-paragraph">{para}</p>
+                ))}
+              </div>
+            ))}
+
             {(() => {
               const infoItems = [
                 { l: p.infoClientLabel || (ui ? ui.client : 'Клиент'), v: p.infoClient || p.client },
@@ -557,6 +566,7 @@ function ProjectPage({ slug, navigate, lang }) {
               if (!r) return null;
               const RA = window[r.art] || window.ArtConstellation;
               const relThumb = r.thumb;
+              const relChips = portfolioMetaChips(r);
               return (
                 <div key={relSlug} className="rel-card" onClick={() => navigate(`portfolio/${relSlug}`)}>
                     <div
@@ -566,9 +576,15 @@ function ProjectPage({ slug, navigate, lang }) {
                         ? <img src={relThumb} alt="" loading="lazy" decoding="async" />
                         : <RA />}
                     </div>
-                    <div>
+                    <div className="rel-card-body">
                       <h4>{r.name}</h4>
-                      <p>{r.category} · {r.year}</p>
+                      {relChips.length > 0 &&
+                        <div className="rel-card-chips">
+                          {relChips.map((chip) => (
+                            <span key={chip} className="chip rel-card-chip">{chip}</span>
+                          ))}
+                        </div>
+                      }
                     </div>
                   </div>);
 

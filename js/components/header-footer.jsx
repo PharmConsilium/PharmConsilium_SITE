@@ -3,13 +3,14 @@
 const NAV_ITEMS = [
 { id: 'pharma-marketing', label: 'Фармацевтический маркетинг' },
 { id: 'healthcare', label: 'Здравоохранение' },
-{ id: 'outsourcing', label: 'Аутсорсинг' },
+{ id: 'outsourcing-medpredov', label: 'Аутсорсинг' },
 { id: 'design', label: 'Дизайн' },
-{ id: 'drug-directory', label: 'Справочник ЛС' },
+{ id: 'FarmConsilium-drug-reference-book', label: 'Справочник ЛС' },
 { id: 'about', label: 'О нас' }];
 
 
 // per-page mega-menu config: sublinks + featured tile
+const DIRECTORY_NAV_ID = 'FarmConsilium-drug-reference-book';
 const DIRECTORY_SCROLL_KEY = 'pharmconsilium-directory-scroll';
 const TEAM_SCROLL_KEY = 'pharmconsilium-team-scroll';
 
@@ -35,8 +36,8 @@ function scrollToDirectoryCard(id) {
 function goNavLink(navigate, currentRoute, sectionId, link, onClose) {
   const to = typeof link === 'string' ? sectionId : (link.to || sectionId);
   const scrollTo = typeof link === 'string' ? null : link.scrollTo;
-  if (scrollTo && to === 'drug-directory') {
-    if (currentRoute === 'drug-directory') {
+  if (scrollTo && (to === DIRECTORY_NAV_ID || to === 'drug-directory')) {
+    if (currentRoute === DIRECTORY_NAV_ID || currentRoute === 'drug-directory') {
       scrollToDirectoryCard(scrollTo);
       onClose?.();
       return;
@@ -56,17 +57,17 @@ function goNavLink(navigate, currentRoute, sectionId, link, onClose) {
 }
 
 const MEGA = {
-  pharma-marketing: {
+  'pharma-marketing': {
     title: 'Цифровые инструменты фармацевтического маркетинга',
     links: [
     { label: 'CRM для медицинских представителей', to: 'pharma-marketing/crm' },
     { label: 'CLM — ПО для работы МП F2F с промоконтентом', to: 'pharma-marketing/clm' },
     { label: '2CLM — ПО для увеличения эффективности визитов SF', to: 'pharma-marketing/2clm' },
-    { label: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', to: 'pharma-marketing/chatbot-teleapp' },
+    { label: 'Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP', to: 'pharma-marketing/chatbot-teleapp-Telegram' },
     { label: 'Веб-разработка: сайты, лендинги, лонгриды, платформы для онлайн-конгрессов и вебинаров', to: 'pharma-marketing/web-development' },
-    { label: 'Разработка мобильных приложений', to: 'pharma-marketing/mobile-apps' },
+    { label: 'Разработка мобильных приложений', to: 'pharma-marketing/mobileapps-development' },
     { label: 'Цифровая поддержка мероприятий', to: 'pharma-marketing/event-support' },
-    { label: 'Тренинги для медицинских представителей', to: 'pharma-marketing/rep-training' }],
+    { label: 'Тренинги для медицинских представителей', to: 'pharma-marketing/temy-treningov-dlya-medpredov' }],
 
     featured: {
       tag: 'Closed-Loop Marketing',
@@ -79,7 +80,7 @@ const MEGA = {
   healthcare: {
     title: 'Цифровые решения для здравоохранения',
     links: [
-    { label: 'Цифровые платформы для образовательных медицинских программ', to: 'healthcare/education-platforms' },
+    { label: 'Цифровые платформы для образовательных медицинских программ', to: 'healthcare/hcp-education-platforms' },
     { label: 'Программы поддержки пациентов', to: 'healthcare/patient-support' },
     { label: 'Чат-боты и ИИ-ассистенты для медицины', to: 'healthcare/medical-chatbots' },
     { label: 'Цифровые платформы для научных исследований', to: 'healthcare/research-platforms' },
@@ -93,12 +94,12 @@ const MEGA = {
       artAlt: 'Здравоохранение — видеотренинги для HCP',
     }
   },
-  outsourcing: {
+  'outsourcing-medpredov': {
     title: 'Комплексное продвижение, аутсорсинг продаж',
     links: [
-    { label: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', to: 'outsourcing/digital-rep' },
+    { label: 'Аутсорсинг медицинских представителей и цифровая альтернатива для фармкомпаний', to: 'outsourcing/digitalmedrep' },
     { label: 'Лонч - аутсорсинг', to: 'outsourcing/launch-outsourcing' },
-    { label: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов', to: 'outsourcing/omnichannel' }],
+    { label: 'Цифровой медицинский представитель в гибридном продвижении фармбрендов', to: 'outsourcing/medrep-omnichannel' }],
 
     featured: {
       tag: 'D2F, Digital to Face',
@@ -125,13 +126,9 @@ const MEGA = {
       artAlt: 'Контент — цифровые интерфейсы и AI',
     }
   },
-  drug-directory: {
+  'FarmConsilium-drug-reference-book': {
     title: 'Профессиональный цифровой ресурс для врачей, провизоров и фармацевтов',
-    links: [
-    { label: 'Архитектура ординаторской без рекламного шума. Нам доверяют', to: 'drug-directory', scrollTo: 'directory-benefit-0' },
-    { label: 'Как выглядит информация о ЛС, описание карточки препарата', to: 'drug-directory', scrollTo: 'directory-benefit-1' },
-    { label: 'Веб-версия и мобильная версия', to: 'drug-directory', scrollTo: 'directory-benefit-2' },
-    { label: 'Приглашаем продакт-менеджеров фармкомпаний к сотрудничеству', to: 'drug-directory', scrollTo: 'directory-benefit-3' }],
+    links: [],
 
     featured: {
       tag: 'Drug reference guide ',
@@ -160,9 +157,9 @@ const MEGA = {
     title: 'Портфолио, проекты, и фичи ФармКонсилиум',
     links: [
     { label: 'Все проекты',              to: 'portfolio' },
-    { label: 'Лончи и кампании',           to: 'portfolio/bepanten-banner' },
-    { label: 'AI и продукты',              to: 'portfolio/meditatio-night-brand' },
-    { label: 'CLM и eDetailing',            to: 'portfolio/clm-veeva' },
+    { label: 'Лончи и кампании',           to: 'portfolio/OTCadvertising-banner' },
+    { label: 'AI и продукты',              to: 'portfolio/brandbook-pharma' },
+    { label: 'CLM и eDetailing',            to: 'portfolio/clinical-training-HCP' },
     { label: 'Справочники и платформы',  to: 'portfolio/drug-directory-launch' }],
 
     featured: {
@@ -212,7 +209,7 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
 
   const open = (id) => {
     // Directory page already contains all sub-sections; no mega-panel needed.
-    if (id === 'drug-directory') {
+    if (id === DIRECTORY_NAV_ID) {
       setOpenMenu(null);
       return;
     }
@@ -373,7 +370,7 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
         onMouseEnter={() => open(openMenu)}
         onMouseLeave={scheduleClose}
       >
-        {openMenu && megaConfig[openMenu] &&
+        {openMenu && openMenu !== DIRECTORY_NAV_ID && megaConfig[openMenu] &&
         <div className="container mega-inner">
             <div className="mega-left">
               <h3>{megaConfig[openMenu].title}</h3>
@@ -415,7 +412,7 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
         aria-label={t('navAria')}>
         {navItems.map((item) => {
           // Keep "Directory" mobile nav clean: everything is inside the page itself.
-          const mega = item.id === 'drug-directory' ? null : megaConfig[item.id];
+          const mega = item.id === DIRECTORY_NAV_ID ? null : megaConfig[item.id];
           const expanded = mobileExpanded === item.id;
           return (
             <div key={item.id} className={`mobile-nav-group${expanded ? ' is-expanded' : ''}`}>

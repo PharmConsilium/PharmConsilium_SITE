@@ -61,6 +61,10 @@ const server = http.createServer((req, res) => {
       const ext = path.extname(file).toLowerCase();
       return send(res, 200, data, MIME[ext] || 'application/octet-stream');
     }
+    const ext = path.extname(file).toLowerCase();
+    if (ext && ext !== '.html') {
+      return send(res, 404, 'Not found');
+    }
     const index = path.join(ROOT, 'index.html');
     tryFile(index, (e2, html) => {
       if (e2 || !html) return send(res, 404, 'Not found');
@@ -71,5 +75,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`PharmConsilium dev server: http://localhost:${PORT}/`);
-  console.log('SPA routes: /directory, /team, /marketing/crm, etc.');
+  console.log('SPA routes: /pharma-marketing/crm, /healthcare, /about, etc.');
 });

@@ -494,7 +494,7 @@ function ArtTeamContacts({ className, alt }) {
   return (
     <div className={className ? `team-contacts-art-wrap ${className}` : 'team-contacts-art-wrap'} aria-hidden="true">
       <img
-        src="assets/uploads/about-contacts-art.png"
+        src="assets/uploads/team-contacts-art.png"
         alt={altText}
         className="team-contacts-art-img team-contacts-art-img--theme-light"
         width={1024}
@@ -503,7 +503,7 @@ function ArtTeamContacts({ className, alt }) {
         decoding="async"
       />
       <img
-        src="assets/uploads/about-contacts-art-dark.png"
+        src="assets/uploads/team-contacts-art-dark.png"
         alt=""
         className="team-contacts-art-img team-contacts-art-img--theme-dark"
         width={1024}

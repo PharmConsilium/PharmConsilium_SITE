@@ -115,7 +115,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'pharma-marketing/chatbot-teleapp': {
+  'pharma-marketing/chatbot-teleapp-Telegram': {
     section: 'Pharmaceutical marketing',
     title: 'Chatbot and TeleApp — digital ecosystem for HCP engagement',
     lede: 'A unique digital architecture in Telegram for long-term client engagement—a chatbot in the user\'s chat list with built-in mobile-app capabilities.',
@@ -196,7 +196,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'pharma-marketing/mobile-apps': {
+  'pharma-marketing/mobileapps-development': {
     section: 'Pharmaceutical marketing',
     title: 'Mobile app development',
     h1Line1: 'Mobile app',
@@ -280,7 +280,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'pharma-marketing/rep-training': {
+  'pharma-marketing/temy-treningov-dlya-medpredov': {
     section: 'Pharmaceutical marketing',
     title: 'Training for medical representatives',
     h1Line1: 'Training for',
@@ -322,7 +322,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'healthcare/education-platforms': {
+  'healthcare/hcp-education-platforms': {
     section: 'Healthcare',
     title: 'Digital platforms for educational medical programs',
     h1Line1: 'Digital platforms',
@@ -437,37 +437,6 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'healthcare/mobile-apps': {
-    section: 'Healthcare',
-    title: 'Mobile applications',
-    lede: 'iOS and Android for physicians, pharmacists, and patient support programs. Offline access, push, analytics, App Store and Google Play deployment.',
-    tags: ['iOS', 'Android', 'HCP app', 'PSP app'],
-    about: [
-      'Mobile is the most owned channel for HCPs and patients: materials at hand, reminders that do not get lost in email, high-resolution behavioral analytics.',
-      'Built for Belarus and CIS regulation: consents, data protection, clinical and patient scenarios.',
-    ],
-    features: [
-      { t: 'HCP application', d: 'Materials, learning, media library, points, personal recommendations.' },
-      { t: 'Patient application', d: 'Therapy diary, reminders, support program navigation.' },
-      { t: 'Push & segmentation', d: 'Targeted notifications without promotional noise.' },
-      { t: 'Analytics & retention', d: 'Cohorts, retention, churn forecast.' },
-    ],
-    steps: [
-      { n: '01', t: 'Concept', d: 'JTBD, MVP, stack and regulatory perimeter.' },
-      { n: '02', t: 'Prototype', d: 'Testing with physicians and patients.' },
-      { n: '03', t: 'Development', d: 'iOS, Android, backend, integrations.' },
-      { n: '04', t: 'Release', d: 'Stores, launch marketing, support.' },
-    ],
-    deliverables: [
-      'iOS + Android application',
-      'Backend and admin panel',
-      'Regulatory dossier',
-      'App Store / Google Play assets',
-      'Analytics dashboard',
-      'Post-launch support',
-    ],
-  },
-
   'healthcare/research-platforms': {
     section: 'Healthcare',
     title: 'Digital platforms for scientific research',
@@ -557,7 +526,7 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'outsourcing/digital-rep': {
+  'outsourcing/digitalmedrep': {
     section: 'Outsourcing',
     eyebrow: 'Digital medical representative',
     eyebrowOneLine: true,
@@ -600,7 +569,7 @@ window.SUBPAGES_EN_PATCHES = {
     detailCtaP: 'If you want to model replacing part of your rep team with a digital omnichannel program for your target audience, we will prepare a custom campaign architecture, contact volume, and projected engagement metrics.',
   },
 
-  'outsourcing/omnichannel': {
+  'outsourcing/medrep-omnichannel': {
     section: 'Outsourcing',
     title: 'Digital medical representative in hybrid pharma brand promotion',
     h1Line1: 'Digital medical representative',
@@ -681,37 +650,6 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'outsourcing/share-of-voice': {
-    section: 'Outsourcing',
-    title: 'Sales and share-of-voice analytics',
-    lede: 'Dashboard: visits, contacts, response, campaign metrics. Linked to IQVIA and procurement data.',
-    tags: ['IQVIA', 'SoV', 'dashboard'],
-    about: [
-      'Understanding share of voice is the basis of a manageable commercial strategy. Our dashboard unifies IQVIA, CRM, pharmacy panel, and internal systems in one view.',
-      'Metrics by brand, HCP segment, region, and channel—with export for brand teams and leadership.',
-    ],
-    features: [
-      { t: 'SoV dashboard', d: 'Share of voice by brand / segment / region.' },
-      { t: 'IQVIA integration', d: 'Ready connectors.' },
-      { t: 'Pharmacy panel', d: 'Belarus procurement data.' },
-      { t: 'Forecast', d: 'Linked to sales forecast model.' },
-    ],
-    steps: [
-      { n: '01', t: 'Audit', d: 'Data sources and requirements.' },
-      { n: '02', t: 'Integration', d: 'Connectors, ETL.' },
-      { n: '03', t: 'Dashboard', d: 'Metrics, export, access roles.' },
-      { n: '04', t: 'Evolution', d: 'New metrics, ML forecast.' },
-    ],
-    deliverables: [
-      'SoV and sales dashboard',
-      'IQVIA connectors',
-      'Export formats',
-      'Role-based access',
-      'Ongoing support',
-      'Monthly report',
-    ],
-  },
-
   'design/clm-presentations': {
     section: 'Design',
     title: 'CLM presentations, e-detailers, and slide boxes for medical representatives',
@@ -748,68 +686,6 @@ window.SUBPAGES_EN_PATCHES = {
       { t: 'Modular slide box for different HCP segments', d: 'Central message control with full flexibility for reps in the field. You own the brand narrative—the team adapts it to each conversation.' },
       { t: 'CLM analytics: you know what really happens on every visit', d: 'Time per screen, module usage, HCP response by section—data flows back to you for the next promo cycle. Content budget becomes measurable ROI, not faith.' },
       { t: 'Full production cycle in one synchronized process', d: 'Medical editor, copywriter, designer, and legal work in parallel—without long agency–medical loops. Faster delivery with predictable quality.' },
-    ],
-  },
-
-  'design/edetailing': {
-    section: 'Design',
-    title: 'CLM and eDetailing',
-    lede: 'Interactive CLM decks, visit scenarios, face-to-face and remote eDetailing materials, surveys, and gamification.',
-    tags: ['Veeva', 'Pitcher', 'Agnitio', 'eDetailing'],
-    about: [
-      'eDetailing is content built for the visit and remote conversation. We prepare materials for Veeva, Pitcher, Agnitio, and custom systems.',
-      'Not isolated slides but full scenarios: branching, engagement measurement, evidence-linked.',
-    ],
-    features: [
-      { t: 'CLM scenarios', d: 'Branching with behavioral analytics.' },
-      { t: 'Surveys & quizzes', d: 'Inside the presentation, no context switch.' },
-      { t: '3D & video', d: 'Mechanism of action, cross-sections, animation.' },
-      { t: 'Evidence base', d: 'Links to publications and meta-analyses.' },
-    ],
-    steps: [
-      { n: '01', t: 'Content map', d: 'Messages and branches.' },
-      { n: '02', t: 'Scenario', d: 'Visit storyboard.' },
-      { n: '03', t: 'Production', d: 'Presentation, video, surveys.' },
-      { n: '04', t: 'Upload', d: 'Veeva / Pitcher / Agnitio.' },
-    ],
-    deliverables: [
-      'CLM scenario',
-      '3D and video inserts',
-      'Surveys and quizzes',
-      'CRM analytics',
-      'Tablet and web versions',
-      'Regulatory approval',
-    ],
-  },
-
-  'design/patient-content': {
-    section: 'Design',
-    title: 'Patient education content',
-    lede: 'We explain complex topics so they stay clear: articles, video, animation, leaflets—disease, therapy, adherence, and lifestyle.',
-    tags: ['patients', 'education', 'video'],
-    about: [
-      'Patient education is not “dumbing down.” It is translating medical language into a format that stays understandable and regulator-approved.',
-      'Materials—articles, video, animation, leaflets—are produced with physicians and editors and aligned with the brand regulatory team.',
-    ],
-    features: [
-      { t: 'Leaflets', d: 'Clear, concise, minimal jargon.' },
-      { t: 'Video', d: 'Explanation of disease and therapy.' },
-      { t: 'Animation', d: 'Mechanism of action—visual.' },
-      { t: 'Compliance', d: 'Approvals under Belarus legislation.' },
-    ],
-    steps: [
-      { n: '01', t: 'Topic map', d: 'What to explain, what to avoid.' },
-      { n: '02', t: 'Scenario', d: 'Copy and storyboard.' },
-      { n: '03', t: 'Production', d: 'Video, animation, leaflets.' },
-      { n: '04', t: 'Distribution', d: 'Bot, portal, support program.' },
-    ],
-    deliverables: [
-      'Leaflets and infographics',
-      'Video and animation',
-      'Scripts and copy',
-      'Regulatory approval',
-      'Distribution channels',
-      'View analytics',
     ],
   },
 
@@ -980,96 +856,4 @@ window.SUBPAGES_EN_PATCHES = {
     ],
   },
 
-  'design/psp-content': {
-    section: 'Design',
-    title: 'Patient support programs · content',
-    lede: 'Digital platforms and materials: reminders, motivational content, therapy navigation, personalized recommendations.',
-    tags: ['PSP', 'adherence'],
-    about: [
-      'PSP content is what builds daily trust: texts, video, stories, and leaflets the patient sees every day.',
-      'Linked to healthcare PSP programs—here the focus is the content layer.',
-    ],
-    features: [
-      { t: 'Patient stories', d: 'With consent and within regulation.' },
-      { t: 'Leaflets', d: 'What to do, how to react, whom to contact.' },
-      { t: 'Motivation', d: 'Small wins, progress, goals.' },
-      { t: 'Video explainers', d: 'With a physician, no product advertising.' },
-    ],
-    steps: [
-      { n: '01', t: 'Journey map', d: 'Stages and risk points.' },
-      { n: '02', t: 'Content plan', d: 'What and when the patient sees.' },
-      { n: '03', t: 'Production', d: 'Copy, video, leaflets.' },
-      { n: '04', t: 'Support', d: 'Updates and analytics.' },
-    ],
-    deliverables: [
-      'Content plan',
-      'Leaflets and copy',
-      'Video and stories',
-      'Regulatory approvals',
-      'Motivation scenarios',
-      'View analytics',
-    ],
-  },
-
-  'about/events': {
-    section: 'Team',
-    title: 'Events and publications',
-    lede: 'Conferences, live streams, expert publications, speaking engagements, and in-house research—where to meet us and what to read.',
-    tags: ['conferences', 'live streams', 'publications'],
-    about: [
-      'Once a year we gather the professional community at PharmConsilium—1,500 participants, four tracks, hybrid format. Off-season: open streams, expert discussions, and trade press columns.',
-      'We publish open research on digital HCP marketing in Belarus. New editions go to subscribers and partners—no promotional noise, in a trusted professional tone.',
-    ],
-    features: [
-      { t: 'PharmConsilium conference', d: 'Annual event. Hybrid format, four tracks, AI program assistant.' },
-      { t: 'Open live streams', d: 'Every two weeks—a case review, guest expert, chat Q&A.' },
-      { t: 'Market research', d: 'State of digital channels in Belarus and CIS pharma marketing. Open access.' },
-      { t: 'Speaking & columns', d: 'Our speakers at industry events and in specialist media.' },
-    ],
-    steps: [
-      { n: '01', t: 'Subscribe', d: 'Leave your email for stream and publication announcements.' },
-      { n: '02', t: 'Calendar', d: 'Upcoming dates and venues on the events page.' },
-      { n: '03', t: 'Participate', d: 'Free for HCPs and partners. Recording after the event.' },
-      { n: '04', t: 'Archive', d: 'All materials in an open library.' },
-    ],
-    deliverables: [
-      'Upcoming streams and conference schedule',
-      'Archive of recordings and decks',
-      'Open market research · PDF',
-      'Expert columns from the team',
-      'Event announcement newsletter',
-      'Speaker and media inquiry contacts',
-    ],
-  },
-
-  'about/careers': {
-    section: 'Team',
-    title: 'Team',
-    lede: 'Eight people in the core team and dozens of contractors on projects. We grow by projects, not headcount—we look for people who resonate with that model.',
-    tags: ['jobs', 'remote · Belarus', 'pharma marketing'],
-    about: [
-      'We are a small team with a large perimeter: 15 years in Belarus pharma marketing, our own AI lab, and a directory of a thousand physicians. We scale project by project, with flat hierarchy and clear roles.',
-      'Open roles change as large projects appear. If your profile fits, write even without an active posting—we will consider and return when a role opens.',
-    ],
-    features: [
-      { t: 'Digital medical representative', d: 'Remote format, product training, KPI on contacts and content.' },
-      { t: 'Medical content editor', d: 'Literature reviews, articles, CLM scenarios. Medical background preferred.' },
-      { t: 'ML / NLP engineer', d: 'AI trainer, recommender systems, assistants. LLM stack experience.' },
-      { t: 'Project manager', d: 'Turnkey launch projects, 90-day cycles, pharma industry.' },
-    ],
-    steps: [
-      { n: '01', t: 'Apply', d: 'CV and a short note—pharmconsilium@gmail.com.' },
-      { n: '02', t: 'Intro call', d: '30 minutes: you about you, we about near-term projects.' },
-      { n: '03', t: 'Test task', d: 'Small—2–4 hours on a real case. Paid.' },
-      { n: '04', t: 'Offer', d: 'Final meeting with the team, terms, start date.' },
-    ],
-    deliverables: [
-      'Clear roles and KPIs',
-      'Remote work from anywhere in Belarus',
-      'Learning and conference budget',
-      'Access to internal library',
-      'Work with international pharma companies',
-      'Project-based growth path',
-    ],
-  },
 };

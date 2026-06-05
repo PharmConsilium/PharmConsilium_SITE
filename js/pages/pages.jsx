@@ -591,7 +591,7 @@ const DIRECTORY_FEATURES_RU = [
   {
     t: 'Справочник ЛС ФармКонсилиум',
     art: 'ArtDirectory',
-    artImg: 'assets/uploads/drug-directory-benefit-title.png',
+    artImg: 'assets/uploads/directory-benefit-title.png',
     artImgAlt: 'Справочник ЛС ФармКонсилиум — ключевые преимущества',
     dParagraphs: [
       [
@@ -605,7 +605,7 @@ const DIRECTORY_FEATURES_RU = [
   {
     t: 'Приглашаем к сотрудничеству врачей',
     art: 'ArtDoc',
-    artImg: 'assets/uploads/drug-directory-collab-doctors.png',
+    artImg: 'assets/uploads/directory-collab-doctors.png',
     artImgAlt: 'Приглашаем к сотрудничеству врачей',
     dParagraphs: [
       [
@@ -625,7 +625,7 @@ const DIRECTORY_FEATURES_RU = [
   {
     t: 'Приглашаем к сотрудничеству провизоров и фармацевтов',
     art: 'ArtBooks',
-    artImg: 'assets/uploads/drug-directory-collab-pharmacists.png',
+    artImg: 'assets/uploads/directory-collab-pharmacists.png',
     artImgAlt: 'Приглашаем к сотрудничеству провизоров и фармацевтов',
     dParagraphs: [
       [
@@ -645,7 +645,7 @@ const DIRECTORY_FEATURES_RU = [
   {
     t: 'Приглашаем к сотрудничеству производителей лекарственных препаратов',
     art: 'ArtPulse',
-    artImg: 'assets/uploads/drug-directory-collab-manufacturers.png',
+    artImg: 'assets/uploads/directory-collab-manufacturers.png',
     artImgAlt: 'Приглашаем к сотрудничеству производителей лекарственных препаратов',
     dParagraphs: [
       [
@@ -976,18 +976,17 @@ function DirectoryPage({ navigate, lang }) {
 }
 
 const TEAM = [
-{ n: 'Робби', r: 'Корпоративный искусственный интеллект', photo: 'assets/uploads/about-robbie-hover.png' },
-{ n: 'Катарина', r: 'Экономист, контент-мейкер', photo: 'assets/uploads/about-katarina.png' },
-{ n: 'Даниил', r: 'Инженер-программист', photo: 'assets/uploads/about-daniil.png' },
-{ n: 'Вадим', r: 'Инженер-программист', photo: 'assets/uploads/about-vadim.png' },
-{ n: 'Валерия', r: 'Менеджер медицинского маркетинга', photo: 'assets/uploads/about-valeria.png' },
-{ n: 'Николай', r: 'Маркетолог цифровых экосистем', photo: 'assets/uploads/about-nikolay.png' },
-{ n: 'Сергей', r: 'Инженер-программист', photo: 'assets/uploads/about-sergey.png' },
-{ n: 'Илья', r: 'Дизайн ИИ-видео, анимация', photo: 'assets/uploads/about-ilya.png' },
-{ n: 'Артём', r: 'Дизайн кросс-платформенных систем', photo: 'assets/uploads/about-artem.png' },
-{ n: 'Владислав', r: 'Начальник отдела IT-разработки', photo: 'assets/uploads/about-vladislav.png' },
-{ n: 'Оксана', r: 'Финансы', photo: 'assets/uploads/about-oksana.png' },
-{ n: 'Владимир', r: 'Оптимист', photo: 'assets/uploads/about-vladimir.png' }];
+{ n: 'Робби', r: 'Корпоративный искусственный интеллект', photo: 'assets/uploads/team-robbie-hover.png' },
+{ n: 'Катарина', r: 'Экономист, контент-мейкер', photo: 'assets/uploads/team-katarina.png' },
+{ n: 'Даниил', r: 'Инженер-программист', photo: 'assets/uploads/team-daniil.png' },
+{ n: 'Валерия', r: 'Менеджер медицинского маркетинга', photo: 'assets/uploads/team-valeria.png' },
+{ n: 'Николай', r: 'Маркетолог цифровых экосистем', photo: 'assets/uploads/team-nikolay.png' },
+{ n: 'Сергей', r: 'Инженер-программист', photo: 'assets/uploads/team-sergey.png' },
+{ n: 'Илья', r: 'Дизайн ИИ-видео, анимация', photo: 'assets/uploads/team-ilya.png' },
+{ n: 'Артём', r: 'Дизайн кросс-платформенных систем', photo: 'assets/uploads/team-artem.png' },
+{ n: 'Владислав', r: 'Начальник отдела IT-разработки', photo: 'assets/uploads/team-vladislav.png' },
+{ n: 'Оксана', r: 'Финансы', photo: 'assets/uploads/team-oksana.png' },
+{ n: 'Владимир', r: 'Оптимист', photo: 'assets/uploads/team-vladimir.png' }];
 
 
 function PortraitPlaceholder({ seed }) {
@@ -1043,7 +1042,7 @@ function TeamPage({ navigate, lang }) {
 
   React.useEffect(() => {
     const img = new Image();
-    img.src = teamRobbyPhotoSrc('assets/uploads/about-robbie-hover.png');
+    img.src = teamRobbyPhotoSrc('assets/uploads/team-robbie-hover.png');
   }, []);
 
   React.useEffect(() => {
@@ -1141,12 +1140,12 @@ function TeamPage({ navigate, lang }) {
           </div>
           <div className="cards-grid cards-grid--portfolio">
             {(en ? en.portfolioCards : [
-            { t: 'Рекламный баннер Бепантен крем', d: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.', art: 'ArtBanner', slug: 'bepanten-banner' },
-            { t: 'Брендбук БАД, нейминг, упаковка', d: 'Формирование фирменной айдентики БАД, интеграция продуктовых преимуществ в дизайн упаковки.', art: 'ArtAI', slug: 'meditatio-night-brand' },
+            { t: 'Рекламный баннер Бепантен крем', d: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.', art: 'ArtBanner', slug: 'OTCadvertising-banner' },
+            { t: 'Брендбук БАД, нейминг, упаковка', d: 'Формирование фирменной айдентики БАД, интеграция продуктовых преимуществ в дизайн упаковки.', art: 'ArtAI', slug: 'brandbook-pharma' },
             { t: 'Упаковка для препарата ГидроБаланс', d: 'Разработка упаковки для препарата ГидроБаланс.', art: 'ArtVideo', slug: 'supplement-packaging' },
-            { t: 'Вертикальное видео (видеодетейлер) для HCP', d: 'Мы превратили сценарий лучшего визита МП в вертикальное видео 9:16, где сложная медицинская информация подаётся через анимацию или голос коллеги — а врач смотрит без усилия, как любимый сериал!', art: 'ArtRadar', slug: 'conference-pk25' },
-            { t: 'Разработка и дизайн CLM-презентации для лекарственного препарата', d: 'От стратегии и сценарной архитектуры до интерактивного дизайна, технической вёрстки и комплаенс-согласования — полный цикл CLM-презентации.', art: 'ArtPulse', slug: 'psp-platform' },
-            { t: 'Цифровая платформа для обучения медицинских специалистов', d: 'Создать закрытую веб-платформу с регистрацией для HCP, обеспечивающую доступ к видеолекциям, обучающим материалам и квизам для контроля знаний. Организовать полный цикл производства образовательного контента: создание, съемку и монтаж видеолекций, а также разработку интерактивных видео-квизов.', art: 'ArtLayers', slug: 'clm-veeva' },
+            { t: 'Вертикальное видео (видеодетейлер) для HCP', d: 'Мы превратили сценарий лучшего визита МП в вертикальное видео 9:16, где сложная медицинская информация подаётся через анимацию или голос коллеги — а врач смотрит без усилия, как любимый сериал!', art: 'ArtRadar', slug: 'HCP-videoreels' },
+            { t: 'Разработка и дизайн CLM-презентации для лекарственного препарата', d: 'От стратегии и сценарной архитектуры до интерактивного дизайна, технической вёрстки и комплаенс-согласования — полный цикл CLM-презентации.', art: 'ArtPulse', slug: 'CLM-presentacii-eto' },
+            { t: 'Цифровая платформа для обучения медицинских специалистов', d: 'Создать закрытую веб-платформу с регистрацией для HCP, обеспечивающую доступ к видеолекциям, обучающим материалам и квизам для контроля знаний. Организовать полный цикл производства образовательного контента: создание, съемку и монтаж видеолекций, а также разработку интерактивных видео-квизов.', art: 'ArtLayers', slug: 'clinical-training-HCP' },
             ]).map((p, i) => {
               const A = window[p.art];
               const pf = p.slug && window.PORTFOLIO
@@ -1163,6 +1162,11 @@ function TeamPage({ navigate, lang }) {
                 : thumb
                   ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
                   : undefined;
+              const chips = pf
+                ? (Array.isArray(pf.cardChips) && pf.cardChips.length
+                  ? pf.cardChips
+                  : [pf.category, pf.sector, pf.year].filter(Boolean))
+                : [];
               return (
                 <div key={i} className="card"
                 onClick={() => navigate(`portfolio/${p.slug}`)}>
@@ -1173,6 +1177,19 @@ function TeamPage({ navigate, lang }) {
                   </div>
                   <h3>{p.t}</h3>
                   <p>{p.d}</p>
+                  {chips.length > 0 &&
+                    <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                      {chips.map((chip) => (
+                        <span
+                          key={chip}
+                          className="chip"
+                          style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
+                  }
                   <span className="read">{en ? en.openCase : 'Открыть кейс'} <span className="arrow">→</span></span>
                 </div>);
 
