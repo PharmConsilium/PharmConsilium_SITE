@@ -1,7 +1,7 @@
 // English PORTFOLIO patches
 
 window.PORTFOLIO_EN_PATCHES = {
-  'cardio-lonch': {
+  'OTCadvertising-banner': {
     name: 'Digital banner for Bepanthen (Bayer)',
     client: 'Bayer',
     year: '2026',
@@ -48,7 +48,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'ai-trener': {
+  'brandbook-pharma': {
     name: 'Dietary supplement brand book, naming, packaging',
     client: 'Pharma brand client',
     infoClientLabel: 'Target',
@@ -90,7 +90,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'patient-series': {
+  'supplement-packaging': {
     name: 'Packaging for Hydrobalance',
     client: 'PharmConsilium',
     category: 'Content',
@@ -140,7 +140,7 @@ window.PORTFOLIO_EN_PATCHES = {
     thumbAlt: 'Hydrobalance — tube of 20 effervescent tablets',
   },
 
-  'conference-pk25': {
+  'HCP-videoreels': {
     name: 'Vertical video (e-detailing) for HCP',
     client: 'Owned event',
     infoClientLabel: 'Target',
@@ -219,7 +219,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'psp-platform': {
+  'CLM-presentacii-eto': {
     name: 'CLM presentation design and development for a pharmaceutical product',
     client: '24-month program',
     infoClientLabel: 'Target',
@@ -285,7 +285,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'clm-veeva': {
+  'clinical-training-HCP': {
     name: 'CLM refresh for Veeva',
     client: 'Local affiliate',
     infoClientLabel: 'Target',
@@ -332,7 +332,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'directory-launch': {
+  'Case-infographic-drug': {
     name: 'Drug reference launch',
     client: 'Owned product',
     category: 'Product',
@@ -375,7 +375,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-1': {
+  'clm-mobile-app': {
     name: 'Mobile app for CLM presentation demos by medical representatives',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -410,7 +410,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-2': {
+  'stroke-exam': {
     name: 'Building the «Stroke Exam» remote learning platform for healthcare professionals',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -446,7 +446,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-3': {
+  'hcp-tic-tac-toe': {
     name: 'Medical tic-tac-toe game',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -477,7 +477,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'portfolio-draft-4': {
+  'hcp-videovisit': {
     name: 'Video visit for HCP. Digital avatar in interactive video',
     client: 'PharmConsilium',
     infoClientLabel: 'Target',
@@ -504,6 +504,142 @@ window.PORTFOLIO_EN_PATCHES = {
       'Physicians are not overloaded — they follow their interest zones instead of wading through text walls.',
       'Engagement is fundamentally higher than linear video: HCP drives the experience.',
       'The product team gets clean data on physicians’ real educational needs.',
+    ],
+  },
+
+  'OTCadvertising-banner-How-to-make': {
+    name: 'Bepanthen advertising layout series',
+    client: 'Bayer',
+    infoClient: 'Consumer',
+    infoSector: 'OTC',
+    category: 'Content',
+    sector: 'Pharmacology',
+    cardChips: ['Ad layout', 'OTC', 'Bayer'],
+    short: 'How to create and approve an OTC drug ad banner — a Bayer brand book case with regulatory sign-off for digital.',
+    hero: 'How to create and approve an OTC drug ad banner. Spoiler: you can’t wing it. An OTC banner must grab attention, explain the use case, and follow the brand book exactly — without distorting the product, misleading consumers, or breaking drug advertising rules.',
+    problem: 'The client needed an OTC ad banner built to a strict international brand book. One layout had to combine brand codes, pack shot, target audience, and a clear real-life need state. The banner had to read instantly, stay emotionally appealing, and meet approved indications and mandatory ad requirements. Limited space made it hard to balance image, key message, pack, and legal copy.',
+    approach: [
+      { t: 'Brand book review and concept search',
+        d: 'We started from the brand book, SmPC, target groups, and use situations. Up to 50 initial compositions were explored — different characters, emotions, angles, backgrounds, color accents, and pack placements. Each option was scored for brand recognition, narrative clarity, and regulatory fit.' },
+      { t: 'Approval and visual story',
+        d: 'After the concept was chosen, design was adapted through marketing, medical, and legal review. Complex information became a simple visual story: the user immediately sees who the product is for and when it applies.' },
+    ],
+    deliverables: [
+      'An attractive, functional ad layout aligned with the brand book and pack recognition — fast message, visible SKU, and a clear need state.',
+      'Approval by the Belarus Ministry of Health and medical department for digital ads, websites, social, and other formats.',
+      'Brand development ideas: many visual routes explored and a strong ad concept selected for future campaigns.',
+    ],
+    thumbAlt: 'Bepanthen — “Mom can do everything” and “Mom can…” ad layouts',
+    slides: [
+      {
+        src: 'assets/uploads/portfolio-draft-5-slide-2.png',
+        label: 'Mom can…',
+        alt: 'Bepanthen Plus ad layout — “Mom can…”',
+      },
+      {
+        src: 'assets/uploads/portfolio-draft-5-slide-1.png',
+        label: 'Mom can do everything',
+        alt: 'Bepanthen Plus ad layout — “Mom can do everything”',
+      },
+      {
+        src: 'assets/uploads/portfolio-draft-5-slide-3.png',
+        label: '3 concepts · 7 days · Bayer',
+        alt: 'Proposed design options — three Bepanthen campaign concepts',
+      },
+    ],
+  },
+  'bot-pharma-digitalmarketing': {
+    name: 'Pharma bots: digital ecosystems for long-term HCP communication',
+    client: 'PharmConsilium',
+    infoClient: 'HCP',
+    infoSector: 'Rx',
+    category: 'Omnichannel',
+    sector: '—',
+    cardChips: ['Telegram bot', 'TeleApp', 'Omnichannel'],
+    thumbAlt: 'TeleApp and Telegram bot — digital ecosystem for physicians, pharmacists, and pharmacy staff',
+    short: 'An omnichannel system built on Telegram bots and TeleApp for long-term HCP engagement.',
+    hero: 'Below is an example of building an omnichannel system on Telegram bots and an embedded web app for physicians, pharmacists, and pharmacy specialists.',
+    problem: 'The client needed an omnichannel system where the HCP smartphone is the main device for professional information — without a separate app install, complex registration, or frequent passwords. The solution had to live in a familiar messenger HCPs already use daily. Another goal was to unite scattered brand sites, SmPCs, publications, video, guidelines, and calculators into one catalog with navigation and search. The ecosystem also had to reflect professional specialty, automate routine requests, and support long-term follow-up after visits, webinars, and education.',
+    approach: [
+      { t: 'Telegram bots for HCP audiences',
+        d: 'Telegram was the foundation. Specialized pharma Telegram bots became the single entry point. Via menus and automated flows, users find product information, education, video, quizzes, and clinical tools.' },
+      { t: 'Catalog and TeleApp',
+        d: 'All digital assets were structured in a catalog by brand, therapy area, specialty, and format. TeleApp — a web app inside Telegram — combines bot accessibility with app-like catalogs, cards, search, filters, and interactivity, tying visits, email, education, and self-serve content into one omnichannel system.' },
+    ],
+    deliverables: [
+      'Four Telegram bots for separate medical and pharmacy audiences.',
+      'A shared TeleApp web app acting as a medical info hub.',
+      'Content built for the digital ecosystem.',
+      'Analytics on user engagement and interest areas.',
+      'As of 2026 the project is live and growing — 4.5 years in production.',
+    ],
+    extraBlocks: [
+      {
+        title: 'What is TeleApp?',
+        paragraphs: [
+          'TeleApp is a web application inside Telegram — “Telegram” plus “app”: mobile-app features without App Store or Google Play installs.',
+          'Unlike a plain bot, TeleApp offers a full visual UI: drug catalogs, search, filters, video, quizzes, clinical calculators, and personalized content.',
+          'TeleApp opens in one tap from Telegram, uses little phone storage, can be pinned to the home screen, and updates automatically without new downloads.',
+          'For pharma marketing, TeleApp blends messenger simplicity, mobile-app functionality, and web analytics — a practical platform for long-term communication with physicians, pharmacists, and pharmacy staff.',
+        ],
+      },
+    ],
+    slides: [
+      {
+        type: 'video',
+        src: 'assets/uploads/portfolio-draft-6-demo.mp4',
+        posterFromVideo: true,
+        label: 'Chatbot and TeleApp',
+        alt: 'Bayer Club — chatbot and TeleApp demo for healthcare professionals',
+      },
+    ],
+  },
+  'How-to-make-a-game-for-HCP': {
+    name: 'HCP education gamification: a new spark for a familiar drug',
+    client: 'PharmConsilium',
+    infoClient: 'HCP',
+    infoSector: 'Rx',
+    category: 'Gamification',
+    sector: '—',
+    cardChips: ['Gamification', 'HCP', 'EGIS'],
+    thumbAlt: 'Grandaxin — browser tapper game for HCP',
+    short: 'HCP gamification: a browser game that brings attention back to a well-known product.',
+    hero: 'Even a well-known drug can fade into routine for HCPs over time. Gamification helps refocus attention on the brand and deliver familiar product messages in a fresh, emotional format.',
+    problem: 'The client needed to renew HCP interest in a long-established, familiar product. Instead of another standard presentation, they wanted a short, clear, memorable interaction that reminded physicians of indications, engaged them, and offered a brief break from the workday rhythm.',
+    approach: [
+      { t: 'Browser tapper game',
+        d: 'We built a browser tapper game: the user taps the screen and product tablets “shoot” at appearing symptoms. Players score points, try to beat their result, and can return to play again. Simple mechanics need no tutorial, app install, or registration. The game opens via link on phone or desktop and works on visits, at congresses, in Telegram bots, email, and HCP education projects.' },
+    ],
+    deliverables: [
+      'An interactive tool that presented a familiar product in a new way.',
+      'Game mechanics that extended brand contact time, encouraged repeat play, and strengthened the link between the drug and relevant symptoms.',
+      'A format usable as a standalone activation or part of an omnichannel campaign — a fresh communication impulse for the brand and an easy, engaging touchpoint for HCPs.',
+    ],
+    slides: [
+      {
+        type: 'video',
+        src: 'assets/uploads/portfolio-draft-7-slide-1.mp4',
+        posterFromVideo: true,
+        aspect: '16 / 9',
+        label: 'Demo 1',
+        alt: 'Grandaxin game — demo 1',
+      },
+      {
+        type: 'video',
+        src: 'assets/uploads/portfolio-draft-7-slide-2.mp4',
+        posterFromVideo: true,
+        aspect: '16 / 9',
+        label: 'Demo 2',
+        alt: 'Grandaxin game — demo 2',
+      },
+      {
+        type: 'video',
+        src: 'assets/uploads/portfolio-draft-7-slide-3.mp4',
+        posterFromVideo: true,
+        aspect: '16 / 9',
+        label: 'Demo 3',
+        alt: 'Grandaxin game — demo 3',
+      },
     ],
   },
 };

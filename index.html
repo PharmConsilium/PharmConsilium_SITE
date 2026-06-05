@@ -119,13 +119,13 @@ ym(109560584, 'init', {
   <p>Для работы сайта ФармКонсилиум включите JavaScript.</p>
   <ul>
     <li><a href="/">Главная</a></li>
-    <li><a href="/marketing">Фармацевтический маркетинг</a></li>
-    <li><a href="/hcp">Здравоохранение</a></li>
-    <li><a href="/sales">Аутсорсинг</a></li>
-    <li><a href="/content">Контент и дизайн</a></li>
-    <li><a href="/directory">Справочник ЛС</a></li>
+    <li><a href="/pharma-marketing">Фармацевтический маркетинг</a></li>
+    <li><a href="/healthcare">Здравоохранение</a></li>
+    <li><a href="/outsourcing-medpredov">Аутсорсинг</a></li>
+    <li><a href="/design">Дизайн</a></li>
+    <li><a href="/FarmConsilium-drug-reference-book">Справочник ЛС</a></li>
     <li><a href="/portfolio">Портфолио</a></li>
-    <li><a href="/team">Команда и контакты</a></li>
+    <li><a href="/about">О нас</a></li>
   </ul>
 </noscript>
 <noscript><div><img src="https://mc.yandex.ru/watch/109560584" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
@@ -156,12 +156,24 @@ window.PHARM_HIDE_TWEAKS = !/localhost|127\.0\.0\.1/i.test(location.hostname)
 
   function showBootError(msg) {
     var root = document.getElementById('root');
-    if (!root || root.childNodes.length) return;
+    if (!root || window.__pharmReactRoot) return;
     root.innerHTML = '<div style="max-width:520px;margin:48px auto;padding:24px;font-family:system-ui,sans-serif">'
       + '<p style="font-weight:600;margin:0 0 8px">Не удалось загрузить сайт</p>'
       + '<p style="margin:0 0 12px;color:#5a6273;font-size:14px;line-height:1.5">' + msg + '</p>'
-      + '<p style="margin:0;font-size:13px"><a href="?devjsx">Перезагрузить в режиме разработки</a></p></div>';
+      + (isLocal
+        ? '<p style="margin:0;font-size:13px">Первая загрузка компилирует JSX — подождите или выполните <code>npm run build:js</code> и откройте <a href="?bundle">?bundle</a>.</p>'
+        : '<p style="margin:0;font-size:13px"><a href="' + location.pathname + '?devjsx">Перезагрузить в режиме разработки</a></p>') + '</div>';
   }
+  window.pharmShowBootError = showBootError;
+
+  function showBootLoading() {
+    var root = document.getElementById('root');
+    if (!root || root.childNodes.length) return;
+    root.innerHTML = '<div style="max-width:520px;margin:48px auto;padding:24px;font-family:system-ui,sans-serif;text-align:center">'
+      + '<p style="font-weight:600;margin:0 0 8px">ФармКонсилиум</p>'
+      + '<p style="margin:0;color:#5a6273;font-size:14px">Загрузка…</p></div>';
+  }
+  showBootLoading();
 
   function append(src, onload, onerror) {
     var s = document.createElement('script');
@@ -195,17 +207,25 @@ window.PHARM_HIDE_TWEAKS = !/localhost|127\.0\.0\.1/i.test(location.hostname)
   }
 
   function tryBundle() {
-    append('js/pharm-bundle.min.js?v=' + v, null, function () {
+    append('js/pharm-bundle.min.js?v=' + v, function () {
+      if (!window.PHARM_BUNDLE) {
+        console.warn('[pharm] bundle missing or invalid, falling back to Babel');
+        loadBabelBoot();
+      }
+    }, function () {
       loadBabelBoot();
     });
   }
 
+  var bootTimeoutMs = isLocal ? 120000 : 30000;
   setTimeout(function () {
-    var root = document.getElementById('root');
-    if (root && !root.childNodes.length && !window.__pharmReactRoot) {
-      showBootError('Загрузка занимает слишком долго. Откройте консоль (F12) или попробуйте <a href="?devjsx">?devjsx</a>.');
+    if (!window.__pharmReactRoot) {
+      var hint = isLocal
+        ? 'Первая загрузка через Babel может занять до 2 минут. Подождите или откройте консоль (F12).'
+        : 'Загрузка занимает слишком долго. Откройте консоль (F12) или попробуйте <a href="?devjsx">?devjsx</a>.';
+      showBootError(hint);
     }
-  }, 12000);
+  }, bootTimeoutMs);
 
   if (!window.React || !window.ReactDOM) {
     showBootError('React не загрузился. Проверьте доступ к unpkg.com.');

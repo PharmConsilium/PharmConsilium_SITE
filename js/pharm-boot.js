@@ -107,6 +107,9 @@
       })
       .catch(function (err) {
         console.error('[pharm-boot]', err);
+        if (window.pharmShowBootError) {
+          window.pharmShowBootError('Ошибка загрузки скриптов: ' + (err && err.message ? err.message : err));
+        }
       });
   }
 

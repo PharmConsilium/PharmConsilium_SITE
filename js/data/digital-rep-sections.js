@@ -1,4 +1,4 @@
-// Long-form blocks for #sales/digital-rep — DetailLongform renderer.
+// Long-form blocks for outsourcing/digitalmedrep — DetailLongform renderer.
 
 function digitalRepSectionsRu() {
   return [
@@ -45,7 +45,7 @@ function digitalRepSectionsRu() {
         'Расчёт потенциала: какую часть задач поля можно перевести в цифровой омниканал без потери эффективности.',
         'Карта пути HCP и omnichannel‑roadmap по бренду с целевыми KPI и сценариями касаний.',
         'CLM‑детейлеры и сценарии визитов, адаптированные под цифровой формат и пост‑визитный доступ.',
-        'Post‑call digital content: персональные ссылки, рассылки и лендинги, которые продолжают визит, когда врач уже вернулся к своей рутине.',
+        'Post‑call digital design: персональные ссылки, рассылки и лендинги, которые продолжают визит, когда врач уже вернулся к своей рутине.',
         'Вертикальные видеовизиты и интерактивы, имитирующие визит МП на смартфоне HCP в удобное для него время.',
         'Доступ к активной аудитории HCP в профессиональной среде без сторонней рекламы.',
         'Таргетинг по специальности, интересам, уровню знаний и поведению на платформе.',
@@ -151,7 +151,7 @@ function digitalRepSectionsEn() {
         'Potential analysis: which field tasks can move to digital omnichannel without losing effectiveness.',
         'HCP journey map and omnichannel roadmap with KPIs and touch scenarios.',
         'CLM detailers and visit scenarios for digital and post-visit access.',
-        'Post-call digital content: personal links, mailings, and landings that extend the visit.',
+        'Post-call digital design: personal links, mailings, and landings that extend the visit.',
         'Vertical video visits and interactives on the HCP smartphone.',
         'Access to active HCP audiences without third-party ads.',
         'Targeting by specialty, interests, knowledge, and platform behavior.',

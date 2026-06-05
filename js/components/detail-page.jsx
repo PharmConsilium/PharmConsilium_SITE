@@ -157,6 +157,7 @@ function DetailArtSlides({ slides, lang }) {
               ? <VideoPlayer
                   src={videoSrc}
                   poster={s.poster}
+                  posterFromVideo={s.posterFromVideo}
                   alt={s.alt || s.label}
                   active={isActive}
                   className="detail-art-slide-video"

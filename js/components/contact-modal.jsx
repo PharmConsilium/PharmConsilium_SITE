@@ -268,7 +268,7 @@ function ContactFormModal({ open, onClose, lang }) {
             <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
             <span>
               {s.consentBefore}{' '}
-              <a href="#privacy" className="contact-inline-link" onClick={goPrivacy}>
+              <a href="/privacy" className="contact-inline-link" onClick={goPrivacy}>
                 {s.consentLink}
               </a>{' '}
               {s.consentAfter}

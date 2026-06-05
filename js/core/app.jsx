@@ -24,6 +24,113 @@ function normalizeRoute(raw) {
   return r || 'home';
 }
 
+/** Legacy pathname/hash → canonical route id (SUBPAGES key).
+ *  SUBPAGES keys are authoritative; aliases only map inbound legacy URLs.
+ *  healthcare/patient-mobileapps and outsourcing/share-of-voice stay separate pages (not aliased). */
+const ROUTE_ALIASES = {
+  marketing: 'pharma-marketing',
+  hcp: 'healthcare',
+  sales: 'outsourcing-medpredov',
+  content: 'design',
+  directory: 'FarmConsilium-drug-reference-book',
+  'drug-directory': 'FarmConsilium-drug-reference-book',
+  team: 'about',
+  // Final top-level slugs
+  // Canonical outsourcing section slug
+  outsourcing: 'outsourcing-medpredov',
+  'outsourcing-medpredov': 'outsourcing-medpredov',
+  'FarmConsilium-drug-reference-book': 'FarmConsilium-drug-reference-book',
+  'marketing/crm': 'pharma-marketing/crm',
+  'marketing/clm': 'pharma-marketing/clm',
+  'marketing/2clm': 'pharma-marketing/2clm',
+  'marketing/chatbot': 'pharma-marketing/chatbot-teleapp-Telegram',
+  'marketing/web': 'pharma-marketing/web-development',
+  'marketing/mobile': 'pharma-marketing/mobileapps-development',
+  'marketing/events': 'pharma-marketing/event-support',
+  'marketing/ai': 'pharma-marketing/temy-treningov-dlya-medpredov',
+  'hcp/ai-recom': 'healthcare/hcp-education-platforms',
+  // Accept user-provided mixed/cyrillic variant
+  'healthcare/НCP-education-platforms': 'healthcare/hcp-education-platforms',
+  'hcp/education': 'healthcare/patient-support',
+  'hcp/chatbot': 'healthcare/medical-chatbots',
+  'hcp/mobile': 'pharma-marketing/mobileapps-development',
+  'hcp/ai-healthcare': 'healthcare/research-platforms',
+  'hcp/psp': 'healthcare/rwe-analytics',
+  'sales/digital-rep': 'outsourcing/digitalmedrep',
+  'sales/omnichannel': 'outsourcing/medrep-omnichannel',
+  'sales/launch': 'outsourcing/launch-outsourcing',
+  'sales/analytics': 'outsourcing/medrep-omnichannel',
+  'content/medical': 'design/clm-presentations',
+  'content/edetailing': 'design/clm-presentations',
+  'design/edetailing': 'design/clm-presentations',
+  'content/patient': 'healthcare/patient-support',
+  'design/patient-content': 'healthcare/patient-support',
+  'content/video': 'design/hcp-video',
+  'design/healthcare-video': 'design/hcp-video',
+  'content/presentations': 'design/brand-packaging',
+  'content/advertising': 'design/ai-content',
+  'content/gamification': 'design/games-quizzes',
+  'content/psp': 'healthcare/rwe-analytics',
+  'design/psp-content': 'healthcare/rwe-analytics',
+  // Final service slugs
+  'pharma-marketing/chatbot-teleapp': 'pharma-marketing/chatbot-teleapp-Telegram',
+  'pharma-marketing/mobile-apps': 'pharma-marketing/mobileapps-development',
+  'pharma-marketing/rep-training': 'pharma-marketing/temy-treningov-dlya-medpredov',
+  'healthcare/education-platforms': 'healthcare/hcp-education-platforms',
+  'healthcare/mobile-apps': 'pharma-marketing/mobileapps-development',
+  'outsourcing/digital-rep': 'outsourcing/digitalmedrep',
+  'outsourcing/omnichannel': 'outsourcing/medrep-omnichannel',
+  'design/clm-presentations-making': 'design/clm-presentations',
+  'design/brandbook-desingpackaging': 'design/brand-packaging',
+  'design/ai-medcontent': 'design/ai-content',
+  'design/medgames-clinicalsquizzes': 'design/games-quizzes',
+  // Team pages (final)
+  'team/events': 'pharma-marketing/event-support',
+  'about/events': 'pharma-marketing/event-support',
+  'team/career': 'about',
+  'about/careers': 'about',
+  'portfolio/cardio-lonch': 'portfolio/OTCadvertising-banner',
+  'portfolio/ai-trener': 'portfolio/brandbook-pharma',
+  'portfolio/patient-series': 'portfolio/supplement-packaging',
+  'portfolio/directory-launch': 'portfolio/Case-infographic-drug',
+  'portfolio/portfolio-draft-1': 'portfolio/CLMpresentations-for-medreps',
+  'portfolio/portfolio-draft-2': 'portfolio/clinical-training-neurology',
+  'portfolio/portfolio-draft-3': 'portfolio/gamification-education-HCP',
+  'portfolio/portfolio-draft-4': 'portfolio/hcp-reels-avatar',
+  'portfolio/portfolio-draft-5': 'portfolio/OTCadvertising-banner-How-to-make',
+  'portfolio/portfolio-draft-6': 'portfolio/bot-pharma-digitalmarketing',
+  'portfolio/portfolio-draft-7': 'portfolio/How-to-make-a-game-for-HCP',
+  // Portfolio: legacy → final slugs
+  'portfolio/bepanten-banner': 'portfolio/OTCadvertising-banner',
+  'portfolio/meditatio-night-brand': 'portfolio/brandbook-pharma',
+  'portfolio/conference-pk25': 'portfolio/HCP-videoreels',
+  'portfolio/omni-rebranding': 'portfolio/OL-medical-video',
+  'portfolio/psp-platform': 'portfolio/CLM-presentacii-eto',
+  'portfolio/clm-veeva': 'portfolio/clinical-training-HCP',
+  'portfolio/drug-directory-launch': 'portfolio/Case-infographic-drug',
+  'portfolio/clm-mobile-app': 'portfolio/CLMpresentations-for-medreps',
+  'portfolio/stroke-exam': 'portfolio/clinical-training-neurology',
+  'portfolio/hcp-tic-tac-toe': 'portfolio/gamification-education-HCP',
+  'portfolio/hcp-videovisit': 'portfolio/hcp-reels-avatar',
+  'portfolio/bepanten-ad-layouts': 'portfolio/OTCadvertising-banner-How-to-make',
+  'portfolio/bayer-club-teleapp': 'portfolio/bot-pharma-digitalmarketing',
+  'portfolio/grandaxin-game': 'portfolio/How-to-make-a-game-for-HCP',
+};
+
+function resolveCanonicalRoute(raw) {
+  const r = normalizeRoute(raw);
+  return ROUTE_ALIASES[r] || r;
+}
+
+function syncCanonicalUrl(route) {
+  const canonical = resolveCanonicalRoute(route);
+  const path = pathForRoute(canonical);
+  if (window.location.pathname !== path) {
+    window.history.replaceState(null, '', path + window.location.search);
+  }
+  return canonical;
+}
+
 function getHashRoute() {
   const raw = String(window.location.hash || '').trim();
   const norm = normalizeRoute(raw);
@@ -62,7 +169,8 @@ function App() {
   const isDark = themeMode === 'system' ? systemDark : themeMode === 'dark';
   const [route, setRoute] = React.useState(() => {
     const h = getHashRoute();
-    return h || routeFromPathname(window.location.pathname);
+    const raw = h || routeFromPathname(window.location.pathname);
+    return resolveCanonicalRoute(raw);
   });
   const [lang, setLangState] = React.useState('ru');
   const [langTick, setLangTick] = React.useState(0);
@@ -154,21 +262,16 @@ function App() {
 
   React.useLayoutEffect(() => {
     const h = getHashRoute();
-    if (h) {
-      // Backward compatibility: convert `/#route` to `/route` without adding a history entry.
-      window.history.replaceState(null, '', pathForRoute(h) + window.location.search);
-      navKind.current = 'pop';
-      if (h !== routeRef.current) setRoute(h);
-      dispatchRouteChange(h, 'replace');
-      return;
-    }
-    const fromPath = routeFromPathname(window.location.pathname);
-    if (fromPath !== routeRef.current) setRoute(fromPath);
+    const raw = h || routeFromPathname(window.location.pathname);
+    const canonical = syncCanonicalUrl(raw);
+    navKind.current = 'pop';
+    if (canonical !== routeRef.current) setRoute(canonical);
+    dispatchRouteChange(canonical, 'replace');
   }, []);
 
   React.useEffect(() => {
     const onPopState = () => {
-      const next = routeFromPathname(window.location.pathname);
+      const next = syncCanonicalUrl(routeFromPathname(window.location.pathname));
       navKind.current = 'pop';
       setRoute(next);
       dispatchRouteChange(next, 'pop');
@@ -176,11 +279,10 @@ function App() {
     const onHashChange = () => {
       const h = getHashRoute();
       if (!h) return;
-      // Backward compatibility for any late-arriving hash navigations.
-      window.history.replaceState(null, '', pathForRoute(h) + window.location.search);
+      const canonical = syncCanonicalUrl(h);
       navKind.current = 'pop';
-      setRoute(h);
-      dispatchRouteChange(h, 'replace');
+      setRoute(canonical);
+      dispatchRouteChange(canonical, 'replace');
     };
     window.addEventListener('popstate', onPopState);
     window.addEventListener('hashchange', onHashChange);
@@ -240,7 +342,7 @@ function App() {
   }, [route]);
 
   const navigate = React.useCallback((nextRoute) => {
-    const r = normalizeRoute(nextRoute);
+    const r = resolveCanonicalRoute(nextRoute);
     scrollByRoute.current[routeRef.current] = window.scrollY;
     navKind.current = 'push';
     setRoute(r);
@@ -275,12 +377,14 @@ function App() {
     page = <DetailPage key={pageKey} routeId={route} navigate={navigate} lang={lang}/>;
   } else {
     switch (route) {
-      case 'marketing': page = <MarketingPage key={pageKey} navigate={navigate} lang={lang}/>; break;
-      case 'hcp':       page = <HcpPage key={pageKey} navigate={navigate} lang={lang}/>; break;
-      case 'sales':     page = <SalesPage key={pageKey} navigate={navigate} lang={lang}/>; break;
-      case 'content':   page = <ContentPage key={pageKey} navigate={navigate} lang={lang}/>; break;
-      case 'directory': page = <DirectoryPage key={pageKey} navigate={navigate} lang={lang}/>; break;
-      case 'team':      page = <TeamPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'pharma-marketing': page = <MarketingPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'healthcare':       page = <HcpPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'outsourcing':     page = <SalesPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'outsourcing-medpredov': page = <SalesPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'design':          page = <ContentPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'drug-directory':  page = <DirectoryPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'FarmConsilium-drug-reference-book': page = <DirectoryPage key={pageKey} navigate={navigate} lang={lang}/>; break;
+      case 'about':           page = <TeamPage key={pageKey} navigate={navigate} lang={lang}/>; break;
       case 'privacy':
         page = PrivacyPageCmp
           ? <PrivacyPageCmp key={pageKey} navigate={navigate} lang={lang}/>
@@ -315,7 +419,7 @@ function App() {
 
       {page}
 
-      {EndContactStrip && route !== 'directory' && route !== 'team' ? <EndContactStrip lang={lang} /> : null}
+      {EndContactStrip && route !== 'FarmConsilium-drug-reference-book' && route !== 'about' ? <EndContactStrip lang={lang} /> : null}
 
       {t.robot !== false && robotReady && window.RobotCompanion ? <RobotCompanion/> : null}
 

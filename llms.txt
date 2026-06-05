@@ -10,20 +10,20 @@
 ## Основные разделы
 
 - Главная: https://pharmconsilium.com/
-- Фармацевтический маркетинг (CRM, CLM, 2CLM, чат-боты, веб, мобильные приложения): https://pharmconsilium.com/marketing
-- Здравоохранение (образование HCP, ИИ, PSP, RWE): https://pharmconsilium.com/hcp
-- Аутсорсинг (цифровой медпред, омниканал, лонч): https://pharmconsilium.com/sales
-- Контент и дизайн: https://pharmconsilium.com/content
-- Справочник ЛС: https://pharmconsilium.com/directory
-- Команда и контакты: https://pharmconsilium.com/team
+- Фармацевтический маркетинг (CRM, CLM, 2CLM, чат-боты, веб, мобильные приложения): https://pharmconsilium.com/pharma-marketing
+- Здравоохранение (образование HCP, ИИ, PSP, RWE): https://pharmconsilium.com/healthcare
+- Аутсорсинг (цифровой медпред, омниканал, лонч): https://pharmconsilium.com/outsourcing-medpredov
+- Дизайн и контент: https://pharmconsilium.com/design
+- Справочник ЛС: https://pharmconsilium.com/FarmConsilium-drug-reference-book
+- Команда и контакты: https://pharmconsilium.com/about
 - Портфолио: https://pharmconsilium.com/portfolio
 
 ## Услуги (примеры URL)
 
-- CRM для медицинских представителей: https://pharmconsilium.com/marketing/crm
-- CLM: https://pharmconsilium.com/marketing/clm
-- Цифровой медицинский представитель: https://pharmconsilium.com/sales/digital-rep
-- eDetailing: https://pharmconsilium.com/content/edetailing
+- CRM для медицинских представителей: https://pharmconsilium.com/pharma-marketing/crm
+- CLM: https://pharmconsilium.com/pharma-marketing/clm
+- Цифровой медицинский представитель: https://pharmconsilium.com/outsourcing/digitalmedrep
+- CLM-презентации и eDetailing: https://pharmconsilium.com/design/clm-presentations
 
 ## Для краулеров
 

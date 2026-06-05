@@ -105,9 +105,9 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
 
   const insightCards = en ? en.insightCards : [
   { n: '01', t: 'Портфолио, проекты и фичи ФармКонсилиум', d: 'Портфолио реализованных проектов, которыми мы гордимся.', to: 'portfolio' },
-  { n: '02', t: 'Цифровой медицинский представитель', d: 'Цифровые омниканальные кампании продвижения, которые берут на себя функции аутсорсинговой команды медицинских представителей.', to: 'sales/digital-rep' },
+  { n: '02', t: 'Цифровой медицинский представитель', d: 'Цифровые омниканальные кампании продвижения, которые берут на себя функции аутсорсинговой команды медицинских представителей.', to: 'outsourcing/digitalmedrep' },
   { n: '03', t: 'Справочник ЛС ФармКонсилиум', d: 'Цифровой медицинский ресурс для врачей, провизоров и фармацевтов, созданный для профессиональной работы с информацией о лекарственных препаратах.', href: 'https://farmconsilium.com/' },
-  { n: '04', t: 'Разработка мобильных приложений', d: 'mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.', to: 'marketing/mobile' }];
+  { n: '04', t: 'Разработка мобильных приложений', d: 'mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.', to: 'pharma-marketing/mobileapps-development' }];
 
   React.useEffect(() => {
     const grid = insightsGridRef.current;
@@ -172,15 +172,15 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
     window.openPharmForecast?.(heroQuery.trim());
   }
   const heroTilesBase = [
-  { id: 'marketing', num: '01', title: 'Фармацевтический маркетинг',
+  { id: 'pharma-marketing', num: '01', title: 'Фармацевтический маркетинг',
     desc: 'Цифровые инструменты для работы медицинских представителей.', art: 'ArtTileMarketing' },
-  { id: 'hcp', num: '02', title: 'Цифровые решения для здравоохранения',
+  { id: 'healthcare', num: '02', title: 'Цифровые решения для здравоохранения',
     desc: 'Мобильные приложения, образовательные платформы, сайты, боты, ИИ-ассистенты.', art: 'ArtTileHcp' },
-  { id: 'sales', num: '03', title: 'Аутсорсинг',
+  { id: 'outsourcing-medpredov', num: '03', title: 'Аутсорсинг',
     desc: 'Комплексные цифровые программы продвижения. Цифровой медицинский представитель.', art: 'ArtTileSales' },
-  { id: 'content', num: '04', title: 'Дизайн',
+  { id: 'design', num: '04', title: 'Дизайн',
     desc: 'CLM-презентации, дейтейлеры, видео, игры, квизы. То что нравится врачам и провизорам.', art: 'ArtTileContent', wide: true },
-  { id: 'directory', num: '05', title: 'Справочник ЛС ФармКонсилиум',
+  { id: 'FarmConsilium-drug-reference-book', num: '05', title: 'Справочник ЛС ФармКонсилиум',
     desc: 'Инструкции по применению, примеры выписки рецептов, калькуляторы.', art: 'ArtTileDirectory', wide: true }];
   const heroTiles = en ?
     en.tiles.map((t) => {
@@ -340,7 +340,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
                 <button
                   type="button"
                   className="btn btn-primary btn-sm"
-                  onClick={() => navigate('marketing/crm')}>
+                  onClick={() => navigate('pharma-marketing/crm')}>
                   CRM <span className="arrow">→</span>
                 </button>
               </div>
@@ -491,42 +491,42 @@ function SectionPage({ id, navigate, lang, ru }) {
 }
 
 function MarketingPage({ navigate, lang }) {
-  return <SectionPage id="marketing" navigate={navigate} lang={lang} ru={{
+  return <SectionPage id="pharma-marketing" navigate={navigate} lang={lang} ru={{
   crumb: 'Фармацевтический маркетинг',
   h1Line1: 'Цифровые инструменты',
   h1Accent: 'для фармацевтического маркетинга',
   lede: 'От CRM медицинского представителя до ИИ-тренера и платформы омниканального взаимодействия с HCP. Всю архитектуру и контент берём на себя.',
-  cards: window.SECTION_CARDS.marketing
+  cards: window.SECTION_CARDS['pharma-marketing']
   }} />;
 }
 
 function HcpPage({ navigate, lang }) {
-  return <SectionPage id="hcp" navigate={navigate} lang={lang} ru={{
+  return <SectionPage id="healthcare" navigate={navigate} lang={lang} ru={{
   crumb: 'Здравоохранение',
   h1Line1: 'Разработка цифровых решений',
   h1Accent: 'для здравоохранения',
   lede: 'Платформы, рекомендательные системы, ИИ-ассистенты и программы поддержки пациентов — в регуляторных рамках, с заботой о практической пользе.',
-  cards: window.SECTION_CARDS.hcp
+  cards: window.SECTION_CARDS.healthcare
   }} />;
 }
 
 function SalesPage({ navigate, lang }) {
-  return <SectionPage id="sales" navigate={navigate} lang={lang} ru={{
+  return <SectionPage id="outsourcing" navigate={navigate} lang={lang} ru={{
   crumb: 'Аутсорсинг',
   h1Line1: 'Комплексное продвижение',
   h1Accent: 'и аутсорсинг продаж',
   lede: 'Усилим вашу команду продаж, добавим цифровые инструменты',
-  cards: window.SECTION_CARDS.sales
+  cards: window.SECTION_CARDS.outsourcing
   }} />;
 }
 
 function ContentPage({ navigate, lang }) {
-  return <SectionPage id="content" navigate={navigate} lang={lang} ru={{
+  return <SectionPage id="design" navigate={navigate} lang={lang} ru={{
   crumb: 'Дизайн',
   h1Line1: 'HCP-контент на языке медицинской науки',
   h1Accent: 'для врачей, провизоров и фармацевтов',
   lede: 'Создаем презентации лекарств, медицинские видео, квизы, викторины, клинические детективы. Игры и геймификацию в медицине.',
-  cards: window.SECTION_CARDS.content
+  cards: window.SECTION_CARDS.design
   }} />;
 }
 
@@ -979,7 +979,6 @@ const TEAM = [
 { n: 'Робби', r: 'Корпоративный искусственный интеллект', photo: 'assets/uploads/team-robbie-hover.png' },
 { n: 'Катарина', r: 'Экономист, контент-мейкер', photo: 'assets/uploads/team-katarina.png' },
 { n: 'Даниил', r: 'Инженер-программист', photo: 'assets/uploads/team-daniil.png' },
-{ n: 'Вадим', r: 'Инженер-программист', photo: 'assets/uploads/team-vadim.png' },
 { n: 'Валерия', r: 'Менеджер медицинского маркетинга', photo: 'assets/uploads/team-valeria.png' },
 { n: 'Николай', r: 'Маркетолог цифровых экосистем', photo: 'assets/uploads/team-nikolay.png' },
 { n: 'Сергей', r: 'Инженер-программист', photo: 'assets/uploads/team-sergey.png' },
@@ -1141,12 +1140,12 @@ function TeamPage({ navigate, lang }) {
           </div>
           <div className="cards-grid cards-grid--portfolio">
             {(en ? en.portfolioCards : [
-            { t: 'Рекламный баннер Бепантен крем', d: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.', art: 'ArtBanner', slug: 'cardio-lonch' },
-            { t: 'Брендбук БАД, нейминг, упаковка', d: 'Формирование фирменной айдентики БАД, интеграция продуктовых преимуществ в дизайн упаковки.', art: 'ArtAI', slug: 'ai-trener' },
-            { t: 'Упаковка для препарата ГидроБаланс', d: 'Разработка упаковки для препарата ГидроБаланс.', art: 'ArtVideo', slug: 'patient-series' },
-            { t: 'Вертикальное видео (видеодетейлер) для HCP', d: 'Мы превратили сценарий лучшего визита МП в вертикальное видео 9:16, где сложная медицинская информация подаётся через анимацию или голос коллеги — а врач смотрит без усилия, как любимый сериал!', art: 'ArtRadar', slug: 'conference-pk25' },
-            { t: 'Разработка и дизайн CLM-презентации для лекарственного препарата', d: 'От стратегии и сценарной архитектуры до интерактивного дизайна, технической вёрстки и комплаенс-согласования — полный цикл CLM-презентации.', art: 'ArtPulse', slug: 'psp-platform' },
-            { t: 'Цифровая платформа для обучения медицинских специалистов', d: 'Создать закрытую веб-платформу с регистрацией для HCP, обеспечивающую доступ к видеолекциям, обучающим материалам и квизам для контроля знаний. Организовать полный цикл производства образовательного контента: создание, съемку и монтаж видеолекций, а также разработку интерактивных видео-квизов.', art: 'ArtLayers', slug: 'clm-veeva' },
+            { t: 'Рекламный баннер Бепантен крем', d: 'Создание рекламного баннера для рекламы безрецептурного препарата, согласование рекламы.', art: 'ArtBanner', slug: 'OTCadvertising-banner' },
+            { t: 'Брендбук БАД, нейминг, упаковка', d: 'Формирование фирменной айдентики БАД, интеграция продуктовых преимуществ в дизайн упаковки.', art: 'ArtAI', slug: 'brandbook-pharma' },
+            { t: 'Упаковка для препарата ГидроБаланс', d: 'Разработка упаковки для препарата ГидроБаланс.', art: 'ArtVideo', slug: 'supplement-packaging' },
+            { t: 'Вертикальное видео (видеодетейлер) для HCP', d: 'Мы превратили сценарий лучшего визита МП в вертикальное видео 9:16, где сложная медицинская информация подаётся через анимацию или голос коллеги — а врач смотрит без усилия, как любимый сериал!', art: 'ArtRadar', slug: 'HCP-videoreels' },
+            { t: 'Разработка и дизайн CLM-презентации для лекарственного препарата', d: 'От стратегии и сценарной архитектуры до интерактивного дизайна, технической вёрстки и комплаенс-согласования — полный цикл CLM-презентации.', art: 'ArtPulse', slug: 'CLM-presentacii-eto' },
+            { t: 'Цифровая платформа для обучения медицинских специалистов', d: 'Создать закрытую веб-платформу с регистрацией для HCP, обеспечивающую доступ к видеолекциям, обучающим материалам и квизам для контроля знаний. Организовать полный цикл производства образовательного контента: создание, съемку и монтаж видеолекций, а также разработку интерактивных видео-квизов.', art: 'ArtLayers', slug: 'clinical-training-HCP' },
             ]).map((p, i) => {
               const A = window[p.art];
               const pf = p.slug && window.PORTFOLIO
@@ -1163,6 +1162,11 @@ function TeamPage({ navigate, lang }) {
                 : thumb
                   ? { background: 'linear-gradient(145deg, var(--bg-2), var(--accent-soft))' }
                   : undefined;
+              const chips = pf
+                ? (Array.isArray(pf.cardChips) && pf.cardChips.length
+                  ? pf.cardChips
+                  : [pf.category, pf.sector, pf.year].filter(Boolean))
+                : [];
               return (
                 <div key={i} className="card"
                 onClick={() => navigate(`portfolio/${p.slug}`)}>
@@ -1173,6 +1177,19 @@ function TeamPage({ navigate, lang }) {
                   </div>
                   <h3>{p.t}</h3>
                   <p>{p.d}</p>
+                  {chips.length > 0 &&
+                    <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                      {chips.map((chip) => (
+                        <span
+                          key={chip}
+                          className="chip"
+                          style={{ background: 'transparent', border: 'none', color: 'var(--muted)' }}
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
+                  }
                   <span className="read">{en ? en.openCase : 'Открыть кейс'} <span className="arrow">→</span></span>
                 </div>);
 

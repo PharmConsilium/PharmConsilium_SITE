@@ -9,6 +9,15 @@ function projSlideImageSrc(s) {
   return s.srcFull || s.src;
 }
 
+function projAspectIsPortrait(ratio) {
+  if (!ratio) return false;
+  const m = String(ratio).match(/^(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)$/);
+  if (!m) return false;
+  const w = Number(m[1]);
+  const h = Number(m[2]);
+  return h > w;
+}
+
 function portfolioMetaChips(p) {
   if (p.draft) return p.cardChips || ['Скоро'];
   if (Array.isArray(p.cardChips) && p.cardChips.length) return p.cardChips;
@@ -267,9 +276,10 @@ function ProjectPage({ slug, navigate, lang }) {
   const stageIsVideo = isSlideVideo(activeSlide);
   const stageAspect = (stageIsVideo && videoAspect)
     || activeSlide?.aspect
-    || (stageIsVideo ? '9 / 16' : null)
     || p.slideAspect
+    || (stageIsVideo ? '16 / 9' : null)
     || '950 / 1024';
+  const stageVideoPortrait = stageIsVideo && projAspectIsPortrait(stageAspect);
 
   const goSlide = (index) => {
     pauseVideos();
@@ -377,19 +387,20 @@ function ProjectPage({ slug, navigate, lang }) {
                 </div>
               </div>
             ) : null}
-            {slug === 'cardio-lonch' ? (
+            {p.serviceRoute ? (
               <button
+                type="button"
                 className="btn btn-primary"
-                onClick={() => navigate('content/presentations')}
+                onClick={() => navigate(p.serviceRoute)}
               >
-                Узнать больше об этой услуге <span className="arrow">→</span>
+                {ui ? ui.learnService : 'Узнать больше об этой услуге'} <span className="arrow">→</span>
               </button>
             ) : null}
           </div>
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip lang={lang} hide={slug === 'cardio-lonch'} /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} hide={Boolean(p.serviceRoute)} /> : null}
 
       <section className="container">
         {Array.isArray(p.metrics) && p.metrics.length > 0 ? (
@@ -407,7 +418,7 @@ function ProjectPage({ slug, navigate, lang }) {
           <div className="proj-slider">
             <div
               ref={sliderRef}
-              className={`proj-slider-stage${slideUsesMedia ? ' proj-slider-stage--image' : ''}${stageIsVideo ? ' proj-slider-stage--video' : ''}`}
+              className={`proj-slider-stage${slideUsesMedia ? ' proj-slider-stage--image' : ''}${stageVideoPortrait ? ' proj-slider-stage--video proj-slider-stage--video-portrait' : ''}`}
               style={slideUsesMedia
                 ? { aspectRatio: stageAspect, background: 'var(--bg-2)' }
                 : { background: `linear-gradient(140deg, var(--bg-2), ${p.palette}26)` }}>
@@ -421,6 +432,7 @@ function ProjectPage({ slug, navigate, lang }) {
                       ? <VideoPlayer
                           src={videoSrc}
                           poster={s.poster}
+                          posterFromVideo={s.posterFromVideo}
                           alt={s.alt || s.label}
                           active={isActive}
                           onAspect={isActive ? setVideoAspect : undefined}
@@ -494,6 +506,15 @@ function ProjectPage({ slug, navigate, lang }) {
               </ul>
             </div>
 
+            {Array.isArray(p.extraBlocks) && p.extraBlocks.map((block, i) => (
+              <div key={i} className="proj-desc-block">
+                {block.title ? <h3 className="proj-extra-title">{block.title}</h3> : null}
+                {(block.paragraphs || []).map((para, j) => (
+                  <p key={j} className="proj-paragraph">{para}</p>
+                ))}
+              </div>
+            ))}
+
             {(() => {
               const infoItems = [
                 { l: p.infoClientLabel || (ui ? ui.client : 'Клиент'), v: p.infoClient || p.client },
@@ -546,6 +567,7 @@ function ProjectPage({ slug, navigate, lang }) {
               if (!r) return null;
               const RA = window[r.art] || window.ArtConstellation;
               const relThumb = r.thumb;
+              const relChips = portfolioMetaChips(r);
               return (
                 <div key={relSlug} className="rel-card" onClick={() => navigate(`portfolio/${relSlug}`)}>
                     <div
@@ -555,9 +577,15 @@ function ProjectPage({ slug, navigate, lang }) {
                         ? <img src={relThumb} alt="" loading="lazy" decoding="async" />
                         : <RA />}
                     </div>
-                    <div>
+                    <div className="rel-card-body">
                       <h4>{r.name}</h4>
-                      <p>{r.category} · {r.year}</p>
+                      {relChips.length > 0 &&
+                        <div className="rel-card-chips">
+                          {relChips.map((chip) => (
+                            <span key={chip} className="chip rel-card-chip">{chip}</span>
+                          ))}
+                        </div>
+                      }
                     </div>
                   </div>);
 

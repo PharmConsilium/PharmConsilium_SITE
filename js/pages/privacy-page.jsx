@@ -1,4 +1,4 @@
-// Privacy policy page — #privacy
+// Privacy policy page — /privacy
 
 function PrivacyBlock({ block }) {
   if (!block) return null;
