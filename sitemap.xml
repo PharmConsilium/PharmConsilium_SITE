@@ -87,6 +87,8 @@
   </url>
   <url>
     <loc>https://pharmconsilium.com/healthcare/hcp-education-platforms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pharmconsilium.com/healthcare/patient-support</loc>
@@ -95,6 +97,11 @@
   </url>
   <url>
     <loc>https://pharmconsilium.com/healthcare/medical-chatbots</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/healthcare/patient-mobileapps</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -109,17 +116,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pharmconsilium.com/healthcare/patient-mobileapps</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://pharmconsilium.com/outsourcing/digitalmedrep</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pharmconsilium.com/outsourcing/medrep-omnichannel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pharmconsilium.com/outsourcing/launch-outsourcing</loc>

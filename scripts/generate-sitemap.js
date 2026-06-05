@@ -12,7 +12,7 @@ const { rows } = JSON.parse(
 const BASE = 'https://pharmconsilium.com';
 const priority = (route) => {
   if (route === 'home') return '1.0';
-  if (['pharma-marketing', 'healthcare', 'outsourcing', 'design', 'drug-directory'].includes(route)) return '0.9';
+  if (['pharma-marketing', 'healthcare', 'outsourcing-medpredov', 'design', 'FarmConsilium-drug-reference-book'].includes(route)) return '0.9';
   if (route === 'privacy') return '0.5';
   if (route.startsWith('portfolio/')) return '0.7';
   if (route.includes('/')) return '0.8';

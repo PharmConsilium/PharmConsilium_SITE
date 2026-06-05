@@ -1,35 +1,38 @@
 {
   "summary": {
-    "total": 45,
-    "subpages": 28,
-    "portfolioPublic": 8,
-    "portfolioDraft": 7,
+    "total": 47,
+    "subpages": 23,
+    "portfolioPublic": 15,
+    "portfolioDraft": 0,
     "titleDuplicates": [],
     "descOver160": [
       "https://pharmconsilium.com/pharma-marketing/clm",
-      "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp",
-      "https://pharmconsilium.com/pharma-marketing/rep-training",
+      "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp-Telegram",
+      "https://pharmconsilium.com/pharma-marketing/temy-treningov-dlya-medpredov",
       "https://pharmconsilium.com/healthcare/patient-support",
       "https://pharmconsilium.com/healthcare/medical-chatbots",
       "https://pharmconsilium.com/healthcare/research-platforms",
       "https://pharmconsilium.com/healthcare/rwe-analytics",
-      "https://pharmconsilium.com/outsourcing/digital-rep",
-      "https://pharmconsilium.com/outsourcing/omnichannel",
+      "https://pharmconsilium.com/outsourcing/digitalmedrep",
+      "https://pharmconsilium.com/outsourcing/medrep-omnichannel",
       "https://pharmconsilium.com/outsourcing/launch-outsourcing",
       "https://pharmconsilium.com/design/clm-presentations",
       "https://pharmconsilium.com/design/hcp-video",
       "https://pharmconsilium.com/design/brand-packaging",
       "https://pharmconsilium.com/design/ai-content",
       "https://pharmconsilium.com/design/games-quizzes",
-      "https://pharmconsilium.com/portfolio/conference-pk25",
-      "https://pharmconsilium.com/portfolio/psp-platform",
-      "https://pharmconsilium.com/portfolio/clm-veeva"
+      "https://pharmconsilium.com/portfolio/HCP-videoreels",
+      "https://pharmconsilium.com/portfolio/CLM-presentacii-eto",
+      "https://pharmconsilium.com/portfolio/clinical-training-HCP",
+      "https://pharmconsilium.com/portfolio/clinical-training-neurology",
+      "https://pharmconsilium.com/portfolio/gamification-education-HCP",
+      "https://pharmconsilium.com/portfolio/hcp-reels-avatar"
     ],
     "descUnder50": [
       "https://pharmconsilium.com/",
       "https://pharmconsilium.com/pharma-marketing",
       "https://pharmconsilium.com/healthcare",
-      "https://pharmconsilium.com/outsourcing",
+      "https://pharmconsilium.com/outsourcing-medpredov",
       "https://pharmconsilium.com/design",
       "https://pharmconsilium.com/about",
       "https://pharmconsilium.com/portfolio"
@@ -44,7 +47,7 @@
         "len": 65
       },
       {
-        "url": "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp",
+        "url": "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp-Telegram",
         "len": 78
       },
       {
@@ -52,7 +55,7 @@
         "len": 77
       },
       {
-        "url": "https://pharmconsilium.com/healthcare/education-platforms",
+        "url": "https://pharmconsilium.com/healthcare/hcp-education-platforms",
         "len": 75
       },
       {
@@ -60,7 +63,7 @@
         "len": 62
       },
       {
-        "url": "https://pharmconsilium.com/outsourcing/omnichannel",
+        "url": "https://pharmconsilium.com/outsourcing/medrep-omnichannel",
         "len": 86
       },
       {
@@ -84,20 +87,40 @@
         "len": 63
       },
       {
-        "url": "https://pharmconsilium.com/portfolio/omni-rebranding",
+        "url": "https://pharmconsilium.com/portfolio/OL-medical-video",
         "len": 64
       },
       {
-        "url": "https://pharmconsilium.com/portfolio/psp-platform",
+        "url": "https://pharmconsilium.com/portfolio/CLM-presentacii-eto",
         "len": 80
       },
       {
-        "url": "https://pharmconsilium.com/portfolio/clm-veeva",
+        "url": "https://pharmconsilium.com/portfolio/clinical-training-HCP",
         "len": 72
       },
       {
-        "url": "https://pharmconsilium.com/portfolio/drug-directory-launch",
+        "url": "https://pharmconsilium.com/portfolio/Case-infographic-drug",
         "len": 90
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/CLMpresentations-for-medreps",
+        "len": 98
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/clinical-training-neurology",
+        "len": 101
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/hcp-reels-avatar",
+        "len": 73
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/bot-pharma-digitalmarketing",
+        "len": 92
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/How-to-make-a-game-for-HCP",
+        "len": 85
       }
     ]
   },
@@ -142,9 +165,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/outsourcing",
-      "route": "outsourcing",
-      "h1": "outsourcing",
+      "url": "https://pharmconsilium.com/outsourcing-medpredov",
+      "route": "outsourcing-medpredov",
+      "h1": "outsourcing-medpredov",
       "title": "Аутсорсинг · ФармКонсилиум",
       "titleLen": 26,
       "description": "Цифровой медпред",
@@ -168,9 +191,9 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/drug-directory",
-      "route": "drug-directory",
-      "h1": "drug-directory",
+      "url": "https://pharmconsilium.com/FarmConsilium-drug-reference-book",
+      "route": "FarmConsilium-drug-reference-book",
+      "h1": "FarmConsilium-drug-reference-book",
       "title": "Справочник лекарственных средств · ФармКонсилиум",
       "titleLen": 48,
       "description": "Доверительная ординаторская: справочник ЛС для врачей и провизоров Беларуси.",
@@ -259,8 +282,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp",
-      "route": "pharma-marketing/chatbot-teleapp",
+      "url": "https://pharmconsilium.com/pharma-marketing/chatbot-teleapp-Telegram",
+      "route": "pharma-marketing/chatbot-teleapp-Telegram",
       "h1": "Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP",
       "title": "Чат-бот и ТелеАпп — цифровая экосистема для коммуникации с HCP · ФармКонсилиум",
       "titleLen": 78,
@@ -285,8 +308,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/pharma-marketing/mobile-apps",
-      "route": "pharma-marketing/mobile-apps",
+      "url": "https://pharmconsilium.com/pharma-marketing/mobileapps-development",
+      "route": "pharma-marketing/mobileapps-development",
       "h1": "Разработка мобильных приложений",
       "title": "Разработка мобильных приложений · ФармКонсилиум",
       "titleLen": 47,
@@ -311,8 +334,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/pharma-marketing/rep-training",
-      "route": "pharma-marketing/rep-training",
+      "url": "https://pharmconsilium.com/pharma-marketing/temy-treningov-dlya-medpredov",
+      "route": "pharma-marketing/temy-treningov-dlya-medpredov",
       "h1": "Тренинги для медицинских представителей",
       "title": "Тренинги для медицинских представителей · ФармКонсилиум",
       "titleLen": 55,
@@ -324,8 +347,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/healthcare/education-platforms",
-      "route": "healthcare/education-platforms",
+      "url": "https://pharmconsilium.com/healthcare/hcp-education-platforms",
+      "route": "healthcare/hcp-education-platforms",
       "h1": "Цифровые платформы для образовательных медицинских программ",
       "title": "Цифровые платформы для образовательных медицинских программ · ФармКонсилиум",
       "titleLen": 75,
@@ -363,8 +386,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/healthcare/mobile-apps",
-      "route": "healthcare/mobile-apps",
+      "url": "https://pharmconsilium.com/healthcare/patient-mobileapps",
+      "route": "healthcare/patient-mobileapps",
       "h1": "Мобильные приложения",
       "title": "Мобильные приложения · ФармКонсилиум",
       "titleLen": 36,
@@ -402,8 +425,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/outsourcing/digital-rep",
-      "route": "outsourcing/digital-rep",
+      "url": "https://pharmconsilium.com/outsourcing/digitalmedrep",
+      "route": "outsourcing/digitalmedrep",
       "h1": "Цифровой медицинский представитель",
       "title": "Цифровой медицинский представитель · ФармКонсилиум",
       "titleLen": 50,
@@ -415,8 +438,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/outsourcing/omnichannel",
-      "route": "outsourcing/omnichannel",
+      "url": "https://pharmconsilium.com/outsourcing/medrep-omnichannel",
+      "route": "outsourcing/medrep-omnichannel",
       "h1": "Цифровой медицинский представитель в гибридном продвижении фармбрендов",
       "title": "Цифровой медицинский представитель в гибридном продвижении фармбрендов · ФармКонсилиум",
       "titleLen": 86,
@@ -462,32 +485,6 @@
       "description": "CLM-детейлеры и визуальные материалы для F2F-визитов МП: клинически точный нарратив, доказательный дизайн, compliance и аналитика каждого визита — всё под контролем продакт-менеджера.",
       "descLen": 183,
       "alt": "да",
-      "related": "да",
-      "source": "SUBPAGES",
-      "indexLang": "RU (EN выкл.)"
-    },
-    {
-      "url": "https://pharmconsilium.com/design/edetailing",
-      "route": "design/edetailing",
-      "h1": "CLM и eDetailing",
-      "title": "CLM и eDetailing · ФармКонсилиум",
-      "titleLen": 32,
-      "description": "Интерактивные CLM-презентации, сценарии визитов, материалы для face-to-face eDetailing, remote eDetailing, surveys, геймификация.",
-      "descLen": 129,
-      "alt": "нет",
-      "related": "да",
-      "source": "SUBPAGES",
-      "indexLang": "RU (EN выкл.)"
-    },
-    {
-      "url": "https://pharmconsilium.com/design/patient-content",
-      "route": "design/patient-content",
-      "h1": "Пациентский образовательный контент",
-      "title": "Пациентский образовательный контент · ФармКонсилиум",
-      "titleLen": 51,
-      "description": "Расскажем и нарисуем сложное так, что поймёт ребёнок: статьи, видео, анимация, памятки, объяснение заболеваний, терапии, приверженности и образа жизни.",
-      "descLen": 151,
-      "alt": "нет",
       "related": "да",
       "source": "SUBPAGES",
       "indexLang": "RU (EN выкл.)"
@@ -545,47 +542,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/design/psp-content",
-      "route": "design/psp-content",
-      "h1": "Программы поддержки пациентов · контент",
-      "title": "Программы поддержки пациентов · контент · ФармКонсилиум",
-      "titleLen": 55,
-      "description": "Цифровые платформы и материалы: напоминания, мотивационные материалы, навигация по терапии, персонализированные рекомендации.",
-      "descLen": 125,
-      "alt": "нет",
-      "related": "да",
-      "source": "SUBPAGES",
-      "indexLang": "RU (EN выкл.)"
-    },
-    {
-      "url": "https://pharmconsilium.com/about/events",
-      "route": "about/events",
-      "h1": "События и публикации",
-      "title": "События и публикации · ФармКонсилиум",
-      "titleLen": 36,
-      "description": "Конференции, эфиры, экспертные публикации, выступления и собственные исследования. Где можно встретиться и что почитать.",
-      "descLen": 120,
-      "alt": "нет",
-      "related": "да",
-      "source": "SUBPAGES",
-      "indexLang": "RU (EN выкл.)"
-    },
-    {
-      "url": "https://pharmconsilium.com/about/careers",
-      "route": "about/careers",
-      "h1": "Карьера в ФармКонсилиуме",
-      "title": "Карьера в ФармКонсилиуме · ФармКонсилиум",
-      "titleLen": 40,
-      "description": "Восемь человек в ядре команды и десятки контракторов в проектной обвязке. Растём проектами, не штатным расписанием — ищем тех, кому это резонирует.",
-      "descLen": 147,
-      "alt": "нет",
-      "related": "да",
-      "source": "SUBPAGES",
-      "indexLang": "RU (EN выкл.)"
-    },
-    {
-      "url": "https://pharmconsilium.com/portfolio/bepanten-banner",
-      "route": "portfolio/bepanten-banner",
+      "url": "https://pharmconsilium.com/portfolio/OTCadvertising-banner",
+      "route": "portfolio/OTCadvertising-banner",
       "h1": "Рекламный баннер Бепантен крем",
       "title": "Рекламный баннер Бепантен крем · ФармКонсилиум",
       "titleLen": 46,
@@ -597,8 +555,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/meditatio-night-brand",
-      "route": "portfolio/meditatio-night-brand",
+      "url": "https://pharmconsilium.com/portfolio/brandbook-pharma",
+      "route": "portfolio/brandbook-pharma",
       "h1": "Брендбук БАД, нейминг, упаковка",
       "title": "Брендбук БАД, нейминг, упаковка · ФармКонсилиум",
       "titleLen": 47,
@@ -623,8 +581,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/conference-pk25",
-      "route": "portfolio/conference-pk25",
+      "url": "https://pharmconsilium.com/portfolio/HCP-videoreels",
+      "route": "portfolio/HCP-videoreels",
       "h1": "Вертикальное видео (видеодетейлер) для HCP",
       "title": "Вертикальное видео (видеодетейлер) для HCP · ФармКонсилиум",
       "titleLen": 58,
@@ -636,8 +594,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/omni-rebranding",
-      "route": "portfolio/omni-rebranding",
+      "url": "https://pharmconsilium.com/portfolio/OL-medical-video",
+      "route": "portfolio/OL-medical-video",
       "h1": "Создание сценария и видеолекции с лидером мнения",
       "title": "Создание сценария и видеолекции с лидером мнения · ФармКонсилиум",
       "titleLen": 64,
@@ -649,8 +607,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/psp-platform",
-      "route": "portfolio/psp-platform",
+      "url": "https://pharmconsilium.com/portfolio/CLM-presentacii-eto",
+      "route": "portfolio/CLM-presentacii-eto",
       "h1": "Разработка и дизайн CLM-презентации для лекарственного препарата",
       "title": "Разработка и дизайн CLM-презентации для лекарственного препарата · ФармКонсилиум",
       "titleLen": 80,
@@ -662,8 +620,8 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/clm-veeva",
-      "route": "portfolio/clm-veeva",
+      "url": "https://pharmconsilium.com/portfolio/clinical-training-HCP",
+      "route": "portfolio/clinical-training-HCP",
       "h1": "Цифровая платформа для обучения медицинских специалистов",
       "title": "Цифровая платформа для обучения медицинских специалистов · ФармКонсилиум",
       "titleLen": 72,
@@ -675,13 +633,104 @@
       "indexLang": "RU (EN выкл.)"
     },
     {
-      "url": "https://pharmconsilium.com/portfolio/drug-directory-launch",
-      "route": "portfolio/drug-directory-launch",
+      "url": "https://pharmconsilium.com/portfolio/Case-infographic-drug",
+      "route": "portfolio/Case-infographic-drug",
       "h1": "Медицинская инфографика титрации лекарственного препарата для лечения боли",
       "title": "Медицинская инфографика титрации лекарственного препарата для лечения боли · ФармКонсилиум",
       "titleLen": 90,
       "description": "Визуальный концепт для врачей по использованию ЛС при нейропатической боли",
       "descLen": 74,
+      "alt": "да",
+      "related": "да",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/CLMpresentations-for-medreps",
+      "route": "portfolio/CLMpresentations-for-medreps",
+      "h1": "Мобильное приложение для демонстрации CLM-презентаций медицинскими представителями",
+      "title": "Мобильное приложение для демонстрации CLM-презентаций медицинскими представителями · ФармКонсилиум",
+      "titleLen": 98,
+      "description": "Наличие двух версий приложения в App Store и Google Play, поддержка планшетов и смартфонов.",
+      "descLen": 91,
+      "alt": "да",
+      "related": "да",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/clinical-training-neurology",
+      "route": "portfolio/clinical-training-neurology",
+      "h1": "Создание платформы для дистанционного обучения медицинских специалистов «Stroke Exam»",
+      "title": "Создание платформы для дистанционного обучения медицинских специалистов «Stroke Exam» · ФармКонсилиум",
+      "titleLen": 101,
+      "description": "Закрытая цифровая платформа для видеотренингов медицинских специалистов навыкам по оценке тяжести неврологической симптоматики в остром периоде ишемического инсульта (на базе шкалы NIHSS, National Institutes of Health Stroke Scale).",
+      "descLen": 232,
+      "alt": "да",
+      "related": "да",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/gamification-education-HCP",
+      "route": "portfolio/gamification-education-HCP",
+      "h1": "Медицинская игра в формате «крестики-нолики»",
+      "title": "Медицинская игра в формате «крестики-нолики» · ФармКонсилиум",
+      "titleLen": 60,
+      "description": "Игровая динамика в изучении свойств препарата на планшете медицинского представителя. Возможность следующего хода, только при правильном ответе на вопрос про свойства препарата.",
+      "descLen": 177,
+      "alt": "да",
+      "related": "да",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/hcp-reels-avatar",
+      "route": "portfolio/hcp-reels-avatar",
+      "h1": "Видеовизит для HCP. Цифровой аватар в интерактивном видео",
+      "title": "Видеовизит для HCP. Цифровой аватар в интерактивном видео · ФармКонсилиум",
+      "titleLen": 73,
+      "description": "Мы превратили сложный массив текстовой информации в интерактивное видео для смартфона, где врач сам ведёт диалог с цифровым аватаром, а каждый его выбор становится предметом анализа для маркетинга.",
+      "descLen": 197,
+      "alt": "да",
+      "related": "да",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/OTCadvertising-banner-How-to-make",
+      "route": "portfolio/OTCadvertising-banner-How-to-make",
+      "h1": "Серия рекламных макетов Бепантен",
+      "title": "Серия рекламных макетов Бепантен · ФармКонсилиум",
+      "titleLen": 48,
+      "description": "Как создать и согласовать рекламный баннер для OTC-препарата — кейс с брендбуком Bayer и согласованием для digital.",
+      "descLen": 115,
+      "alt": "да",
+      "related": "да",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/bot-pharma-digitalmarketing",
+      "route": "portfolio/bot-pharma-digitalmarketing",
+      "h1": "Боты в фарме: примеры цифровых экосистем для долгосрочной коммуникации с HCP",
+      "title": "Боты в фарме: примеры цифровых экосистем для долгосрочной коммуникации с HCP · ФармКонсилиум",
+      "titleLen": 92,
+      "description": "Омниканальная система на базе Telegram-ботов и ТелеАпп для долгосрочной коммуникации с HCP.",
+      "descLen": 91,
+      "alt": "да",
+      "related": "да",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/How-to-make-a-game-for-HCP",
+      "route": "portfolio/How-to-make-a-game-for-HCP",
+      "h1": "Геймификация обучения для HCP: новый импульс для известного препарата",
+      "title": "Геймификация обучения для HCP: новый импульс для известного препарата · ФармКонсилиум",
+      "titleLen": 85,
+      "description": "Геймификация для HCP: браузерная игра, которая возвращает внимание к известному препарату.",
+      "descLen": 90,
       "alt": "да",
       "related": "да",
       "source": "PORTFOLIO",

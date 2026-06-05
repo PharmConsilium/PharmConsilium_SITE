@@ -53,14 +53,18 @@ function parseStatic() {
   const block = seo.match(/const SEO_STATIC = \{([\s\S]*?)\};\s*const SEO_STATIC_EN/);
   if (!block) return [];
   const b = block[1];
-  const keys = [...b.matchAll(/^\s+([\w-]+):\s*\{/gm)].map((x) => x[1]);
-  return keys.map((k) => {
-    const chunk = b.match(new RegExp(`${k}:\\s*\\{([\\s\\S]*?)\\n\\s+\\},`));
-    const title = chunk ? (chunk[1].match(/title:\s*'([^']*)'/) || [])[1] : '';
-    let desc = chunk ? (chunk[1].match(/description:\s*([^,\n]+)/) || [])[1] : '';
+  const re = /^\s+(?:'([^']+)'|(\w+)):\s*\{([\s\S]*?)\n\s+\},/gm;
+  const out = [];
+  let m;
+  while ((m = re.exec(b))) {
+    const k = m[1] || m[2];
+    const chunk = m[3];
+    const title = (chunk.match(/title:\s*'([^']*)'/) || [])[1] || '';
+    let desc = (chunk.match(/description:\s*([^,\n]+)/) || [])[1] || '';
     desc = desc ? desc.replace(/SITE\.defaultDescription/, '(defaultDescription)').replace(/'/g, '').trim() : '';
-    return { route: k, title, lede: desc };
-  });
+    out.push({ route: k, title, lede: desc });
+  }
+  return out;
 }
 
 const staticPages = parseStatic();
