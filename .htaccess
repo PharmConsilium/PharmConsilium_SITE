@@ -17,13 +17,17 @@ DirectoryIndex index.html
   RewriteCond %{THE_REQUEST} \s/+hcp/?[\s?] [NC]
   RewriteRule ^hcp/?$ /healthcare [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+sales/?[\s?] [NC]
-  RewriteRule ^sales/?$ /outsourcing [R=301,L]
+  RewriteRule ^sales/?$ /outsourcing-medpredov [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+content/?[\s?] [NC]
   RewriteRule ^content/?$ /design [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+directory/?[\s?] [NC]
-  RewriteRule ^directory/?$ /drug-directory [R=301,L]
+  RewriteRule ^directory/?$ /FarmConsilium-drug-reference-book [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+team/?[\s?] [NC]
   RewriteRule ^team/?$ /about [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+outsourcing/?[\s?] [NC]
+  RewriteRule ^outsourcing/?$ /outsourcing-medpredov [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+drug-directory/?[\s?] [NC]
+  RewriteRule ^drug-directory/?$ /FarmConsilium-drug-reference-book [R=301,L]
 
   # --- Старый PHP-сайт (явный запрос в браузере) ---
   RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
@@ -42,7 +46,7 @@ DirectoryIndex index.html
   RewriteRule ^trainings\.php$ /healthcare/patient-support [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+outsourcing\.php[\s?] [NC]
-  RewriteRule ^outsourcing\.php$ /outsourcing [R=301,L]
+  RewriteRule ^outsourcing\.php$ /outsourcing-medpredov [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+create-stm\.php[\s?] [NC]
   RewriteRule ^create-stm\.php$ /design [R=301,L]
@@ -52,38 +56,38 @@ DirectoryIndex index.html
 
   # --- /tool/... ---
   RewriteCond %{THE_REQUEST} \s/+tool/DigitalMedRep-promotion-in-RX[\s?] [NC]
-  RewriteRule ^tool/DigitalMedRep-promotion-in-RX$ /outsourcing/digital-rep [R=301,L]
+  RewriteRule ^tool/DigitalMedRep-promotion-in-RX$ /outsourcing/digitalmedrep [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/room-training-pharmacists-doctor[\s?] [NC]
   RewriteRule ^tool/room-training-pharmacists-doctor$ /healthcare/patient-support [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/medpred-videovizit-digital-to-face-d2f[\s?] [NC]
-  RewriteRule ^tool/medpred-videovizit-digital-to-face-d2f$ /outsourcing/digital-rep [R=301,L]
+  RewriteRule ^tool/medpred-videovizit-digital-to-face-d2f$ /outsourcing/digitalmedrep [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/robotcoach-pharmacy-gametraining-simulator-obuchayushchiy-igrovoy-simulyator-dlya-aptek[\s?] [NC]
   RewriteRule ^tool/robotcoach-pharmacy-gametraining-simulator-obuchayushchiy-igrovoy-simulyator-dlya-aptek$ /design/games-quizzes [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/Marketingovye-issledovaniya-farmacevticheskogo-rynka-Belarus[\s?] [NC]
-  RewriteRule ^tool/Marketingovye-issledovaniya-farmacevticheskogo-rynka-Belarus$ /outsourcing/omnichannel [R=301,L]
+  RewriteRule ^tool/Marketingovye-issledovaniya-farmacevticheskogo-rynka-Belarus$ /outsourcing/medrep-omnichannel [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/PharmInfo[\s?] [NC]
-  RewriteRule ^tool/PharmInfo$ /drug-directory [R=301,L]
+  RewriteRule ^tool/PharmInfo$ /FarmConsilium-drug-reference-book [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/quiz-simulator-game-tests-online[\s?] [NC]
   RewriteRule ^tool/quiz-simulator-game-tests-online$ /design/games-quizzes [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+tool/razrabotka-Telegram-bot-GPT-dlya-prodvizheniya[\s?] [NC]
-  RewriteRule ^tool/razrabotka-Telegram-bot-GPT-dlya-prodvizheniya$ /pharma-marketing/chatbot-teleapp [R=301,L]
+  RewriteRule ^tool/razrabotka-Telegram-bot-GPT-dlya-prodvizheniya$ /pharma-marketing/chatbot-teleapp-Telegram [R=301,L]
 
   # --- /outsourcings/... ---
   RewriteCond %{THE_REQUEST} \s/+outsourcings/med-pharm-content-outsourcing[\s?] [NC]
   RewriteRule ^outsourcings/med-pharm-content-outsourcing$ /design/clm-presentations [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+outsourcings/autsorsing-meditsinskikh-predstaviteley-belarus[\s?] [NC]
-  RewriteRule ^outsourcings/autsorsing-meditsinskikh-predstaviteley-belarus$ /outsourcing/digital-rep [R=301,L]
+  RewriteRule ^outsourcings/autsorsing-meditsinskikh-predstaviteley-belarus$ /outsourcing/digitalmedrep [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+outsourcings/Digitalrep-bigfarma-rx-marleting-promotia-lekarstv[\s?] [NC]
-  RewriteRule ^outsourcings/Digitalrep-bigfarma-rx-marleting-promotia-lekarstv$ /outsourcing/digital-rep [R=301,L]
+  RewriteRule ^outsourcings/Digitalrep-bigfarma-rx-marleting-promotia-lekarstv$ /outsourcing/digitalmedrep [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+outsourcings/launch-outsourcing-of-a-pharmaceutical-brand-Belarus[\s?] [NC]
   RewriteRule ^outsourcings/launch-outsourcing-of-a-pharmaceutical-brand-Belarus$ /outsourcing/launch-outsourcing [R=301,L]
@@ -99,7 +103,7 @@ DirectoryIndex index.html
   RewriteRule ^training/etapy-vizita-meditsinskogo-predstavitelya-v-apteku$ /healthcare/patient-support [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+training/medrep-vizit-ogranichennyy-po-vremeni[\s?] [NC]
-  RewriteRule ^training/medrep-vizit-ogranichennyy-po-vremeni$ /outsourcing/digital-rep [R=301,L]
+  RewriteRule ^training/medrep-vizit-ogranichennyy-po-vremeni$ /outsourcing/digitalmedrep [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+training/presentation-skills[\s?] [NC]
   RewriteRule ^training/presentation-skills$ /healthcare/patient-support [R=301,L]
@@ -128,7 +132,7 @@ DirectoryIndex index.html
   RewriteRule ^tool/ /pharma-marketing [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+outsourcings/ [NC]
-  RewriteRule ^outsourcings/ /outsourcing [R=301,L]
+  RewriteRule ^outsourcings/ /outsourcing-medpredov [R=301,L]
 
   RewriteCond %{THE_REQUEST} \s/+training/ [NC]
   RewriteRule ^training/ /healthcare/patient-support [R=301,L]

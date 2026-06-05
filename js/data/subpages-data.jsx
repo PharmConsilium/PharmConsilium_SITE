@@ -1,5 +1,7 @@
 // SUBPAGES — content for every clickable card.
 // Routing format: "section/sub" e.g. "pharma-marketing/crm".
+// Canonical keys here; legacy URLs map via ROUTE_ALIASES in app.jsx only.
+// healthcare/patient-mobileapps and outsourcing/share-of-voice are separate pages (not merged).
 
 const SUBPAGES = {
   /* ========== MARKETING ========== */

@@ -1,5 +1,4 @@
-// SEO: title, description, canonical — обновляется при смене hash-роута.
-// Перед продакшеном: заменить SITE.baseUrl и перейти на чистые URL (см. .cursor/rules).
+// SEO: title, description, canonical — обновляется при смене History API-роута.
 
 const SITE = {
   baseUrl: 'https://pharmconsilium.com',

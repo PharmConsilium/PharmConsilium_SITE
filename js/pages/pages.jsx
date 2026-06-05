@@ -105,9 +105,9 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
 
   const insightCards = en ? en.insightCards : [
   { n: '01', t: 'Портфолио, проекты и фичи ФармКонсилиум', d: 'Портфолио реализованных проектов, которыми мы гордимся.', to: 'portfolio' },
-  { n: '02', t: 'Цифровой медицинский представитель', d: 'Цифровые омниканальные кампании продвижения, которые берут на себя функции аутсорсинговой команды медицинских представителей.', to: 'outsourcing/digital-rep' },
+  { n: '02', t: 'Цифровой медицинский представитель', d: 'Цифровые омниканальные кампании продвижения, которые берут на себя функции аутсорсинговой команды медицинских представителей.', to: 'outsourcing/digitalmedrep' },
   { n: '03', t: 'Справочник ЛС ФармКонсилиум', d: 'Цифровой медицинский ресурс для врачей, провизоров и фармацевтов, созданный для профессиональной работы с информацией о лекарственных препаратах.', href: 'https://farmconsilium.com/' },
-  { n: '04', t: 'Разработка мобильных приложений', d: 'mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.', to: 'pharma-marketing/mobile-apps' }];
+  { n: '04', t: 'Разработка мобильных приложений', d: 'mHealth-приложения для фармбрендов «под ключ» — от идеи и UX-концепции до дизайна, разработки и публикации в App Store и Google Play.', to: 'pharma-marketing/mobileapps-development' }];
 
   React.useEffect(() => {
     const grid = insightsGridRef.current;
@@ -176,11 +176,11 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
     desc: 'Цифровые инструменты для работы медицинских представителей.', art: 'ArtTileMarketing' },
   { id: 'healthcare', num: '02', title: 'Цифровые решения для здравоохранения',
     desc: 'Мобильные приложения, образовательные платформы, сайты, боты, ИИ-ассистенты.', art: 'ArtTileHcp' },
-  { id: 'outsourcing', num: '03', title: 'Аутсорсинг',
+  { id: 'outsourcing-medpredov', num: '03', title: 'Аутсорсинг',
     desc: 'Комплексные цифровые программы продвижения. Цифровой медицинский представитель.', art: 'ArtTileSales' },
   { id: 'design', num: '04', title: 'Дизайн',
     desc: 'CLM-презентации, дейтейлеры, видео, игры, квизы. То что нравится врачам и провизорам.', art: 'ArtTileContent', wide: true },
-  { id: 'drug-directory', num: '05', title: 'Справочник ЛС ФармКонсилиум',
+  { id: 'FarmConsilium-drug-reference-book', num: '05', title: 'Справочник ЛС ФармКонсилиум',
     desc: 'Инструкции по применению, примеры выписки рецептов, калькуляторы.', art: 'ArtTileDirectory', wide: true }];
   const heroTiles = en ?
     en.tiles.map((t) => {

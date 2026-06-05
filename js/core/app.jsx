@@ -24,13 +24,16 @@ function normalizeRoute(raw) {
   return r || 'home';
 }
 
-/** Legacy pathname/hash → canonical route id (SUBPAGES key). */
+/** Legacy pathname/hash → canonical route id (SUBPAGES key).
+ *  SUBPAGES keys are authoritative; aliases only map inbound legacy URLs.
+ *  healthcare/patient-mobileapps and outsourcing/share-of-voice stay separate pages (not aliased). */
 const ROUTE_ALIASES = {
   marketing: 'pharma-marketing',
   hcp: 'healthcare',
   sales: 'outsourcing-medpredov',
   content: 'design',
   directory: 'FarmConsilium-drug-reference-book',
+  'drug-directory': 'FarmConsilium-drug-reference-book',
   team: 'about',
   // Final top-level slugs
   // Canonical outsourcing section slug
@@ -54,10 +57,9 @@ const ROUTE_ALIASES = {
   'hcp/ai-healthcare': 'healthcare/research-platforms',
   'hcp/psp': 'healthcare/rwe-analytics',
   'sales/digital-rep': 'outsourcing/digitalmedrep',
-  'sales/omnichannel': 'outsourcing/omnichannel',
+  'sales/omnichannel': 'outsourcing/medrep-omnichannel',
   'sales/launch': 'outsourcing/launch-outsourcing',
   'sales/analytics': 'outsourcing/medrep-omnichannel',
-  'outsourcing/share-of-voice': 'outsourcing/medrep-omnichannel',
   'content/medical': 'design/clm-presentations',
   'content/edetailing': 'design/clm-presentations',
   'design/edetailing': 'design/clm-presentations',
@@ -76,7 +78,6 @@ const ROUTE_ALIASES = {
   'pharma-marketing/rep-training': 'pharma-marketing/temy-treningov-dlya-medpredov',
   'healthcare/education-platforms': 'healthcare/hcp-education-platforms',
   'healthcare/mobile-apps': 'pharma-marketing/mobileapps-development',
-  'healthcare/patient-mobileapps': 'pharma-marketing/mobileapps-development',
   'outsourcing/digital-rep': 'outsourcing/digitalmedrep',
   'outsourcing/omnichannel': 'outsourcing/medrep-omnichannel',
   'design/clm-presentations-making': 'design/clm-presentations',
@@ -418,7 +419,7 @@ function App() {
 
       {page}
 
-      {EndContactStrip && route !== 'drug-directory' && route !== 'about' ? <EndContactStrip lang={lang} /> : null}
+      {EndContactStrip && route !== 'FarmConsilium-drug-reference-book' && route !== 'about' ? <EndContactStrip lang={lang} /> : null}
 
       {t.robot !== false && robotReady && window.RobotCompanion ? <RobotCompanion/> : null}
 

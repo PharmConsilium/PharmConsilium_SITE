@@ -152,7 +152,7 @@ const SECTION_THUMB_POSITION = {
     '2clm': '70% center',
     'chatbot-teleapp': '48% center',
     'web-development': '38% center',
-    'mobile-apps': '60% center',
+    'mobileapps-development': '60% center',
   },
 };
 

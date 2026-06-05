@@ -12,9 +12,9 @@
 - Главная: https://pharmconsilium.com/
 - Фармацевтический маркетинг (CRM, CLM, 2CLM, чат-боты, веб, мобильные приложения): https://pharmconsilium.com/pharma-marketing
 - Здравоохранение (образование HCP, ИИ, PSP, RWE): https://pharmconsilium.com/healthcare
-- Аутсорсинг (цифровой медпред, омниканал, лонч): https://pharmconsilium.com/outsourcing
+- Аутсорсинг (цифровой медпред, омниканал, лонч): https://pharmconsilium.com/outsourcing-medpredov
 - Дизайн и контент: https://pharmconsilium.com/design
-- Справочник ЛС: https://pharmconsilium.com/drug-directory
+- Справочник ЛС: https://pharmconsilium.com/FarmConsilium-drug-reference-book
 - Команда и контакты: https://pharmconsilium.com/about
 - Портфолио: https://pharmconsilium.com/portfolio
 
@@ -22,7 +22,7 @@
 
 - CRM для медицинских представителей: https://pharmconsilium.com/pharma-marketing/crm
 - CLM: https://pharmconsilium.com/pharma-marketing/clm
-- Цифровой медицинский представитель: https://pharmconsilium.com/outsourcing/digital-rep
+- Цифровой медицинский представитель: https://pharmconsilium.com/outsourcing/digitalmedrep
 - CLM-презентации и eDetailing: https://pharmconsilium.com/design/clm-presentations
 
 ## Для краулеров

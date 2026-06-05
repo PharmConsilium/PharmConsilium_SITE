@@ -36,8 +36,8 @@ function scrollToDirectoryCard(id) {
 function goNavLink(navigate, currentRoute, sectionId, link, onClose) {
   const to = typeof link === 'string' ? sectionId : (link.to || sectionId);
   const scrollTo = typeof link === 'string' ? null : link.scrollTo;
-  if (scrollTo && (to === DIRECTORY_NAV_ID || to === 'drug-directory')) {
-    if (currentRoute === DIRECTORY_NAV_ID || currentRoute === 'drug-directory') {
+  if (scrollTo && to === DIRECTORY_NAV_ID) {
+    if (currentRoute === DIRECTORY_NAV_ID) {
       scrollToDirectoryCard(scrollTo);
       onClose?.();
       return;
@@ -160,7 +160,7 @@ const MEGA = {
     { label: 'Лончи и кампании',           to: 'portfolio/OTCadvertising-banner' },
     { label: 'AI и продукты',              to: 'portfolio/brandbook-pharma' },
     { label: 'CLM и eDetailing',            to: 'portfolio/clinical-training-HCP' },
-    { label: 'Справочники и платформы',  to: 'portfolio/drug-directory-launch' }],
+    { label: 'Справочники и платформы',  to: 'portfolio/Case-infographic-drug' }],
 
     featured: {
       tag: '80+ запусков',

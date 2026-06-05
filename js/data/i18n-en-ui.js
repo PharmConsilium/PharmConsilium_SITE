@@ -4,7 +4,7 @@ window.I18N_EN = {
   nav: [
     { id: 'pharma-marketing', label: 'Pharmaceutical marketing' },
     { id: 'healthcare', label: 'Healthcare' },
-    { id: 'outsourcing', label: 'Outsourcing' },
+    { id: 'outsourcing-medpredov', label: 'Outsourcing' },
     { id: 'design', label: 'Design' },
     { id: 'FarmConsilium-drug-reference-book', label: 'Drug directory' },
     { id: 'about', label: 'About us' },
@@ -48,7 +48,7 @@ window.I18N_EN = {
         artAlt: 'Healthcare — video training for HCPs',
       },
     },
-    outsourcing: {
+    'outsourcing-medpredov': {
       title: 'Integrated promotion and sales outsourcing',
       links: [
         { label: 'Outsourcing of medical representatives and a digital alternative for pharma companies', to: 'outsourcing/digitalmedrep' },
@@ -113,7 +113,7 @@ window.I18N_EN = {
         { label: 'Launches and campaigns', to: 'portfolio/OTCadvertising-banner' },
         { label: 'AI and products', to: 'portfolio/brandbook-pharma' },
         { label: 'CLM and eDetailing', to: 'portfolio/clinical-training-HCP' },
-        { label: 'Directories and platforms', to: 'portfolio/drug-directory-launch' },
+        { label: 'Directories and platforms', to: 'portfolio/Case-infographic-drug' },
       ],
       featured: {
         tag: '80+ launches',
@@ -169,7 +169,7 @@ window.I18N_EN = {
     tiles: [
       { id: 'pharma-marketing', num: '01', title: 'Pharmaceutical marketing', desc: 'Digital tools for medical representatives.' },
       { id: 'healthcare', num: '02', title: 'Healthcare digital solutions', desc: 'Mobile apps, education platforms, websites, bots, and AI assistants.' },
-      { id: 'outsourcing', num: '03', title: 'Outsourcing', desc: 'Integrated digital promotion programs. Digital medical representative.' },
+      { id: 'outsourcing-medpredov', num: '03', title: 'Outsourcing', desc: 'Integrated digital promotion programs. Digital medical representative.' },
       { id: 'design', num: '04', title: 'Design', desc: 'CLM decks, e-detailers, video, games, and quizzes — what physicians and pharmacists actually use.', wide: true },
       { id: 'FarmConsilium-drug-reference-book', num: '05', title: 'PharmConsilium Drug Directory', desc: 'Prescribing guidance, sample prescriptions, and calculators.', wide: true },
     ],
@@ -271,15 +271,15 @@ window.I18N_EN = {
       h1Accent: 'and sales outsourcing',
       lede: 'We strengthen your sales team and add digital tools',
       cards: [
-        { title: 'Outsourcing of medical representatives and a digital alternative for pharma companies', sub: 'digital-rep', size: 'huge', art: 'ArtTablet',
+        { title: 'Outsourcing of medical representatives and a digital alternative for pharma companies', sub: 'digitalmedrep', size: 'huge', art: 'ArtTablet',
           cardArtAlt: 'Medical representative outsourcing: 3D illustration of human vs robot as a digital field force alternative',
           desc: 'We build digital omnichannel promotion campaigns that take on the role of an outsourced medical representative about: personalized communication architecture for physicians, pharmacists, and pharmacy professionals—on PharmConsilium’s own platform and technology stack.',
           tag: 'Belarus coverage, Outsourcing' },
-        { title: 'Digital medical representative in hybrid pharma brand promotion', sub: 'omnichannel', art: 'ArtNodes',
+        { title: 'Digital medical representative in hybrid pharma brand promotion', sub: 'medrep-omnichannel', art: 'ArtNodes',
           cardArtAlt: 'Digital medical representative: 3D hybrid promotion illustration with digital twin and hologram',
           desc: 'Digital twins (digital avatars) of medical representatives are embedded in an omnichannel digital promotion system: an F2F rep visit, then video viewing where the rep\'s digital avatar comments on clinical trial data.',
           tag: 'DigitalRep, Omnichannel, HCPengagement' },
-        { title: 'Launch outsourcing', sub: 'launch', art: 'ArtLaunch',
+        { title: 'Launch outsourcing', sub: 'launch-outsourcing', art: 'ArtLaunch',
           cardArtAlt: 'Launch outsourcing: 3D illustration of an expert with a medical outsourcing and strategy journal',
           desc: 'Launch outsourcing with PharmConsilium: from strategy and soft launch to digital launch and a full suite of services to bring your brand to the Belarus market. Use our HCP database and digital promotion tools for a fast start on a new pharma market.',
           tag: 'PharmaLaunch, SoftLaunch, LaunchOutsourcing' },

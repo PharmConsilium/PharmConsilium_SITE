@@ -1,4 +1,4 @@
-// Long-form blocks for #sales/digital-rep — DetailLongform renderer.
+// Long-form blocks for outsourcing/digitalmedrep — DetailLongform renderer.
 
 function digitalRepSectionsRu() {
   return [

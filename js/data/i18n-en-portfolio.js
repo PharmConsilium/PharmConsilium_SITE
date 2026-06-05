@@ -332,7 +332,7 @@ window.PORTFOLIO_EN_PATCHES = {
     ],
   },
 
-  'drug-directory-launch': {
+  'Case-infographic-drug': {
     name: 'Drug reference launch',
     client: 'Owned product',
     category: 'Product',

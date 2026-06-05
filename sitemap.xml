@@ -109,6 +109,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pharmconsilium.com/healthcare/patient-mobileapps</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pharmconsilium.com/outsourcing/digitalmedrep</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -118,6 +123,11 @@
   </url>
   <url>
     <loc>https://pharmconsilium.com/outsourcing/launch-outsourcing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/outsourcing/share-of-voice</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -183,6 +193,41 @@
   </url>
   <url>
     <loc>https://pharmconsilium.com/portfolio/Case-infographic-drug</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/portfolio/CLMpresentations-for-medreps</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/portfolio/clinical-training-neurology</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/portfolio/gamification-education-HCP</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/portfolio/hcp-reels-avatar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/portfolio/OTCadvertising-banner-How-to-make</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/portfolio/bot-pharma-digitalmarketing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pharmconsilium.com/portfolio/How-to-make-a-game-for-HCP</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

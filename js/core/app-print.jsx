@@ -18,9 +18,9 @@ function PrintApp() {
     { id: 'home',      el: <HomePage navigate={noop} scenario="comms" setScenario={noop}/> },
     { id: 'pharma-marketing', el: <MarketingPage navigate={noop}/> },
     { id: 'healthcare',       el: <HcpPage navigate={noop}/> },
-    { id: 'outsourcing',     el: <SalesPage navigate={noop}/> },
+    { id: 'outsourcing-medpredov', el: <SalesPage navigate={noop}/> },
     { id: 'design',   el: <ContentPage navigate={noop}/> },
-    { id: 'drug-directory', el: <DirectoryPage navigate={noop}/> },
+    { id: 'FarmConsilium-drug-reference-book', el: <DirectoryPage navigate={noop}/> },
     { id: 'about',      el: <TeamPage navigate={noop}/> },
   ];
 
