@@ -508,15 +508,15 @@ window.PORTFOLIO_EN_PATCHES = {
   },
 
   'OTCadvertising-banner-How-to-make': {
-    name: 'Bepanthen advertising layout series',
+    name: 'How to create and approve an OTC drug ad banner',
     client: 'Bayer',
     infoClient: 'Consumer',
     infoSector: 'OTC',
     category: 'Content',
     sector: 'Pharmacology',
-    cardChips: ['Ad layout', 'OTC', 'Bayer'],
+    cardChips: ['Ad layout', 'OTC'],
     short: 'How to create and approve an OTC drug ad banner — a Bayer brand book case with regulatory sign-off for digital.',
-    hero: 'How to create and approve an OTC drug ad banner. Spoiler: you can’t wing it. An OTC banner must grab attention, explain the use case, and follow the brand book exactly — without distorting the product, misleading consumers, or breaking drug advertising rules.',
+    hero: 'Spoiler: you can’t wing it. An OTC banner must grab attention, explain the use case, and follow the brand book exactly — without distorting the product, misleading consumers, or breaking drug advertising rules.',
     problem: 'The client needed an OTC ad banner built to a strict international brand book. One layout had to combine brand codes, pack shot, target audience, and a clear real-life need state. The banner had to read instantly, stay emotionally appealing, and meet approved indications and mandatory ad requirements. Limited space made it hard to balance image, key message, pack, and legal copy.',
     approach: [
       { t: 'Brand book review and concept search',
@@ -601,7 +601,7 @@ window.PORTFOLIO_EN_PATCHES = {
     infoSector: 'Rx',
     category: 'Gamification',
     sector: '—',
-    cardChips: ['Gamification', 'HCP', 'EGIS'],
+    cardChips: ['Gamification', 'HCP'],
     thumbAlt: 'Grandaxin — browser tapper game for HCP',
     short: 'HCP gamification: a browser game that brings attention back to a well-known product.',
     hero: 'Even a well-known drug can fade into routine for HCPs over time. Gamification helps refocus attention on the brand and deliver familiar product messages in a fresh, emotional format.',
