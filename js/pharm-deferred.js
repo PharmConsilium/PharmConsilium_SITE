@@ -1,14 +1,9 @@
-// Post-mount lazy scripts (forecast chart, robot). Used after bundle or pharm-boot core.
+// Post-mount lazy scripts (forecast chart). Used after bundle or pharm-boot core.
 (function () {
   var CACHE_BUST = window.PHARM_CACHE_BUST || '20260602';
   var isDevHost = /^(localhost|127\.0\.0\.1)$/i.test(location.hostname)
     || location.protocol === 'file:'
     || /(?:\?|&)nocache(?:=|&|$)/.test(location.search);
-
-  var DEFERRED = [
-    'js/components/forecast-chart.jsx',
-    'js/components/robot.jsx',
-  ];
 
   function scriptUrl(path) {
     return path + (path.indexOf('?') >= 0 ? '&' : '?') + 'v=' + CACHE_BUST;
@@ -41,44 +36,12 @@
     } catch (e) { /* ignore */ }
   }
 
-  window.pharmBootDeferred = function pharmBootDeferred(opts) {
-    opts = opts || {};
-    var robotIdle = opts.robotIdle !== false;
-    var paths = DEFERRED.slice();
+  window.pharmBootDeferred = function pharmBootDeferred() {
+    if (window.ForecastChart) return Promise.resolve();
 
-    function runPaths(list) {
-      return Promise.all(list.map(fetchOne)).then(function (sources) {
-        for (var i = 0; i < list.length; i++) {
-          compileAndRun(list[i], sources[i]);
-          if (list[i].indexOf('forecast-chart') >= 0) dispatchReady('forecast-chart');
-          if (list[i].indexOf('robot.jsx') >= 0) dispatchReady('robot');
-        }
-      });
-    }
-
-    function loadForecast() {
-      return runPaths(['js/components/forecast-chart.jsx']);
-    }
-
-    function loadRobot() {
-      return runPaths(['js/components/robot.jsx']);
-    }
-
-    if (window.ForecastChart && window.RobotCompanion) return Promise.resolve();
-
-    var forecastP = window.ForecastChart
-      ? Promise.resolve()
-      : loadForecast();
-
-    return forecastP.then(function () {
-      if (window.RobotCompanion) return;
-      if (!robotIdle) return loadRobot();
-      var start = function () { loadRobot(); };
-      if (typeof requestIdleCallback === 'function') {
-        requestIdleCallback(start, { timeout: 2800 });
-      } else {
-        setTimeout(start, 600);
-      }
+    return Promise.all([fetchOne('js/components/forecast-chart.jsx')]).then(function (sources) {
+      compileAndRun('js/components/forecast-chart.jsx', sources[0]);
+      dispatchReady('forecast-chart');
     });
   };
 

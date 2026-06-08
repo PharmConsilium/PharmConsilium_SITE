@@ -114,10 +114,6 @@ function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
   }, [clearOverride, crossfadeTo, scheduleNext]);
 
   React.useEffect(() => {
-    preloadRobbyFrames();
-  }, []);
-
-  React.useEffect(() => {
     scheduleNext();
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
@@ -197,3 +193,5 @@ Object.assign(window, {
   pharmRobotFace,
   pharmRobotBlink,
 });
+
+preloadRobbyFrames();

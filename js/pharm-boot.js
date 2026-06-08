@@ -1,4 +1,4 @@
-// Boot: parallel fetch + optional Babel cache; core scripts then mount; deferred via pharm-deferred.js
+// Boot: parallel fetch + optional Babel cache; core scripts then mount; forecast chart via pharm-deferred.js
 (function () {
   window.PHARM_CACHE_BUST = window.PHARM_CACHE_BUST || '20260602';
   var CACHE_BUST = window.PHARM_CACHE_BUST;
@@ -23,6 +23,7 @@
     'js/components/detail-page.jsx',
     'js/pages/portfolio-pages.jsx',
     'js/components/robbie-face-cycle.jsx',
+    'js/components/robot.jsx',
     'js/components/contact-modal.jsx',
     'js/components/forecast-modal.jsx',
     'js/components/contact-strip.jsx',
@@ -86,7 +87,7 @@
 
   function afterMount() {
     if (window.pharmBootDeferred) {
-      window.pharmBootDeferred({ robotIdle: true });
+      window.pharmBootDeferred();
     }
   }
 
