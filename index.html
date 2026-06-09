@@ -168,14 +168,28 @@ window.PHARM_HIDE_TWEAKS = !/localhost|127\.0\.0\.1/i.test(location.hostname)
   }
   window.pharmShowBootError = showBootError;
 
+  var bootLoadingTimer = null;
+
   function showBootLoading() {
     var root = document.getElementById('root');
-    if (!root || root.childNodes.length) return;
+    if (!root || window.__pharmReactRoot) return;
     root.innerHTML = '<div style="max-width:520px;margin:48px auto;padding:24px;font-family:system-ui,sans-serif;text-align:center">'
       + '<p style="font-weight:600;margin:0 0 8px">ФармКонсилиум</p>'
       + '<p style="margin:0;color:#5a6273;font-size:14px">Загрузка…</p></div>';
   }
-  showBootLoading();
+
+  window.pharmClearBootLoading = function () {
+    if (bootLoadingTimer) {
+      clearTimeout(bootLoadingTimer);
+      bootLoadingTimer = null;
+    }
+  };
+
+  // На проде с бандлом — не мелькаем «Загрузка…», если JS успел за ~0.5 с.
+  bootLoadingTimer = setTimeout(function () {
+    bootLoadingTimer = null;
+    if (!window.__pharmReactRoot) showBootLoading();
+  }, useBundle && !isLocal ? 550 : 0);
 
   function append(src, onload, onerror) {
     var s = document.createElement('script');

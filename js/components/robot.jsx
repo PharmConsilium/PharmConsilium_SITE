@@ -93,6 +93,16 @@ function robbieAssetSrc(file) {
   return `assets/uploads/${file}?v=${v}`;
 }
 
+function robotPrefersScrollSmoothing() {
+  if (typeof window === 'undefined') return false;
+  if (window.innerWidth <= 1024) return true;
+  try {
+    return window.matchMedia('(pointer: coarse)').matches;
+  } catch (e) {
+    return false;
+  }
+}
+
 function bounceVelocity(vx, vy, nx, ny, restitution) {
   const dot = vx * nx + vy * ny;
   if (dot >= 0) return { vx, vy };
@@ -135,6 +145,8 @@ function RobotCompanion() {
   const blankUntilRef = React.useRef(0);
   const [pose, setPose] = React.useState('normal');
   const [assetsReady, setAssetsReady] = React.useState(false);
+  const [appReady, setAppReady] = React.useState(() => Boolean(window.__pharmAppReady));
+  const [revealed, setRevealed] = React.useState(false);
   const [pageBubble, setPageBubble] = React.useState(null);
   const [surprisePop, setSurprisePop] = React.useState(null);
   const routeRef = React.useRef('home');
@@ -225,9 +237,9 @@ function RobotCompanion() {
     ];
   }, []);
 
-  const computeTarget = React.useCallback(() => {
+  const computeTargetFromScrollY = React.useCallback((scrollY) => {
     const max = (document.documentElement.scrollHeight - window.innerHeight) || 1;
-    const sp = Math.max(0, Math.min(1, window.scrollY / max));
+    const sp = Math.max(0, Math.min(1, scrollY / max));
     const wps = buildWaypoints();
     const seg = sp * (wps.length - 1);
     const i = Math.floor(seg);
@@ -243,7 +255,13 @@ function RobotCompanion() {
     };
   }, [buildWaypoints]);
 
+  const computeTarget = React.useCallback(() => {
+    return computeTargetFromScrollY(window.scrollY);
+  }, [computeTargetFromScrollY]);
+
   React.useEffect(() => {
+    const scrollYSmoothRef = { current: window.scrollY };
+
     // Initialize current position to first computed target on first mount.
     if (!hasInit.current) {
       const t = computeTarget();
@@ -252,29 +270,35 @@ function RobotCompanion() {
       hasInit.current = true;
     }
 
-    const onScroll = () => {
-      targetRef.current = computeTarget();
-    };
     const onResize = () => {
+      scrollYSmoothRef.current = window.scrollY;
       targetRef.current = computeTarget();
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
-    onScroll();
 
     let raf;
     let t0 = performance.now();
 
     const animate = (now) => {
-      const dt = Math.min(0.05, (now - t0) / 1000);
+      const dt = Math.min(robotPrefersScrollSmoothing() ? 0.032 : 0.05, (now - t0) / 1000);
       t0 = now;
-      // Позиция — плавно; scale — ещё медленнее, без дёрганья при скролле.
-      const alpha = 1 - Math.exp(-0.55 * dt);
-      const alphaScale = 1 - Math.exp(-0.12 * dt);
+      const touchScroll = robotPrefersScrollSmoothing();
+      // Позиция — плавно; на touch дополнительно сглаживаем scrollY (инерция iOS).
+      const alphaPos = 1 - Math.exp(-(touchScroll ? 0.28 : 0.55) * dt);
+      const alphaRy = 1 - Math.exp(-(touchScroll ? 0.22 : 0.55) * dt);
+      const alphaScale = 1 - Math.exp(-(touchScroll ? 0.08 : 0.12) * dt);
+      const scrollAlpha = 1 - Math.exp(-(touchScroll ? 2.8 : 7) * dt);
 
       const p = posRef.current;
-      const t = targetRef.current;
       const ix = interactRef.current;
+
+      if (ix.mode === 'scroll' && !dockCopyRef.current) {
+        const rawY = window.scrollY;
+        scrollYSmoothRef.current += (rawY - scrollYSmoothRef.current) * scrollAlpha;
+        targetRef.current = computeTargetFromScrollY(scrollYSmoothRef.current);
+      }
+
+      const t = targetRef.current;
       const radius = robotRadiusPx();
       const prevX = p.x;
       const prevY = p.y;
@@ -328,9 +352,9 @@ function RobotCompanion() {
         }
       } else if (ix.mode !== 'drag') {
         const goal = dockCopyRef.current ? computeDock() : t;
-        p.x  += (goal.x  - p.x)  * alpha;
-        p.y  += (goal.y  - p.y)  * alpha;
-        p.ry += (goal.ry - p.ry) * alpha;
+        p.x  += (goal.x  - p.x)  * alphaPos;
+        p.y  += (goal.y  - p.y)  * alphaPos;
+        p.ry += (goal.ry - p.ry) * alphaRy;
         p.s  += (goal.s  - p.s)  * alphaScale;
       }
 
@@ -345,7 +369,7 @@ function RobotCompanion() {
       const reduced = reducedMotionRef.current;
       const moveSpeed = Math.hypot(v.vx, v.vy);
       const moveLean = reduced ? 0 : clamp(moveSpeed / 200, 0, 1);
-      const isMoving = !reduced && moveSpeed > 65;
+      const isMoving = !reduced && ix.mode === 'free' && moveSpeed > 55;
       const leanZ = moveLean * clamp(v.vx * 0.055, -12, 12);
       const look = lookRef.current;
       const lookAlpha = reduced || isMoving ? 0 : 1 - Math.exp(-6 * dt);
@@ -397,10 +421,9 @@ function RobotCompanion() {
 
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     };
-  }, [computeTarget, computeDock, setRobotPose, registerWallBounce, startBlankAfterAngry]);
+  }, [computeTarget, computeTargetFromScrollY, computeDock, setRobotPose, registerWallBounce, startBlankAfterAngry]);
 
   React.useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -543,7 +566,7 @@ function RobotCompanion() {
   }, [pageBubble]);
 
   React.useEffect(() => {
-    if (!assetsReady || reducedMotionRef.current) {
+    if (!revealed || reducedMotionRef.current) {
       return undefined;
     }
 
@@ -558,7 +581,7 @@ function RobotCompanion() {
         onboardingTimerRef.current = null;
       }
     };
-  }, [assetsReady, showOnboardingBubble]);
+  }, [revealed, showOnboardingBubble]);
 
   React.useEffect(() => () => {
     if (surpriseTimerRef.current) window.clearTimeout(surpriseTimerRef.current);
@@ -880,6 +903,32 @@ function RobotCompanion() {
   const showPose = pose === 'held' || pose === 'angry';
 
   React.useEffect(() => {
+    if (window.__pharmAppReady) {
+      setAppReady(true);
+      return undefined;
+    }
+    const onAppReady = () => setAppReady(true);
+    window.addEventListener('pharm:app-ready', onAppReady);
+    return () => window.removeEventListener('pharm:app-ready', onAppReady);
+  }, []);
+
+  React.useEffect(() => {
+    if (!appReady || !assetsReady) {
+      setRevealed(false);
+      return undefined;
+    }
+    let raf1;
+    let raf2;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setRevealed(true));
+    });
+    return () => {
+      if (raf1) cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
+    };
+  }, [appReady, assetsReady]);
+
+  React.useEffect(() => {
     let cancelled = false;
     const urls = [baseSrc, outlineSrc];
     Promise.all(urls.map((src) => new Promise((resolve) => {
@@ -907,7 +956,7 @@ function RobotCompanion() {
   const robotNode = (
     <div
       ref={wrapRef}
-      className={'robot-img' + (assetsReady ? '' : ' robot-img--boot')}
+      className={'robot-img' + (revealed ? '' : ' robot-img--boot')}
       data-robot-mood="home"
       data-robot-pose={pose}
     >
