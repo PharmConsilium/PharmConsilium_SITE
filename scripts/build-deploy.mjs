@@ -59,10 +59,23 @@ function main() {
     fs.copyFileSync(src, path.join(DIST, name));
   }
 
-  console.log('→ copy css/, assets/, js/');
+  console.log('→ copy css/, assets/, js/, api/');
   copyRecursive(path.join(ROOT, 'css'), path.join(DIST, 'css'));
   copyRecursive(path.join(ROOT, 'assets'), path.join(DIST, 'assets'));
   copyRecursive(path.join(ROOT, 'js'), path.join(DIST, 'js'));
+
+  const apiSrc = path.join(ROOT, 'api');
+  const apiDest = path.join(DIST, 'api');
+  if (fs.existsSync(apiSrc)) {
+    fs.mkdirSync(apiDest, { recursive: true });
+    for (const name of fs.readdirSync(apiSrc)) {
+      if (name === 'config.php') continue;
+      const from = path.join(apiSrc, name);
+      const to = path.join(apiDest, name);
+      if (fs.statSync(from).isDirectory()) copyRecursive(from, to);
+      else fs.copyFileSync(from, to);
+    }
+  }
 
   patchIndexCacheBust(path.join(DIST, 'index.html'));
   patchIndexCacheBust(path.join(ROOT, 'index.html'));

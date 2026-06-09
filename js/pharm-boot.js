@@ -24,6 +24,7 @@
     'js/pages/portfolio-pages.jsx',
     'js/data/robot-hints.js',
     'js/components/robbie-face-cycle.jsx',
+    'js/pharm-form-api.js',
     'js/components/contact-modal.jsx',
     'js/components/forecast-modal.jsx',
     'js/components/contact-strip.jsx',

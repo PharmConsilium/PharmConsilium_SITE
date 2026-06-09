@@ -1,7 +1,7 @@
 // Shared «Discuss your project» form — header Contacts, mid strip, end strip.
-// Submit: mailto:pharmconsilium@gmail.com (static hosting; user completes send in mail client).
+// Submit: POST /api/contact.php → Resend → sergeiprogpharmconsilium@gmail.com
 
-const CONTACT_MAIL = 'pharmconsilium@gmail.com';
+const FALLBACK_MAIL = 'pharmconsilium@gmail.com';
 
 const EXTRA_CHANNELS_RU = [
   { id: 'phone', label: 'Телефон', placeholder: '+375 (__) ___-__-__', inputType: 'tel', autoComplete: 'tel' },
@@ -17,26 +17,24 @@ function contactStrings(lang) {
     return {
       ...en,
       channels: en.channels || EXTRA_CHANNELS_RU,
-      mailSubject: (name) => en.mailSubject.replace('{name}', name),
       errExtra: (label) => en.errExtra.replace('{label}', label),
     };
   }
   return {
     close: 'Закрыть',
     title: 'Давайте обсудим, что вам интересно',
-    note: 'Письмо отправится на адрес',
-    noteSuffix: '— проверьте поля и нажмите «Отправить» в клиенте.',
+    note: 'Заполните форму — мы ответим на ваш e-mail.',
     errRequired: 'Заполните обязательные поля: имя, компания / бренд, текст обращения.',
     errConsent: 'Нужно согласие на обработку персональных данных.',
     errEmail: 'Укажите e-mail — поле обязательно.',
     errExtra: (label) => `Укажите ${label} — выбран этот способ связи.`,
-    mailSubject: (name) => `ФармКонсилиум: обращение от ${name}`,
-    mailBodyIntro: 'Имя:',
-    mailCompany: 'Компания / бренд:',
-    mailEmail: 'E-mail:',
-    mailExtra: (label, val) => `Доп. связь (${label}): ${val}`,
-    mailExtraNone: 'Доп. связь: —',
-    mailMessage: 'Тема, вопрос или задание:',
+    errSend: `Не удалось отправить. Попробуйте позже или напишите на ${FALLBACK_MAIL}.`,
+    errByCode: {
+      not_configured: `Форма на сервере ещё не настроена. Напишите на ${FALLBACK_MAIL}.`,
+      rate_limit: 'Слишком много попыток. Подождите час или напишите на почту.',
+      network: `Нет связи с сервером. Напишите на ${FALLBACK_MAIL}.`,
+    },
+    success: 'Спасибо! Сообщение отправлено — мы ответим на ваш e-mail.',
     nameLabel: 'Ваше имя *',
     companyLabel: 'Название компании, бренд *',
     channelsLegend: 'Укажите предпочтительный способ коммуникации *',
@@ -47,6 +45,7 @@ function contactStrings(lang) {
     consentLink: 'политикой конфиденциальности',
     consentAfter: 'ЧП «ФармКонсилиум» при обработке персональных данных пользователей.',
     submit: 'Отправить',
+    submitting: 'Отправка…',
     cancel: 'Отмена',
     channels: EXTRA_CHANNELS_RU,
   };
@@ -63,17 +62,20 @@ function ContactFormModal({ open, onClose, lang }) {
   const [extraPref, setExtraPref] = React.useState('phone');
   const [extraDetail, setExtraDetail] = React.useState('');
   const [message, setMessage] = React.useState('');
+  const [honeypot, setHoneypot] = React.useState('');
   const [consent, setConsent] = React.useState(false);
   const [error, setError] = React.useState('');
+  const [sending, setSending] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
 
   React.useEffect(() => {
     if (!open) return undefined;
     const esc = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape' && !sending) onClose();
     };
     window.addEventListener('keydown', esc);
     return () => window.removeEventListener('keydown', esc);
-  }, [open, onClose]);
+  }, [open, onClose, sending]);
 
   React.useEffect(() => {
     if (!open) return undefined;
@@ -91,8 +93,11 @@ function ContactFormModal({ open, onClose, lang }) {
       setExtraPref('phone');
       setExtraDetail('');
       setMessage('');
+      setHoneypot('');
       setConsent(false);
       setError('');
+      setSending(false);
+      setSuccess(false);
     }
   }, [open]);
 
@@ -112,8 +117,9 @@ function ContactFormModal({ open, onClose, lang }) {
     }, 80);
   }
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
+    if (sending || success) return;
     setError('');
     if (!fullName.trim() || !company.trim() || !message.trim()) {
       setError(s.errRequired);
@@ -132,27 +138,39 @@ function ContactFormModal({ open, onClose, lang }) {
       setError(typeof s.errExtra === 'function' ? s.errExtra(extra.label) : s.errExtra);
       return;
     }
-
-    const subj = s.mailSubject(fullName.trim());
-    const body = [
-      `${s.mailBodyIntro} ${fullName.trim()}`,
-      `${s.mailCompany} ${company.trim()}`,
-      `${s.mailEmail} ${emailVal.trim()}`,
-      extra ?
-        (l === 'en' ?
-          `${s.mailExtra.replace('{label}', extra.label)} ${extraDetail.trim()}` :
-          `${s.mailExtra(extra.label, extraDetail.trim())}`) :
-        s.mailExtraNone,
-      '',
-      s.mailMessage,
-      message.trim(),
-    ].join('\n');
-
-    if (window.pharmTrackEvent) {
-      window.pharmTrackEvent('contact_form_submit', { event_category: 'engagement' });
+    if (!window.submitPharmForm) {
+      setError(s.errByCode.network);
+      return;
     }
-    window.location.href = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
-    onClose();
+
+    setSending(true);
+    try {
+      await window.submitPharmForm({
+        type: 'contact',
+        lang: l,
+        website: honeypot,
+        consent: true,
+        fullName: fullName.trim(),
+        company: company.trim(),
+        email: emailVal.trim(),
+        extraPref,
+        extraDetail: extraDetail.trim(),
+        message: message.trim(),
+      });
+      if (window.pharmTrackEvent) {
+        window.pharmTrackEvent('contact_form_submit', { event_category: 'engagement' });
+      }
+      setSuccess(true);
+      window.setTimeout(() => onClose(), 2600);
+    } catch (err) {
+      const code = err && err.code ? err.code : 'send_failed';
+      const msg = window.pharmFormErrorMessage
+        ? window.pharmFormErrorMessage(code, s)
+        : s.errSend;
+      setError(msg);
+    } finally {
+      setSending(false);
+    }
   }
 
   if (!open) return null;
@@ -166,24 +184,35 @@ function ContactFormModal({ open, onClose, lang }) {
   }
 
   return (
-    <div className="contact-modal-backdrop" role="presentation" onClick={onClose}>
+    <div className="contact-modal-backdrop" role="presentation" onClick={sending ? undefined : onClose}>
       <div
         className="contact-modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-modal-title"
         onClick={(ev) => ev.stopPropagation()}>
-        <button type="button" className="contact-modal-close btn-icon" aria-label={s.close} onClick={onClose}>
+        <button type="button" className="contact-modal-close btn-icon" aria-label={s.close} onClick={onClose} disabled={sending}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
         <h2 id="contact-modal-title" className="contact-modal-title">{s.title}</h2>
-        <p className="contact-modal-note">
-          {s.note} <strong>{CONTACT_MAIL}</strong> {s.noteSuffix}
-        </p>
+        <p className="contact-modal-note">{s.note}</p>
+        {success ?
+        <div className="contact-modal-success" role="status">{s.success}</div> :
         <form className="contact-modal-form" onSubmit={submit} noValidate>
           {error ? <div className="contact-modal-error" role="alert">{error}</div> : null}
+          <label className="contact-honeypot" aria-hidden="true">
+            <span>Website</span>
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+          </label>
           <div className="contact-modal-grid">
             <label className="contact-field">
               <span className="contact-label">{s.nameLabel}</span>
@@ -195,6 +224,7 @@ function ContactFormModal({ open, onClose, lang }) {
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Elon Musk"
                 required
+                disabled={sending}
               />
             </label>
             <label className="contact-field">
@@ -206,11 +236,12 @@ function ContactFormModal({ open, onClose, lang }) {
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="Viagra, Pfizer"
                 required
+                disabled={sending}
               />
             </label>
           </div>
 
-          <fieldset className="contact-fieldset">
+          <fieldset className="contact-fieldset" disabled={sending}>
             <legend className="contact-label">{s.channelsLegend}</legend>
             <div className="contact-radio-row contact-radio-row--channels">
               {channels.map((ch) =>
@@ -261,11 +292,12 @@ function ContactFormModal({ open, onClose, lang }) {
               onChange={(e) => setMessage(e.target.value)}
               placeholder={s.messagePlaceholder}
               required
+              disabled={sending}
             />
           </label>
 
           <label className="contact-consent">
-            <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+            <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} disabled={sending} />
             <span>
               {s.consentBefore}{' '}
               <a href="/privacy" className="contact-inline-link" onClick={goPrivacy}>
@@ -279,13 +311,13 @@ function ContactFormModal({ open, onClose, lang }) {
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={!consent || !fullName.trim() || !company.trim() || !emailVal.trim() || !message.trim()}
+              disabled={sending || !consent || !fullName.trim() || !company.trim() || !emailVal.trim() || !message.trim()}
             >
-              {s.submit}
+              {sending ? s.submitting : s.submit}
             </button>
-            <button type="button" className="btn btn-ghost" onClick={onClose}>{s.cancel}</button>
+            <button type="button" className="btn btn-ghost" onClick={onClose} disabled={sending}>{s.cancel}</button>
           </div>
-        </form>
+        </form>}
       </div>
     </div>
   );
