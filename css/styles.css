@@ -2472,6 +2472,10 @@ button { font-family: inherit; }
   will-change: transform;
   filter: none;
   transition: opacity 0.35s ease;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   perspective: 1100px;
   perspective-origin: 50% 50%;
 }
@@ -2479,9 +2483,6 @@ button { font-family: inherit; }
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-}
-.robot-img.robot-img--moving {
-  perspective: none;
 }
 .robot-img.robot-img--hide-over-copy {
   opacity: 0;
@@ -2641,16 +2642,18 @@ button { font-family: inherit; }
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .robot-img-body {
   position: relative;
   z-index: 1;
   width: 100%;
   height: 100%;
-  will-change: transform;
   transform-style: flat;
   isolation: isolate;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .robot-img-float {
   position: relative;

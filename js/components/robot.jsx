@@ -93,13 +93,13 @@ function robbieAssetSrc(file) {
   return `assets/uploads/${file}?v=${v}`;
 }
 
-function robotPrefersScrollSmoothing() {
+/** iOS Safari: инерция скролла дёргает scrollY — сглаживаем только цель, не физику броска. */
+function robotUseScrollInertiaSmoothing() {
   if (typeof window === 'undefined') return false;
-  if (window.innerWidth <= 1024) return true;
   try {
     return window.matchMedia('(pointer: coarse)').matches;
   } catch (e) {
-    return false;
+    return window.innerWidth <= 720;
   }
 }
 
@@ -278,16 +278,18 @@ function RobotCompanion() {
 
     let raf;
     let t0 = performance.now();
+    let movingClass = false;
 
     const animate = (now) => {
-      const dt = Math.min(robotPrefersScrollSmoothing() ? 0.032 : 0.05, (now - t0) / 1000);
+      const rawDt = (now - t0) / 1000;
       t0 = now;
-      const touchScroll = robotPrefersScrollSmoothing();
-      // Позиция — плавно; на touch дополнительно сглаживаем scrollY (инерция iOS).
-      const alphaPos = 1 - Math.exp(-(touchScroll ? 0.28 : 0.55) * dt);
-      const alphaRy = 1 - Math.exp(-(touchScroll ? 0.22 : 0.55) * dt);
-      const alphaScale = 1 - Math.exp(-(touchScroll ? 0.08 : 0.12) * dt);
-      const scrollAlpha = 1 - Math.exp(-(touchScroll ? 2.8 : 7) * dt);
+      // Framerate-independent; cap только скачки после фона (Safari / ProMotion).
+      const dt = Math.min(0.05, Math.max(0.001, rawDt));
+      const touchScroll = robotUseScrollInertiaSmoothing();
+      const alphaPos = 1 - Math.exp(-0.55 * dt);
+      const alphaRy = 1 - Math.exp(-0.55 * dt);
+      const alphaScale = 1 - Math.exp(-0.12 * dt);
+      const scrollAlpha = 1 - Math.exp(-(touchScroll ? 6 : 9) * dt);
 
       const p = posRef.current;
       const ix = interactRef.current;
@@ -398,17 +400,20 @@ function RobotCompanion() {
       const body = bodyRef.current;
       const face = faceRef.current;
       if (el) {
-        el.style.transform =
-          `translate3d(calc(-50% + ${p.x + busyX}px), calc(-50% + ${p.y + busyY}px), 0)`;
+        const tx = (p.x + busyX).toFixed(2);
+        const ty = (p.y + busyY).toFixed(2);
+        el.style.transform = `translate3d(calc(-50% + ${tx}px), calc(-50% + ${ty}px), 0)`;
         el.style.opacity = String(busyOpacity);
-        el.classList.toggle('robot-img--moving', isMoving);
+        if (movingClass !== isMoving) {
+          movingClass = isMoving;
+          el.classList.toggle('robot-img--moving', isMoving);
+        }
       }
       if (stage) {
         const ry = tiltY.toFixed(2);
         const rz = leanZ.toFixed(2);
-        stage.style.transform = isMoving
-          ? `rotateY(${ry}deg) rotateZ(${rz}deg)`
-          : `rotateX(${tiltX.toFixed(2)}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
+        const rx = tiltX.toFixed(2);
+        stage.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
       }
       if (body) {
         const s = (displayScale * busyScale * holdScale).toFixed(4);
