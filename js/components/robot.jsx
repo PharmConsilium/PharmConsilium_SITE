@@ -67,8 +67,8 @@ const ROBOT_TAP_MAX_MS = 500;
 const ROBOT_DOUBLE_TAP_MS = 420;
 const ROBOT_BUBBLE_MS = 9000;
 const ROBOT_BUBBLE_TYPE_MS = 3400;
-const ROBOT_ONBOARDING_DELAY_MS = 7000;
-const ROBOT_ONBOARDING_SESSION_KEY = 'pharm:robbie-onboarding-v1';
+const ROBOT_ONBOARDING_DELAY_MS = 5000;
+const ROBOT_ONBOARDING_VISIBLE_MS = 7000;
 
 function robotOnboardingBubbleText() {
   const lang = window.getSiteLang ? window.getSiteLang() : 'ru';
@@ -76,20 +76,6 @@ function robotOnboardingBubbleText() {
     return 'Double-click me to get a tip about this page.';
   }
   return 'Кликни дважды по мне, чтобы получить справку по странице';
-}
-
-function robotOnboardingWasShown() {
-  try {
-    return sessionStorage.getItem(ROBOT_ONBOARDING_SESSION_KEY) === '1';
-  } catch (e) {
-    return false;
-  }
-}
-
-function markRobotOnboardingShown() {
-  try {
-    sessionStorage.setItem(ROBOT_ONBOARDING_SESSION_KEY, '1');
-  } catch (e) { /* ignore */ }
 }
 
 function bubbleCharDelay(full, index) {
@@ -465,19 +451,16 @@ function RobotCompanion() {
 
   const showOnboardingBubble = React.useCallback(() => {
     if (reducedMotionRef.current || busyRef.current || pageBubbleOpenRef.current) return;
-    if (robotOnboardingWasShown()) return;
-    markRobotOnboardingShown();
     const full = robotOnboardingBubbleText();
     clearBubbleSpeech();
     if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
     bubbleTimerRef.current = null;
     setPageBubble({ full, shown: full, done: true, onboarding: true });
-    scheduleBubbleDismiss(ROBOT_BUBBLE_MS);
+    scheduleBubbleDismiss(ROBOT_ONBOARDING_VISIBLE_MS);
   }, [clearBubbleSpeech, scheduleBubbleDismiss]);
 
   const showPageBubble = React.useCallback(() => {
     if (reducedMotionRef.current || busyRef.current) return;
-    markRobotOnboardingShown();
     const full = window.getRobotPageHint
       ? window.getRobotPageHint(routeRef.current)
       : 'Подсказка по этой странице скоро появится.';
@@ -560,7 +543,7 @@ function RobotCompanion() {
   }, [pageBubble]);
 
   React.useEffect(() => {
-    if (!assetsReady || reducedMotionRef.current || robotOnboardingWasShown()) {
+    if (!assetsReady || reducedMotionRef.current) {
       return undefined;
     }
 
