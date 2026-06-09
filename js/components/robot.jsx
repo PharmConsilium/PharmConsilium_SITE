@@ -67,6 +67,30 @@ const ROBOT_TAP_MAX_MS = 500;
 const ROBOT_DOUBLE_TAP_MS = 420;
 const ROBOT_BUBBLE_MS = 9000;
 const ROBOT_BUBBLE_TYPE_MS = 3400;
+const ROBOT_ONBOARDING_DELAY_MS = 7000;
+const ROBOT_ONBOARDING_SESSION_KEY = 'pharm:robbie-onboarding-v1';
+
+function robotOnboardingBubbleText() {
+  const lang = window.getSiteLang ? window.getSiteLang() : 'ru';
+  if (lang === 'en') {
+    return 'Double-click me to get a tip about this page.';
+  }
+  return 'Кликни дважды по мне, чтобы получить справку по странице';
+}
+
+function robotOnboardingWasShown() {
+  try {
+    return sessionStorage.getItem(ROBOT_ONBOARDING_SESSION_KEY) === '1';
+  } catch (e) {
+    return false;
+  }
+}
+
+function markRobotOnboardingShown() {
+  try {
+    sessionStorage.setItem(ROBOT_ONBOARDING_SESSION_KEY, '1');
+  } catch (e) { /* ignore */ }
+}
 
 function bubbleCharDelay(full, index) {
   const len = Math.max(full.length, 1);
@@ -132,6 +156,8 @@ function RobotCompanion() {
   const bubbleTimerRef = React.useRef(null);
   const bubbleSpeechRef = React.useRef({ timer: null, raf: 0, gen: 0 });
   const bubbleScrollRef = React.useRef(null);
+  const pageBubbleOpenRef = React.useRef(false);
+  const onboardingTimerRef = React.useRef(null);
   const tapRef = React.useRef({ count: 0, lastAt: 0, x: 0, y: 0, resetTimer: null });
   const [facePaused, setFacePaused] = React.useState(false);
   const reducedMotionRef = React.useRef(
@@ -437,8 +463,21 @@ function RobotCompanion() {
     bubbleTimerRef.current = window.setTimeout(dismissPageBubble, delayMs);
   }, [dismissPageBubble]);
 
+  const showOnboardingBubble = React.useCallback(() => {
+    if (reducedMotionRef.current || busyRef.current || pageBubbleOpenRef.current) return;
+    if (robotOnboardingWasShown()) return;
+    markRobotOnboardingShown();
+    const full = robotOnboardingBubbleText();
+    clearBubbleSpeech();
+    if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    bubbleTimerRef.current = null;
+    setPageBubble({ full, shown: full, done: true, onboarding: true });
+    scheduleBubbleDismiss(ROBOT_BUBBLE_MS);
+  }, [clearBubbleSpeech, scheduleBubbleDismiss]);
+
   const showPageBubble = React.useCallback(() => {
     if (reducedMotionRef.current || busyRef.current) return;
+    markRobotOnboardingShown();
     const full = window.getRobotPageHint
       ? window.getRobotPageHint(routeRef.current)
       : 'Подсказка по этой странице скоро появится.';
@@ -516,9 +555,32 @@ function RobotCompanion() {
     return false;
   }, [showPageBubble]);
 
+  React.useEffect(() => {
+    pageBubbleOpenRef.current = !!pageBubble;
+  }, [pageBubble]);
+
+  React.useEffect(() => {
+    if (!assetsReady || reducedMotionRef.current || robotOnboardingWasShown()) {
+      return undefined;
+    }
+
+    onboardingTimerRef.current = window.setTimeout(() => {
+      onboardingTimerRef.current = null;
+      showOnboardingBubble();
+    }, ROBOT_ONBOARDING_DELAY_MS);
+
+    return () => {
+      if (onboardingTimerRef.current) {
+        window.clearTimeout(onboardingTimerRef.current);
+        onboardingTimerRef.current = null;
+      }
+    };
+  }, [assetsReady, showOnboardingBubble]);
+
   React.useEffect(() => () => {
     if (surpriseTimerRef.current) window.clearTimeout(surpriseTimerRef.current);
     if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    if (onboardingTimerRef.current) window.clearTimeout(onboardingTimerRef.current);
     if (bubbleSpeechRef.current.timer) window.clearTimeout(bubbleSpeechRef.current.timer);
     if (bubbleSpeechRef.current.raf) window.cancelAnimationFrame(bubbleSpeechRef.current.raf);
     if (tapRef.current.resetTimer) window.clearTimeout(tapRef.current.resetTimer);
@@ -868,7 +930,7 @@ function RobotCompanion() {
     >
       {pageBubble ?
         <div
-          className="robot-bubble-wrap"
+          className={'robot-bubble-wrap' + (pageBubble.onboarding ? ' robot-bubble-wrap--onboarding' : '')}
           role="status"
           aria-live={pageBubble.done ? 'polite' : 'off'}
         >
