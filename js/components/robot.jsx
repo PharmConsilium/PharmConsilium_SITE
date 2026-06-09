@@ -36,9 +36,9 @@ function fireRobotFace(frame, duration) {
 
 function robotRadiusPx() {
   const vw = window.innerWidth;
-  if (vw <= 720) return 52;
-  if (vw <= 1024) return 60;
-  return 72;
+  if (vw <= 720) return 47;
+  if (vw <= 1024) return 54;
+  return 64;
 }
 
 function robotBounds(radius) {
@@ -180,7 +180,7 @@ function RobotCompanion() {
     const vh = window.innerHeight;
     const isPhone = vw <= 720;
     const inset = isPhone ? 52 : 68;
-    const half = isPhone ? 65 : 75;
+    const half = isPhone ? 59 : 67;
     return {
       x: vw / 2 - inset - half,
       y: -vh / 2 + inset + half,
