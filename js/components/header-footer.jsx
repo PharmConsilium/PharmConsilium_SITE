@@ -20,6 +20,54 @@ const FOOTER_OFFICE_LON = 23.830682;
 const FOOTER_OFFICE_LAT = 53.678705;
 const FOOTER_MAP_EMBED = `https://yandex.by/map-widget/v1/?ll=${FOOTER_OFFICE_LON}%2C${FOOTER_OFFICE_LAT}&z=17&ol=biz&oid=${FOOTER_YANDEX_ORG_ID}&l=map`;
 const FOOTER_MAP_LINK = `https://yandex.by/maps/org/${FOOTER_YANDEX_ORG_SLUG}/${FOOTER_YANDEX_ORG_ID}/?ll=${FOOTER_OFFICE_LON}%2C${FOOTER_OFFICE_LAT}&z=17`;
+const FOOTER_MAP_SESSION_KEY = 'pharm:footer-map-ready';
+
+let footerMapIframe = null;
+
+function footerMapWasReady() {
+  if (footerMapIframe) return true;
+  try {
+    return sessionStorage.getItem(FOOTER_MAP_SESSION_KEY) === '1';
+  } catch (e) {
+    return false;
+  }
+}
+
+function markFooterMapReady() {
+  try {
+    sessionStorage.setItem(FOOTER_MAP_SESSION_KEY, '1');
+  } catch (e) { /* ignore */ }
+}
+
+function getFooterMapPark() {
+  let park = document.getElementById('pharm-footer-map-park');
+  if (!park) {
+    park = document.createElement('div');
+    park.id = 'pharm-footer-map-park';
+    park.hidden = true;
+    park.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(park);
+  }
+  return park;
+}
+
+function parkFooterMapIframe() {
+  if (!footerMapIframe || !footerMapIframe.parentNode) return;
+  getFooterMapPark().appendChild(footerMapIframe);
+}
+
+function ensureFooterMapIframe(mapTitle) {
+  if (!footerMapIframe) {
+    footerMapIframe = document.createElement('iframe');
+    footerMapIframe.className = 'footer-map__iframe';
+    footerMapIframe.src = FOOTER_MAP_EMBED;
+    footerMapIframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    footerMapIframe.setAttribute('allowfullscreen', '');
+    markFooterMapReady();
+  }
+  footerMapIframe.title = mapTitle;
+  return footerMapIframe;
+}
 
 function scrollToDirectoryCard(id) {
   if (!id) return;
@@ -466,9 +514,16 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
 
 function FooterMapEmbed({ isEn }) {
   const hostRef = React.useRef(null);
-  const [showMap, setShowMap] = React.useState(false);
+  const slotRef = React.useRef(null);
+  const [showMap, setShowMap] = React.useState(footerMapWasReady);
+
+  const mapLabel = isEn ? 'Office location on map' : 'Офис на карте';
+  const mapTitle = isEn ?
+  'PharmConsilium office — Grodno, Sovetskaya Square 2A' :
+  'Офис ФармКонсилиум — Гродно, площадь Советская 2А';
 
   React.useEffect(() => {
+    if (showMap) return undefined;
     const node = hostRef.current;
     if (!node) return undefined;
 
@@ -491,24 +546,30 @@ function FooterMapEmbed({ isEn }) {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [showMap]);
 
-  const mapLabel = isEn ? 'Office location on map' : 'Офис на карте';
-  const mapTitle = isEn ?
-  'PharmConsilium office — Grodno, Sovetskaya Square 2A' :
-  'Офис ФармКонсилиум — Гродно, площадь Советская 2А';
+  React.useEffect(() => {
+    if (!showMap) return undefined;
+    const slot = slotRef.current;
+    if (!slot) return undefined;
+
+    const iframe = ensureFooterMapIframe(mapTitle);
+    if (iframe.parentNode !== slot) {
+      slot.insertBefore(iframe, slot.firstChild);
+    }
+
+    return () => {
+      parkFooterMapIframe();
+    };
+  }, [showMap, mapTitle]);
 
   return (
     <div className="footer-map" ref={hostRef} aria-label={mapLabel}>
-      {showMap ?
-      <iframe
-        title={mapTitle}
-        src={FOOTER_MAP_EMBED}
-        referrerPolicy="no-referrer-when-downgrade"
-        allowFullScreen /> :
-
-      <div className="footer-map-skeleton" aria-hidden="true" />
-      }
+      <div className="footer-map__slot" ref={slotRef}>
+        {!showMap ?
+        <div className="footer-map-skeleton" aria-hidden="true" /> :
+        null}
+      </div>
       <a
         className="footer-map-link"
         href={FOOTER_MAP_LINK}

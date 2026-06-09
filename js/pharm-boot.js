@@ -22,6 +22,7 @@
     'js/components/portfolio-video.jsx',
     'js/components/detail-page.jsx',
     'js/pages/portfolio-pages.jsx',
+    'js/data/robot-hints.js',
     'js/components/robbie-face-cycle.jsx',
     'js/components/contact-modal.jsx',
     'js/components/forecast-modal.jsx',
@@ -86,7 +87,7 @@
 
   function afterMount() {
     if (window.pharmBootDeferred) {
-      window.pharmBootDeferred({ robotIdle: true });
+      window.pharmBootDeferred({ robotIdle: false });
     }
   }
 
