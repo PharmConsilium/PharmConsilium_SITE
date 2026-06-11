@@ -11,7 +11,7 @@ function PortfolioVideoPlayer({ src, poster, posterFromVideo, alt, active, class
   const videoRef = React.useRef(null);
   const [armed, setArmed] = React.useState(false);
   const [framePoster, setFramePoster] = React.useState(null);
-  const useFirstFrame = Boolean(posterFromVideo);
+  const useFirstFrame = !poster;
 
   React.useEffect(() => {
     if (active) setArmed(true);
@@ -53,6 +53,10 @@ function PortfolioVideoPlayer({ src, poster, posterFromVideo, alt, active, class
     if (!el) return undefined;
 
     const seekToStart = () => {
+      if (el.currentTime === 0) {
+        captureFirstFrame();
+        return;
+      }
       const onSeeked = () => {
         captureFirstFrame();
         el.removeEventListener('seeked', onSeeked);
@@ -73,7 +77,7 @@ function PortfolioVideoPlayer({ src, poster, posterFromVideo, alt, active, class
 
   if (!src) return null;
 
-  const effectivePoster = useFirstFrame ? (framePoster || undefined) : (poster || undefined);
+  const effectivePoster = framePoster || poster || undefined;
 
   return (
     <video
@@ -85,6 +89,7 @@ function PortfolioVideoPlayer({ src, poster, posterFromVideo, alt, active, class
       poster={effectivePoster}
       src={armed ? src : undefined}
       aria-label={alt || undefined}
+      onLoadedData={useFirstFrame && !framePoster ? captureFirstFrame : undefined}
       onLoadedMetadata={publishAspect}
     />
   );
