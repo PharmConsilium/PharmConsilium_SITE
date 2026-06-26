@@ -21,10 +21,11 @@ function parseSubpages() {
     const slice = sub.slice(start, end > start ? end : sub.length);
     const title = (slice.match(/title:\s*'([^']*)'/) || [])[1] || '';
     const lede = (slice.match(/lede:\s*'([^']*)'/) || [])[1] || '';
+    const metaDescription = (slice.match(/metaDescription:\s*'([^']*)'/) || [])[1] || '';
     const related = !!(slice.match(/related:\s*\[/));
     const altCount = (slice.match(/alt:\s*'/g) || []).length;
     const artSlides = (slice.match(/artSlides/g) || []).length;
-    out.push({ route: k, title, lede, related, alt: altCount > 0 || artSlides > 0 });
+    out.push({ route: k, title, lede: metaDescription || lede, related, alt: altCount > 0 || artSlides > 0 });
   }
   return out;
 }
@@ -40,11 +41,12 @@ function parsePortfolio() {
     const slice = port.slice(start, next > 0 ? next : port.length);
     const name = (slice.match(/name:\s*'([^']*)'/) || [])[1] || '';
     const short = (slice.match(/short:\s*'([^']*)'/) || [])[1] || '';
+    const metaDescription = (slice.match(/metaDescription:\s*'([^']*)'/) || [])[1] || '';
     const hero = (slice.match(/hero:\s*'([^']*)'/) || [])[1] || '';
     const draft = /draft:\s*true/.test(slice) || slug.includes('draft');
     const related = !!(slice.match(/related:\s*\[/));
     const altCount = (slice.match(/alt:\s*'/g) || []).length;
-    out.push({ slug, name, short, hero, draft, related, alt: altCount > 0 });
+    out.push({ slug, name, short: metaDescription || short, hero, draft, related, alt: altCount > 0 });
   }
   return out;
 }
@@ -60,8 +62,8 @@ function parseStatic() {
     const k = m[1] || m[2];
     const chunk = m[3];
     const title = (chunk.match(/title:\s*'([^']*)'/) || [])[1] || '';
-    let desc = (chunk.match(/description:\s*([^,\n]+)/) || [])[1] || '';
-    desc = desc ? desc.replace(/SITE\.defaultDescription/, '(defaultDescription)').replace(/'/g, '').trim() : '';
+    let desc = (chunk.match(/description:\s*'([^']*)'/) || [])[1] || '';
+    if (!desc) desc = (chunk.match(/description:\s*SITE\.defaultDescriptionEn?/) || [])[0] ? '(defaultDescription)' : '';
     out.push({ route: k, title, lede: desc });
   }
   return out;

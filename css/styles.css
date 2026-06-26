@@ -163,6 +163,8 @@ button { font-family: inherit; }
 .brand {
   display: flex; align-items: center;
   cursor: pointer; user-select: none;
+  text-decoration: none;
+  color: inherit;
 }
 .brand-logo {
   width: 150px;
@@ -204,6 +206,7 @@ button { font-family: inherit; }
   cursor: pointer;
   transition: background 150ms ease, color 150ms ease;
   white-space: nowrap;
+  text-decoration: none;
 }
 .nav-item:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
 .nav-item.active { color: var(--accent); }
@@ -446,6 +449,7 @@ button { font-family: inherit; }
     color: var(--ink-2);
     cursor: pointer;
     transition: background 140ms ease, color 140ms ease;
+    text-decoration: none;
   }
   .mobile-nav-link-label {
     flex: 1;
@@ -500,6 +504,7 @@ button { font-family: inherit; }
     color: var(--ink-2);
     cursor: pointer;
     transition: background 140ms ease, color 140ms ease;
+    text-decoration: none;
   }
   .mobile-nav-sublink:hover {
     background: color-mix(in srgb, var(--ink) 6%, transparent);
@@ -578,11 +583,19 @@ button { font-family: inherit; }
   list-style: none; padding: 0; margin: 0;
 }
 .mega-links li {
-  padding: 8px 10px 8px 12px; border-radius: 8px;
+  padding: 0;
+  border-radius: 8px;
   font-size: 15px; font-weight: 500; color: var(--ink-2);
   cursor: pointer;
-  display: flex; align-items: center; gap: 8px;
   transition: background 140ms ease, color 140ms ease;
+}
+.mega-links li a {
+  padding: 8px 10px 8px 12px;
+  border-radius: 8px;
+  display: flex; align-items: center; gap: 8px;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 .mega-links li:hover { background: var(--accent-soft); color: var(--accent); }
 .mega-links li .arrow { opacity: 0; transform: translateX(-4px); transition: all 140ms; font-size: 13px; }
@@ -655,7 +668,7 @@ button { font-family: inherit; }
 @media (max-width: 960px) {
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
 }
-.hero h1 {
+.hero .hero-display {
   font-family: var(--font-display); font-weight: 500;
   font-size: clamp(40px, 5.6vw, 76px);
   line-height: 0.98;
@@ -663,11 +676,21 @@ button { font-family: inherit; }
   margin: 18px 0 22px;
   color: var(--ink);
 }
+.hero h1.eyebrow {
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.48;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
 .page-hero h1,
 .detail-hero h1 {
   color: var(--ink);
 }
-.hero h1 .accent,
+.hero .hero-display .accent,
 .page-hero h1 .accent,
 .detail-hero h1 .accent {
   color: var(--accent);
@@ -682,12 +705,12 @@ button { font-family: inherit; }
     word-break: normal;
   }
 }
-.hero h1 .h1-primary,
+.hero .hero-display .h1-primary,
 .page-hero h1 .h1-primary,
 .detail-hero h1 .h1-primary {
   color: var(--ink);
 }
-.hero h1 .muted { color: var(--muted-2); }
+.hero .hero-display .muted { color: var(--muted-2); }
 .hero-lede {
   font-size: 18px; color: var(--muted);
   max-width: min(46ch, 100%); margin: 0 0 32px;
@@ -2166,15 +2189,16 @@ button { font-family: inherit; }
 .footer-col ul li {
   color: var(--ink-2);
   font-size: 14px;
-  cursor: pointer;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 .footer-col ul li a {
+  color: inherit;
+  text-decoration: none;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
-.footer-col ul li:hover { color: var(--accent); }
+.footer-col ul li a:hover { color: var(--accent); }
 .footer-tag {
   font-family: var(--font-display); font-weight: 500;
   font-size: 22px; letter-spacing: -0.02em;
@@ -2233,6 +2257,11 @@ button { font-family: inherit; }
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+.footer-meta a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer-meta a:hover { color: var(--accent); }
 @media (max-width: 600px) {
   .footer-grid {
     grid-template-columns: minmax(0, 1fr);

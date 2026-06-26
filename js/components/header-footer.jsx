@@ -21,6 +21,35 @@ const FOOTER_OFFICE_LAT = 53.678705;
 const FOOTER_MAP_EMBED = `https://yandex.by/map-widget/v1/?ll=${FOOTER_OFFICE_LON}%2C${FOOTER_OFFICE_LAT}&z=17&ol=biz&oid=${FOOTER_YANDEX_ORG_ID}&l=map`;
 const FOOTER_MAP_LINK = `https://yandex.by/maps/org/${FOOTER_YANDEX_ORG_SLUG}/${FOOTER_YANDEX_ORG_ID}/?ll=${FOOTER_OFFICE_LON}%2C${FOOTER_OFFICE_LAT}&z=17`;
 
+function pathForRoute(route) {
+  const r = String(route || '').replace(/^\/+/, '').replace(/\/+$/, '');
+  return !r || r === 'home' ? '/' : `/${r}`;
+}
+
+function isModifiedNavClick(e) {
+  return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0;
+}
+
+function handleSpaNavClick(e, navigate, routeId, onAfter) {
+  if (isModifiedNavClick(e)) return;
+  e.preventDefault();
+  navigate(routeId);
+  onAfter?.();
+}
+
+function hrefForNavLink(sectionId, link) {
+  const to = typeof link === 'string' ? sectionId : (link.to || sectionId);
+  const scrollTo = typeof link === 'string' ? null : link.scrollTo;
+  const base = pathForRoute(to);
+  return scrollTo ? `${base}#${scrollTo}` : base;
+}
+
+function handleMegaNavClick(e, navigate, currentRoute, sectionId, link, onClose) {
+  if (isModifiedNavClick(e)) return;
+  e.preventDefault();
+  goNavLink(navigate, currentRoute, sectionId, link, onClose);
+}
+
 function scrollToDirectoryCard(id) {
   if (!id) return;
   requestAnimationFrame(() => {
@@ -306,22 +335,27 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
       <div className="container header-inner">
         {/* LEFT: brand */}
         <div className="header-left">
-          <div className="brand" onClick={() => {navigate('home');setOpenMenu(null);}}>
+          <a
+            href="/"
+            className="brand"
+            onClick={(e) => handleSpaNavClick(e, navigate, 'home', () => setOpenMenu(null))}
+          >
             <img src="assets/logo.svg" alt={t('brandAlt')} className="brand-logo" />
-          </div>
+          </a>
         </div>
 
         {/* CENTER: nav */}
         <nav className="nav" onMouseLeave={scheduleClose}>
           <div className="nav-items">
             {navItems.map((item) =>
-              <div key={item.id}
+              <a key={item.id}
+                href={pathForRoute(item.id)}
                 className={`nav-item ${route === item.id ? 'active' : ''}`}
                 onMouseEnter={() => open(item.id)}
-                onClick={() => {navigate(item.id);setOpenMenu(null);}}
+                onClick={(e) => handleSpaNavClick(e, navigate, item.id, () => setOpenMenu(null))}
               >
                 {item.label}
-              </div>
+              </a>
             )}
           </div>
           <div className="nav-actions" aria-label={t('headerActionsAria') || 'Действия'}>
@@ -378,9 +412,14 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
                 {megaConfig[openMenu].links.map((l, i) => {
                 const label = typeof l === 'string' ? l : l.label;
                 return (
-                  <li key={i} onClick={() => goNavLink(navigate, route, openMenu, l, () => setOpenMenu(null))}>
+                  <li key={i}>
+                    <a
+                      href={hrefForNavLink(openMenu, l)}
+                      onClick={(e) => handleMegaNavClick(e, navigate, route, openMenu, l, () => setOpenMenu(null))}
+                    >
                       {label}<span className="arrow">→</span>
-                    </li>);
+                    </a>
+                  </li>);
 
               })}
               </ul>
@@ -417,12 +456,16 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
           return (
             <div key={item.id} className={`mobile-nav-group${expanded ? ' is-expanded' : ''}`}>
               <div className={`mobile-nav-row${expanded ? ' is-expanded' : ''}`}>
-                <button
-                  type="button"
+                <a
+                  href={pathForRoute(item.id)}
                   className="mobile-nav-link"
-                  onClick={() => goMobile(item.id)}>
+                  onClick={(e) => {
+                    if (isModifiedNavClick(e)) return;
+                    e.preventDefault();
+                    goMobile(item.id);
+                  }}>
                   <span className="mobile-nav-link-label">{item.label}</span>
-                </button>
+                </a>
                 {mega ?
                   <button
                     type="button"
@@ -445,12 +488,12 @@ function Header({ route, navigate, lang, setLang, theme, themeMode, setTheme, on
                       const label = typeof l === 'string' ? l : l.label;
                       return (
                         <li key={i}>
-                          <button
-                            type="button"
+                          <a
+                            href={hrefForNavLink(item.id, l)}
                             className="mobile-nav-sublink"
-                            onClick={() => goNavLink(navigate, route, item.id, l, closeMobileNav)}>
+                            onClick={(e) => handleMegaNavClick(e, navigate, route, item.id, l, closeMobileNav)}>
                             {label}
-                          </button>
+                          </a>
                         </li>);
                     })}
                   </ul>
@@ -586,7 +629,14 @@ function Footer({ navigate, lang }) {
             <h4>{isEn ? fc.sections : 'Разделы'}</h4>
             <ul>
               {navItems.map((n) =>
-              <li key={n.id} onClick={() => navigate(n.id)}>{n.label}</li>
+              <li key={n.id}>
+                <a
+                  href={pathForRoute(n.id)}
+                  onClick={(e) => handleSpaNavClick(e, navigate, n.id)}
+                >
+                  {n.label}
+                </a>
+              </li>
               )}
             </ul>
           </div>
@@ -614,15 +664,12 @@ function Footer({ navigate, lang }) {
         <div className="footer-meta">
           <div>{isEn ? fc.unp : 'УНП 591019395'}</div>
           <div style={{ display: 'flex', gap: 18 }}>
-            <span
-              role="link"
-              tabIndex={0}
-              style={{ cursor: 'pointer' }}
-              onClick={() => navigate('privacy')}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('privacy'); } }}
+            <a
+              href="/privacy"
+              onClick={(e) => handleSpaNavClick(e, navigate, 'privacy')}
             >
               {isEn ? fc.privacy : 'Политика конфиденциальности при обработке персональных данных'}
-            </span>
+            </a>
           </div>
         </div>
       </div>
