@@ -7,9 +7,9 @@ const SITE = {
   siteName: 'ФармКонсилиум',
   siteNameEn: 'PharmConsilium',
   defaultDescription:
-    'IT-решения для фармацевтического маркетинга в Беларуси: CRM, CLM, AI для медпредов, контент, справочник ЛС. Команда внедрения цифровых технологий.',
+    'IT-решения для фармацевтического маркетинга в Беларуси: CRM, CLM, чат-боты, ИИ для медпредов, контент и справочник ЛС. 80+ запусков, внедрение под ключ.',
   defaultDescriptionEn:
-    'IT solutions for pharmaceutical marketing in Belarus: CRM, CLM, AI for medical reps, content, and drug directory. Digital implementation team.',
+    'IT solutions for pharmaceutical marketing in Belarus: CRM, CLM, chatbots, AI for medical reps, content, and drug directory. 80+ launches, turnkey delivery.',
 };
 
 const SEO_STATIC = {
@@ -19,35 +19,35 @@ const SEO_STATIC = {
   },
   'pharma-marketing': {
     title: 'Фармацевтический маркетинг · ФармКонсилиум',
-    description: 'CRM, CLM, чат-боты, веб и мобильные продукты, ИИ для медпредставителей. Омниканальная работа с HCP в РБ.',
+    description: 'CRM, CLM, чат-боты, веб и мобильные продукты, ИИ для медпредов в Беларуси. Омниканальная работа с HCP и визитная аналитика — под ключ от ФармКонсилиум.',
   },
   healthcare: {
     title: 'Здравоохранение · ФармКонсилиум',
-    description: 'ИИ-ассистенты, образовательные платформы, рекомендательные системы и программы поддержки пациентов.',
+    description: 'ИИ-ассистенты, образовательные LMS-платформы, программы поддержки пациентов и мобильные приложения для врачей и провизоров в Беларуси. ФармКонсилиум.',
   },
   'outsourcing-medpredov': {
     title: 'Аутсорсинг · ФармКонсилиум',
-    description: 'Цифровой медпред, омниканальные кампании, лонч-аутсорсинг и аналитика продаж на рынке РБ.',
+    description: 'Цифровой медпред, омниканальные кампании, лонч-аутсорсинг и аналитика продаж на рынке РБ. Аутсорсинг продвижения фармбрендов от ФармКонсилиум.',
   },
   design: {
     title: 'Дизайн · ФармКонсилиум',
-    description: 'Медицинские презентации, видео, eDetailing, геймификация и квизы для фарм-брендов.',
+    description: 'CLM-презентации, видео, eDetailing, геймификация и квизы для фармбрендов в Беларуси. Медицинский дизайн и контент под ключ — ФармКонсилиум.',
   },
   'FarmConsilium-drug-reference-book': {
     title: 'Справочник лекарственных средств · ФармКонсилиум',
-    description: 'Доверительная ординаторская: справочник ЛС для врачей и провизоров Беларуси.',
+    description: 'Справочник лекарственных средств для врачей и провизоров Беларуси: актуальные данные о препаратах, противопоказаниях и дозировках. ФармКонсилиум.',
   },
   about: {
     title: 'Команда и контакты · ФармКонсилиум',
-    description: 'Связаться с командой ФармКонсилиум: 80+ запусков, 15 лет в фарм-маркетинге, внедрение под ключ.',
+    description: 'Команда ФармКонсилиум: 80+ запусков, 15 лет в фарм-маркетинге Беларуси. Контакты, офис в Минске, внедрение CRM, CLM и цифровых решений под ключ.',
   },
   privacy: {
     title: 'Политика конфиденциальности · ФармКонсилиум',
-    description: 'Политика обработки и защиты персональных данных ЧП «ФармКонсилиум» на цифровых ресурсах. Контакты ответственного лица.',
+    description: 'Политика обработки персональных данных ЧП «ФармКонсилиум» на сайте pharmconsilium.com. Порядок сбора, хранения и защиты данных. Контакты DPO.',
   },
   portfolio: {
     title: 'Портфолио, проекты и фичи · ФармКонсилиум',
-    description: 'Реализованные проекты: CRM, CLM, лончи, образовательные платформы и цифровые кампании в РБ.',
+    description: 'Реализованные проекты ФармКонсилиум: CRM, CLM, лончи, образовательные платформы, видео и геймификация для фармбрендов в Беларуси. Кейсы и результаты.',
   },
 };
 
@@ -58,35 +58,35 @@ const SEO_STATIC_EN = {
   },
   'pharma-marketing': {
     title: 'Pharmaceutical marketing · PharmConsilium',
-    description: 'CRM, CLM, chatbots, web and mobile products, AI for medical representatives. Omnichannel HCP engagement in Belarus.',
+    description: 'CRM, CLM, chatbots, web and mobile products, and AI for medical reps in Belarus. Omnichannel HCP engagement and visit analytics — turnkey from PharmConsilium.',
   },
   healthcare: {
     title: 'Healthcare · PharmConsilium',
-    description: 'AI assistants, education platforms, recommender systems, and patient support programs.',
+    description: 'AI assistants, LMS education platforms, patient support programs, and mobile apps for physicians and pharmacists in Belarus. PharmConsilium.',
   },
   'outsourcing-medpredov': {
     title: 'Outsourcing · PharmConsilium',
-    description: 'Digital medical representative, omnichannel campaigns, launch outsourcing, and sales analytics in Belarus.',
+    description: 'Digital medical rep, omnichannel campaigns, launch outsourcing, and sales analytics in Belarus. Pharma brand promotion outsourcing by PharmConsilium.',
   },
   design: {
     title: 'Design · PharmConsilium',
-    description: 'Medical presentations, video, eDetailing, gamification, and quizzes for pharma brands.',
+    description: 'CLM presentations, video, eDetailing, gamification, and quizzes for pharma brands in Belarus. Medical design and content — turnkey from PharmConsilium.',
   },
   'FarmConsilium-drug-reference-book': {
     title: 'Drug directory · PharmConsilium',
-    description: 'Trusted professional drug directory for physicians and pharmacists in Belarus.',
+    description: 'Drug directory for physicians and pharmacists in Belarus: up-to-date data on medicines, contraindications, and dosing. PharmConsilium.',
   },
   about: {
     title: 'About us · PharmConsilium',
-    description: 'Contact the PharmConsilium about: 80+ launches, 15 years in pharma marketing, turnkey implementation.',
+    description: 'PharmConsilium team: 80+ launches, 15 years in pharma marketing in Belarus. Contacts, Minsk office, CRM, CLM, and digital solutions delivered turnkey.',
   },
   privacy: {
     title: 'Privacy policy · PharmConsilium',
-    description: 'Personal data processing and protection policy of PharmConsilium on digital resources. Data protection contact.',
+    description: 'Personal data processing policy of PharmConsilium on pharmconsilium.com. How we collect, store, and protect data. Data protection contact.',
   },
   portfolio: {
     title: 'Portfolio, projects, and features · PharmConsilium',
-    description: 'Delivered projects: CRM, CLM, launches, education platforms, and digital campaigns in Belarus.',
+    description: 'PharmConsilium delivered projects: CRM, CLM, launches, education platforms, video, and gamification for pharma brands in Belarus. Cases and results.',
   },
 };
 
@@ -101,7 +101,7 @@ function ensureMeta(name, attr, value) {
     el.setAttribute(attr, name);
     document.head.appendChild(el);
   }
-  el.setAttribute('design', value);
+  el.setAttribute('content', value);
 }
 
 function ensureCanonical(href) {
@@ -129,7 +129,7 @@ function resolveSeo(route, lang) {
     if (p) {
       return {
         title: `${p.name} · ${brand}`,
-        description: p.short || p.hero || fallbackDesc,
+        description: p.metaDescription || p.short || p.hero || fallbackDesc,
       };
     }
   }
@@ -138,7 +138,7 @@ function resolveSeo(route, lang) {
     const d = window.SUBPAGES[route];
     return {
       title: `${d.title} · ${brand}`,
-      description: d.lede,
+      description: d.metaDescription || d.lede,
     };
   }
 

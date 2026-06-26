@@ -201,8 +201,10 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <div className="eyebrow">{en ? en.heroEyebrow : 'Команда внедрения цифровых технологий в сфере фармацевтики и здравоохранения. Работаем с 2015 года.'}</div>
+            <h1 className="eyebrow">{en ? en.heroEyebrow : 'Команда внедрения цифровых технологий в сфере фармацевтики и здравоохранения. Работаем с 2015 года.'}</h1>
             <PageHeroH1
+              as="div"
+              className="hero-display"
               line1={en ? en.heroH1Line1 : 'IT-решения'}
               accent={en ? en.heroH1Accent : 'для лечения доверия'}
             />
@@ -414,15 +416,21 @@ function splitPageTitle(title) {
   return { line1: title, accent: null, accent2: null };
 }
 
-function PageHeroH1({ line1, accent, accent2 }) {
-  if (!accent && !accent2) return <h1><span className="h1-primary">{line1}</span></h1>;
+function PageHeroH1({ line1, accent, accent2, as: Tag = 'h1', className }) {
+  if (!accent && !accent2) {
+    return (
+      <Tag className={className}>
+        <span className="h1-primary">{line1}</span>
+      </Tag>
+    );
+  }
   const shouldNowrap = (s) => typeof s === 'string' && s.length <= 28;
   return (
-    <h1>
+    <Tag className={className}>
       <span className="h1-primary">{line1}</span>
       {accent ? <><br /><span className={`accent${shouldNowrap(accent) ? ' accent--nowrap' : ''}`}>{accent}</span></> : null}
       {accent2 ? <><br /><span className={`accent${shouldNowrap(accent2) ? ' accent--nowrap' : ''}`}>{accent2}</span></> : null}
-    </h1>
+    </Tag>
   );
 }
 
