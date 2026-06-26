@@ -431,7 +431,7 @@ function ProjectPage({ slug, navigate, lang }) {
                     {videoSrc && VideoPlayer
                       ? <VideoPlayer
                           src={videoSrc}
-                          poster={s.poster}
+                          poster={s.poster || p.thumb}
                           posterFromVideo={s.posterFromVideo}
                           alt={s.alt || s.label}
                           active={isActive}

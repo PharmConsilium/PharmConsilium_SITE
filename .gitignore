@@ -6,6 +6,7 @@ desktop.ini
 # Secrets
 .env
 .env.*
+api/config.php
 
 # Logs
 *.log

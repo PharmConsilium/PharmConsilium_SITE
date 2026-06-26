@@ -468,6 +468,11 @@ function FooterMapEmbed({ isEn }) {
   const hostRef = React.useRef(null);
   const [showMap, setShowMap] = React.useState(false);
 
+  const mapLabel = isEn ? 'Office location on map' : 'Офис на карте';
+  const mapTitle = isEn ?
+  'PharmConsilium office — Grodno, Sovetskaya Square 2A' :
+  'Офис ФармКонсилиум — Гродно, площадь Советская 2А';
+
   React.useEffect(() => {
     const node = hostRef.current;
     if (!node) return undefined;
@@ -493,22 +498,19 @@ function FooterMapEmbed({ isEn }) {
     return () => observer.disconnect();
   }, []);
 
-  const mapLabel = isEn ? 'Office location on map' : 'Офис на карте';
-  const mapTitle = isEn ?
-  'PharmConsilium office — Grodno, Sovetskaya Square 2A' :
-  'Офис ФармКонсилиум — Гродно, площадь Советская 2А';
-
   return (
     <div className="footer-map" ref={hostRef} aria-label={mapLabel}>
-      {showMap ?
-      <iframe
-        title={mapTitle}
-        src={FOOTER_MAP_EMBED}
-        referrerPolicy="no-referrer-when-downgrade"
-        allowFullScreen /> :
+      <div className="footer-map__slot">
+        {showMap ?
+        <iframe
+          className="footer-map__iframe"
+          title={mapTitle}
+          src={FOOTER_MAP_EMBED}
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen /> :
 
-      <div className="footer-map-skeleton" aria-hidden="true" />
-      }
+        <div className="footer-map-skeleton" aria-hidden="true" />}
+      </div>
       <a
         className="footer-map-link"
         href={FOOTER_MAP_LINK}

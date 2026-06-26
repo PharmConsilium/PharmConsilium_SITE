@@ -39,10 +39,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Manrope:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/styles.css?v=20260605r2"/>
-<link rel="preload" as="image" href="assets/uploads/Robby_1.png?v=5"/>
-<link rel="preload" as="image" href="assets/uploads/Robby_11.png?v=5"/>
-<link rel="preload" as="image" href="assets/uploads/Robby_2.png?v=5"/>
+<link rel="preload" href="assets/uploads/Robby_1.png?v=20260611r2" as="image" type="image/png"/>
+<link rel="preload" href="assets/uploads/Robby_11.png?v=20260611r2" as="image" type="image/png"/>
+<link rel="stylesheet" href="css/styles.css?v=20260611r2"/>
 
 <script type="application/ld+json">
 {
@@ -133,8 +132,8 @@ ym(109560584, 'init', {
 </noscript>
 <noscript><div><img src="https://mc.yandex.ru/watch/109560584" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
 
-<script src="js/pharm-theme.js?v=20260605r2"></script>
-<script src="js/pharm-analytics.js?v=20260605r2"></script>
+<script src="js/pharm-theme.js?v=20260611r2"></script>
+<script src="js/pharm-analytics.js?v=20260611r2"></script>
 <script src="js/data/privacy-policy-ru.js"></script>
 <script src="js/data/training-cta-topics.js"></script>
 <script src="js/data/i18n-en-subpages.js"></script>
@@ -145,7 +144,7 @@ ym(109560584, 'init', {
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 
 <script>
-window.PHARM_CACHE_BUST = '20260605r2';
+window.PHARM_CACHE_BUST = '20260611r2';
 window.PHARM_HIDE_TWEAKS = !/localhost|127\.0\.0\.1/i.test(location.hostname)
   && location.search.indexOf('tweaks') < 0;
 
@@ -169,14 +168,28 @@ window.PHARM_HIDE_TWEAKS = !/localhost|127\.0\.0\.1/i.test(location.hostname)
   }
   window.pharmShowBootError = showBootError;
 
+  var bootLoadingTimer = null;
+
   function showBootLoading() {
     var root = document.getElementById('root');
-    if (!root || root.childNodes.length) return;
+    if (!root || window.__pharmReactRoot) return;
     root.innerHTML = '<div style="max-width:520px;margin:48px auto;padding:24px;font-family:system-ui,sans-serif;text-align:center">'
       + '<p style="font-weight:600;margin:0 0 8px">ФармКонсилиум</p>'
       + '<p style="margin:0;color:#5a6273;font-size:14px">Загрузка…</p></div>';
   }
-  showBootLoading();
+
+  window.pharmClearBootLoading = function () {
+    if (bootLoadingTimer) {
+      clearTimeout(bootLoadingTimer);
+      bootLoadingTimer = null;
+    }
+  };
+
+  // На проде с бандлом — не мелькаем «Загрузка…», если JS успел за ~0.5 с.
+  bootLoadingTimer = setTimeout(function () {
+    bootLoadingTimer = null;
+    if (!window.__pharmReactRoot) showBootLoading();
+  }, useBundle && !isLocal ? 550 : 0);
 
   function append(src, onload, onerror) {
     var s = document.createElement('script');

@@ -195,6 +195,14 @@ function App() {
     window.addEventListener('pharm:deferred-ready', onDeferred);
     return () => window.removeEventListener('pharm:deferred-ready', onDeferred);
   }, []);
+
+  React.useLayoutEffect(() => {
+    window.__pharmAppReady = true;
+    try {
+      window.dispatchEvent(new CustomEvent('pharm:app-ready'));
+    } catch (e) { /* ignore */ }
+  }, []);
+
   const scrollByRoute = React.useRef({});
   const navKind = React.useRef('push');
   const routeRef = React.useRef(route);
@@ -465,6 +473,7 @@ window.App = App;
 window.mountPharmApp = function mountPharmApp() {
   const el = document.getElementById('root');
   if (!el) return;
+  if (window.pharmClearBootLoading) window.pharmClearBootLoading();
   if (!window.__pharmReactRoot) {
     window.__pharmReactRoot = ReactDOM.createRoot(el);
   }

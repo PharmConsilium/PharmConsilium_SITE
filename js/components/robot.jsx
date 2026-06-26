@@ -36,9 +36,9 @@ function fireRobotFace(frame, duration) {
 
 function robotRadiusPx() {
   const vw = window.innerWidth;
-  if (vw <= 720) return 52;
-  if (vw <= 1024) return 60;
-  return 72;
+  if (vw <= 720) return 47;
+  if (vw <= 1024) return 54;
+  return 64;
 }
 
 function robotBounds(radius) {
@@ -62,10 +62,45 @@ const ROBOT_BLANK_AFTER_ANGRY_MS = 950;
 const ROBOT_HELD_SCALE = 1.09;
 const ROBOT_THROW_MIN_SPEED = 35;
 const ROBOT_THROW_ANGRY_MIN_SPEED = 120;
+const ROBOT_TAP_MAX_MOVE = 16;
+const ROBOT_TAP_MAX_MS = 500;
+const ROBOT_DOUBLE_TAP_MS = 420;
+const ROBOT_BUBBLE_MS = 9000;
+const ROBOT_BUBBLE_TYPE_MS = 3400;
+const ROBOT_ONBOARDING_DELAY_MS = 5000;
+const ROBOT_ONBOARDING_VISIBLE_MS = 7000;
+
+function robotOnboardingBubbleText() {
+  const lang = window.getSiteLang ? window.getSiteLang() : 'ru';
+  if (lang === 'en') {
+    return 'Double-click me to get a tip about this page.';
+  }
+  return 'Кликни дважды по мне, чтобы получить справку по странице';
+}
+
+function bubbleCharDelay(full, index) {
+  const len = Math.max(full.length, 1);
+  const base = Math.min(34, Math.max(20, Math.round(ROBOT_BUBBLE_TYPE_MS / len)));
+  const ch = full[index - 1] || '';
+  if (/[.!?…]/.test(ch)) return base * 2.4;
+  if (/[:,;—–-]/.test(ch)) return base * 1.55;
+  if (ch === ' ') return base * 0.45;
+  return base;
+}
 
 function robbieAssetSrc(file) {
   const v = window.ROBBY_ASSET_V || '4';
   return `assets/uploads/${file}?v=${v}`;
+}
+
+/** iOS Safari: инерция скролла дёргает scrollY — сглаживаем только цель, не физику броска. */
+function robotUseScrollInertiaSmoothing() {
+  if (typeof window === 'undefined') return false;
+  try {
+    return window.matchMedia('(pointer: coarse)').matches;
+  } catch (e) {
+    return window.innerWidth <= 720;
+  }
 }
 
 function bounceVelocity(vx, vy, nx, ny, restitution) {
@@ -109,8 +144,19 @@ function RobotCompanion() {
   const angryUntilRef = React.useRef(0);
   const blankUntilRef = React.useRef(0);
   const [pose, setPose] = React.useState('normal');
+  const [assetsReady, setAssetsReady] = React.useState(false);
+  const [appReady, setAppReady] = React.useState(() => Boolean(window.__pharmAppReady));
+  const [revealed, setRevealed] = React.useState(false);
+  const [pageBubble, setPageBubble] = React.useState(null);
   const [surprisePop, setSurprisePop] = React.useState(null);
+  const routeRef = React.useRef('home');
   const surpriseTimerRef = React.useRef(null);
+  const bubbleTimerRef = React.useRef(null);
+  const bubbleSpeechRef = React.useRef({ timer: null, raf: 0, gen: 0 });
+  const bubbleScrollRef = React.useRef(null);
+  const pageBubbleOpenRef = React.useRef(false);
+  const onboardingTimerRef = React.useRef(null);
+  const tapRef = React.useRef({ count: 0, lastAt: 0, x: 0, y: 0, resetTimer: null });
   const [facePaused, setFacePaused] = React.useState(false);
   const reducedMotionRef = React.useRef(
     typeof window !== 'undefined' &&
@@ -158,7 +204,7 @@ function RobotCompanion() {
     const vh = window.innerHeight;
     const isPhone = vw <= 720;
     const inset = isPhone ? 52 : 68;
-    const half = isPhone ? 65 : 75;
+    const half = isPhone ? 59 : 67;
     return {
       x: vw / 2 - inset - half,
       y: -vh / 2 + inset + half,
@@ -191,9 +237,9 @@ function RobotCompanion() {
     ];
   }, []);
 
-  const computeTarget = React.useCallback(() => {
+  const computeTargetFromScrollY = React.useCallback((scrollY) => {
     const max = (document.documentElement.scrollHeight - window.innerHeight) || 1;
-    const sp = Math.max(0, Math.min(1, window.scrollY / max));
+    const sp = Math.max(0, Math.min(1, scrollY / max));
     const wps = buildWaypoints();
     const seg = sp * (wps.length - 1);
     const i = Math.floor(seg);
@@ -209,7 +255,13 @@ function RobotCompanion() {
     };
   }, [buildWaypoints]);
 
+  const computeTarget = React.useCallback(() => {
+    return computeTargetFromScrollY(window.scrollY);
+  }, [computeTargetFromScrollY]);
+
   React.useEffect(() => {
+    const scrollYSmoothRef = { current: window.scrollY };
+
     // Initialize current position to first computed target on first mount.
     if (!hasInit.current) {
       const t = computeTarget();
@@ -218,29 +270,37 @@ function RobotCompanion() {
       hasInit.current = true;
     }
 
-    const onScroll = () => {
-      targetRef.current = computeTarget();
-    };
     const onResize = () => {
+      scrollYSmoothRef.current = window.scrollY;
       targetRef.current = computeTarget();
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
-    onScroll();
 
     let raf;
     let t0 = performance.now();
+    let movingClass = false;
 
     const animate = (now) => {
-      const dt = Math.min(0.05, (now - t0) / 1000);
+      const rawDt = (now - t0) / 1000;
       t0 = now;
-      // Позиция — плавно; scale — ещё медленнее, без дёрганья при скролле.
-      const alpha = 1 - Math.exp(-0.55 * dt);
+      // Framerate-independent; cap только скачки после фона (Safari / ProMotion).
+      const dt = Math.min(0.05, Math.max(0.001, rawDt));
+      const touchScroll = robotUseScrollInertiaSmoothing();
+      const alphaPos = 1 - Math.exp(-0.55 * dt);
+      const alphaRy = 1 - Math.exp(-0.55 * dt);
       const alphaScale = 1 - Math.exp(-0.12 * dt);
+      const scrollAlpha = 1 - Math.exp(-(touchScroll ? 6 : 9) * dt);
 
       const p = posRef.current;
-      const t = targetRef.current;
       const ix = interactRef.current;
+
+      if (ix.mode === 'scroll' && !dockCopyRef.current) {
+        const rawY = window.scrollY;
+        scrollYSmoothRef.current += (rawY - scrollYSmoothRef.current) * scrollAlpha;
+        targetRef.current = computeTargetFromScrollY(scrollYSmoothRef.current);
+      }
+
+      const t = targetRef.current;
       const radius = robotRadiusPx();
       const prevX = p.x;
       const prevY = p.y;
@@ -294,9 +354,9 @@ function RobotCompanion() {
         }
       } else if (ix.mode !== 'drag') {
         const goal = dockCopyRef.current ? computeDock() : t;
-        p.x  += (goal.x  - p.x)  * alpha;
-        p.y  += (goal.y  - p.y)  * alpha;
-        p.ry += (goal.ry - p.ry) * alpha;
+        p.x  += (goal.x  - p.x)  * alphaPos;
+        p.y  += (goal.y  - p.y)  * alphaPos;
+        p.ry += (goal.ry - p.ry) * alphaRy;
         p.s  += (goal.s  - p.s)  * alphaScale;
       }
 
@@ -311,7 +371,7 @@ function RobotCompanion() {
       const reduced = reducedMotionRef.current;
       const moveSpeed = Math.hypot(v.vx, v.vy);
       const moveLean = reduced ? 0 : clamp(moveSpeed / 200, 0, 1);
-      const isMoving = !reduced && moveSpeed > 65;
+      const isMoving = !reduced && ix.mode === 'free' && moveSpeed > 55;
       const leanZ = moveLean * clamp(v.vx * 0.055, -12, 12);
       const look = lookRef.current;
       const lookAlpha = reduced || isMoving ? 0 : 1 - Math.exp(-6 * dt);
@@ -340,17 +400,20 @@ function RobotCompanion() {
       const body = bodyRef.current;
       const face = faceRef.current;
       if (el) {
-        el.style.transform =
-          `translate3d(calc(-50% + ${p.x + busyX}px), calc(-50% + ${p.y + busyY}px), 0)`;
+        const tx = (p.x + busyX).toFixed(2);
+        const ty = (p.y + busyY).toFixed(2);
+        el.style.transform = `translate3d(calc(-50% + ${tx}px), calc(-50% + ${ty}px), 0)`;
         el.style.opacity = String(busyOpacity);
-        el.classList.toggle('robot-img--moving', isMoving);
+        if (movingClass !== isMoving) {
+          movingClass = isMoving;
+          el.classList.toggle('robot-img--moving', isMoving);
+        }
       }
       if (stage) {
         const ry = tiltY.toFixed(2);
         const rz = leanZ.toFixed(2);
-        stage.style.transform = isMoving
-          ? `rotateY(${ry}deg) rotateZ(${rz}deg)`
-          : `rotateX(${tiltX.toFixed(2)}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
+        const rx = tiltX.toFixed(2);
+        stage.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
       }
       if (body) {
         const s = (displayScale * busyScale * holdScale).toFixed(4);
@@ -363,10 +426,9 @@ function RobotCompanion() {
 
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     };
-  }, [computeTarget, computeDock, setRobotPose, registerWallBounce, startBlankAfterAngry]);
+  }, [computeTarget, computeTargetFromScrollY, computeDock, setRobotPose, registerWallBounce, startBlankAfterAngry]);
 
   React.useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -394,8 +456,145 @@ function RobotCompanion() {
     }, 720);
   }, []);
 
+  const clearBubbleSpeech = React.useCallback(() => {
+    const speech = bubbleSpeechRef.current;
+    if (speech.timer) window.clearTimeout(speech.timer);
+    if (speech.raf) window.cancelAnimationFrame(speech.raf);
+    speech.timer = null;
+    speech.raf = 0;
+    speech.gen += 1;
+  }, []);
+
+  const dismissPageBubble = React.useCallback(() => {
+    clearBubbleSpeech();
+    if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    bubbleTimerRef.current = null;
+    setPageBubble(null);
+  }, [clearBubbleSpeech]);
+
+  const scheduleBubbleDismiss = React.useCallback((delayMs) => {
+    if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    bubbleTimerRef.current = window.setTimeout(dismissPageBubble, delayMs);
+  }, [dismissPageBubble]);
+
+  const showOnboardingBubble = React.useCallback(() => {
+    if (reducedMotionRef.current || busyRef.current || pageBubbleOpenRef.current) return;
+    const full = robotOnboardingBubbleText();
+    clearBubbleSpeech();
+    if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    bubbleTimerRef.current = null;
+    setPageBubble({ full, shown: full, done: true, onboarding: true });
+    scheduleBubbleDismiss(ROBOT_ONBOARDING_VISIBLE_MS);
+  }, [clearBubbleSpeech, scheduleBubbleDismiss]);
+
+  const showPageBubble = React.useCallback(() => {
+    if (reducedMotionRef.current || busyRef.current) return;
+    const full = window.getRobotPageHint
+      ? window.getRobotPageHint(routeRef.current)
+      : 'Подсказка по этой странице скоро появится.';
+    clearBubbleSpeech();
+    if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    bubbleTimerRef.current = null;
+    fireRobotFace(5, 2400);
+
+    if (full.length <= 1) {
+      setPageBubble({ full, shown: full, done: true });
+      scheduleBubbleDismiss(ROBOT_BUBBLE_MS);
+      return;
+    }
+
+    const speech = bubbleSpeechRef.current;
+    const gen = speech.gen;
+    setPageBubble({ full, shown: '', done: false });
+
+    let index = 0;
+    let carry = 0;
+    let lastTs = performance.now();
+
+    const tick = (ts) => {
+      if (speech.gen !== gen) return;
+      const dt = Math.min(48, Math.max(0, ts - lastTs));
+      lastTs = ts;
+      carry += dt;
+
+      let advanced = false;
+      while (index < full.length) {
+        const delay = bubbleCharDelay(full, index + 1);
+        if (carry < delay) break;
+        carry -= delay;
+        index += 1;
+        advanced = true;
+      }
+
+      if (advanced) {
+        const shown = full.slice(0, index);
+        const done = index >= full.length;
+        setPageBubble({ full, shown, done });
+        if (done) {
+          scheduleBubbleDismiss(ROBOT_BUBBLE_MS);
+          return;
+        }
+      }
+
+      speech.raf = window.requestAnimationFrame(tick);
+    };
+
+    speech.raf = window.requestAnimationFrame(tick);
+  }, [clearBubbleSpeech, scheduleBubbleDismiss]);
+
+  const registerRobotTap = React.useCallback((clientX, clientY) => {
+    const now = performance.now();
+    const t = tapRef.current;
+    const dist = Math.hypot(clientX - t.x, clientY - t.y);
+    const dt = now - t.lastAt;
+    if (dt < ROBOT_DOUBLE_TAP_MS && dist < 32) t.count += 1;
+    else t.count = 1;
+    t.lastAt = now;
+    t.x = clientX;
+    t.y = clientY;
+    if (t.resetTimer) window.clearTimeout(t.resetTimer);
+    if (t.count >= 2) {
+      t.count = 0;
+      t.resetTimer = null;
+      showPageBubble();
+      return true;
+    }
+    t.resetTimer = window.setTimeout(() => {
+      t.count = 0;
+      t.resetTimer = null;
+    }, ROBOT_DOUBLE_TAP_MS);
+    return false;
+  }, [showPageBubble]);
+
+  React.useEffect(() => {
+    pageBubbleOpenRef.current = !!pageBubble;
+  }, [pageBubble]);
+
+  React.useEffect(() => {
+    if (!revealed || reducedMotionRef.current) {
+      return undefined;
+    }
+
+    onboardingTimerRef.current = window.setTimeout(() => {
+      onboardingTimerRef.current = null;
+      showOnboardingBubble();
+    }, ROBOT_ONBOARDING_DELAY_MS);
+
+    return () => {
+      if (onboardingTimerRef.current) {
+        window.clearTimeout(onboardingTimerRef.current);
+        onboardingTimerRef.current = null;
+      }
+    };
+  }, [revealed, showOnboardingBubble]);
+
   React.useEffect(() => () => {
     if (surpriseTimerRef.current) window.clearTimeout(surpriseTimerRef.current);
+    if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    if (onboardingTimerRef.current) window.clearTimeout(onboardingTimerRef.current);
+    if (bubbleSpeechRef.current.timer) window.clearTimeout(bubbleSpeechRef.current.timer);
+    if (bubbleSpeechRef.current.raf) window.cancelAnimationFrame(bubbleSpeechRef.current.raf);
+    if (tapRef.current.resetTimer) window.clearTimeout(tapRef.current.resetTimer);
   }, []);
 
   const onHitPointerDown = React.useCallback((e) => {
@@ -418,6 +617,9 @@ function RobotCompanion() {
     ix.lastT = performance.now();
     ix.pendingAngry = false;
     ix.bounces = 0;
+    ix.downX = e.clientX;
+    ix.downY = e.clientY;
+    ix.downT = performance.now();
     lookRef.current = { x: 0, y: 0 };
     setRobotPose('held');
     spawnSurprisePop();
@@ -456,6 +658,19 @@ function RobotCompanion() {
       e.currentTarget.releasePointerCapture(e.pointerId);
     } catch (err) { /* ignore */ }
     const speed = Math.hypot(ix.vx, ix.vy);
+    const moved = Math.hypot(e.clientX - ix.downX, e.clientY - ix.downY);
+    const elapsed = performance.now() - ix.downT;
+    const isTap = speed <= ROBOT_THROW_MIN_SPEED
+      && moved < ROBOT_TAP_MAX_MOVE
+      && elapsed < ROBOT_TAP_MAX_MS;
+    if (isTap && e.pointerType !== 'mouse' && registerRobotTap(e.clientX, e.clientY)) {
+      ix.mode = 'scroll';
+      ix.vx = 0;
+      ix.vy = 0;
+      ix.pendingAngry = false;
+      setRobotPose('normal');
+      return;
+    }
     const max = 2400;
     if (speed > max) {
       ix.vx = (ix.vx / speed) * max;
@@ -473,7 +688,21 @@ function RobotCompanion() {
       ix.pendingAngry = false;
       setRobotPose('normal');
     }
-  }, [setRobotPose]);
+  }, [registerRobotTap, setRobotPose]);
+
+  const onHitDoubleClick = React.useCallback((e) => {
+    if (!canInteract()) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const ix = interactRef.current;
+    ix.mode = 'scroll';
+    ix.vx = 0;
+    ix.vy = 0;
+    ix.pendingAngry = false;
+    wrapRef.current?.classList.remove('robot-img--dragging');
+    setRobotPose('normal');
+    showPageBubble();
+  }, [canInteract, setRobotPose, showPageBubble]);
 
   // Лёгкий поворот «к курсору» на десктопе
   React.useEffect(() => {
@@ -521,12 +750,16 @@ function RobotCompanion() {
   React.useEffect(() => {
     const onRoute = (e) => {
       const route = e.detail?.route || 'home';
+      routeRef.current = route;
+      dismissPageBubble();
       applyRouteMood(route);
     };
     window.addEventListener('pharm:routechange', onRoute);
-    applyRouteMood(window.location.pathname.replace(/^\//, '') || 'home');
+    const initial = window.location.pathname.replace(/^\//, '').replace(/\/$/, '') || 'home';
+    routeRef.current = initial;
+    applyRouteMood(initial);
     return () => window.removeEventListener('pharm:routechange', onRoute);
-  }, [applyRouteMood]);
+  }, [applyRouteMood, dismissPageBubble]);
 
   React.useEffect(() => {
     if (reducedMotionRef.current) return undefined;
@@ -666,9 +899,6 @@ function RobotCompanion() {
     };
   }, []);
 
-  // Цикл лиц Robby_1…10 — только у плавающего робота; карточка «Команда» — отдельные team-robbie*.png
-  const RobbieFaceCycle = window.RobbieFaceCycle;
-
   const baseSrc = window.ROBBY_FRAME_SRC
     ? window.ROBBY_FRAME_SRC(window.ROBBY_BLANK_FRAME || 1)
     : 'assets/uploads/Robby_1.png';
@@ -677,28 +907,101 @@ function RobotCompanion() {
   const angrySrc = window.ROBBY_ANGRY_SRC || robbieAssetSrc('Robby_13.png');
   const showPose = pose === 'held' || pose === 'angry';
 
+  React.useEffect(() => {
+    if (window.__pharmAppReady) {
+      setAppReady(true);
+      return undefined;
+    }
+    const onAppReady = () => setAppReady(true);
+    window.addEventListener('pharm:app-ready', onAppReady);
+    return () => window.removeEventListener('pharm:app-ready', onAppReady);
+  }, []);
+
+  React.useEffect(() => {
+    if (!appReady || !assetsReady) {
+      setRevealed(false);
+      return undefined;
+    }
+    let raf1;
+    let raf2;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setRevealed(true));
+    });
+    return () => {
+      if (raf1) cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
+    };
+  }, [appReady, assetsReady]);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    const urls = [baseSrc, outlineSrc];
+    Promise.all(urls.map((src) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = img.onerror = () => resolve();
+      img.src = src;
+    }))).then(() => {
+      if (!cancelled) setAssetsReady(true);
+    });
+    if (window.preloadRobbyFramesDeferred) window.preloadRobbyFramesDeferred();
+    return () => { cancelled = true; };
+  }, [baseSrc, outlineSrc]);
+
+  React.useEffect(() => {
+    const el = bubbleScrollRef.current;
+    if (!el || !pageBubble || pageBubble.done) return;
+    if (el.scrollHeight > el.clientHeight + 2) {
+      el.scrollTop = el.scrollHeight;
+    }
+  }, [pageBubble]);
+
+  // Цикл лиц Robby_1…10 — только у плавающего робота; карточка «Команда» — отдельные team-robbie*.png
+  const RobbieFaceCycle = window.RobbieFaceCycle;
+
   const robotNode = (
     <div
       ref={wrapRef}
-      className="robot-img"
+      className={'robot-img' + (revealed ? '' : ' robot-img--boot')}
       data-robot-mood="home"
       data-robot-pose={pose}
-      aria-hidden="true"
     >
+      {pageBubble ?
+        <div
+          className={'robot-bubble-wrap' + (pageBubble.onboarding ? ' robot-bubble-wrap--onboarding' : '')}
+          role="status"
+          aria-live={pageBubble.done ? 'polite' : 'off'}
+        >
+          <button
+            type="button"
+            className="robot-bubble__close btn-icon"
+            aria-label="Закрыть подсказку"
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              dismissPageBubble();
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="robot-bubble" ref={bubbleScrollRef}>
+            <p className="robot-bubble__text">
+              {pageBubble.shown}
+              {!pageBubble.done ?
+                <span className="robot-bubble__caret" aria-hidden="true" /> :
+                null}
+            </p>
+          </div>
+        </div> :
+        null}
       {surprisePop != null ?
         <div key={surprisePop} className="robot-surprise" aria-hidden="true">
           <span className="robot-surprise__text">!?</span>
         </div> :
         null}
-      <div
-        className="robot-img-hit"
-        aria-hidden="true"
-        onPointerDown={onHitPointerDown}
-        onPointerMove={onHitPointerMove}
-        onPointerUp={onHitPointerUp}
-        onPointerCancel={onHitPointerUp}
-      />
-      <div ref={stageRef} className="robot-img-stage">
+      <div ref={stageRef} className="robot-img-stage" aria-hidden="true">
         <div ref={bodyRef} className="robot-img-body">
           <div className="robot-img-float">
             <div
@@ -712,7 +1015,8 @@ function RobotCompanion() {
                   alt=""
                   aria-hidden="true"
                   draggable="false"
-                  decoding="async"
+                  decoding="sync"
+                  fetchPriority="high"
                 />
               </div>
               <div ref={faceRef} className="robot-img-layer robot-img-layer--face">
@@ -730,6 +1034,7 @@ function RobotCompanion() {
               aria-hidden={showPose ? undefined : 'true'}
             >
               <div className="robot-img-layer robot-img-layer--pose">
+                {showPose ?
                 <img
                   className="robot-img-pose"
                   src={pose === 'held' ? heldSrc : angrySrc}
@@ -737,7 +1042,8 @@ function RobotCompanion() {
                   aria-hidden="true"
                   draggable="false"
                   decoding="async"
-                />
+                /> :
+                null}
               </div>
             </div>
             <div className="robot-img-layer robot-img-layer--glow">
@@ -747,12 +1053,22 @@ function RobotCompanion() {
                 alt=""
                 aria-hidden="true"
                 draggable="false"
-                decoding="async"
+                decoding="sync"
+                fetchPriority="high"
               />
             </div>
           </div>
         </div>
       </div>
+      <div
+        className="robot-img-hit"
+        aria-label="Робби — дважды нажмите для подсказки по странице"
+        onPointerDown={onHitPointerDown}
+        onPointerMove={onHitPointerMove}
+        onPointerUp={onHitPointerUp}
+        onPointerCancel={onHitPointerUp}
+        onDoubleClick={onHitDoubleClick}
+      />
     </div>
   );
 

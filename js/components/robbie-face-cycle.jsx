@@ -22,18 +22,37 @@ const ROBBY_OUTLINE_SRC = `assets/uploads/Robby_11.png?v=${ROBBY_ASSET_V}`;
 const ROBBY_HELD_SRC = `assets/uploads/Robby_12.png?v=${ROBBY_ASSET_V}`;
 const ROBBY_ANGRY_SRC = `assets/uploads/Robby_13.png?v=${ROBBY_ASSET_V}`;
 
+function preloadRobbyImage(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = img.onerror = () => resolve(img);
+    img.src = src;
+  });
+}
+
+function preloadRobbyCritical() {
+  preloadRobbyImage(ROBBY_FRAME_SRC(ROBBY_BLANK_FRAME));
+  preloadRobbyImage(ROBBY_OUTLINE_SRC);
+}
+
 function preloadRobbyFrames() {
-  for (let n = 1; n <= 10; n++) {
+  for (let n = 2; n <= 10; n++) {
     const img = new Image();
     img.src = ROBBY_FRAME_SRC(n);
   }
-  const outline = new Image();
-  outline.src = ROBBY_OUTLINE_SRC;
   const held = new Image();
   held.src = ROBBY_HELD_SRC;
   const angry = new Image();
   angry.src = ROBBY_ANGRY_SRC;
 }
+
+function preloadRobbyFramesDeferred() {
+  const run = () => preloadRobbyFrames();
+  if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 4000 });
+  else setTimeout(run, 800);
+}
+
+preloadRobbyCritical();
 
 function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
   const [stepIndex, setStepIndex] = React.useState(0);
@@ -114,6 +133,10 @@ function RobbieFaceCycle({ alt = 'Робби', className, paused }) {
   }, [clearOverride, crossfadeTo, scheduleNext]);
 
   React.useEffect(() => {
+    preloadRobbyFramesDeferred();
+  }, []);
+
+  React.useEffect(() => {
     scheduleNext();
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
@@ -190,8 +213,8 @@ Object.assign(window, {
   ROBBY_ANGRY_SRC,
   ROBBY_BLANK_FRAME,
   ROBBY_FADE_MS,
+  preloadRobbyCritical,
+  preloadRobbyFramesDeferred,
   pharmRobotFace,
   pharmRobotBlink,
 });
-
-preloadRobbyFrames();
