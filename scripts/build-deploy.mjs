@@ -25,6 +25,8 @@ const ROOT_FILES = [
   'llms.txt',
   'web.config',
   '_redirects',
+  'google9b298138395b0640.html',
+  'yandex_808a6e9cdefc4e3c.html',
 ];
 
 function rmrf(dir) {
