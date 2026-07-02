@@ -1,6 +1,9 @@
 // PORTFOLIO — projects dataset.
 // Route: portfolio/<slug>
 // serviceRoute — canonical site route for hero CTA «Узнать больше об этой услуге» (section/sub or top-level).
+// thumbDetail — preview only in DetailPage «Примеры из портфолио».
+// thumbDetailIcon: true — asset with semi-transparent gradient over var(--surface); cover fill.
+// Otherwise — photo fill via background cover (thumbDetailBg, thumbDetailAspect).
 
 const PORTFOLIO = [
   {
@@ -315,6 +318,10 @@ const PORTFOLIO = [
     tag: 'CLM',
     palette: '#E5484D',
     thumb: 'assets/uploads/psp-platform-card-thumb.png',
+    thumbDetail: 'assets/uploads/clm-presentacii-detail-thumb.webp',
+    thumbDetailBg: '#0e0b16',
+    thumbDetailAspect: '4 / 3',
+    thumbDetailPosition: 'center center',
     thumbLayout: 'wide',
     thumbPalette: '#2B7FD4',
     thumbAlt: 'CLM-презентация — выбор специальности: терапевт и кардиолог',
@@ -506,6 +513,8 @@ const PORTFOLIO = [
     tag: 'CLM',
     palette: '#6E4BFF',
     thumb: 'assets/uploads/portfolio-draft-1-card-thumb.png',
+    thumbDetail: 'assets/uploads/clm-app-detail-thumb.png',
+    thumbDetailIcon: true,
     thumbAlt: 'CLM PharmConsilium — иконка мобильного приложения для медицинских представителей',
     cardChips: ['Разработка мобильных приложений', 'CLM презентация', 'CLM F2F'],
     short: 'Наличие двух версий приложения в App Store и Google Play, поддержка планшетов и смартфонов.',
@@ -761,6 +770,9 @@ const PORTFOLIO = [
     art: 'ArtLayers',
     palette: '#2A6FDB',
     thumb: 'assets/uploads/portfolio-draft-6-card-thumb.png',
+    thumbDetail: 'assets/uploads/portfolio-draft-6-card-thumb.png',
+    thumbDetailBg: '#1a1830',
+    thumbDetailAspect: '16 / 10',
     thumbAlt: 'TeleApp и Telegram-бот — цифровая экосистема для врачей, провизоров и фармацевтов',
     thumbLayout: 'wide',
     thumbFit: 'contain',
@@ -873,4 +885,21 @@ const PORTFOLIO = [
   },
 ];
 
+function getPortfolioByServiceRoute(routeId) {
+  return (window.PORTFOLIO || []).filter(
+    (p) => !p.draft && p.serviceRoute === routeId
+  );
+}
+
+function getPortfolioBySection(sectionId) {
+  const prefix = `${sectionId}/`;
+  return (window.PORTFOLIO || []).filter(
+    (p) => !p.draft && p.serviceRoute && (
+      p.serviceRoute === sectionId || p.serviceRoute.startsWith(prefix)
+    )
+  );
+}
+
 window.PORTFOLIO = PORTFOLIO;
+window.getPortfolioByServiceRoute = getPortfolioByServiceRoute;
+window.getPortfolioBySection = getPortfolioBySection;

@@ -42,6 +42,99 @@ function portfolioHasChip(p, chip) {
   return portfolioMetaChips(p).includes(chip);
 }
 
+function PortfolioRelCard({ item, navigate, lang, showReadLink, variant }) {
+  const ui = lang === 'en' && window.getPortfolioUi ? window.getPortfolioUi(lang) : null;
+  const Art = window[item.art] || window.ArtConstellation;
+  const isCase = variant === 'case';
+  const relThumb = isCase && item.thumbDetail ? item.thumbDetail : item.thumb;
+  const relChips = portfolioMetaChips(item);
+  const readLabel = ui ? (ui.viewCase || ui.openCase) : 'Смотреть кейс';
+  const thumbLayout = isCase && item.thumbDetail
+    ? (item.thumbDetailLayout || item.thumbLayout)
+    : item.thumbLayout;
+  const thumbFit = isCase && item.thumbDetail
+    ? (item.thumbDetailFit != null ? item.thumbDetailFit : item.thumbFit)
+    : item.thumbFit;
+  const thumbWide = relThumb && thumbLayout === 'wide';
+  const thumbSquare = relThumb && thumbLayout === 'square';
+  const thumbFitContain = relThumb && thumbFit === 'contain';
+  const thumbFitCover = relThumb && thumbFit === 'cover';
+  const thumbAlt = isCase && item.thumbDetailAlt ? item.thumbDetailAlt : (item.thumbAlt || item.name);
+  const useDetailThumb = isCase && item.thumbDetail;
+  const detailIcon = useDetailThumb && item.thumbDetailIcon;
+  const detailPhoto = useDetailThumb && !detailIcon;
+  const thumbTone = item.thumbPalette || item.palette;
+  const thumbMix = item.thumbArtMix ?? (relThumb ? 22 : 28);
+  const artStyle = detailIcon
+    ? undefined
+    : detailPhoto && relThumb
+      ? {
+        '--thumb-detail-aspect': item.thumbDetailAspect || '4 / 3',
+        backgroundColor: item.thumbDetailBg || 'var(--bg-2)',
+        backgroundImage: `url(${relThumb})`,
+        backgroundPosition: item.thumbDetailPosition || 'center center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }
+      : !relThumb && item.palette
+        ? { background: `linear-gradient(140deg, var(--bg-2), ${item.palette}33)` }
+        : relThumb && thumbTone
+          ? { background: `linear-gradient(145deg, var(--bg-2), color-mix(in srgb, ${thumbTone} ${thumbMix}%, var(--accent-soft)))` }
+          : undefined;
+
+  if (isCase) {
+    return (
+      <div
+        className="rel-card rel-card--portfolio-case"
+        onClick={() => navigate(`portfolio/${item.slug}`)}
+      >
+        <div
+          className={`rel-art rel-art--portfolio-case${useDetailThumb ? ' rel-art--photo-detail' : ''}${detailIcon ? ' rel-art--photo-detail-icon' : ''}${detailPhoto ? ' rel-art--photo-detail-photo' : ''}${!useDetailThumb && relThumb ? ' rel-art--photo' : ''}${!useDetailThumb && thumbWide ? ' rel-art--photo-wide' : ''}${!useDetailThumb && thumbSquare ? ' rel-art--photo-square' : ''}${!useDetailThumb && thumbFitContain ? ' rel-art--photo-fit-contain' : ''}${!useDetailThumb && thumbFitCover ? ' rel-art--photo-fit-cover' : ''}`}
+          style={artStyle}
+        >
+          {detailIcon && relThumb
+            ? <img className="rel-art-detail-img" src={relThumb} alt={thumbAlt} loading="lazy" decoding="async" />
+            : !useDetailThumb && relThumb
+              ? <img src={relThumb} alt={thumbAlt} loading="lazy" decoding="async" />
+              : !useDetailThumb && !relThumb ? <Art /> : null}
+        </div>
+        <div className="rel-card-body">
+          <h4>{item.name}</h4>
+          {item.short ? <p className="rel-card-desc">{item.short}</p> : null}
+          {showReadLink ?
+            <span className="read">{readLabel} <span className="arrow">→</span></span> :
+            null}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rel-card" onClick={() => navigate(`portfolio/${item.slug}`)}>
+      <div
+        className={`rel-art${relThumb ? ' rel-art--photo' : ''}`}
+        style={relThumb ? undefined : { background: `linear-gradient(140deg, var(--bg-2), ${item.palette}33)` }}>
+        {relThumb
+          ? <img src={relThumb} alt={item.thumbAlt || item.name} loading="lazy" decoding="async" />
+          : <Art />}
+      </div>
+      <div className="rel-card-body">
+        <h4>{item.name}</h4>
+        {relChips.length > 0 &&
+          <div className="rel-card-chips">
+            {relChips.map((chip) => (
+              <span key={chip} className="chip rel-card-chip">{chip}</span>
+            ))}
+          </div>
+        }
+        {showReadLink ?
+          <span className="read">{readLabel} <span className="arrow">→</span></span> :
+          null}
+      </div>
+    </div>
+  );
+}
+
 function PortfolioPage({ navigate, lang }) {
   const [filter, setFilter] = React.useState('all');
   const portfolio = window.PORTFOLIO || [];
@@ -565,29 +658,9 @@ function ProjectPage({ slug, navigate, lang }) {
               {p.related.map((relSlug) => {
               const r = window.PORTFOLIO.find((x) => x.slug === relSlug);
               if (!r) return null;
-              const RA = window[r.art] || window.ArtConstellation;
-              const relThumb = r.thumb;
-              const relChips = portfolioMetaChips(r);
               return (
-                <div key={relSlug} className="rel-card" onClick={() => navigate(`portfolio/${relSlug}`)}>
-                    <div
-                      className={`rel-art${relThumb ? ' rel-art--photo' : ''}`}
-                      style={relThumb ? undefined : { background: `linear-gradient(140deg, var(--bg-2), ${r.palette}33)` }}>
-                      {relThumb
-                        ? <img src={relThumb} alt="" loading="lazy" decoding="async" />
-                        : <RA />}
-                    </div>
-                    <div className="rel-card-body">
-                      <h4>{r.name}</h4>
-                      {relChips.length > 0 &&
-                        <div className="rel-card-chips">
-                          {relChips.map((chip) => (
-                            <span key={chip} className="chip rel-card-chip">{chip}</span>
-                          ))}
-                        </div>
-                      }
-                    </div>
-                  </div>);
+                <PortfolioRelCard key={relSlug} item={r} navigate={navigate} lang={lang} />
+              );
 
             })}
             </div>
@@ -601,3 +674,4 @@ function ProjectPage({ slug, navigate, lang }) {
 
 window.PortfolioPage = PortfolioPage;
 window.ProjectPage = ProjectPage;
+window.PortfolioRelCard = PortfolioRelCard;

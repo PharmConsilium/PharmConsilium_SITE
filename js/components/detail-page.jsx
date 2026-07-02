@@ -242,6 +242,15 @@ function DetailPage({ routeId, navigate, lang }) {
   const sectionRelated = data?.sectionId && window.getSectionRelatedCards
     ? window.getSectionRelatedCards(data.sectionId, routeId, lang)
     : [];
+  const portfolioCases = window.getPortfolioByServiceRoute
+    ? window.getPortfolioByServiceRoute(routeId)
+    : [];
+  const PortfolioRelCard = window.PortfolioRelCard;
+  const detailSectionTitleStyle = {
+    fontFamily: 'var(--font-display)', fontWeight: 500,
+    fontSize: 'clamp(24px, 3vw, 36px)',
+    letterSpacing: '-.025em', margin: '40px 0 20px',
+  };
 
   if (!data) {
     return (
@@ -426,6 +435,24 @@ function DetailPage({ routeId, navigate, lang }) {
             <button type="button" className="btn btn-primary" onClick={() => window.openPharmContact?.()}>{t('contacts')} <span className="arrow">→</span></button>
           </div>
         </div>
+
+        {portfolioCases.length > 0 && PortfolioRelCard ?
+        <div>
+            <h2 style={detailSectionTitleStyle}>{t('detailPortfolioCases')}</h2>
+            <div className="related related--portfolio-cases">
+              {portfolioCases.map((p) => (
+                <PortfolioRelCard
+                  key={p.slug}
+                  item={p}
+                  navigate={navigate}
+                  lang={lang}
+                  variant="case"
+                  showReadLink
+                />
+              ))}
+            </div>
+          </div> :
+        null}
 
         {sectionRelated.length > 0 ?
         <div>
