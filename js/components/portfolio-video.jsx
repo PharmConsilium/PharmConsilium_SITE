@@ -11,7 +11,7 @@ function PortfolioVideoPlayer({ src, poster, posterFromVideo, alt, active, class
   const videoRef = React.useRef(null);
   const [armed, setArmed] = React.useState(false);
   const [framePoster, setFramePoster] = React.useState(null);
-  const useFirstFrame = !poster;
+  const useFirstFrame = Boolean(posterFromVideo) || !poster;
 
   React.useEffect(() => {
     if (active) setArmed(true);
@@ -77,7 +77,7 @@ function PortfolioVideoPlayer({ src, poster, posterFromVideo, alt, active, class
 
   if (!src) return null;
 
-  const effectivePoster = framePoster || poster || undefined;
+  const effectivePoster = framePoster || (posterFromVideo ? undefined : poster) || undefined;
 
   return (
     <video
