@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = Number(process.env.PORT) || 8080;
+const HOST = process.env.HOST || '0.0.0.0';
 const ROOT = path.resolve(__dirname, '..');
 
 const MIME = {
@@ -73,7 +74,19 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
+  const os = require('os');
+  const nets = os.networkInterfaces();
+  const lan = [];
+  for (const list of Object.values(nets)) {
+    for (const net of list || []) {
+      if (net.family === 'IPv4' && !net.internal) lan.push(net.address);
+    }
+  }
   console.log(`PharmConsilium dev server: http://localhost:${PORT}/`);
+  if (lan.length) {
+    console.log('LAN (share with others on same Wi-Fi):');
+    lan.forEach((ip) => console.log(`  http://${ip}:${PORT}/`));
+  }
   console.log('SPA routes: /pharma-marketing/crm, /healthcare, /about, etc.');
 });

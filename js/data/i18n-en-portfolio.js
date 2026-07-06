@@ -668,10 +668,10 @@ window.PORTFOLIO_EN_PATCHES = {
       'Placement on brand sites and education platforms.',
       'Higher physician engagement, longer brand interaction time, and stronger expert value of the digital ecosystem.',
     ],
-    slideAspect: '703 / 758',
+    slideAspect: '1024 / 768',
     slides: [
       {
-        src: 'assets/uploads/medical-calculators-anxiety-scales-slide.jpg',
+        src: 'assets/uploads/medical-calculators-anxiety-scales-slide.png',
         label: 'Anxiety scales',
         alt: 'Medical calculators — anxiety scale selector: GAD-7, Covi, Spielberger-Hanin, Sheehan',
       },
