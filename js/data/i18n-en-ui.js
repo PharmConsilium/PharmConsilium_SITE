@@ -522,6 +522,7 @@ window.I18N_EN = {
     lede: 'Eight representative projects from the PharmConsilium portfolio: from a cardio launch in 90 days to our own drug directory with a thousand daily active users. Full portfolio on request.',
     filterAll: 'All',
     openCase: 'Open case',
+    viewCase: 'View case',
     draftSoon: 'Coming soon',
     ctaH3: 'Don\'t see your case?',
     ctaP: 'We have 80+ launches and hundreds of NDA projects. Tell us what you need — we will send relevant materials.',
