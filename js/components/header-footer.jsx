@@ -571,7 +571,7 @@ function FooterSocialLinks({ lang }) {
   const socialAria = window.tUI ? window.tUI('socialAria', lang) : 'Социальные сети ФармКонсилиума';
   return (
     <div className="footer-social" role="navigation" aria-label={socialAria}>
-      <a href="https://t.me/PharmConsilium"
+      <a href="https://telegram.me/PharmConsilium"
         className={c}
         target="_blank"
         rel="noopener noreferrer"
