@@ -536,7 +536,7 @@ window.SUBPAGES_EN_PATCHES = {
     h1Accent: 'and a digital alternative for pharma companies',
     h1Wide: true,
     lede: 'We build digital omnichannel promotion campaigns that take on the role of an outsourced medical representative about: personalized communication architecture for physicians, pharmacists, and pharmacy professionals—on PharmConsilium’s own platform and technology stack.',
-    tags: ['remote eDetail', 'Belarus coverage', 'outsourcing'],
+    tags: ['DigitalMedRep', 'RentReps', 'Outsourcing of medical representatives'],
     artSlides: [
       { src: 'assets/uploads/digital-rep-detail-slide-1.png?v=20260528', label: 'MedRep vs Digital MedRep', alt: 'Medical representative outsourcing: 3D illustration of MedRep vs Digital MedRep — human and robot' },
     ],
