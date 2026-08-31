@@ -369,9 +369,11 @@ function ProjectPage({ slug, navigate, lang }) {
   }
 
   const splitPageTitle = window.splitPageTitle;
-  const titleParts = splitPageTitle
-    ? splitPageTitle(p.name)
-    : { line1: p.name, accent: null, accent2: null };
+  const titleParts = (p.h1Line1 || p.h1Accent || p.h1Accent2)
+    ? { line1: p.h1Line1 || p.name, accent: p.h1Accent || null, accent2: p.h1Accent2 || null }
+    : (splitPageTitle
+      ? splitPageTitle(p.name)
+      : { line1: p.name, accent: null, accent2: null });
   const VideoPlayer = window.PortfolioVideoPlayer;
   const slideUsesMedia = slides.some((s) => s.src || s.art || isSlideVideo(s));
 
@@ -508,25 +510,27 @@ function ProjectPage({ slug, navigate, lang }) {
             <button className="btn btn-ghost" onClick={() => navigate('portfolio')}>
               {ui ? ui.backAll : '← Все проекты'}
             </button>
-            {Array.isArray(p.storeLinks) && p.storeLinks.length > 0 ? (
-              <div className="proj-store-links">
-                <div className="proj-store-links-label">{ui ? ui.appStoreLinks : 'Ссылки на мобильное приложение'}</div>
-                <div className="proj-store-links-row">
-                  {p.storeLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      className="proj-store-link"
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-            {p.serviceRoute ? (
+            {Array.isArray(p.storeLinks) && p.storeLinks.map((link) => (
+              <a
+                key={link.label}
+                className="btn btn-ghost"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label} <span className="arrow">→</span>
+              </a>
+            ))}
+            {p.serviceUrl ? (
+              <a
+                className="btn btn-primary"
+                href={p.serviceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ui ? ui.learnService : 'Узнать больше об этой услуге'} <span className="arrow">→</span>
+              </a>
+            ) : p.serviceRoute ? (
               <button
                 type="button"
                 className="btn btn-primary"
@@ -539,7 +543,7 @@ function ProjectPage({ slug, navigate, lang }) {
         </div>
       </section>
 
-      {MidContactStrip ? <MidContactStrip lang={lang} hide={Boolean(p.serviceRoute)} /> : null}
+      {MidContactStrip ? <MidContactStrip lang={lang} hide={Boolean(p.serviceRoute || p.serviceUrl)} /> : null}
 
       <section className="container">
         {Array.isArray(p.metrics) && p.metrics.length > 0 ? (
@@ -637,7 +641,7 @@ function ProjectPage({ slug, navigate, lang }) {
             </div>
 
             <div className="proj-desc-block">
-              <div className="proj-section-label">— {ui ? ui.deliverables : 'Что получил клиент'}</div>
+              <div className="proj-section-label">— {p.deliverablesLabel || (ui ? ui.deliverables : 'Что получил клиент')}</div>
               <ul className="proj-bullets compact">
                 {p.deliverables.map((d, i) => <li key={i}>{d}</li>)}
               </ul>

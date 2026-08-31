@@ -4,5 +4,20 @@ User-agent: *
 Allow: /
 Disallow: /print.html
 Disallow: /pharmconsilium-print.html
+# Мусорные/CMS-пути (не в sitemap) — основание для исключения в Яндекс.Вебмастере
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /bitrix/
+Disallow: /wordpress/
+Disallow: /blog/
+Disallow: /shop/
+Disallow: /backup/
+Disallow: /old/
+Disallow: /tmp/
+Disallow: /upload/
 
 Sitemap: https://pharmconsilium.com/sitemap.xml
