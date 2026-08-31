@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total": 50,
+    "total": 53,
     "subpages": 23,
-    "portfolioPublic": 18,
+    "portfolioPublic": 21,
     "portfolioDraft": 0,
     "titleDuplicates": [],
     "descOver160": [],
@@ -53,6 +53,18 @@
       {
         "url": "https://pharmconsilium.com/design/ai-content",
         "len": 76
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/portfolio-placeholder-1",
+        "len": 101
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/portfolio-placeholder-2",
+        "len": 112
+      },
+      {
+        "url": "https://pharmconsilium.com/portfolio/portfolio-placeholder-3",
+        "len": 82
       },
       {
         "url": "https://pharmconsilium.com/portfolio/supplement-packaging",
@@ -527,6 +539,45 @@
       "alt": "да",
       "related": "да",
       "source": "SUBPAGES",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/portfolio-placeholder-1",
+      "route": "portfolio/portfolio-placeholder-1",
+      "h1": "Органайзер приёма лекарств – цифровой помощник пациента и врача на протяжении терапии",
+      "title": "Органайзер приёма лекарств – цифровой помощник пациента и врача на протяжении терапии · ФармКонсилиум",
+      "titleLen": 101,
+      "description": "Кейс: органайзер приёма лекарств — бесплатное мобильное приложение для соблюдения терапии, дневника самоконтроля и отчёта врачу. ФармКонсилиум.",
+      "descLen": 143,
+      "alt": "да",
+      "related": "нет",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/portfolio-placeholder-2",
+      "route": "portfolio/portfolio-placeholder-2",
+      "h1": "Медицинские калькуляторы ФармКонсилиум – быстрые и точные клинические расчёты в одном приложении",
+      "title": "Медицинские калькуляторы ФармКонсилиум – быстрые и точные клинические расчёты в одном приложении · ФармКонсилиум",
+      "titleLen": 112,
+      "description": "Кейс: медицинские калькуляторы ФармКонсилиум — более 100 клинических калькуляторов и шкал для HCP в одном приложении. ФармКонсилиум.",
+      "descLen": 132,
+      "alt": "да",
+      "related": "нет",
+      "source": "PORTFOLIO",
+      "indexLang": "RU (EN выкл.)"
+    },
+    {
+      "url": "https://pharmconsilium.com/portfolio/portfolio-placeholder-3",
+      "route": "portfolio/portfolio-placeholder-3",
+      "h1": "prediabet.pro – персональный подход к питанию и здоровым привычкам",
+      "title": "prediabet.pro – персональный подход к питанию и здоровым привычкам · ФармКонсилиум",
+      "titleLen": 82,
+      "description": "Кейс: prediabet.pro — бесплатное приложение для персонального планирования питания и оценки факторов риска предиабета. ФармКонсилиум.",
+      "descLen": 133,
+      "alt": "да",
+      "related": "нет",
+      "source": "PORTFOLIO",
       "indexLang": "RU (EN выкл.)"
     },
     {
