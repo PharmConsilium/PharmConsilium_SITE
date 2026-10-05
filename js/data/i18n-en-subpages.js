@@ -3,7 +3,7 @@
 window.SUBPAGES_EN_PATCHES = {
   'pharma-marketing/crm': {
     section: 'Pharmaceutical marketing',
-    title: 'CRM for medical representatives',
+    title: 'CRM for pharma and medical reps',
     h1Line1: 'CRM-PharmConsilium',
     h1Accent: 'for medical representatives',
     lede: 'Specialized pharma CRM: HCP, facility, and pharmacy database, medical representative visits, CLM, 2CLM, digital communications, and analytics in one system.',
@@ -42,7 +42,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'pharma-marketing/clm': {
     section: 'Pharmaceutical marketing',
-    title: 'CLM — F2F detailing software with promo content',
+    title: 'CLM for medical reps — presentations on visits',
     lede: 'Software for medical representatives to deliver CLM presentations on face-to-face visits. Interactive scenarios, engagement metrics, and data export.',
     tags: ['CLM', 'CLM presentations', 'Detailing CLM — PharmConsilium'],
     aboutTitle: 'About the project',
@@ -282,7 +282,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'pharma-marketing/temy-treningov-dlya-medpredov': {
     section: 'Pharmaceutical marketing',
-    title: 'Training for medical representatives',
+    title: 'Courses and training for medical representatives',
     h1Line1: 'Training for',
     h1Accent: 'medical representatives',
     lede: 'More than 30 training topics for medical representatives built over decades at PharmConsilium: virtual video hall, quiz simulators, and 10 ready-made role-play games with client-branded gamification.',
@@ -652,7 +652,7 @@ window.SUBPAGES_EN_PATCHES = {
 
   'design/clm-presentations': {
     section: 'Design',
-    title: 'CLM presentations, e-detailers, and slide boxes for medical representatives',
+    title: 'CLM presentations for medical reps',
     lede: 'CLM detailers and visual aids for rep F2F visits: clinically accurate narrative, evidence-based design, compliance, and per-visit analytics—all under product manager control.',
     tags: ['CLM', 'eDetailing', 'VisualAid', 'FieldForce', 'PharmaBrand'],
     artSlides: [

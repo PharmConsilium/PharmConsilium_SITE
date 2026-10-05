@@ -10,6 +10,20 @@ DirectoryIndex index.html
   # SEO-spam URLs from hack (?p=12345) — 410 Gone (Google drops from index faster than 404)
   RewriteCond %{QUERY_STRING} (^|&)p= [NC]
   RewriteRule ^ - [G,L]
+  RewriteCond %{QUERY_STRING} (^|&)(page_id|attachment_id)= [NC]
+  RewriteRule ^ - [G,L]
+
+  # Foreign/spam paths (GSC «crawled – not indexed») — 410 before SPA fallback
+  # Examples: /ctg/..., /guide/..., /f/thermometer/..., /c=123, /index.php/iqr/...
+  RewriteRule ^ctg(/|$) - [G,L]
+  RewriteRule ^guide(/|$) - [G,L]
+  RewriteRule ^f(/|$) - [G,L]
+  RewriteRule ^c= - [G,L]
+  RewriteRule ^p= - [G,L]
+  RewriteRule ^index\.php/ - [G,L]
+
+  # Typical WordPress spam paths (if still requested by Google)
+  RewriteRule ^(wp-admin|wp-content|wp-includes|wordpress|xmlrpc\.php)(/|$) - [G,L]
 
   # --- Канонические разделы (старые top-level URL → новые) ---
   RewriteCond %{THE_REQUEST} \s/+marketing/?[\s?] [NC]
