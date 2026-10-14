@@ -128,7 +128,7 @@ function resolveSeo(route, lang) {
     const p = window.PORTFOLIO.find((x) => x.slug === slug);
     if (p) {
       return {
-        title: `${p.name} · ${brand}`,
+        title: `${p.seoTitle || p.name} · ${brand}`,
         description: p.metaDescription || p.short || p.hero || fallbackDesc,
       };
     }

@@ -115,6 +115,10 @@ const ROUTE_ALIASES = {
   'portfolio/bepanten-ad-layouts': 'portfolio/OTCadvertising-banner-How-to-make',
   'portfolio/bayer-club-teleapp': 'portfolio/bot-pharma-digitalmarketing',
   'portfolio/grandaxin-game': 'portfolio/How-to-make-a-game-for-HCP',
+  // mHealth products: legacy placeholder slugs → public SEO URLs
+  'portfolio/portfolio-placeholder-1': 'portfolio/medication-organizer-app',
+  'portfolio/portfolio-placeholder-2': 'portfolio/medical-calculators-app',
+  'portfolio/portfolio-placeholder-3': 'portfolio/prediabet-pro',
 };
 
 function resolveCanonicalRoute(raw) {

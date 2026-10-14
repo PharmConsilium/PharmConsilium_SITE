@@ -1,7 +1,7 @@
 // English PORTFOLIO patches
 
 window.PORTFOLIO_EN_PATCHES = {
-  'portfolio-placeholder-1': {
+  'medication-organizer-app': {
     name: 'Medication intake organizer – a digital assistant for patient and physician throughout therapy.',
     h1Line1: 'Medication intake organizer – a digital',
     h1Accent: 'assistant for patient and physician throughout therapy.',
@@ -39,7 +39,7 @@ window.PORTFOLIO_EN_PATCHES = {
       { label: 'Google Play', url: 'https://links.pharmconsilium.com/go/VWdJu5Xs' },
     ],
   },
-  'portfolio-placeholder-2': {
+  'medical-calculators-app': {
     name: 'PharmConsilium medical calculators – fast and accurate clinical calculations in one app.',
     h1Line1: 'PharmConsilium medical calculators –',
     h1Accent: 'fast and accurate clinical calculations in one app',
@@ -77,7 +77,7 @@ window.PORTFOLIO_EN_PATCHES = {
       },
     ],
   },
-  'portfolio-placeholder-3': {
+  'prediabet-pro': {
     name: 'prediabet.pro – a personal approach to nutrition and healthy habits',
     h1Line1: 'prediabet.pro – a personal approach to',
     h1Accent: 'nutrition and healthy habits',
