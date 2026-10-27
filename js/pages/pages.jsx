@@ -194,6 +194,8 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
     [['organic', 'Инерционный'], ['comms', 'Базовый'], ['launch', 'Максимальный']];
 
   const CrmFeatureArt = window.ArtCrmFeature;
+  const OrganizerFeatureArt = window.ArtOrganizerFeature;
+  const ORGANIZER_APP_URL = 'https://organayzer-priema-lekarstv.pharmconsilium.com/';
 
   return (
     <main className="page-route">
@@ -328,9 +330,9 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
       </div> :
       null}
 
-      {/* Feature row: AI-trener — */}
+      {/* Feature rows: CRM + органайзер приёма лекарств */}
       <section className="section section--feature-after-cta">
-        <div className="container">
+        <div className="container feature-rows">
           <div className="feature-row">
             <div>
               <span className="chip">{en ? en.featureChip : 'Хит продаж 2026'}</span>
@@ -343,7 +345,7 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
                   type="button"
                   className="btn btn-primary btn-sm"
                   onClick={() => navigate('pharma-marketing/crm')}>
-                  CRM <span className="arrow">→</span>
+                  {en ? (en.featureCta || 'CRM') : 'CRM'} <span className="arrow">→</span>
                 </button>
               </div>
             </div>
@@ -351,6 +353,31 @@ function HomePage({ navigate, scenario, setScenario, lang }) {
               {CrmFeatureArt ? <CrmFeatureArt /> : null}
             </div>
           </div>
+
+          <a
+            className="feature-row feature-row--organizer"
+            href={ORGANIZER_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={en ? 'Open medication organizer app' : 'Открыть органайзер приёма лекарств'}>
+            <div className="feature-organizer-copy">
+              <span className="chip chip--soft">{en ? en.organizerChip : 'Бесплатное приложение'}</span>
+              <h3>{en ? en.organizerH3 : 'Органайзер приёма лекарств'}</h3>
+              <p>
+                {en ? en.organizerP : 'Напоминания, дневник самочувствия и отчёт к визиту — для врача и пациента.'}
+              </p>
+              <span className="feature-organizer-cta">
+                {en ? (en.organizerCta || 'Open app') : 'Открыть приложение'} <span className="arrow">→</span>
+              </span>
+            </div>
+            <div className="feature-row-art feature-row-art--organizer" aria-hidden="true">
+              {OrganizerFeatureArt ? <OrganizerFeatureArt /> : null}
+              <div className="feature-organizer-badges">
+                <span>App Store</span>
+                <span>Google Play</span>
+              </div>
+            </div>
+          </a>
         </div>
       </section>
 
