@@ -542,6 +542,24 @@ function ArtCrmFeature({ className, alt }) {
   );
 }
 
+/* Home feature — органайзер: компактная «карточка» экранов */
+function ArtOrganizerFeature({ className, alt }) {
+  const altText = alt || 'Органайзер приёма лекарств — расписание, дневник и отчёт для врача';
+  return (
+    <div className={className ? `feature-organizer-shot ${className}` : 'feature-organizer-shot'} aria-hidden="true">
+      <img
+        src="assets/uploads/medication-organizer-screens.png"
+        alt={altText}
+        className="feature-organizer-art"
+        width={1024}
+        height={768}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  );
+}
+
 /* big abstract for hero/feature */
 function ArtConstellation({ className }) {
   return (
@@ -572,5 +590,5 @@ Object.assign(window, {
   ArtDashboard, ArtPulse, ArtVideo, ArtSlides, ArtGame, ArtBanner, ArtLaunch, ArtDoc,
   ArtTablet, ArtMolecule, ArtDirectory,
   ArtTileMarketing, ArtTileHcp, ArtTileSales, ArtTileContent, ArtTileDirectory, ArtDirectoryTile,
-  ArtConstellation, ArtCrmFeature, ArtTeamContacts,
+  ArtConstellation, ArtCrmFeature, ArtOrganizerFeature, ArtTeamContacts,
 });
