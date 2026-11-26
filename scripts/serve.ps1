@@ -57,6 +57,14 @@ try {
     $res = $ctx.Response
     $path = Get-LocalPath $ctx.Request.Url.AbsolutePath
 
+    # SPA fallback: unknown paths → index.html (History API routes)
+    if (-not $path) {
+      $idx = Join-Path $Root "index.html"
+      if (Test-Path $idx) {
+        $path = $idx
+      }
+    }
+
     if (-not $path) {
       $res.StatusCode = 404
       $body = [Text.Encoding]::UTF8.GetBytes("404 Not Found")
