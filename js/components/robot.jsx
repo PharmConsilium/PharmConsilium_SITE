@@ -20,6 +20,28 @@ const ROBOT_MOODS = {
   privacy: { mood: 'default', face: 2 },
 };
 
+const DIRECTORY_BOOK_SRC = 'assets/uploads/directory-book-float.png';
+const DIRECTORY_BOOK_URL = 'https://farmconsilium.com/';
+const DIRECTORY_BOOK_HINT = 'Открой меня';
+const DIRECTORY_BOOK_HINT_FIRST_MS = 3500;
+const DIRECTORY_BOOK_HINT_VISIBLE_MS = 4500;
+const DIRECTORY_BOOK_HINT_GAP_MIN_MS = 16000;
+const DIRECTORY_BOOK_HINT_GAP_MAX_MS = 38000;
+
+function isDirectoryBookRoute(route) {
+  const r = String(route || '').replace(/^\/+/, '').replace(/\/+$/, '');
+  return r === 'FarmConsilium-drug-reference-book' || r === 'drug-directory' || r === 'directory';
+}
+
+function openDirectoryBookSite() {
+  window.open(DIRECTORY_BOOK_URL, '_blank', 'noopener,noreferrer');
+}
+
+function directoryBookHintDelay() {
+  return DIRECTORY_BOOK_HINT_GAP_MIN_MS +
+    Math.random() * (DIRECTORY_BOOK_HINT_GAP_MAX_MS - DIRECTORY_BOOK_HINT_GAP_MIN_MS);
+}
+
 function robotSectionFromRoute(route) {
   const r = String(route || 'home').split('/')[0] || 'home';
   return ROBOT_MOODS[r] ? r : 'home';
@@ -34,8 +56,13 @@ function fireRobotFace(frame, duration) {
   }
 }
 
-function robotRadiusPx() {
+function robotRadiusPx(directoryBook) {
   const vw = window.innerWidth;
+  if (directoryBook) {
+    if (vw <= 720) return 62;
+    if (vw <= 1024) return 72;
+    return 84;
+  }
   if (vw <= 720) return 47;
   if (vw <= 1024) return 54;
   return 64;
@@ -149,6 +176,12 @@ function RobotCompanion() {
   const [revealed, setRevealed] = React.useState(false);
   const [pageBubble, setPageBubble] = React.useState(null);
   const [surprisePop, setSurprisePop] = React.useState(null);
+  const [directoryBook, setDirectoryBook] = React.useState(() => {
+    if (typeof window === 'undefined') return false;
+    const initial = window.location.pathname.replace(/^\//, '').replace(/\/$/, '') || 'home';
+    return isDirectoryBookRoute(initial);
+  });
+  const directoryBookRef = React.useRef(directoryBook);
   const routeRef = React.useRef('home');
   const surpriseTimerRef = React.useRef(null);
   const bubbleTimerRef = React.useRef(null);
@@ -301,7 +334,7 @@ function RobotCompanion() {
       }
 
       const t = targetRef.current;
-      const radius = robotRadiusPx();
+      const radius = robotRadiusPx(directoryBookRef.current);
       const prevX = p.x;
       const prevY = p.y;
 
@@ -543,6 +576,10 @@ function RobotCompanion() {
   }, [clearBubbleSpeech, scheduleBubbleDismiss]);
 
   const registerRobotTap = React.useCallback((clientX, clientY) => {
+    if (directoryBookRef.current) {
+      openDirectoryBookSite();
+      return true;
+    }
     const now = performance.now();
     const t = tapRef.current;
     const dist = Math.hypot(clientX - t.x, clientY - t.y);
@@ -570,9 +607,49 @@ function RobotCompanion() {
     pageBubbleOpenRef.current = !!pageBubble;
   }, [pageBubble]);
 
+  const showDirectoryBookHint = React.useCallback(() => {
+    if (!directoryBookRef.current || reducedMotionRef.current || busyRef.current) return;
+    clearBubbleSpeech();
+    if (bubbleTimerRef.current) window.clearTimeout(bubbleTimerRef.current);
+    bubbleTimerRef.current = null;
+    setPageBubble({
+      full: DIRECTORY_BOOK_HINT,
+      shown: DIRECTORY_BOOK_HINT,
+      done: true,
+      onboarding: true,
+    });
+    scheduleBubbleDismiss(DIRECTORY_BOOK_HINT_VISIBLE_MS);
+  }, [clearBubbleSpeech, scheduleBubbleDismiss]);
+
   React.useEffect(() => {
-    if (!revealed || reducedMotionRef.current) {
-      return undefined;
+    directoryBookRef.current = directoryBook;
+  }, [directoryBook]);
+
+  React.useEffect(() => {
+    if (!revealed || reducedMotionRef.current) return undefined;
+
+    if (directoryBook) {
+      dismissPageBubble();
+      let cancelled = false;
+      let loopTimer = null;
+      const firstTimer = window.setTimeout(() => {
+        if (cancelled) return;
+        showDirectoryBookHint();
+        const scheduleNext = () => {
+          loopTimer = window.setTimeout(() => {
+            if (cancelled || !directoryBookRef.current) return;
+            showDirectoryBookHint();
+            scheduleNext();
+          }, directoryBookHintDelay());
+        };
+        scheduleNext();
+      }, DIRECTORY_BOOK_HINT_FIRST_MS);
+
+      return () => {
+        cancelled = true;
+        window.clearTimeout(firstTimer);
+        if (loopTimer) window.clearTimeout(loopTimer);
+      };
     }
 
     onboardingTimerRef.current = window.setTimeout(() => {
@@ -586,7 +663,7 @@ function RobotCompanion() {
         onboardingTimerRef.current = null;
       }
     };
-  }, [revealed, showOnboardingBubble]);
+  }, [revealed, showOnboardingBubble, directoryBook, dismissPageBubble, showDirectoryBookHint]);
 
   React.useEffect(() => () => {
     if (surpriseTimerRef.current) window.clearTimeout(surpriseTimerRef.current);
@@ -621,8 +698,10 @@ function RobotCompanion() {
     ix.downY = e.clientY;
     ix.downT = performance.now();
     lookRef.current = { x: 0, y: 0 };
-    setRobotPose('held');
-    spawnSurprisePop();
+    if (!directoryBookRef.current) {
+      setRobotPose('held');
+      spawnSurprisePop();
+    }
     wrapRef.current?.classList.add('robot-img--dragging');
     try {
       e.currentTarget.setPointerCapture(e.pointerId);
@@ -637,7 +716,7 @@ function RobotCompanion() {
     const now = performance.now();
     const dt = Math.max(0.001, (now - ix.lastT) / 1000);
     const next = pointerToRobotPos(
-      e.clientX, e.clientY, ix.grabDx, ix.grabDy, robotRadiusPx()
+      e.clientX, e.clientY, ix.grabDx, ix.grabDy, robotRadiusPx(directoryBookRef.current)
     );
     const dx = next.x - p.x;
     const dy = next.y - p.y;
@@ -663,7 +742,7 @@ function RobotCompanion() {
     const isTap = speed <= ROBOT_THROW_MIN_SPEED
       && moved < ROBOT_TAP_MAX_MOVE
       && elapsed < ROBOT_TAP_MAX_MS;
-    if (isTap && e.pointerType !== 'mouse' && registerRobotTap(e.clientX, e.clientY)) {
+    if (isTap && (directoryBookRef.current || e.pointerType !== 'mouse') && registerRobotTap(e.clientX, e.clientY)) {
       ix.mode = 'scroll';
       ix.vx = 0;
       ix.vy = 0;
@@ -701,7 +780,8 @@ function RobotCompanion() {
     ix.pendingAngry = false;
     wrapRef.current?.classList.remove('robot-img--dragging');
     setRobotPose('normal');
-    showPageBubble();
+    if (directoryBookRef.current) openDirectoryBookSite();
+    else showPageBubble();
   }, [canInteract, setRobotPose, showPageBubble]);
 
   // Лёгкий поворот «к курсору» на десктопе
@@ -739,12 +819,14 @@ function RobotCompanion() {
   }, []);
 
   const applyRouteMood = React.useCallback((route) => {
+    const isBook = isDirectoryBookRoute(route);
+    setDirectoryBook(isBook);
     if (poseRef.current !== 'normal') return;
     const section = robotSectionFromRoute(route);
     const cfg = ROBOT_MOODS[section] || ROBOT_MOODS.home;
     const wrap = wrapRef.current;
-    if (wrap) wrap.setAttribute('data-robot-mood', cfg.mood);
-    fireRobotFace(cfg.face, section === 'about' ? 4800 : 2600);
+    if (wrap) wrap.setAttribute('data-robot-mood', isBook ? 'directory-book' : cfg.mood);
+    if (!isBook) fireRobotFace(cfg.face, section === 'about' ? 4800 : 2600);
   }, []);
 
   React.useEffect(() => {
@@ -961,13 +1043,21 @@ function RobotCompanion() {
   const robotNode = (
     <div
       ref={wrapRef}
-      className={'robot-img' + (revealed ? '' : ' robot-img--boot')}
-      data-robot-mood="home"
-      data-robot-pose={pose}
+      className={
+        'robot-img' +
+        (revealed ? '' : ' robot-img--boot') +
+        (directoryBook ? ' robot-img--directory-book' : '')
+      }
+      data-robot-mood={directoryBook ? 'directory-book' : 'home'}
+      data-robot-pose={directoryBook ? 'normal' : pose}
     >
       {pageBubble ?
         <div
-          className={'robot-bubble-wrap' + (pageBubble.onboarding ? ' robot-bubble-wrap--onboarding' : '')}
+          className={
+            'robot-bubble-wrap' +
+            (pageBubble.onboarding ? ' robot-bubble-wrap--onboarding' : '') +
+            (directoryBook ? ' robot-bubble-wrap--directory-book' : '')
+          }
           role="status"
           aria-live={pageBubble.done ? 'polite' : 'off'}
         >
@@ -996,7 +1086,7 @@ function RobotCompanion() {
           </div>
         </div> :
         null}
-      {surprisePop != null ?
+      {!directoryBook && surprisePop != null ?
         <div key={surprisePop} className="robot-surprise" aria-hidden="true">
           <span className="robot-surprise__text">!?</span>
         </div> :
@@ -1004,65 +1094,82 @@ function RobotCompanion() {
       <div ref={stageRef} className="robot-img-stage" aria-hidden="true">
         <div ref={bodyRef} className="robot-img-body">
           <div className="robot-img-float">
-            <div
-              className="robot-img-stack robot-img-stack--default"
-              aria-hidden={showPose ? 'true' : undefined}
-            >
-              <div className="robot-img-layer robot-img-layer--base">
-                <img
-                  className="robot-img-base"
-                  src={baseSrc}
-                  alt=""
-                  aria-hidden="true"
-                  draggable="false"
-                  decoding="sync"
-                  fetchPriority="high"
-                />
-              </div>
-              <div ref={faceRef} className="robot-img-layer robot-img-layer--face">
-                {RobbieFaceCycle ?
-                  <RobbieFaceCycle
-                    alt=""
-                    className="robot-face-cycle robot-face-cycle--lighten"
-                    paused={facePaused}
-                  /> :
-                  null}
-              </div>
-            </div>
-            <div
-              className="robot-img-stack robot-img-stack--pose"
-              aria-hidden={showPose ? undefined : 'true'}
-            >
-              <div className="robot-img-layer robot-img-layer--pose">
-                {showPose ?
-                <img
-                  className="robot-img-pose"
-                  src={pose === 'held' ? heldSrc : angrySrc}
-                  alt=""
-                  aria-hidden="true"
-                  draggable="false"
-                  decoding="async"
-                /> :
-                null}
-              </div>
-            </div>
-            <div className="robot-img-layer robot-img-layer--glow">
+            {directoryBook ?
               <img
-                className="robot-img-glow"
-                src={outlineSrc}
+                className="robot-img-directory-book"
+                src={DIRECTORY_BOOK_SRC}
                 alt=""
                 aria-hidden="true"
                 draggable="false"
-                decoding="sync"
-                fetchPriority="high"
-              />
-            </div>
+                decoding="async"
+                width={900}
+                height={900}
+              /> :
+              <>
+                <div
+                  className="robot-img-stack robot-img-stack--default"
+                  aria-hidden={showPose ? 'true' : undefined}
+                >
+                  <div className="robot-img-layer robot-img-layer--base">
+                    <img
+                      className="robot-img-base"
+                      src={baseSrc}
+                      alt=""
+                      aria-hidden="true"
+                      draggable="false"
+                      decoding="sync"
+                      fetchPriority="high"
+                    />
+                  </div>
+                  <div ref={faceRef} className="robot-img-layer robot-img-layer--face">
+                    {RobbieFaceCycle ?
+                      <RobbieFaceCycle
+                        alt=""
+                        className="robot-face-cycle robot-face-cycle--lighten"
+                        paused={facePaused}
+                      /> :
+                      null}
+                  </div>
+                </div>
+                <div
+                  className="robot-img-stack robot-img-stack--pose"
+                  aria-hidden={showPose ? undefined : 'true'}
+                >
+                  <div className="robot-img-layer robot-img-layer--pose">
+                    {showPose ?
+                    <img
+                      className="robot-img-pose"
+                      src={pose === 'held' ? heldSrc : angrySrc}
+                      alt=""
+                      aria-hidden="true"
+                      draggable="false"
+                      decoding="async"
+                    /> :
+                    null}
+                  </div>
+                </div>
+                <div className="robot-img-layer robot-img-layer--glow">
+                  <img
+                    className="robot-img-glow"
+                    src={outlineSrc}
+                    alt=""
+                    aria-hidden="true"
+                    draggable="false"
+                    decoding="sync"
+                    fetchPriority="high"
+                  />
+                </div>
+              </>}
           </div>
         </div>
       </div>
       <div
         className="robot-img-hit"
-        aria-label="Робби — дважды нажмите для подсказки по странице"
+        aria-label={
+          directoryBook
+            ? 'Справочник ЛС — нажмите, чтобы открыть farmconsilium.com'
+            : 'Робби — дважды нажмите для подсказки по странице'
+        }
         onPointerDown={onHitPointerDown}
         onPointerMove={onHitPointerMove}
         onPointerUp={onHitPointerUp}

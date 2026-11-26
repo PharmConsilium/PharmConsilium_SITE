@@ -2812,6 +2812,52 @@ a.feature-row--organizer:hover .feature-organizer-shot {
 .robot-img.robot-img--reduced-motion .robot-surprise {
   display: none;
 }
+/* Справочник ЛС — вместо Робби летает книга */
+.robot-img--directory-book {
+  width: 196px;
+  height: 196px;
+}
+.robot-img-directory-book {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 12px 26px rgba(18, 12, 42, 0.32));
+}
+.robot-img--directory-book .robot-img-float {
+  animation: none;
+}
+.robot-img--directory-book.robot-img--moving .robot-img-float {
+  animation: none;
+}
+.robot-img--directory-book .robot-bubble-wrap {
+  width: min(200px, 72vw);
+}
+.robot-img--directory-book .robot-bubble {
+  max-height: none;
+  padding: 12px 14px;
+  text-align: center;
+}
+.robot-img--directory-book .robot-bubble__text {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+@media (max-width: 1024px) {
+  .robot-img--directory-book {
+    width: 168px;
+    height: 168px;
+  }
+}
+@media (max-width: 720px) {
+  .robot-img--directory-book {
+    width: 148px;
+    height: 148px;
+  }
+}
 .robot-img-hit {
   position: absolute;
   inset: 0;
@@ -2821,6 +2867,10 @@ a.feature-row--organizer:hover .feature-organizer-shot {
   cursor: grab;
   touch-action: none;
   background: transparent;
+}
+.robot-img--directory-book .robot-img-hit {
+  cursor: pointer;
+  border-radius: 18%;
 }
 .robot-img--dragging .robot-img-hit {
   cursor: grabbing;
